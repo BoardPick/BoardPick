@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -13,12 +13,14 @@ import TabBar from "./layouts/TabBar/TabBar";
 
 function App() {
   const isLoggedIn = false;
-  const location = useLocation();
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/onBoarding" element={<OnBoarding />} />
+        <Route
+          path="/onBoarding"
+          element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+        />
         <Route path="/" element={<Home />} />
         <Route path="/category" element={<Category />} />
         <Route path="/review" element={<Review />} />
@@ -26,7 +28,7 @@ function App() {
         <Route path="/myPick" element={<MyPick />} />
         <Route path="/myPage" element={<MyPage />} />
       </Routes>
-      {location.pathname !== "/onBoarding" && !isLoggedIn && <TabBar />}
+      {isLoggedIn && <TabBar />}
     </div>
   );
 }
