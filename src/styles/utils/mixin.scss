@@ -1,0 +1,7 @@
+@mixin box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100%;
+}
