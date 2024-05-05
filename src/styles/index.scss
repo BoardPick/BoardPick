@@ -1,11 +1,11 @@
 // base
 @import "./base/reset.scss";
+@import "./base/font.scss";
 
 // utils
 @import "./utils/mixin.scss";
 @import "./utils/variables.scss";
 
 // components
-
 // layouts
-@import "../layouts/TabBar/TabBar.scss";
+@import "../layouts/NavigationBar/NavigationBar.scss";
