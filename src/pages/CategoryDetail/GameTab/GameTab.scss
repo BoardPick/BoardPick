@@ -1,0 +1,18 @@
+.gameTab {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 20px;
+  margin: 32px 0;
+  .gameVideo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .videoTit {
+      font-size: map-get($title3, font-size);
+      line-height: map-get($title3, line-height);
+      letter-spacing: map-get($title3, letter-spacing);
+      font-weight: 600;
+    }
+  }
+}

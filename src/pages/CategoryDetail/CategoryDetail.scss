@@ -1,1 +1,126 @@
+.categoryDetail {
+  @include mobile();
+  background: url("https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  .boardGameInfo {
+    position: relative;
+    background-color: $common_white;
+    border-radius: 16px 16px 0 0;
+    margin-top: 142px;
+    .thumNail {
+      position: absolute;
+      top: -75px;
+      right: 25px;
+      border: 1px solid $common_white;
+      border-radius: 8px;
+      img {
+        width: 82px;
+        height: 94px;
+        border-radius: 8px;
+      }
+    }
+    .boardGameSum {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-bottom: 1px solid $line_default;
+      padding: 30px 20px;
+      .banners {
+        display: flex;
+        gap: 4px;
+      }
+      .banner {
+        padding: 2px 6px;
+        background-color: $background_default;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 18px;
+        color: $text_sub2;
+      }
+      .boardGameName {
+        @each $font, $value in $title2 {
+          #{$font}: $value;
+        }
+        font-weight: 700;
+      }
+      .boardGameOne {
+        @each $font, $value in $body2 {
+          #{$font}: $value;
+        }
+        color: $text_info;
+      }
+      .avgStar {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: $text_info;
+        @each $font, $value in $caption1 {
+          #{$font}: $value;
+        }
+      }
+      .reviewBtn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        border-radius: 4px;
+        border: 1px solid $line_default;
+        margin: 4px 0;
+        p {
+          color: $text_sub1;
+          @each $font, $value in $caption1 {
+            #{$font}: $value;
+          }
+        }
+        svg {
+          width: 12px;
+          height: 12px;
+          stroke: $text_sub1;
+        }
+      }
+      .hashTagBox {
+        display: flex;
+        gap: 4px;
+        .hashTag {
+          border: 1px solid $line_default;
+          border-radius: 80px;
+          padding: 4px 10px;
+          color: $text_info;
+          @each $font, $value in $caption1 {
+            #{$font}: $value;
+          }
+        }
+      }
+    }
 
+    .BoardGameEleBox {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 8px solid $line_light;
+      .BoardGameEle {
+        width: calc(100% / 4);
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0 24px 0;
+        text-align: center;
+        .EleIcon path {
+          stroke: $text_Disabled;
+        }
+        .EleTit {
+          @each $font, $value in $caption2 {
+            #{$font}: $value;
+          }
+          color: $text_info;
+        }
+        .EleCon {
+          @each $font, $value in $body2 {
+            #{$font}: $value;
+          }
+        }
+      }
+    }
+  }
+}

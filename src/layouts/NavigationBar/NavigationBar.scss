@@ -1,10 +1,45 @@
-.TabBar {
-  // width: 100%;
+.NavigationBar {
+  width: 100%;
+  max-width: 600px;
+  min-width: 375px;
+  height: 52px;
   position: fixed;
   bottom: 0;
-
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $common_white;
+  border-top: 1px solid $line_default;
   ul {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    .menu {
+      width: calc(100% / 5);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $text_info;
+
+      path {
+        stroke: $text_Disabled;
+      }
+      span {
+        color: $text_info;
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: -2.5%;
+      }
+      &.on {
+        svg {
+          fill: $main_color;
+        }
+        path {
+          stroke: $common_white;
+        }
+      }
+    }
   }
 }

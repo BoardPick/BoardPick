@@ -1,0 +1,27 @@
+import { ReactComponent as AgeIcon } from "../icon/age.svg";
+import { ReactComponent as BookmarkIcon } from "../icon/bookmark.svg";
+import { ReactComponent as CategoryIcon } from "../icon/category.svg";
+import { ReactComponent as ChevronLeftIcon } from "../icon/chevronLeft.svg";
+import { ReactComponent as ChevronRightIcon } from "../icon/chevronRight.svg";
+import { ReactComponent as HomeIcon } from "../icon/home.svg";
+import { ReactComponent as LevelIcon } from "../icon/level.svg";
+import { ReactComponent as LinkIcon } from "../icon/link.svg";
+import { ReactComponent as MyPageIcon } from "../icon/mypage.svg";
+import { ReactComponent as PeopleIcon } from "../icon/people.svg";
+import { ReactComponent as ReviewIcon } from "../icon/review.svg";
+import { ReactComponent as SearchIcon } from "../icon/search.svg";
+import { ReactComponent as TimeIcon } from "../icon/time.svg";
+
+export const Age = () => <AgeIcon />;
+export const Bookmark = () => <BookmarkIcon />;
+export const Category = () => <CategoryIcon />;
+export const ChevronLeft = () => <ChevronLeftIcon />;
+export const ChevronRight = () => <ChevronRightIcon />;
+export const Home = () => <HomeIcon />;
+export const Level = () => <LevelIcon />;
+export const Link = () => <LinkIcon />;
+export const MyPage = () => <MyPageIcon />;
+export const People = () => <PeopleIcon />;
+export const Review = () => <ReviewIcon />;
+export const Search = () => <SearchIcon />;
+export const Time = () => <TimeIcon />;

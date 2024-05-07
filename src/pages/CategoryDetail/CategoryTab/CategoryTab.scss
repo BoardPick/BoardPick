@@ -1,0 +1,28 @@
+.categoryTab {
+  display: flex;
+  flex-direction: column;
+  background-color: $common_white;
+  .tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    .tab {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      border-bottom: 1px solid $line_default;
+      text-align: center;
+      padding: 20px 0;
+      &.on {
+        border-bottom: 2px solid $main_color;
+        @each $font, $value in $body1 {
+          #{$font}: $value;
+        }
+        font-weight: 600;
+        color: $text_default;
+      }
+    }
+  }
+}
