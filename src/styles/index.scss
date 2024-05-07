@@ -6,8 +6,11 @@
 @import "./utils/variables.scss";
 
 // components
-// layouts
+@import "../components/AppBar/AppBar.scss";
+
+// layout
 @import "../layouts/NavigationBar/NavigationBar.scss";
 
 // pages
-@import "..//pages/CategoryDetail/CategoryDetail.scss";
+@import "../pages/CategoryDetail/CategoryDetail.scss";
+@import "../pages/CategoryDetail/CategoryTab.scss";
