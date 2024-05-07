@@ -7,22 +7,18 @@ $title1: (
   line-height: 34px,
   letter-spacing: 0em,
 );
+
 $title2: (
-  font-size: 24px,
-  line-height: 34px,
-  letter-spacing: 0em,
-);
-$title3: (
   font-size: 20px,
   line-height: 28px,
   letter-spacing: 0em,
 );
-$title4: (
+$title3: (
   font-size: 18px,
   line-height: 26px,
   letter-spacing: 0em,
 );
-$title5: (
+$title4: (
   font-size: 16px,
   line-height: 24px,
   letter-spacing: 0em,
@@ -91,17 +87,6 @@ $sub_color: #484f54;
 $common_black: #000;
 $common_white: #fff;
 
-$neutral50: #f1f1f5;
-$neutral100: #e1e1e1;
-$neutral200: #bbb;
-$neutral300: #999;
-$neutral400: #888;
-$neutral500: #767676;
-$neutral600: #666;
-$neutral700: #505050;
-$neutral800: #333;
-$neutral900: #111;
-
 // Text
 $text_Disabled: #9999;
 $text_info: #767676;
@@ -116,6 +101,6 @@ $line_deep: #111;
 
 // background
 $background_light: #f7f7fb;
-$background_deep: #f1f1f5;
-// $background_deep: #111111; ?
-$background_Brand: #fcecee;
+$background_default: #f1f1f5;
+$background_deep: #111111;
+$background_brand: #fcecee;
