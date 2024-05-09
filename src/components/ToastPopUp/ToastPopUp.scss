@@ -1,4 +1,6 @@
 .toastPopUp {
+  position: fixed;
+  bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,6 +12,7 @@
   @each $font, $value in $body3 {
     #{$font}: $value;
   }
+  z-index: 999;
   .view {
     background-color: transparent;
     border: none;

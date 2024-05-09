@@ -1,10 +1,37 @@
 .categoryDetail {
   @include mobile();
-  background: url("https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg");
-  object-fit: cover;
-  background-repeat: no-repeat;
+
+  .backImg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    min-width: 375px;
+    height: 50%;
+    z-index: 0;
+    background-image: url("https://cf.geekdo-images.com/LT7OjjlYDZhRlms1yWWhlg__original/img/-L0zZSglRmSfz_EyNjbeUEf0AOw=/0x0/filters:format(jpeg)/pic308390.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba($common_black, 0.4),
+        rgba($common_black, 0)
+      );
+      backdrop-filter: blur(3px);
+    }
+  }
   .boardGameInfo {
     position: relative;
+    z-index: 1;
     background-color: $common_white;
     border-radius: 16px 16px 0 0;
     margin-top: 142px;
@@ -30,15 +57,7 @@
         display: flex;
         gap: 4px;
       }
-      .banner {
-        padding: 2px 6px;
-        background-color: $background_default;
-        border-radius: 4px;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 18px;
-        color: $text_sub2;
-      }
+
       .boardGameName {
         @each $font, $value in $title2 {
           #{$font}: $value;
@@ -51,35 +70,26 @@
         }
         color: $text_info;
       }
-      .avgStar {
+
+      .pickBanner {
         display: flex;
         align-items: center;
-        gap: 4px;
-        color: $text_info;
+        background-color: $background_brand;
+        border-radius: 4px;
+        padding: 6px 12px;
         @each $font, $value in $caption1 {
           #{$font}: $value;
         }
-      }
-      .reviewBtn {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px;
-        border-radius: 4px;
-        border: 1px solid $line_default;
-        margin: 4px 0;
-        p {
-          color: $text_sub1;
-          @each $font, $value in $caption1 {
-            #{$font}: $value;
-          }
+        color: $main_color;
+        strong {
+          font-weight: 600;
         }
-        svg {
-          width: 12px;
-          height: 12px;
-          stroke: $text_sub1;
+        &::before {
+          content: url("../../assets/icon/check.svg");
+          margin-right: 6px;
         }
       }
+
       .hashTagBox {
         display: flex;
         gap: 4px;

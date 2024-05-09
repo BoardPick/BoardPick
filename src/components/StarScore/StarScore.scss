@@ -1,0 +1,19 @@
+.avgStar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: $text_info;
+  @each $font, $value in $caption1 {
+    #{$font}: $value;
+  }
+  .star {
+    padding-top: 4px;
+  }
+  .avg {
+    font-weight: 600;
+    color: $common_black;
+  }
+  .reviewCount {
+    color: $common_black;
+  }
+}
