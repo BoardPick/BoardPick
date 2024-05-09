@@ -1,5 +1,6 @@
 @mixin mobile {
-  width: 375px;
+  max-width: 600px;
+  min-width: 375px;
   height: 100vh;
   background-color: $common_white;
   font-family: $font;
