@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: $text_info;
+  color: $text_Disabled;
   @each $font, $value in $caption1 {
     #{$font}: $value;
   }
@@ -11,9 +11,34 @@
   }
   .avg {
     font-weight: 600;
-    color: $common_black;
+    &.round {
+      background-color: $sub_color;
+      border-radius: 80px;
+      padding: 2px 10px;
+      color: $common_white;
+      @each $font, $value in $body2 {
+        #{$font}: $value;
+      }
+    }
+    &.black {
+      color: $common_black;
+    }
   }
   .reviewCount {
-    color: $common_black;
+    &.round {
+      @each $font, $value in $body1 {
+        #{$font}: $value;
+      }
+      color: $text_Disabled;
+      &::before {
+        content: "/ 5";
+        margin-right: 2px;
+        font-weight: 600;
+        color: $common_black;
+      }
+    }
+    &.black {
+      color: $common_black;
+    }
   }
 }
