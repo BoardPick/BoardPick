@@ -1,0 +1,61 @@
+.btn {
+  border-radius: 8px;
+  border: none;
+  padding: 14px 16px;
+  color: $common_white;
+  &.btn_brand {
+    background-color: $main_color;
+  }
+  &.btn_brandSub {
+    background-color: $sub_color;
+  }
+  &.btn_disabled {
+    background-color: $text_Disabled;
+  }
+  &.btn_default {
+    background-color: $common_white;
+    color: $common_black;
+  }
+  &.btn_txt {
+    background-color: transparent;
+    color: $common_black;
+    text-decoration: underline;
+  }
+  &.s52 {
+    @each $font, $value in $button2 {
+      #{$font}: $value;
+    }
+  }
+  &.s48 {
+    @each $font, $value in $button3 {
+      #{$font}: $value;
+    }
+  }
+  &.s44 {
+    @each $font, $value in $button3 {
+      #{$font}: $value;
+    }
+    padding: 12px 16px;
+  }
+  &.s36 {
+    @each $font, $value in $button4 {
+      #{$font}: $value;
+    }
+    padding: 9px 12px;
+    border-radius: 4px;
+  }
+  &.s32 {
+    @each $font, $value in $button4 {
+      #{$font}: $value;
+    }
+    padding: 7px 12px;
+    border-radius: 4px;
+  }
+  &.s24 {
+    @each $font, $value in $caption2 {
+      #{$font}: $value;
+    }
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+}
