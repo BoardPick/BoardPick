@@ -7,11 +7,24 @@
     #{$font}: $value;
   }
   .star {
-    .MuiRating-iconFilled {
+    margin: 0 4px 10px -4px;
+    .MuiRating-root {
       display: flex;
-      color: $main_color;
+      gap: 4px;
+      .css-7qmtgc-MuiRating-icon {
+        width: 16px;
+        height: 16px;
+        &.MuiRating-iconFilled {
+          display: flex;
+          color: $main_color;
+          .css-1c99szj-MuiRating-icon {
+            color: $line_default;
+          }
+        }
+      }
       .css-1c99szj-MuiRating-icon {
-        color: $line_default;
+        width: 16px;
+        height: 16px;
       }
     }
   }

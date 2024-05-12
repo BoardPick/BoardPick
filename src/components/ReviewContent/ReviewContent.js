@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../Btn/Button/Button";
 import StarScore from "../StarScore/StarScore";
 import { Like } from "../../assets/icon/icon";
-import { useDispatch, useSelector } from "react-redux";
 
-const ReviewContent = ({ nickName, date, review }) => {
+const ReviewContent = ({ nickName, date, review, bottomContent, content }) => {
   const dispatch = useDispatch();
   const likeCount = useSelector((state) => state.likeCount);
   const setLikeCount = () => {
@@ -12,6 +12,9 @@ const ReviewContent = ({ nickName, date, review }) => {
       type: "SET_LIKE",
     });
   };
+  const bottomType = ["game"].includes(bottomContent)
+    ? bottomContent
+    : "bestKeyword";
   // const setLikeDecrease = () => {
   //   dispatch({
   //     type: "SET_PICK_DECREASE",
@@ -56,7 +59,9 @@ const ReviewContent = ({ nickName, date, review }) => {
         />
       </div>
       <div className="reviewTxt">{review}</div>
-      <article></article>
+      <article>
+        <div className={`bottomContent ${bottomType}`}>{content}</div>
+      </article>
     </section>
   );
 };

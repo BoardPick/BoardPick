@@ -30,11 +30,13 @@
             #{$font}: $value;
           }
           margin-bottom: 8px;
+          color: $text_sub2;
           span {
             @each $font, $value in $title1 {
               #{$font}: $value;
             }
             font-weight: 600;
+            color: $common_black;
           }
         }
         .gameInfo {
@@ -72,11 +74,24 @@
       &.detailReview_star {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 16px;
         .starRating {
           display: flex;
           align-items: center;
           gap: 16px;
+
+          .MuiRating-icon {
+            color: $main_color;
+            margin: -14px 0 -6px -6px;
+            svg {
+              width: 48px;
+              height: 48px;
+            }
+          }
+          .MuiRating-iconEmpty {
+            color: $line_default;
+          }
         }
       }
       &.detailReview_keyword {
@@ -107,6 +122,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: 10px;
+                box-shadow: 0px 0px 4px 0px rgba($common_black, 0.2);
                 .emoji {
                   font-size: 24px;
                 }

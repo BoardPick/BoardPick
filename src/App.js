@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";

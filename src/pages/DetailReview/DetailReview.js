@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
+import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 import { goodKeyword, badKeyword } from "../../assets/data/keyword";
 
@@ -38,7 +39,7 @@ const DetailReview = () => {
       <section className="detailReviewContent">
         <article className="detailReview_game">
           <h1>
-            <span>이스케이프룸 패밀리</span>의<br /> 후기를 작성해볼까요
+            <span>이스케이프룸 패밀리</span>의<br /> 후기를 작성해볼까요?
           </h1>
           <p className="desc">소중한 플레이 경험을 후기로 남겨주세요!</p>
           <div className="gameInfo">
@@ -70,8 +71,12 @@ const DetailReview = () => {
               onChangeActive={(event, newHover) => {
                 setHover(newHover);
               }}
+              icon={<StarRateRoundedIcon />}
               emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                <StarRateRoundedIcon
+                  style={{ opacity: 0.55 }}
+                  fontSize="inherit"
+                />
               }
             />
             {value !== null && (
@@ -88,7 +93,7 @@ const DetailReview = () => {
           </p>
           <div className="reviewBtns">
             <ul>
-              {goodKeyword.slice(0, 5).map((i) => (
+              {goodKeyword.slice(0, 5).map((item, i) => (
                 <li
                   key={i}
                   className={keyword ? "active" : ""}
@@ -97,8 +102,8 @@ const DetailReview = () => {
                   <Button
                     text={
                       <>
-                        <span className="emoji">{i.emoji}</span>
-                        <span>{i.keyword}</span>
+                        <span className="emoji">{item.emoji}</span>
+                        <span>{item.keyword}</span>
                       </>
                     }
                     size={"s44"}
@@ -107,7 +112,7 @@ const DetailReview = () => {
               ))}
             </ul>
             <ul>
-              {goodKeyword.slice(5, goodKeyword.length).map((i) => (
+              {goodKeyword.slice(5, goodKeyword.length).map((item, i) => (
                 <li
                   key={i}
                   className={keyword ? "active" : ""}
@@ -116,8 +121,8 @@ const DetailReview = () => {
                   <Button
                     text={
                       <>
-                        <span className="emoji">{i.emoji}</span>
-                        <span>{i.keyword}</span>
+                        <span className="emoji">{item.emoji}</span>
+                        <span>{item.keyword}</span>
                       </>
                     }
                     size={"s44"}
@@ -136,7 +141,7 @@ const DetailReview = () => {
           </p>
           <div className="reviewBtns">
             <ul>
-              {badKeyword.slice(0, 5).map((i) => (
+              {badKeyword.slice(0, 5).map((item, i) => (
                 <li
                   key={i}
                   className={keyword ? "active" : ""}
@@ -145,8 +150,8 @@ const DetailReview = () => {
                   <Button
                     text={
                       <>
-                        <span className="emoji">{i.emoji}</span>
-                        <span>{i.keyword}</span>
+                        <span className="emoji">{item.emoji}</span>
+                        <span>{item.keyword}</span>
                       </>
                     }
                     size={"s44"}
@@ -155,7 +160,7 @@ const DetailReview = () => {
               ))}
             </ul>
             <ul>
-              {badKeyword.slice(5, goodKeyword.length).map((i) => (
+              {badKeyword.slice(5, goodKeyword.length).map((item, i) => (
                 <li
                   key={i}
                   className={keyword ? "active" : ""}
@@ -164,8 +169,8 @@ const DetailReview = () => {
                   <Button
                     text={
                       <>
-                        <span className="emoji">{i.emoji}</span>
-                        <span>{i.keyword}</span>
+                        <span className="emoji">{item.emoji}</span>
+                        <span>{item.keyword}</span>
                       </>
                     }
                     size={"s44"}
@@ -180,7 +185,7 @@ const DetailReview = () => {
           <div className="textArea">
             <textarea
               placeholder="추가적으로 남기고 싶은 후기가 있다면 자유롭게 작성해주세요!"
-              maxlength="200"
+              maxLength="200"
               value={text}
               onChange={handleChange}
             />
