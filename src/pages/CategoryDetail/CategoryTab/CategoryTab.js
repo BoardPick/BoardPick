@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { tabContArr } from "../../../assets/data/tabConArr";
+
 const CategoryTab = ({ reviewCount }) => {
   const [activeIdx, setActiveIdx] = useState(0);
 

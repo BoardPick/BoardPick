@@ -1,3 +1,86 @@
 .reviewTab {
-  margin: 0 20px;
+  margin: 32px 0;
+  .reviewTopBox {
+    border-bottom: 8px solid $line_default;
+    padding: 0 20px;
+    .reviewTop {
+      padding: 24px 0;
+      border-top: 1px solid $line_light;
+
+      .reviewTop_Tit {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        h1 {
+          @each $font, $value in $title3 {
+            #{$font}: $value;
+          }
+        }
+        .reviewCount {
+          @each $font, $value in $body2 {
+            #{$font}: $value;
+          }
+          color: $text_info;
+        }
+      }
+      .topBox {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 16px 0;
+        .topN {
+          display: flex;
+          justify-content: space-between;
+          border: 1px solid $line_default;
+          border-radius: 8px;
+          padding: 8px 12px;
+          @each $font, $value in $body1 {
+            #{$font}: $value;
+          }
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .reviewGroupBox {
+    margin: 32px 20px;
+    h1 {
+      @each $font, $value in $title3 {
+        #{$font}: $value;
+      }
+      .reviewNum {
+        color: $main_color;
+      }
+    }
+    .reviewGroup {
+      margin: 16px 0;
+      .reviewNav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .filter {
+          display: flex;
+          color: $text_Disabled;
+          @each $font, $value in $caption2 {
+            #{$font}: $value;
+          }
+          .filterTab {
+            cursor: pointer;
+            &::after {
+              content: "∙";
+              color: $text_Disabled;
+            }
+            &:last-child {
+              &::after {
+                content: "";
+              }
+            }
+            &.on {
+              color: $text_default;
+            }
+          }
+        }
+      }
+    }
+  }
 }

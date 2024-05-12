@@ -1,7 +1,6 @@
-import React from "react";
 import { GameTabs } from "../../../../assets/data/gameTab";
 
-const GameTab = () => {
+const RuleTab = () => {
   return (
     <div className="gameTab">
       {GameTabs.map((tab, i) => (
@@ -10,8 +9,22 @@ const GameTab = () => {
           {tab.videoCon}
         </section>
       ))}
+      <article>
+        <h1>유사한 진행방식의 게임</h1>
+        <div className="wrapper">
+          <div>
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
+          </div>
+        </div>
+      </article>
     </div>
   );
 };
 
-export default GameTab;
+export default RuleTab;

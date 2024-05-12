@@ -8,8 +8,12 @@
   margin: 4px 0;
   background-color: $common_white;
   cursor: pointer;
-  path {
-    stroke-width: 2;
+  svg {
+    width: 18px;
+    height: 18px;
+    path {
+      stroke-width: 2;
+    }
   }
 
   &.notice {
@@ -20,8 +24,12 @@
     @each $font, $value in $body3 {
       #{$font}: $value;
     }
-    path {
-      stroke: $main_color;
+    svg {
+      width: 12px;
+      height: 12px;
+      path {
+        stroke: $main_color;
+      }
     }
   }
 

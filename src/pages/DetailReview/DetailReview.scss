@@ -1,0 +1,149 @@
+.detailReview {
+  @include mobile();
+  .detailReviewContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    article {
+      border-bottom: 8px solid $background_default;
+      @include content();
+      .contentTit {
+        @include contentTit();
+        span {
+          @each $font, $value in $body2 {
+            #{$font}: $value;
+          }
+          color: $text_info;
+          margin-left: 8px;
+        }
+      }
+      .desc {
+        @each $font, $value in $body2 {
+          #{$font}: $value;
+        }
+        color: $text_info;
+        margin-bottom: 24px;
+      }
+      &.detailReview_game {
+        h1 {
+          @each $font, $value in $title2 {
+            #{$font}: $value;
+          }
+          margin-bottom: 8px;
+          span {
+            @each $font, $value in $title1 {
+              #{$font}: $value;
+            }
+            font-weight: 600;
+          }
+        }
+        .gameInfo {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background-color: $background_light;
+          border: 1px solid $line_default;
+          border-radius: 8px;
+          padding: 16px;
+          .gameThumNail {
+            width: 56px;
+            height: 64px;
+            border-radius: 8px;
+            overflow: hidden;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            li {
+              .gameName {
+                @each $font, $value in $title4 {
+                  #{$font}: $value;
+                }
+                margin: 0;
+              }
+              .desc {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+      &.detailReview_star {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        .starRating {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+      }
+      &.detailReview_keyword {
+        display: flex;
+        flex-direction: column;
+
+        .reviewBtns {
+          width: 600px;
+          height: 100%;
+          display: flex;
+          gap: 16px;
+          // overflow-x: scroll;
+          ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            li {
+              width: 100%;
+              &.active {
+                .btn_default {
+                  border: 1px solid $main_color;
+                  background-color: $background_brand;
+                  color: $main_color;
+                }
+              }
+              .btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                .emoji {
+                  font-size: 24px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.detailReview_write {
+        border-bottom: none;
+        .textArea {
+          position: relative;
+          height: 158px;
+          margin: 16px 20px 40px 0;
+          textarea {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            border: 1px solid $line_default;
+            border-radius: 8px;
+            outline: none;
+            resize: none;
+            @each $font, $value in $body2 {
+              #{$font}: $value;
+            }
+            color: $text_sub2;
+          }
+        }
+        .textLength {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+    }
+    .btn_brand {
+      margin: 20px;
+    }
+  }
+}

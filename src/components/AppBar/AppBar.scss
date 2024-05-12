@@ -7,6 +7,7 @@
   padding: 14px 20px;
   z-index: 1;
   background-color: $common_white;
+  border-bottom: 1px solid $line_default;
   .barTitle {
     margin: 0 auto;
   }
@@ -15,10 +16,15 @@
   }
   .leftBtns {
     display: flex;
-    button {
+    .barBtn {
       cursor: pointer;
       background-color: transparent;
       border: none;
+      &.pickOn {
+        svg {
+          fill: $main_color;
+        }
+      }
     }
   }
   svg path {
@@ -26,6 +32,7 @@
   }
   &.gradient {
     background-color: transparent;
+    border-bottom: none;
     &::after {
       content: "";
       position: absolute;
@@ -40,10 +47,8 @@
       );
       z-index: -1;
     }
-    .leftBtns {
-      svg path {
-        stroke: $common_white;
-      }
+    svg path {
+      stroke: $common_white;
     }
   }
 }

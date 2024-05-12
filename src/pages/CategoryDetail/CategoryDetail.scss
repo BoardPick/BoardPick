@@ -1,6 +1,7 @@
 .categoryDetail {
+  position: relative;
   @include mobile();
-
+  height: 100vh;
   .backImg {
     position: absolute;
     top: 0;
@@ -52,7 +53,7 @@
       flex-direction: column;
       gap: 12px;
       border-bottom: 1px solid $line_default;
-      padding: 30px 20px;
+      padding: 32px 20px;
       .banners {
         display: flex;
         gap: 4px;
@@ -81,12 +82,14 @@
           #{$font}: $value;
         }
         color: $main_color;
-        strong {
-          font-weight: 600;
-        }
+
         &::before {
           content: url("../../assets/icon/check.svg");
           margin-right: 6px;
+        }
+        .pickCount {
+          font-weight: bold;
+          margin-left: 3px;
         }
       }
 
@@ -131,6 +134,17 @@
           }
         }
       }
+    }
+  }
+  .toast {
+    width: 100%;
+    max-width: 600px;
+    min-width: 475px;
+    position: fixed;
+    bottom: -999px;
+    z-index: 999;
+    &.pop {
+      bottom: 40px;
     }
   }
 }

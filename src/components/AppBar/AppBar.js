@@ -23,10 +23,13 @@ const AppBar = ({ title, mark, type }) => {
       <span className="barTitle">{title}</span>
       {mark && (
         <span className="leftBtns">
-          <button onClick={handlePick}>
+          <button
+            className={`barBtn bookmark ${pick && "pickOn"}`}
+            onClick={handlePick}
+          >
             <Bookmark />
           </button>
-          <button>
+          <button className="barBtn">
             <Link />
           </button>
         </span>

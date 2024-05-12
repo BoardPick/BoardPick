@@ -7,11 +7,32 @@
     #{$font}: $value;
   }
   .star {
-    padding-top: 4px;
+    .MuiRating-iconFilled {
+      display: flex;
+      color: $main_color;
+      .css-1c99szj-MuiRating-icon {
+        color: $line_default;
+      }
+    }
   }
   .avg {
     font-weight: 600;
-    &.round {
+  }
+  &.black {
+    .avg {
+      color: $common_black;
+    }
+    .reviewCount {
+      color: $common_black;
+    }
+  }
+  &.round {
+    .star svg {
+      width: 24px;
+      height: 24px;
+    }
+    margin: 0 0px 16px 20px;
+    .avg {
       background-color: $sub_color;
       border-radius: 80px;
       padding: 2px 10px;
@@ -20,12 +41,7 @@
         #{$font}: $value;
       }
     }
-    &.black {
-      color: $common_black;
-    }
-  }
-  .reviewCount {
-    &.round {
+    .reviewCount {
       @each $font, $value in $body1 {
         #{$font}: $value;
       }
@@ -36,9 +52,6 @@
         font-weight: 600;
         color: $common_black;
       }
-    }
-    &.black {
-      color: $common_black;
     }
   }
 }

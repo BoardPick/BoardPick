@@ -10,6 +10,7 @@ import CategoryDetail from "./pages/CategoryDetail/CategoryDetail";
 import MyPick from "./pages/MyPick/MyPick";
 import MyPage from "./pages/MyPage/MyPage";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
+import DetailReview from "./pages/DetailReview/DetailReview";
 
 function App() {
   const isLoggedIn = true;
@@ -30,6 +31,7 @@ function App() {
         <Route path="/category" element={<Category />} />
         <Route path="/review" element={<Review />} />
         <Route path="/category/:id" element={<CategoryDetail />} />
+        <Route path="/category/:id/review" element={<DetailReview />} />
         <Route path="/myPick" element={<MyPick />} />
         <Route path="/myPage" element={<MyPage />} />
       </Routes>
