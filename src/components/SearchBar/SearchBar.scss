@@ -1,0 +1,47 @@
+.SearchBar {
+    @include mobile();
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+    height: 56px;
+    background-color: $common_white;
+    padding: 10px 0;
+
+    border-bottom: 1px solid $line_default;
+
+	.searchBox {
+		display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 87%;
+        height: 44px;
+
+        border-radius: 13px;
+        border: 1px solid $background_default; 
+        background-color: $background_light;
+
+		.input {
+            outline: none;
+            border: none;
+
+            width: 100%;
+            padding: 0 3%;
+
+            @each $font, $value in $body2 {
+                #{$font}: $value;
+              }
+            color: $text_info;
+
+            background-color: $background_light;
+        }
+        .img {
+            cursor: pointer;
+
+            min-width: 20px;
+            min-height: 20px;
+            padding: 0 3%;
+        }
+	}
+}
