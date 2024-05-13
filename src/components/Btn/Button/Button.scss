@@ -19,12 +19,12 @@
   }
   &.btn_default {
     background-color: $common_white;
-    color: $common_black;
+    color: $text_default;
     border: 1px solid $line_default;
   }
   &.btn_txt {
     background-color: transparent;
-    color: $common_black;
+    color: $text_default;
     text-decoration: underline;
   }
   &.s52 {

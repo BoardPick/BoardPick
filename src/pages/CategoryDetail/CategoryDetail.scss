@@ -1,53 +1,48 @@
 .categoryDetail {
-  position: relative;
-  @include mobile();
-  height: 100vh;
-  .backImg {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    min-width: 375px;
-    height: 50%;
-    z-index: 0;
-    background-image: url("https://cf.geekdo-images.com/LT7OjjlYDZhRlms1yWWhlg__original/img/-L0zZSglRmSfz_EyNjbeUEf0AOw=/0x0/filters:format(jpeg)/pic308390.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to bottom,
-        rgba($common_black, 0.4),
-        rgba($common_black, 0)
-      );
-      backdrop-filter: blur(3px);
-    }
-  }
+  // .backImg {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   width: 100%;
+  //   height: 50%;
+  //   z-index: 0;
+  //   background-image: url("https://cf.geekdo-images.com/LT7OjjlYDZhRlms1yWWhlg__original/img/-L0zZSglRmSfz_EyNjbeUEf0AOw=/0x0/filters:format(jpeg)/pic308390.jpg");
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  //   &::after {
+  //     content: "";
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     background: linear-gradient(
+  //       to bottom,
+  //       rgba($text_default, 0.4),
+  //       rgba($text_default, 0)
+  //     );
+  //     backdrop-filter: blur(3px);
+  //   }
+  // }
   .boardGameInfo {
-    position: relative;
-    z-index: 1;
+    // position: relative;
+    // z-index: 1;
     background-color: $common_white;
     border-radius: 16px 16px 0 0;
     margin-top: 142px;
-    .thumNail {
-      position: absolute;
-      top: -75px;
-      right: 25px;
-      border: 1px solid $common_white;
-      border-radius: 8px;
-      img {
-        width: 82px;
-        height: 94px;
-        border-radius: 8px;
-      }
-    }
+    // .thumNail {
+    //   position: absolute;
+    //   top: -75px;
+    //   right: 25px;
+    //   border: 1px solid $common_white;
+    //   border-radius: 8px;
+    //   img {
+    //     width: 82px;
+    //     height: 94px;
+    //     border-radius: 8px;
+    //   }
+    // }
     .boardGameSum {
       display: flex;
       flex-direction: column;
@@ -109,7 +104,6 @@
     }
 
     .BoardGameEleBox {
-      width: 100%;
       display: flex;
       justify-content: space-around;
       border-bottom: 8px solid $line_light;
