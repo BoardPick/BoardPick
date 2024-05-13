@@ -1,5 +1,7 @@
 // import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar.js"
+import Header from "./Header/Header.js";
 import {
   Strategy,
   Rollplaying,
@@ -12,8 +14,6 @@ import {
   Realtime,
   Etc,
 } from "../../assets/icon/category/category.js";
-
-// import { useNavigate } from "react-router-dom";
 
 const Category = () => {
   // const category = useNavigate();
@@ -38,6 +38,7 @@ const Category = () => {
 
   return (
     <div className="Categorys">
+      {/* <Header /> */}
       <SearchBar />
       <ul>
         {categorys.map((tab, i) => (

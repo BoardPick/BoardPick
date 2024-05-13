@@ -1,6 +1,39 @@
 .SearchBar {
-  background-color: $background_light;
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+    height: 56px;
+    background-color: #ffffff;
+
+    border-bottom: 1px solid #e5e5ec; //$line_default;
+
+	.searchBox {
+		display: flex;
+        align-items: center;
+
+        width: 93%;
+        height: 44px;
+
+        border-radius: 13px;
+        border: 1px solid #f1f1f5; //$background_default; 
+        background-color: #f7f7fb; //$background_light;
+
+		.input {
+            outline: none;
+            border: none;
+
+            width: 100%;
+            padding: 0 3%;
+
+            font-size: 14px;
+            letter-spacing: -2.5%;
+
+            background-color: #f7f7fb; //$background_light;
+            color: #767676;
+        }
+        .img {
+            cursor: pointer;
+        }
+	}
 }
