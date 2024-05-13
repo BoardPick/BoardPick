@@ -1,6 +1,15 @@
 @import "./styles/index.scss";
-html,
 body {
-  position: relative;
+  width: 100%;
+  height: 100%;
   background-color: $background_brand;
+}
+.boardPick {
+  max-width: 600px;
+  min-width: 375px;
+  height: 100%;
+  background-color: $common_white;
+  font-family: $font;
+  margin: 0 auto;
+  padding-bottom: 52px;
 }

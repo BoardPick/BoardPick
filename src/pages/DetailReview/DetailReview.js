@@ -5,7 +5,6 @@ import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 import { goodKeyword, badKeyword } from "../../assets/data/keyword";
 
-import StarIcon from "@mui/icons-material/Star";
 import AppBar from "../../components/AppBar/AppBar";
 import Button from "../../components/Btn/Button/Button";
 
