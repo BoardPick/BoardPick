@@ -59,12 +59,12 @@ const CategoryDetail = () => {
       <AppBar mark type={"gradient"} />
       <div className="backImg" />
       <section className="boardGameInfo">
-        <article className="thumNail">
+        {/* <article className="thumNail">
           <img
             src="https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg"
             alt="thumNail"
           />
-        </article>
+        </article> */}
         <article className="boardGameSum">
           <div className="banners">
             <CategoryBadge genre={"협력게임"} />
