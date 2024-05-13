@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Rating } from "@mui/material";
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+import Rating from "react-rating";
+import { FillStar, Star } from "../../assets/icon/icon";
 
 import { goodKeyword, badKeyword } from "../../assets/data/keyword";
 
@@ -13,7 +13,6 @@ const DetailReview = () => {
   const navigate = useNavigate();
   const [keyword, setKeyWord] = useState(false);
   const [value, setValue] = useState(0);
-  const [hover, setHover] = useState(-1);
   const [text, setText] = useState("");
 
   // const handleKeyword = (keyword) => {
@@ -25,7 +24,9 @@ const DetailReview = () => {
   //     }
   //   }
   // };
-
+  const handleRatingChange = (value) => {
+    setValue(value);
+  };
   const handleChange = (e) => {
     setText(e.target.value);
   };
@@ -60,7 +61,7 @@ const DetailReview = () => {
         <article className="detailReview_star">
           <h1 className="contentTit">별점 평가</h1>
           <div className="starRating">
-            <Rating
+            {/* <Rating
               name="hover-feedback"
               value={value}
               getLabelText={getLabelText}
@@ -80,7 +81,14 @@ const DetailReview = () => {
             />
             {value !== null && (
               <p sx={{ ml: 2 }}>{hover !== -1 ? hover : value}.0</p>
-            )}
+            )} */}
+            <Rating
+              initialRating={value}
+              emptySymbol={<Star style={{ fill: "red" }} />}
+              fullSymbol={<FillStar />}
+              onChange={handleRatingChange}
+            />
+            <p className="starNum">{value}.0</p>
           </div>
         </article>
         <article className="detailReview_keyword">
