@@ -1,13 +1,10 @@
 .Categorys {
-	width: 100%;
-	max-width: 600px;
-	min-width: 375px;
-	height: 52px;
+	@include mobile();
 	position: fixed;
 	background-color: $common_white;
 
-	.categoryIcon {
-		background-color: $common_white;
-	}
+	// .categoryIcon {
+	// 	background-color: $common_white;
+	// }
 }
   
