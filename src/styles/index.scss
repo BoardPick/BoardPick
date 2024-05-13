@@ -13,6 +13,11 @@
 @import "../layouts/NavigationBar/NavigationBar.scss";
 
 // pages
+@import "../pages/Category/Header/Header.scss";
+@import "../pages/Category/Category.scss";
 @import "../pages/CategoryDetail/CategoryDetail.scss";
 @import "../pages/CategoryDetail/CategoryTab/CategoryTab.scss";
-@import "../pages/CategoryDetail/GameTab/GameTab.scss";
+@import "../pages/CategoryDetail/GameTab/RuleTab/RuleTab.scss";
+@import "../pages/CategoryDetail/GameTab/ReviewTab/ReviewTab.scss";
+@import "../pages/DetailReview/DetailReview.scss";
+@import "../pages/Review/Review";

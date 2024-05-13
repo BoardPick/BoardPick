@@ -1,7 +1,8 @@
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import SearchBar from "../../components/SearchBar/SearchBar.js"
-import Header from "./Header/Header.js";
+import Header from "./Header/Header.js"
+// import Categoryjson from "./category.json"
 import {
   Strategy,
   Rollplaying,
@@ -16,36 +17,35 @@ import {
 } from "../../assets/icon/category/category.js";
 
 const Category = () => {
-  // const category = useNavigate();
-  // const [selectedCategory, setSelectedCategory] = useState("");
+  const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState("");
   const categorys = [
-    { url: "/Category", icon: <Strategy />, text: "전략게임" },
-    { url: "/Category", icon: <Rollplaying />, text: "롤플레잉" },
-    { url: "/Category", icon: <Cardgame />, text: "카드게임" },
-    { url: "/Category", icon: <Cooperation />, text: "협력게임" },
-    { url: "/Category", icon: <Deduction />, text: "추리게임" },
-    { url: "/Category", icon: <Batting />, text: "베팅게임" },
-    { url: "/Category", icon: <Mafia />, text: "마피아" },
-    { url: "/Category", icon: <Memory />, text: "기억력" },
-    { url: "/Category", icon: <Realtime />, text: "순발력" },
-    { url: "/Category", icon: <Etc />, text: "기타게임" },
+    { url: "/Category/strategy", icon: <Strategy />, text: "전략게임" },
+    { url: "/Category/rollplaying", icon: <Rollplaying />, text: "롤플레잉" },
+    { url: "/Category/cardgame", icon: <Cardgame />, text: "카드게임" },
+    { url: "/Category/cooperation", icon: <Cooperation />, text: "협력게임" },
+    { url: "/Category/deduction", icon: <Deduction />, text: "추리게임" },
+    { url: "/Category/batting", icon: <Batting />, text: "베팅게임" },
+    { url: "/Category/mafia", icon: <Mafia />, text: "마피아" },
+    { url: "/Category/memory", icon: <Memory />, text: "기억력" },
+    { url: "/Category/realtime", icon: <Realtime />, text: "순발력" },
+    { url: "/Category/etc", icon: <Etc />, text: "기타게임" },
   ];
 
-  // const handleCategoryClick = (url) => {
-  //   setSelectedCategory(url);
-  //   category(url);
-  // }
+  const handleCategoryClick = (url) => {
+    setSelectedCategory(url);
+    navigate(url);
+  }
 
   return (
     <div className="Categorys">
-      {/* <Header /> */}
+      <Header />
       <SearchBar />
       <ul>
         {categorys.map((tab, i) => (
           <li
             key={i}
-            // className={`category ${selectedCategory === tab.url ? "on" : ""}`}
-            // onClick={() => handleCategoryClick(tab.url)}
+            className="category" onClick={() => handleCategoryClick(tab.url)}
           >
             <span className="categoryIcon">{tab.icon}</span>
             <span className="categoryName">{tab.text}</span>

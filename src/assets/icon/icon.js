@@ -13,6 +13,10 @@ import { ReactComponent as ReviewIcon } from "../icon/review.svg";
 import { ReactComponent as ReviewOnIcon } from "../icon/reviewOn.svg";
 import { ReactComponent as SearchIcon } from "../icon/search.svg";
 import { ReactComponent as TimeIcon } from "../icon/time.svg";
+import { ReactComponent as StarIcon } from "../icon/star.svg";
+import { ReactComponent as CheckIcon } from "../icon/check.svg";
+import { ReactComponent as PencilIcon } from "../icon/pencil.svg";
+import { ReactComponent as LikeIcon } from "../icon/like.svg";
 
 export const Age = () => <AgeIcon />;
 export const Bookmark = () => <BookmarkIcon />;
@@ -29,3 +33,7 @@ export const Review = () => <ReviewIcon />;
 export const ReviewOn = () => <ReviewOnIcon />;
 export const Search = () => <SearchIcon />;
 export const Time = () => <TimeIcon />;
+export const Star = () => <StarIcon />;
+export const Check = () => <CheckIcon />;
+export const Pencil = () => <PencilIcon />;
+export const Like = () => <LikeIcon />;

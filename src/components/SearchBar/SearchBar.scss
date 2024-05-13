@@ -5,15 +5,17 @@
 	justify-content: center;
 
     height: 56px;
-    background-color: #ffffff;
+    background-color: $common_white;
+    padding: 0;
 
     border-bottom: 1px solid $line_default;
 
 	.searchBox {
 		display: flex;
         align-items: center;
+        justify-content: center;
 
-        width: 93%;
+        width: 97%;
         height: 44px;
 
         border-radius: 13px;
@@ -36,6 +38,10 @@
         }
         .img {
             cursor: pointer;
+
+            min-width: 20px;
+            min-height: 20px;
+            padding: 0 3%;
         }
 	}
 }

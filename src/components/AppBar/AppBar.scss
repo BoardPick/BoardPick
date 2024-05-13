@@ -1,6 +1,54 @@
 .AppBar {
+  position: relative;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 14px 20px;
+  z-index: 1;
+  background-color: $common_white;
+  border-bottom: 1px solid $line_default;
+  .barTitle {
+    margin: 0 auto;
+  }
+  .back {
+    cursor: pointer;
+  }
+  .leftBtns {
+    display: flex;
+    .barBtn {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      &.pickOn {
+        svg {
+          fill: $main_color;
+        }
+      }
+    }
+  }
+  svg path {
+    stroke: $common_black;
+  }
+  &.gradient {
+    background-color: transparent;
+    border-bottom: none;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba($common_black, 0.3),
+        rgba($common_black, 0)
+      );
+      z-index: -1;
+    }
+    svg path {
+      stroke: $common_white;
+    }
+  }
 }

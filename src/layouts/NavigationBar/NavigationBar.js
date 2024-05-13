@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Home,
   HomeOn,
@@ -8,8 +9,6 @@ import {
   Bookmark,
   MyPage,
 } from "../../assets/icon/icon.js";
-
-import { useNavigate } from "react-router-dom";
 
 const TabBar = () => {
   const navigate = useNavigate();

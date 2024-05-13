@@ -1,0 +1,82 @@
+[
+    {
+        "idx": 0,
+        "path": "/Category/strategy",
+        "label": "전략게임",
+        "searchValue": "strategy",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 1,
+        "path": "/Category/rollplaying",
+        "label": "롤플레잉",
+        "searchValue": "rollplaying",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 2,
+        "path": "/Category/cardgame",
+        "label": "카드게임",
+        "searchValue": "cardgame",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 3,
+        "path": "/Category/cooperation",
+        "label": "협력게임",
+        "searchValue": "cooperation",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 4,
+        "path": "/Category/deduction",
+        "label": "추리게임",
+        "searchValue": "deduction",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 5,
+        "path": "/Category/batting",
+        "label": "베팅게임",
+        "searchValue": "batting",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 6,
+        "path": "/Category/mafia",
+        "label": "마피아",
+        "searchValue": "mafia",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 7,
+        "path": "/Category/memory",
+        "label": "기억력",
+        "searchValue": "memory",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 8,
+        "path": "/Category/realtime",
+        "label": "순발력",
+        "searchValue": "realtime",
+        "isActive": false,
+        "icon": null
+    },
+    {
+        "idx": 9,
+        "path": "/Category/etc",
+        "label": "기타게임",
+        "searchValue": "etc",
+        "isActive": false,
+        "icon": null
+    }
+]

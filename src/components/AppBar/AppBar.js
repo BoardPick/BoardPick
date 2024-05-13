@@ -1,20 +1,39 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import { BsChevronLeft } from "react-icons/bs";
+import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 
-const AppBar = ({ title, mark, share }) => {
+const AppBar = ({ title, mark, type }) => {
+  const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const pick = useSelector((state) => state.pick);
+  const setPick = () => {
+    dispatch({ type: "SET_PICK", payload: !pick });
+  };
+  const handlePick = () => {
+    setPick(!pick);
+  };
 
   return (
-    <div className="AppBar">
-      <span onClick={() => navigate(-1)}>
-        <BsChevronLeft />
+    <div className={`AppBar ${BarType}`}>
+      <span className="back" onClick={() => navigate(-1)}>
+        <ChevronLeft />
       </span>
-      <span>{title}</span>
-      <span>
-        {mark}
-        {share}
-      </span>
+      <span className="barTitle">{title}</span>
+      {mark && (
+        <span className="leftBtns">
+          <button
+            className={`barBtn bookmark ${pick && "pickOn"}`}
+            onClick={handlePick}
+          >
+            <Bookmark />
+          </button>
+          <button className="barBtn">
+            <Link />
+          </button>
+        </span>
+      )}
     </div>
   );
 };

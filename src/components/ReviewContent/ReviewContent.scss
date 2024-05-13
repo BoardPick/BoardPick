@@ -1,0 +1,78 @@
+.reviewContent {
+  display: flex;
+  flex-direction: column;
+
+  border-bottom: 1px solid $line_default;
+  &:last-child {
+    border-bottom: none;
+  }
+  padding: 24px 0;
+  gap: 12px;
+  .reviewProfile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .profileImg {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .profileGroup {
+      display: flex;
+      flex-direction: column;
+
+      li {
+        display: flex;
+        .name {
+          display: flex;
+          gap: 5px;
+          @each $font, $value in $caption2 {
+            #{$font}: $value;
+          }
+          color: $text_info;
+          li {
+            &::after {
+              content: " |";
+            }
+            &:last-child {
+              &::after {
+                content: "";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .reviewTxt {
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; //글의 최대 라인수
+    -webkit-box-orient: vertical; // 크로스 브라우징용
+    word-break: keep-all;
+    @each $font, $value in $body2 {
+      #{$font}: $value;
+    }
+    color: $text_sub2;
+  }
+  .bottomContent {
+    &.bestKeyword ul {
+      display: flex;
+      gap: 4px;
+      li {
+        background-color: $background_light;
+        padding: 4px 8px;
+        @each $font, $value in $caption1 {
+          #{$font}: $value;
+        }
+        color: $text_sub1;
+        border-radius: 4px;
+      }
+    }
+  }
+}
