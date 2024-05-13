@@ -12,14 +12,6 @@ const Popular = () => {
         content={
           <span>
             <img src="https://via.placeholder.com/32x32" alt="샘플이미지" />
-            <ul>
-              <li>
-                <ul>
-                  <li>큐비토스</li>
-                  <li>주사위를 굴려 상대방보다 먼저 도착하자!</li>
-                </ul>
-              </li>
-            </ul>
           </span>
         }
       />
