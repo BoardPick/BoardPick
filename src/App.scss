@@ -7,7 +7,7 @@ body {
 .boardPick {
   max-width: 600px;
   min-width: 375px;
-  height: 100%;
+  height: calc(100vh - 52px);
   background-color: $common_white;
   font-family: $font;
   margin: 0 auto;
