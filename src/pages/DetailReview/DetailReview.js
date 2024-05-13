@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Rating } from "@mui/material";
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+// import { Rating } from "@mui/material";
+// import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 import { goodKeyword, badKeyword } from "../../assets/data/keyword";
 
-import StarIcon from "@mui/icons-material/Star";
+// import StarIcon from "@mui/icons-material/Star";
 import AppBar from "../../components/AppBar/AppBar";
 import Button from "../../components/Btn/Button/Button";
 
@@ -61,7 +61,7 @@ const DetailReview = () => {
         <article className="detailReview_star">
           <h1 className="contentTit">별점 평가</h1>
           <div className="starRating">
-            <Rating
+            {/* <Rating
               name="hover-feedback"
               value={value}
               getLabelText={getLabelText}
@@ -78,7 +78,7 @@ const DetailReview = () => {
                   fontSize="inherit"
                 />
               }
-            />
+            /> */}
             {value !== null && (
               <p sx={{ ml: 2 }}>{hover !== -1 ? hover : value}.0</p>
             )}
