@@ -2,6 +2,13 @@
   padding: 32px 20px;
 }
 
+@mixin pageTit {
+  @each $font, $value in $title2 {
+    #{$font}: $value;
+  }
+  font-weight: 600;
+}
+
 @mixin contentTit {
   @each $font, $value in $title3 {
     #{$font}: $value;

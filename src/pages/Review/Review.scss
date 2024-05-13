@@ -1,0 +1,38 @@
+.reviewAll {
+  @include content();
+  .pageTit {
+    @include pageTit();
+  }
+  .tabFilter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid $line_default;
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      .tab {
+        background-color: $common_white;
+        border: 1px solid $line_default;
+        border-radius: 4px;
+        padding: 7px 12px;
+        @each $font, $value in $caption1 {
+          #{$font}: $value;
+        }
+
+        &.on {
+          color: $common_white;
+          background-color: $sub_color;
+        }
+      }
+    }
+  }
+  .reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 23px 0;
+  }
+}

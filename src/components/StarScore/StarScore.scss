@@ -18,10 +18,10 @@
   }
   &.black {
     .avg {
-      color: $common_black;
+      color: $text_default;
     }
     .reviewCount {
-      color: $common_black;
+      color: $text_default;
     }
   }
   &.round {
@@ -48,7 +48,7 @@
         content: "/ 5";
         margin-right: 2px;
         font-weight: 600;
-        color: $common_black;
+        color: $text_default;
       }
     }
   }

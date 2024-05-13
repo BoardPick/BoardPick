@@ -35,7 +35,6 @@
               #{$font}: $value;
             }
             font-weight: 600;
-            color: $common_black;
           }
         }
         .gameInfo {
@@ -118,7 +117,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: 10px;
-                box-shadow: 0px 0px 4px 0px rgba($common_black, 0.08);
+                box-shadow: 0px 0px 4px 0px rgba($text_default, 0.08);
                 .emoji {
                   font-size: 24px;
                 }
