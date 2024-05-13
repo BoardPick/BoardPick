@@ -10,6 +10,8 @@
   @each $font, $value in $body3 {
     #{$font}: $value;
   }
+
+  z-index: 999;
   .view {
     background-color: transparent;
     border: none;

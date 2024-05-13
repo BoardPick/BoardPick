@@ -1,19 +1,9 @@
 import { useState } from "react";
-import GameTab from "../GameTab/GameTab.js";
+import { tabContArr } from "../../../assets/data/tabConArr";
 
-const CategoryTab = () => {
+const CategoryTab = ({ reviewCount }) => {
   const [activeIdx, setActiveIdx] = useState(0);
 
-  const tabContArr = [
-    {
-      tabTitle: "상세정보",
-      tabCont: <GameTab />,
-    },
-    {
-      tabTitle: "후기",
-      tabCont: "탭2 내용",
-    },
-  ];
   const tabClickHandler = (i) => {
     setActiveIdx(i);
   };
@@ -27,6 +17,7 @@ const CategoryTab = () => {
             onClick={() => tabClickHandler(i)}
           >
             {section.tabTitle}
+            {i === 1 && <span className="reviewNum">{reviewCount}</span>}
           </li>
         ))}
       </ul>

@@ -7,6 +7,12 @@
 
 // components
 @import "../components/AppBar/AppBar.scss";
+@import "../components/ToastPopUp/ToastPopUp.scss";
+@import "../components/Btn//NoticeBtn/NoticeBtn.scss";
+@import "../components/CategoryBadge/CategoryBadge.scss";
+@import "../components/StarScore/StarScore.scss";
+@import "../components/Btn/Button/Button.scss";
+@import "../components/ReviewContent/ReviewContent.scss";
 
 // layout
 @import "../layouts/NavigationBar/NavigationBar.scss";
@@ -14,4 +20,7 @@
 // pages
 @import "../pages/CategoryDetail/CategoryDetail.scss";
 @import "../pages/CategoryDetail/CategoryTab/CategoryTab.scss";
-@import "../pages/CategoryDetail/GameTab/GameTab.scss";
+@import "../pages/CategoryDetail/GameTab/RuleTab/RuleTab.scss";
+@import "../pages/CategoryDetail/GameTab/ReviewTab/ReviewTab.scss";
+@import "../pages/DetailReview/DetailReview.scss";
+@import "../pages/Review/Review";

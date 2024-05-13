@@ -1,0 +1,70 @@
+.avgStar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: $text_Disabled;
+  @each $font, $value in $caption1 {
+    #{$font}: $value;
+  }
+  .star {
+    margin: 0 4px 10px -4px;
+    .MuiRating-root {
+      display: flex;
+      gap: 4px;
+      .css-7qmtgc-MuiRating-icon {
+        width: 16px;
+        height: 16px;
+        &.MuiRating-iconFilled {
+          display: flex;
+          color: $main_color;
+          .css-1c99szj-MuiRating-icon {
+            color: $line_default;
+          }
+        }
+      }
+      .css-1c99szj-MuiRating-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .avg {
+    font-weight: 600;
+  }
+  &.black {
+    .avg {
+      color: $common_black;
+    }
+    .reviewCount {
+      color: $common_black;
+    }
+  }
+  &.round {
+    .star svg {
+      width: 24px;
+      height: 24px;
+    }
+    margin: 0 0px 16px 20px;
+    .avg {
+      background-color: $sub_color;
+      border-radius: 80px;
+      padding: 2px 10px;
+      color: $common_white;
+      @each $font, $value in $body2 {
+        #{$font}: $value;
+      }
+    }
+    .reviewCount {
+      @each $font, $value in $body1 {
+        #{$font}: $value;
+      }
+      color: $text_Disabled;
+      &::before {
+        content: "/ 5";
+        margin-right: 2px;
+        font-weight: 600;
+        color: $common_black;
+      }
+    }
+  }
+}
