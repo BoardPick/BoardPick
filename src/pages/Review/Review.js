@@ -26,16 +26,6 @@ const Review = () => {
             </li>
           ))}
         </ul>
-        <Button
-          size={"s36"}
-          type={"brand"}
-          text={
-            <>
-              <Pencil className="pencilIcon" /> 후기 작성하기
-            </>
-          }
-          onClick={() => navigate(`/category/${id}/review`)}
-        />
       </nav>
       <article className="reviews">{reviewFilterTab[tabIdx].tabCont}</article>
     </div>

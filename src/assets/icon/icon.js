@@ -1,3 +1,4 @@
+import { ReactComponent as KakaoIcon } from "../icon/kakaoIcon.svg";
 import { ReactComponent as AgeIcon } from "../icon/age.svg";
 import { ReactComponent as BookmarkIcon } from "../icon/bookmark.svg";
 import { ReactComponent as CategoryIcon } from "../icon/category.svg";
@@ -19,6 +20,7 @@ import { ReactComponent as CheckIcon } from "../icon/check.svg";
 import { ReactComponent as PencilIcon } from "../icon/pencil.svg";
 import { ReactComponent as LikeIcon } from "../icon/like.svg";
 
+export const Kakao = () => <KakaoIcon />;
 export const Age = () => <AgeIcon />;
 export const Bookmark = () => <BookmarkIcon />;
 export const Category = () => <CategoryIcon />;
