@@ -1,0 +1,43 @@
+.thumNail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .thumImg {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .thumName {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    h1 {
+      @each $font, $value in $title4 {
+        #{$font}: $value;
+      }
+      color: $text_sub1;
+      font-weight: 600;
+    }
+    p {
+      @each $font, $value in $body3 {
+        #{$font}: $value;
+      }
+      color: $text_info;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; //글의 최대 라인수
+      -webkit-box-orient: vertical; // 크로스 브라우징용
+    }
+    .avgStar.black .reviewCount {
+      display: none;
+    }
+  }
+  &.big {
+    width: 149px;
+  }
+  &.small {
+    width: 140px;
+  }
+}

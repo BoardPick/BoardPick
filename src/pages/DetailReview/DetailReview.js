@@ -61,27 +61,6 @@ const DetailReview = () => {
         <article className="detailReview_star">
           <h1 className="contentTit">별점 평가</h1>
           <div className="starRating">
-            {/* <Rating
-              name="hover-feedback"
-              value={value}
-              getLabelText={getLabelText}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              onChangeActive={(event, newHover) => {
-                setHover(newHover);
-              }}
-              icon={<StarRateRoundedIcon />}
-              emptyIcon={
-                <StarRateRoundedIcon
-                  style={{ opacity: 0.55 }}
-                  fontSize="inherit"
-                />
-              }
-            />
-            {value !== null && (
-              <p sx={{ ml: 2 }}>{hover !== -1 ? hover : value}.0</p>
-            )} */}
             <Rating
               initialRating={value}
               emptySymbol={<Star style={{ fill: "red" }} />}

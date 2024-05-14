@@ -6,6 +6,7 @@ import CategoryTab from "./CategoryTab/CategoryTab.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
 import StarScore from "../../components/StarScore/StarScore.js";
 import NoticeBtn from "../../components/Btn/NoticeBtn/NoticeBtn.js";
+import Tag from "../../components/Tag/Tag";
 import ToastPopUp from "../../components/ToastPopUp/ToastPopUp.js";
 import { BoardGameElement } from "../../assets/data/boardGameElmentData.js";
 
@@ -87,10 +88,7 @@ const CategoryDetail = () => {
             </div>
           )}
 
-          <div className="hashTagBox">
-            <span className="hashTag">#주사위</span>
-            <span className="hashTag">#방탈출</span>
-          </div>
+          <Tag />
         </article>
         <article className="BoardGameEleBox">
           {BoardGameElement.map((ele, i) => (

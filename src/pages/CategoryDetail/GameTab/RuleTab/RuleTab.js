@@ -1,5 +1,7 @@
+import { Swiper, SwiperSlide } from "swiper/react";
 import { GameTabs } from "../../../../assets/data/gameTab";
-
+import "swiper/css";
+import ThumNail from "../../../../components/ThumNail/ThumNail";
 const RuleTab = () => {
   return (
     <div className="gameTab">
@@ -9,18 +11,23 @@ const RuleTab = () => {
           {tab.videoCon}
         </section>
       ))}
-      <article>
-        <h1>유사한 진행방식의 게임</h1>
+      <article className="gameVideo">
+        <h1 className="videoTit">유사한 진행방식의 게임</h1>
         <div className="wrapper">
-          <div>
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-            <img src="https://via.placeholder.com/140x272" alt="샘플이미지" />
-          </div>
+          <Swiper slidesPerView={3} className="mySwiper">
+            <SwiperSlide>
+              <ThumNail type={"small"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ThumNail type={"small"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ThumNail type={"small"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ThumNail type={"small"} />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </article>
     </div>
