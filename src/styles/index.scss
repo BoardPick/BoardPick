@@ -13,12 +13,15 @@
 @import "../components/StarScore/StarScore.scss";
 @import "../components/Btn/Button/Button.scss";
 @import "../components/ReviewContent/ReviewContent.scss";
-@import "../components/SearchBar/SearchBar.scss";
+@import "../components/Search/SearchBar/SearchBar.scss";
+// @import "../components/Search/SearchResult/searchResult.scss";
+@import "../components/CategoryBox/CatgoryBox.scss";
 
 // layout
 @import "../layouts/NavigationBar/NavigationBar.scss";
 
 // pages
+@import "../pages/Home/Home.scss";
 @import "../pages/Category/Category.scss";
 @import "../pages/CategoryDetail/CategoryDetail.scss";
 @import "../pages/CategoryDetail/CategoryTab/CategoryTab.scss";
@@ -28,3 +31,4 @@
 @import "../pages/Review/Review";
 @import "../pages/Review/FilterTab/Popular/Popular";
 @import "../pages/Review/FilterTab/New/New";
+@import "../pages/SearchResult/searchResult.scss";

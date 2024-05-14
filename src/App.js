@@ -5,6 +5,7 @@ import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
 import Review from "./pages/Review/Review";
+import SearchResult from "./pages/SearchResult/searchResult";
 
 import CategoryDetail from "./pages/CategoryDetail/CategoryDetail";
 import MyPick from "./pages/MyPick/MyPick";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/category/:id/review" element={<DetailReview />} />
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPage" element={<MyPage />} />
+          <Route path="/search" element={<SearchResult />} />
         </Routes>
         {isLoggedIn && <NavigationBar />}
       </div>
