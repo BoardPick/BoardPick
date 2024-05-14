@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { QuestionData } from "../../assets/data/QuestionData";
 import AppBar from "../../components/AppBar/AppBar";
+import Button from "../../components/Btn/Button/Button";
 
 const SignUp = () => {
   const [questionNo, setQuestionNo] = useState(0);
-  const navigate = useNavigate();
+
+  const disabled = useSelector((state) => state.disabled);
+
   const handleClickAnswer = () => {
     if (QuestionData.length !== questionNo + 1) {
       setQuestionNo(questionNo + 1);
@@ -15,7 +18,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="signUp">
       <AppBar />
       <progress
         id="progress"
@@ -23,13 +26,21 @@ const SignUp = () => {
         min="0"
         max="5"
       ></progress>
-      <h1>보드픽</h1>
-      <div>
-        <p>{QuestionData[questionNo].Question}</p>
-        <div>{QuestionData[questionNo].Content}</div>
+      <div className="signUpQuestion">
+        {QuestionData[questionNo].Question}
+        <div className="choose">{QuestionData[questionNo].Content}</div>
       </div>
-
-      <button onClick={handleClickAnswer}>다음</button>
+      <div className="nextBtn">
+        {disabled ? (
+          <Button type="disabled" text={"다음"}>
+            다음
+          </Button>
+        ) : (
+          <Button type="brand" text={"다음"} onClick={handleClickAnswer}>
+            다음
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

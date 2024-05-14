@@ -4,10 +4,13 @@ let initialState = {
   reviewCount: 2,
   toast: false,
   likeCount: 2,
+  disabled: false,
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case "SET_DISABLED":
+      return { ...state, disabled: !state.disabled };
     case "SET_PICK":
       return { ...state, pick: !state.pick };
     case "SET_PICK_DECREASE":

@@ -1,0 +1,55 @@
+.inputBox {
+  position: relative;
+  .nickNameInp {
+    position: relative;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $text_default;
+    padding: 12px 4px;
+    outline: none;
+    &::placeholder {
+      color: $text_info;
+      @each $font, $value in $body1 {
+        #{$font}: $value;
+      }
+    }
+  }
+  .closeBtn {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 15px;
+    right: 4px;
+    background-color: $text_Disabled;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    &::before,
+    &::after {
+      content: " ";
+      position: absolute;
+      right: 7.5px;
+      top: 4px;
+      width: 1.5px;
+      height: 8px;
+      background-color: $common_white;
+      border-radius: 10px;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.caption {
+  color: $text_Disabled;
+  padding-top: 8px;
+  @each $font, $value in $caption1 {
+    #{$font}: $value;
+  }
+}
