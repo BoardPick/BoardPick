@@ -22,8 +22,7 @@ export const Question1 = () => {
   //   setDisabled(!(valueLength >= 2 && valueLength <= 8));
   // }, [valueLength]);
 
-  // console.log(valueLength);
-  // console.log(disabled);
+  console.log(disabled);
 
   const deleteBtn = () => {
     setInputValue("");
