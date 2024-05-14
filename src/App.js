@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
+import SignUp from "./pages/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
 import Review from "./pages/Review/Review";
@@ -23,6 +24,11 @@ function App() {
             path="/onBoarding"
             // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
             element={<OnBoarding />}
+          />
+          <Route
+            path="/onBoarding/SignUp"
+            // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            element={<SignUp />}
           />
           <Route
             path="/"
