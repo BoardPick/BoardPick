@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Home,
   HomeOn,
@@ -11,6 +11,7 @@ import {
 } from "../../assets/icon/icon.js";
 
 const TabBar = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState("");
   const tabs = [
@@ -24,6 +25,7 @@ const TabBar = () => {
     setSelectedTab(url);
     navigate(url);
   };
+  console.log(location.pathname);
 
   return (
     <div className="NavigationBar">
@@ -31,7 +33,11 @@ const TabBar = () => {
         {tabs.map((tab, i) => (
           <li
             key={i}
-            className={`menu ${selectedTab === tab.url ? "on" : ""}`}
+            className={`menu ${
+              selectedTab === tab.url || location.pathname.includes(tab.url)
+                ? "on"
+                : ""
+            }`}
             onClick={() => handleTabClick(tab.url)}
           >
             <span className="menuIcon">{tab.icon}</span>
