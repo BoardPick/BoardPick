@@ -6,6 +6,8 @@ let initialState = {
   toast: false,
   likeCount: 2,
   disabled: false,
+  myPick: [""],
+  recentGame: [""],
 };
 
 function reducer(state = initialState, action) {
@@ -14,15 +16,15 @@ function reducer(state = initialState, action) {
       return { ...state, disabled: !state.disabled };
     case "SET_PICK":
       return { ...state, pick: !state.pick };
-    case "TOGGLE_PICK":
-      const { id } = action.payload;
-      return {
-        ...state,
-        picks: {
-          ...state.picks,
-          [id]: !state.picks[id],
-        },
-      };
+    // case "TOGGLE_PICK":
+    //   const { id } = action.payload;
+    //   return {
+    //     ...state,
+    //     picks: {
+    //       ...state.picks,
+    //       [id]: !state.picks[id],
+    //     },
+    //   };
     case "SET_PICK_DECREASE":
       return { ...state, pickCount: state.pickCount - 1 };
     case "SET_PICK_INCREASE":
@@ -33,6 +35,16 @@ function reducer(state = initialState, action) {
       return { ...state, toast: !state.toast };
     case "SET_LIKE":
       return { ...state, likeCount: action.payload };
+    case "SET_MY_PICK":
+      return {
+        ...state,
+        myPick: action.payload,
+      };
+    case "SET_RECENT_GAME":
+      return {
+        ...state,
+        recentGame: action.payload,
+      };
     default:
       return { ...state };
   }

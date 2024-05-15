@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
 import CategoryDetail from "./pages/CategoryDetail/CategoryDetail";
 import MyPick from "./pages/MyPick/MyPick";
+import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import DetailReview from "./pages/DetailReview/DetailReview";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/category/:id" element={<CategoryDetail />} />
           <Route path="/category/:id/review" element={<DetailReview />} />
           <Route path="/myPick" element={<MyPick />} />
+          <Route path="/myPick/all" element={<MyPickAll />} />
           <Route path="/myPage" element={<MyPage />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}

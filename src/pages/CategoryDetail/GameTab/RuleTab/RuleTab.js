@@ -14,43 +14,12 @@ const RuleTab = () => {
       <article className="gameVideo">
         <h1 className="videoTit">유사한 진행방식의 게임</h1>
         <div className="wrapper">
-          <Swiper slidesPerView={3} className="mySwiper">
-            <SwiperSlide>
-              <ThumbNail
-                type={"small"}
-                // id={i}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ThumbNail
-                type={"small"}
-                // id={i}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ThumbNail
-                type={"small"}
-                // id={i}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ThumbNail
-                type={"small"}
-                // id={i}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ThumbNail
-                type={"small"}
-                // id={i}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ThumbNail
-                type={"small"}
-                // id={i}
-              />
-            </SwiperSlide>
+          <Swiper>
+            {[...Array(10)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <ThumbNail type="small" />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </article>

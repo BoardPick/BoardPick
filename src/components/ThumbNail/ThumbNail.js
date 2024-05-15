@@ -15,7 +15,7 @@ const ThumbNail = ({ type, id }) => {
   return (
     <div className={`ThumbNail ${type}`}>
       <article className="thumImg">
-        <img src="http://placehold.it/140X200" alt="" />
+        <img src="http://placehold.it/164X200" alt="" />
         <button
           className={`barBtn bookmark ${picks[id] && "pickOn"}`}
           onClick={handlePick}
