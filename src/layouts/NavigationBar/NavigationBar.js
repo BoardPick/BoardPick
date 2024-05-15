@@ -16,11 +16,6 @@ const TabBar = () => {
   const tabs = [
     { url: "/", icon: selectedTab === "/" ? <HomeOn /> : <Home />, text: "홈" },
     { url: "/Category", icon: <Category />, text: "카테고리" },
-    {
-      url: "/Review",
-      icon: selectedTab === "/Review" ? <ReviewOn /> : <Review />,
-      text: "게임후기",
-    },
     { url: "/MyPick", icon: <Bookmark />, text: "MY PICK" },
     { url: "/MyPage", icon: <MyPage />, text: "내 정보" },
   ];
