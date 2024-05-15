@@ -8,4 +8,30 @@
 	background-color: $common_white;
 }
 
+.HotTag {
+	align-items: start;
+	justify-content: center;
+
+	.title {
+		@each $font, $value in $body1 {
+			#{$font}: $value;
+		}
+		font-weight: bold;
+		padding-left: 5%;
+		padding-top: 5%;
+		padding-bottom: 2%;
+		border-bottom: 1px solid $line_default;
+	}
+
+	.tags {
+		display: flex;
+		justify-content: flex-start;
+
+		padding: 2% 3%;
+		
+		.tag {
+			padding: 3px;
+		}
+	}
+}
   
