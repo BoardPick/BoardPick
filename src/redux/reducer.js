@@ -1,4 +1,5 @@
 let initialState = {
+  isLoggedIn: true,
   pick: false,
   picks: {},
   pickCount: 20,
@@ -12,6 +13,8 @@ let initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case "SET_ISLOGGEDIN":
+      return { ...state, isLoggedIn: !state.isLoggedIn };
     case "SET_DISABLED":
       return { ...state, disabled: !state.disabled };
     case "SET_PICK":

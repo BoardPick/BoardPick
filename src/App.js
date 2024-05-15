@@ -10,10 +10,11 @@ import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import DetailReview from "./pages/DetailReview/DetailReview";
+import { useSelector } from "react-redux";
 
 function App() {
   const location = useLocation();
-  const isLoggedIn = false;
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   return (
     <div className="App">
       <div className="boardPick">
