@@ -6,7 +6,7 @@ const Category = () => {
 
   return (
     <div className="Categorys">
-      <SearchBar />
+      <SearchBar value="\n"/>
       <CategoryBox />
      </div>
   );
