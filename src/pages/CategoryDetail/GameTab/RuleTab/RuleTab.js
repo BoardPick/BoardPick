@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GameTabs } from "../../../../assets/data/gameTab";
 import "swiper/css";
-import ThumNail from "../../../../components/ThumNail/ThumNail";
+import ThumbNail from "../../../../components/ThumbNail/ThumbNail";
 const RuleTab = () => {
   return (
     <div className="gameTab">
@@ -16,16 +16,40 @@ const RuleTab = () => {
         <div className="wrapper">
           <Swiper slidesPerView={3} className="mySwiper">
             <SwiperSlide>
-              <ThumNail type={"small"} />
+              <ThumbNail
+                type={"small"}
+                // id={i}
+              />
             </SwiperSlide>
             <SwiperSlide>
-              <ThumNail type={"small"} />
+              <ThumbNail
+                type={"small"}
+                // id={i}
+              />
             </SwiperSlide>
             <SwiperSlide>
-              <ThumNail type={"small"} />
+              <ThumbNail
+                type={"small"}
+                // id={i}
+              />
             </SwiperSlide>
             <SwiperSlide>
-              <ThumNail type={"small"} />
+              <ThumbNail
+                type={"small"}
+                // id={i}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ThumbNail
+                type={"small"}
+                // id={i}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ThumbNail
+                type={"small"}
+                // id={i}
+              />
             </SwiperSlide>
           </Swiper>
         </div>

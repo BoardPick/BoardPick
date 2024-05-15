@@ -1,16 +1,39 @@
-.thumNail {
+.ThumbNail {
   display: flex;
   flex-direction: column;
   gap: 6px;
 
   .thumImg {
+    position: relative;
     border-radius: 8px;
     overflow: hidden;
+    .barBtn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      &.bookmark {
+        svg {
+          fill: rgba($line_deep, 0.1);
+          path {
+            stroke: $common_white;
+          }
+        }
+      }
+      &.pickOn {
+        svg {
+          fill: $main_color;
+        }
+      }
+    }
   }
   .thumName {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
     h1 {
       @each $font, $value in $title4 {
         #{$font}: $value;
@@ -23,6 +46,7 @@
         #{$font}: $value;
       }
       color: $text_info;
+      margin-bottom: 12px;
       overflow: hidden;
       white-space: normal;
       text-overflow: ellipsis;
@@ -30,8 +54,12 @@
       -webkit-line-clamp: 2; //글의 최대 라인수
       -webkit-box-orient: vertical; // 크로스 브라우징용
     }
-    .avgStar.black .reviewCount {
-      display: none;
+
+    .hashTagBox {
+      display: flex;
+
+      gap: 4px;
+      overflow: hidden;
     }
   }
   &.big {

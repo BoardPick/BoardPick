@@ -43,7 +43,7 @@ const DetailReview = () => {
           </h1>
           <p className="desc">소중한 플레이 경험을 후기로 남겨주세요!</p>
           <div className="gameInfo">
-            <div className="gameThumNail">
+            <div className="gameThumbNail">
               <img src="https://via.placeholder.com/56x64" alt="샘플이미지" />
             </div>
             <ul>

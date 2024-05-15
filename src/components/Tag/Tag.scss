@@ -1,20 +1,25 @@
-.hashTagBox {
-  display: flex;
-  gap: 4px;
-  .hashTag {
-    border: 1px solid $line_default;
-    border-radius: 80px;
-    padding: 4px 10px;
-    color: $text_info;
-    @each $font, $value in $caption1 {
+.hashTag {
+  border: 1px solid $line_default;
+  border-radius: 80px;
+  padding: 4px 10px;
+  color: $text_info;
+  @each $font, $value in $caption1 {
+    #{$font}: $value;
+  }
+  &.thumb {
+    @each $font, $value in $caption3 {
       #{$font}: $value;
     }
-    &.thumb {
-      @each $font, $value in $caption3 {
-        #{$font}: $value;
-      }
-      padding: 0 8px;
-      border-radius: 10px;
-    }
+    padding: 0 8px;
+    border-radius: 10px;
   }
+  white-space: nowrap;
+  &::before {
+    content: "#";
+  }
+  // &:last-child {
+  //   &::before {
+  //     content: "";
+  //   }
+  // }
 }

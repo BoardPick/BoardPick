@@ -1,5 +1,6 @@
 let initialState = {
   pick: false,
+  picks: {},
   pickCount: 20,
   reviewCount: 2,
   toast: false,
@@ -13,6 +14,15 @@ function reducer(state = initialState, action) {
       return { ...state, disabled: !state.disabled };
     case "SET_PICK":
       return { ...state, pick: !state.pick };
+    case "TOGGLE_PICK":
+      const { id } = action.payload;
+      return {
+        ...state,
+        picks: {
+          ...state.picks,
+          [id]: !state.picks[id],
+        },
+      };
     case "SET_PICK_DECREASE":
       return { ...state, pickCount: state.pickCount - 1 };
     case "SET_PICK_INCREASE":
