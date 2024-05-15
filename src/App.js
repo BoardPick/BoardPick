@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -11,29 +11,24 @@ import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import DetailReview from "./pages/DetailReview/DetailReview";
 
 function App() {
-  const isLoggedIn = true;
-
+  const location = useLocation();
+  const isLoggedIn = false;
   return (
     <div className="App">
       <div className="boardPick">
         <Routes>
           <Route
             path="/onBoarding"
-            // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-            element={<OnBoarding />}
+            element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
           />
-          <Route
-            path="/"
-            // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/category/:id" element={<CategoryDetail />} />
           <Route path="/category/:id/review" element={<DetailReview />} />
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPage" element={<MyPage />} />
         </Routes>
-        {isLoggedIn && <NavigationBar />}
+        {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>
     </div>
   );
