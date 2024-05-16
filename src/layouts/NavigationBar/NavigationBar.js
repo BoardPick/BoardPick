@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  Home,
-  HomeOn,
-  Category,
-  Review,
-  ReviewOn,
-  Bookmark,
-  MyPage,
-} from "../../assets/icon/icon.js";
+import { Home, Category, Bookmark, MyPage } from "../../assets/icon/icon.js";
 
 const TabBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const path = location.pathname.slice(1);
   const [selectedTab, setSelectedTab] = useState(location.pathname);
 
   const tabs = [
     {
       url: "/",
-      icon: selectedTab === "/" ? <HomeOn /> : <Home />,
+      icon: <Home />,
       text: "홈",
     },
     { url: "/Category", icon: <Category />, text: "카테고리" },
@@ -31,8 +22,7 @@ const TabBar = () => {
     setSelectedTab(url);
     navigate(url);
   };
-  console.log(path);
-  console.log(selectedTab);
+
   return (
     <div className="NavigationBar">
       <ul>
@@ -42,7 +32,7 @@ const TabBar = () => {
             className={`menu ${
               selectedTab === tab.url ||
               (tab.url !== "/" && location.pathname.includes(tab.url))
-                ? `on ${path}`
+                ? "on"
                 : ""
             }`}
             onClick={() => handleTabClick(tab.url)}

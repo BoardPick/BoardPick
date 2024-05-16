@@ -6,17 +6,17 @@ let initialState = {
   reviewCount: 2,
   toast: false,
   likeCount: 2,
-  disabled: false,
   myPick: [""],
   recentGame: [""],
+  // inputNick: "",
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    // case "SET_INPUT_NICK":
+    //   return { ...state, inputNick: state.inputNick };
     case "SET_ISLOGGEDIN":
       return { ...state, isLoggedIn: !state.isLoggedIn };
-    case "SET_DISABLED":
-      return { ...state, disabled: !state.disabled };
     case "SET_PICK":
       return { ...state, pick: !state.pick };
     // case "TOGGLE_PICK":

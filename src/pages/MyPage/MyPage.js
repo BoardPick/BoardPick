@@ -15,6 +15,8 @@ const MyPage = () => {
     setLoggedOut(!loggedOut);
   };
 
+  const handleMyProfileEdit = () => navigate("/myPage/myProfileEdit");
+
   return (
     <div className="MyPage">
       <header>내 정보</header>
@@ -32,7 +34,11 @@ const MyPage = () => {
                 <li className="email">abc1234@naver.com</li>
               </ul>
             </div>
-            <Button size={"s24"} text={"정보수정"} />
+            <Button
+              size={"s24"}
+              text={"정보수정"}
+              onClick={handleMyProfileEdit}
+            />
           </article>
         ) : (
           <article

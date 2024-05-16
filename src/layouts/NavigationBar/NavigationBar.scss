@@ -34,14 +34,19 @@
         .menuName {
           color: $main_color;
         }
-        &.Category,
-        &.MyPick,
-        &.MyPage {
-          svg {
-            fill: $main_color;
-            path,
-            circle {
-              stroke: $main_color;
+        svg {
+          fill: $main_color;
+          path,
+          circle {
+            stroke: $main_color;
+          }
+        }
+      }
+      &:nth-child(1) {
+        &.on {
+          path {
+            &:nth-child(2) {
+              stroke: white;
             }
           }
         }
