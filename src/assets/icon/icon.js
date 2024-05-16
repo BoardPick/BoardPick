@@ -1,10 +1,10 @@
+import { ReactComponent as KakaoIcon } from "../icon/kakaoIcon.svg";
 import { ReactComponent as AgeIcon } from "../icon/age.svg";
 import { ReactComponent as BookmarkIcon } from "../icon/bookmark.svg";
 import { ReactComponent as CategoryIcon } from "../icon/category.svg";
 import { ReactComponent as ChevronLeftIcon } from "../icon/chevronLeft.svg";
 import { ReactComponent as ChevronRightIcon } from "../icon/chevronRight.svg";
 import { ReactComponent as HomeIcon } from "../icon/home.svg";
-import { ReactComponent as HomeOnIcon } from "../icon/homeOn.svg";
 import { ReactComponent as LevelIcon } from "../icon/level.svg";
 import { ReactComponent as LinkIcon } from "../icon/link.svg";
 import { ReactComponent as MyPageIcon } from "../icon/mypage.svg";
@@ -19,13 +19,13 @@ import { ReactComponent as CheckIcon } from "../icon/check.svg";
 import { ReactComponent as PencilIcon } from "../icon/pencil.svg";
 import { ReactComponent as LikeIcon } from "../icon/like.svg";
 
+export const Kakao = () => <KakaoIcon />;
 export const Age = () => <AgeIcon />;
 export const Bookmark = () => <BookmarkIcon />;
 export const Category = () => <CategoryIcon />;
 export const ChevronLeft = () => <ChevronLeftIcon />;
 export const ChevronRight = () => <ChevronRightIcon />;
 export const Home = () => <HomeIcon />;
-export const HomeOn = () => <HomeOnIcon />;
 export const Level = () => <LevelIcon />;
 export const Link = () => <LinkIcon />;
 export const MyPage = () => <MyPageIcon />;

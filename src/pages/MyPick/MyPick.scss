@@ -1,0 +1,130 @@
+.myPick {
+  height: 100vh;
+  background-color: $common_white;
+  .contentTit {
+    @each $font, $value in $title4 {
+      #{$font}: $value;
+    }
+    strong {
+      font-weight: 600;
+      margin-right: 3px;
+    }
+  }
+  .myPickContainer {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      .btn {
+        color: $common_white;
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 15px 20px;
+    background-color: $text_sub1;
+    h1 {
+      @each $font, $value in $title3 {
+        #{$font}: $value;
+      }
+      font-weight: 600;
+      color: $common_white;
+    }
+    .pickBox {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      .noPick {
+        color: #bbb;
+        height: 76px;
+        @each $font, $value in $body1 {
+          #{$font}: $value;
+        }
+        padding: 12px 0;
+      }
+      .go {
+        color: $common_white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        p {
+          @each $font, $value in $body1 {
+            #{$font}: $value;
+          }
+          padding: 8px 0;
+        }
+        span {
+          svg {
+            width: 18px;
+            height: 19px;
+            path {
+              stroke: $common_white;
+            }
+          }
+        }
+        &.game {
+          p {
+            display: flex;
+            gap: 12px;
+            .categoryBadge {
+              background-color: transparent;
+              @each $font, $value in $button3 {
+                #{$font}: $value;
+              }
+              color: $common_white;
+              img {
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+        }
+      }
+
+      .pickThumb {
+        width: 70px;
+        height: 76px;
+
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 5px;
+        .imgBox {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+          }
+        }
+        &.on {
+          border: 1.5px solid $common_white;
+          img {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  .recommendGame {
+    @include content();
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .recentGame {
+    @include content();
+    border-top: 8px solid $line_light;
+    background-color: $common_white;
+    padding-bottom: calc(80px + 52px);
+  }
+  .swiper .swiper-wrapper .swiper-slide {
+    background-color: transparent;
+  }
+}

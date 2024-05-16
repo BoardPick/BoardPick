@@ -9,16 +9,7 @@
     flex-direction: column;
     gap: 12px;
     .videoTit {
-      font-size: map-get($title3, font-size);
-      line-height: map-get($title3, line-height);
-      letter-spacing: map-get($title3, letter-spacing);
-      font-weight: 600;
-    }
-  }
-  .slide-outer {
-    height: 300px;
-    .rtds-single-slide-styles {
-      width: 140px !important;
+      @include contentTit();
     }
   }
 }

@@ -1,0 +1,26 @@
+.myPickAll {
+  height: 100vh;
+  .pickContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include content();
+    background-color: $common_white;
+    padding-bottom: calc(52px + 80px);
+    .myPickCount {
+      @each $font, $value in $caption1 {
+        #{$font}: $value;
+      }
+
+      span {
+        color: $main_color;
+      }
+    }
+  }
+  .picks {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 8px;
+  }
+}
