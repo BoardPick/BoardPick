@@ -13,6 +13,10 @@
 @import "../components/StarScore/StarScore.scss";
 @import "../components/Btn/Button/Button.scss";
 @import "../components/ReviewContent/ReviewContent.scss";
+@import "../components/Search/SearchBar/SearchBar.scss";
+@import "../components/Search/SearchResult/SearchResult.scss";
+@import "../components/Search/SearchResult/noneResult/NoneResult.scss";
+@import "../components/CategoryBox/CatgoryBox.scss";
 @import "../components//SwiperSlide/SwiperSlide.scss";
 @import "../components/ThumbNail/ThumbNail.scss";
 @import "../components/Tag/Tag.scss";
@@ -22,13 +26,18 @@
 @import "../layouts/NavigationBar/NavigationBar.scss";
 
 // pages
-
+@import "../pages/Home/Home.scss";
+@import "../pages/Category/Category.scss";
 @import "../pages/OnBoarding/OnBoarding.scss";
 @import "../pages/CategoryDetail/CategoryDetail.scss";
 @import "../pages/CategoryDetail/CategoryTab/CategoryTab.scss";
 @import "../pages/CategoryDetail/GameTab/RuleTab/RuleTab.scss";
 @import "../pages/CategoryDetail/GameTab/ReviewTab/ReviewTab.scss";
 @import "../pages/DetailReview/DetailReview.scss";
+@import "../pages/Review/Review";
+@import "../pages/Review/FilterTab/Popular/Popular";
+@import "../pages/Review/FilterTab/New/New";
+// @import "../pages/SearchResult/searchResult.scss";
 @import "../pages/MyPick/MyPick.scss";
 @import "../pages/MyPickAll/MyPickAll.scss";
 @import "../pages/MyPage/MyPage.scss";
