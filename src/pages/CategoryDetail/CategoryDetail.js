@@ -6,8 +6,10 @@ import CategoryTab from "./CategoryTab/CategoryTab.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
 import StarScore from "../../components/StarScore/StarScore.js";
 import NoticeBtn from "../../components/Btn/NoticeBtn/NoticeBtn.js";
+import Tag from "../../components/Tag/Tag";
 import ToastPopUp from "../../components/ToastPopUp/ToastPopUp.js";
 import { BoardGameElement } from "../../assets/data/boardGameElmentData.js";
+import { tagArr } from "../../assets/data/test.js";
 
 const CategoryDetail = () => {
   const navigate = useNavigate();
@@ -59,10 +61,10 @@ const CategoryDetail = () => {
       <AppBar mark type={"gradient"} />
       <div className="backImg" />
       <section className="boardGameInfo">
-        {/* <article className="thumNail">
+        {/* <article className="ThumbNail">
           <img
             src="https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg"
-            alt="thumNail"
+            alt="ThumbNail"
           />
         </article> */}
         <article className="boardGameSum">
@@ -73,7 +75,6 @@ const CategoryDetail = () => {
           <h2 className="boardGameOne">
             방 탈출 게임의 화제작 이스케이프 룸 패밀리!
           </h2>
-          <StarScore />
           {reviewCount === 0 && (
             <NoticeBtn
               text={"이 보드게임 후기를 가장 먼저 작성해보세요!"}
@@ -86,10 +87,10 @@ const CategoryDetail = () => {
               명이 PICK 했어요!
             </div>
           )}
-
           <div className="hashTagBox">
-            <span className="hashTag">#주사위</span>
-            <span className="hashTag">#방탈출</span>
+            {tagArr.map((tag, i) => (
+              <Tag key={i} tag={tag} />
+            ))}
           </div>
         </article>
         <article className="BoardGameEleBox">

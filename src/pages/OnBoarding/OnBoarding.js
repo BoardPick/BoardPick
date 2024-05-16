@@ -1,18 +1,19 @@
-import React from "react";
-
-import kakaoLogin from "../../assets/image/kakao_login.png";
+import { logo } from "../../assets/image/image";
+import { Kakao } from "../../assets/icon/icon";
 
 const OnBoarding = () => {
   return (
-    <div>
-      로그인페이지
-      <ul>
+    <div className="onBoarding">
+      <article className="logo">
+        <img src={logo} alt="logo" />
+        <p className="logoDesc">나에게 맞는 보드게임을 PICK하다</p>
+      </article>
+      <ul className="loginBtnBox">
         <ul>
-          <li>
-            <img src={kakaoLogin} alt="kakao login" />
+          <li className="loginBtn kakao">
+            <Kakao />
+            카카오로 시작하기
           </li>
-          <li>네이버 계정으로 시작</li>
-          <li>구글 계정으로 시작</li>
         </ul>
       </ul>
     </div>

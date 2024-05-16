@@ -1,7 +1,4 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
@@ -11,10 +8,10 @@ import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import DetailReview from "./pages/DetailReview/DetailReview";
-
+import { useSelector } from "react-redux";
 import MyPageEdit from "./pages/MyPageEdit/MyPageEdit";
 
-function App() {
+export function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   return (
@@ -32,12 +29,10 @@ function App() {
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPick/all" element={<MyPickAll />} />
           <Route path="/myPage" element={<MyPage />} />
-          <Route path="/myPage/myProfileEdit" element={<MyPageEdit />} />
+          <Route path="/myPage/myProfileEdit" element={<MyPageEdit />} /> ,{" "}
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>
     </div>
   );
 }
-
-export default App;

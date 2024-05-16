@@ -1,0 +1,50 @@
+.onBoarding {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 120px;
+    .logoDesc {
+      @each $font, $value in $title3 {
+        #{$font}: $value;
+      }
+      color: $text_info;
+    }
+  }
+  .loginBtnBox {
+    position: fixed;
+    bottom: 0;
+    @include content();
+    width: 100%;
+    max-width: 600px;
+    .loginBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 52px;
+      border-radius: 8px;
+      @each $font, $value in $button3 {
+        #{$font}: $value;
+      }
+      gap: 6px;
+      cursor: pointer;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+      &.kakao {
+        background-color: #f9db00;
+      }
+    }
+  }
+}
