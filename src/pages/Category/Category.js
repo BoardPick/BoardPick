@@ -5,28 +5,26 @@ import Button from "../../components/Btn/Button/Button.js";
 
 const Category = () => {
 
+  const tags = [
+    "#보드게임1",
+    "#보드게임2",
+    "#보드게임3",
+    "#보드게임4",
+    "#보드게임5"
+  ]
+
   return (
     <div className="Categorys">
-      <SearchBar value="\n"/>
+      <SearchBar />
       <CategoryBox />
       <div className="HotTag">
         <h1 className="title">가장 핫한 보드게임</h1>
         <div className="tags">
-          <div className="tag">
-            <Button text={"#보드게임"} size={"s36"} type={"default"}></Button>
-          </div>
-          <div className="tag">
-            <Button text={"#보드게임"} size={"s36"} type={"default"}></Button>
-          </div>
-          <div className="tag">
-            <Button text={"#보드게임"} size={"s36"} type={"default"}></Button>
-          </div>
-          <div className="tag">
-            <Button text={"#보드게임"} size={"s36"} type={"default"}></Button>
-          </div>
-          <div className="tag">
-            <Button text={"#보드게임"} size={"s36"} type={"default"}></Button>
-          </div>
+            {tags.map((tag, i) => {
+                return (<div className="tag">
+                  <Button key={i} text={tag} size={"s36"} type={"default"}></Button>
+                </div>)
+            })}
         </div>
       </div>
      </div>

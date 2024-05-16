@@ -14,7 +14,8 @@
 @import "../components/Btn/Button/Button.scss";
 @import "../components/ReviewContent/ReviewContent.scss";
 @import "../components/Search/SearchBar/SearchBar.scss";
-// @import "../components/Search/SearchResult/searchResult.scss";
+@import "../components/Search/SearchResult/SearchResult.scss";
+@import "../components/Search/SearchResult/noneResult/NoneResult.scss";
 @import "../components/CategoryBox/CatgoryBox.scss";
 
 // layout
@@ -31,4 +32,4 @@
 @import "../pages/Review/Review";
 @import "../pages/Review/FilterTab/Popular/Popular";
 @import "../pages/Review/FilterTab/New/New";
-@import "../pages/SearchResult/searchResult.scss";
+// @import "../pages/SearchResult/searchResult.scss";

@@ -1,12 +1,10 @@
 import React from "react";
-import SearchBar from "../../components/Search/SearchBar/SearchBar";
-import { MagnifierCharacter } from "../../assets/icon/character/character";
+import { MagnifierCharacter } from "../../../../assets/icon/character/character";
 
 
-const SearchResult = ({icon, value, h1, p1, p2}) => {
+const noneResult = ({icon, value, h1, p1, p2}) => {
 
   	return <div className="searchResult">
-	<SearchBar />
 	  <div className="message">
 		{icon}
 		  <div className="text">
@@ -25,7 +23,7 @@ const SearchResult = ({icon, value, h1, p1, p2}) => {
   </div>
 };
 
-SearchResult.defaultProps = {
+noneResult.defaultProps = {
 	icon: <MagnifierCharacter />,
 	value: "코드네임",
 	h1: "에 대한 검색결과가 없어요.",
@@ -33,4 +31,4 @@ SearchResult.defaultProps = {
 	p2: "조만간 보드게임에서 만나보실 수 있어요!",
   };
 
-export default SearchResult;
+export default noneResult;
