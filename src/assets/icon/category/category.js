@@ -1,0 +1,21 @@
+import { ReactComponent as BattingIcon } from "./batting.svg";
+import { ReactComponent as CardIcon } from "./cardgame.svg";
+import { ReactComponent as CooperationIcon } from "./cooperation.svg";
+import { ReactComponent as DeductionIcon } from "./deduction.svg";
+import { ReactComponent as EtcIcon } from "./etc.svg";
+import { ReactComponent as MafiaIcon } from "./mafia.svg";
+import { ReactComponent as MemoryIcon } from "./memory.svg";
+import { ReactComponent as RealtimeIcon } from "./realtime.svg";
+import { ReactComponent as RollplayingIcon } from "./rollplaying.svg";
+import { ReactComponent as StrategyIcon } from "./strategy.svg";
+
+export const Batting = () => <BattingIcon />;
+export const Cardgame = () => <CardIcon />;
+export const Cooperation = () => <CooperationIcon />;
+export const Deduction = () => <DeductionIcon />;
+export const Etc = () => <EtcIcon />;
+export const Mafia = () => <MafiaIcon />;
+export const Memory = () => <MemoryIcon />;
+export const Realtime = () => <RealtimeIcon />;
+export const Rollplaying = () => <RollplayingIcon />;
+export const Strategy = () => <StrategyIcon />;
