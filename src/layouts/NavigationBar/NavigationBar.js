@@ -13,9 +13,15 @@ import {
 const TabBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState("");
+  const path = location.pathname.slice(1);
+  const [selectedTab, setSelectedTab] = useState(location.pathname);
+
   const tabs = [
-    { url: "/", icon: selectedTab === "/" ? <HomeOn /> : <Home />, text: "홈" },
+    {
+      url: "/",
+      icon: selectedTab === "/" ? <HomeOn /> : <Home />,
+      text: "홈",
+    },
     { url: "/Category", icon: <Category />, text: "카테고리" },
     { url: "/MyPick", icon: <Bookmark />, text: "MY PICK" },
     { url: "/MyPage", icon: <MyPage />, text: "내 정보" },
@@ -25,8 +31,8 @@ const TabBar = () => {
     setSelectedTab(url);
     navigate(url);
   };
-  console.log(location.pathname);
-
+  console.log(path);
+  console.log(selectedTab);
   return (
     <div className="NavigationBar">
       <ul>
@@ -34,8 +40,9 @@ const TabBar = () => {
           <li
             key={i}
             className={`menu ${
-              selectedTab === tab.url || location.pathname.includes(tab.url)
-                ? "on"
+              selectedTab === tab.url ||
+              (tab.url !== "/" && location.pathname.includes(tab.url))
+                ? `on ${path}`
                 : ""
             }`}
             onClick={() => handleTabClick(tab.url)}

@@ -34,9 +34,9 @@
         .menuName {
           color: $main_color;
         }
-        &:nth-child(2),
-        &:nth-child(3),
-        &:last-child {
+        &.Category,
+        &.MyPick,
+        &.MyPage {
           svg {
             fill: $main_color;
             path,
