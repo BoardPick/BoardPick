@@ -4,6 +4,9 @@ body {
   height: 100%;
   background-color: $background_default;
 }
+html {
+  scrollbar-width: none;
+}
 .boardPick {
   max-width: 600px;
   min-width: 375px;
