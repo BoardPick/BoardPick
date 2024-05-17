@@ -24,3 +24,13 @@
     gap: 32px 8px;
   }
 }
+
+@media all and (min-width: 450px) {
+  .myPickAll {
+    .pickContainer {
+      .picks {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
