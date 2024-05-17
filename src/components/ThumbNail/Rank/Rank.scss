@@ -1,0 +1,44 @@
+.Rank {
+
+	gap: 12px;
+
+	.thumImg {
+		img {
+			border-radius: 8px;
+		}
+	}
+
+	.thumName {
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 12px;
+
+		.num {
+			color: $main_color;
+			padding-left: 12px;
+		}
+		
+		.text {
+			width: 100vw;
+			
+			h1 {
+				@each $font, $value in $title4 {
+					#{$font}: $value;
+				  }
+				  color: $common_black;
+				  font-weight: 600;
+	
+				}
+
+			p {
+				@each $font, $value in $body3 {
+					#{$font}: $value;
+					}
+					color: $text_info;
+					font-weight: 400;
+			}
+		}
+	}
+			
+}
