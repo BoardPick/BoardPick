@@ -1,16 +1,14 @@
 import { Swiper } from "swiper/react";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
 import CategoryBox from "../../components/CategoryBox/CategoryBox";
-import Banner from "../../assets/image/banner.svg";
 import Rank from "../../components/ThumbNail/Rank/Rank";
+import Banner from "../../components/Banner/Banner"
 
 const Home = () => {
 
   return <div className="home">
     <SearchBar />
-    <div className="banner">
-      <img src={Banner} alt="샘플이미지" />
-    </div>
+    <Banner />
     <CategoryBox />
 
     {/* 오늘의 보드픽 랭킹 */}
