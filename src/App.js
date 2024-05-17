@@ -11,6 +11,7 @@ import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import DetailReview from "./pages/DetailReview/DetailReview";
+import Search from "./pages/Search/Search";
 
 import MyPageEdit from "./pages/MyPageEdit/MyPageEdit";
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/myPick/all" element={<MyPickAll />} />
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/myPage/myProfileEdit" element={<MyPageEdit />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>

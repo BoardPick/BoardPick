@@ -1,6 +1,6 @@
-.home {
-	height: 100vh;
-}
+// .home {
+// 	height: 100vh;
+// }
 
 .banner {
 	display: flex;
@@ -11,4 +11,36 @@
 		width: 100%;
 		cursor: pointer;
 	}
+}
+
+.pickRank {
+	gap: 24px;
+	padding: 20px 25px 0px 25px;
+	border-top: 8px solid;
+	border-color: $background_default;
+	height: 500px;
+
+	.miniHeader {
+		padding-top: 10px;
+		align-items: start;
+		padding-bottom: 20px;
+		border-bottom: 1px solid $line_default;
+
+		.title {
+			@each $font, $value in $title2 {
+				#{$font}: $value;
+			}
+			font-weight: 600;
+			padding-bottom: 4px;
+		}
+	
+		.info {
+			@each $font, $value in $body2 {
+				#{$font}: $value;
+			}
+			color: $text_info;
+			font-weight: 400;
+		}
+	}
+
 }
