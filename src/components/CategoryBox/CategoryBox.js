@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {
   Strategy,
@@ -30,7 +29,7 @@ const CategoryList = ({ categories, onCategoryClick }) => (
 
 const CategoryBox = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const url = "/category/categoryselect";
 
   const categories = [
     { url: "/Category/strategy", icon: <Strategy />, text: "전략게임" },
@@ -45,8 +44,7 @@ const CategoryBox = () => {
     { url: "/Category/etc", icon: <Etc />, text: "기타게임" },
   ];
 
-  const handleCategoryClick = (url) => {
-    setSelectedCategory(url);
+  const handleCategoryClick = () => {
     navigate(url);
   };
 

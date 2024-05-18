@@ -1,32 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { SearchContext } from '../../../context/SearchContext';
 import btn from "../../../assets/icon/search.svg";
 
 const SearchBar = () => {
-	const navigate = useNavigate();
-	const [value, setValue] = useState("");
-	const url = "/search";
+	const data = useContext(SearchContext);
+	const {onsearch} = useContext(SearchContext);
 
 	const onChange = (event) => {
-		setValue(event.target.value);
+		data.setKeyworld(event.target.value);
 	};
 
 	const onClick = () => {
-		navigate(url);
+		data.setOnsearch(!onsearch);
 	}
 
 	const handleKeyDown = (event) => {
 		if (event.key === "Enter") {
-			// setSearch();
-			console.log("enter!");
+			data.setResult(true);
+			console.log("enter");
 		}
 	}
 
 	return (
 	<div className="SearchBar">
 		<div className="searchBox">
-			<input type="text" placeholder={'PICK 하고싶은 보드게임을 검색해 주세요!'} className="input" value={value} onChange={onChange} handleKeyDown={handleKeyDown} onClick={onClick}/>
-			<img className="img" src={btn} alt="돋보기" onClick={onClick}/>
+			<input type="text" placeholder={'PICK 하고싶은 보드게임을 검색해 주세요!'} className="input" value={data.keyworld} onChange={onChange} onKeyDown={handleKeyDown} onClick={onClick}/>
+			<img className="img" src={btn} alt="돋보기" onClick={() => {data.setResult(true)}}/>
 		</div>
 	</div>
 	);

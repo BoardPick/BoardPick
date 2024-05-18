@@ -1,10 +1,7 @@
-.search {
-    height: 100vh;
-}
-
 .recent {
 	align-items: start;
 	justify-content: center;
+    height: 100vh;
 
 	.title {
 		@each $font, $value in $body1 {

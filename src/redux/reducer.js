@@ -9,6 +9,9 @@ let initialState = {
   myPick: [""],
   recentGame: [""],
   // inputNick: "",
+  onSearch: false,
+  keyword: "",
+  searchResult: false,
 };
 
 function reducer(state = initialState, action) {
