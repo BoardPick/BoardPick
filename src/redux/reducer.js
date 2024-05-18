@@ -12,6 +12,7 @@ let initialState = {
   onSearch: false,
   keyword: "",
   searchResult: false,
+  searchGames: [""],
 };
 
 function reducer(state = initialState, action) {
