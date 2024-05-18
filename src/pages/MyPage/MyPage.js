@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Button from "../../components/Btn/Button/Button";
 import { ChevronRight } from "../../assets/icon/icon";
 import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
@@ -15,8 +14,6 @@ const MyPage = () => {
     setLoggedOut(!loggedOut);
   };
 
-  const handleMyProfileEdit = () => navigate("/myPage/myProfileEdit");
-
   return (
     <div className="MyPage">
       <header>내 정보</header>
@@ -25,7 +22,7 @@ const MyPage = () => {
           <article className="myInfoContainer">
             <div className="myInfo">
               <div className="profileImg">
-                <img src={profile_brand} />
+                <img src={profile_brand} alt="profile" />
               </div>
               <ul>
                 <li className="nickname">
@@ -34,11 +31,6 @@ const MyPage = () => {
                 <li className="email">abc1234@naver.com</li>
               </ul>
             </div>
-            <Button
-              size={"s24"}
-              text={"정보수정"}
-              onClick={handleMyProfileEdit}
-            />
           </article>
         ) : (
           <article
@@ -57,7 +49,7 @@ const MyPage = () => {
 
         <ul className="myPageList">
           <li className="cs">
-            <p>고객센터</p>
+            <p>1:1오픈채팅 문의하기</p>
             <ChevronRight />
           </li>
           {isLoggedIn && (
