@@ -21,8 +21,9 @@ function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [searchKeywold, setSearchKeywold] = useState("");
+  const [selectCategory, setSelectCategory] = useState("none");
   return (
-    <SearchContext.Provider value={{searchKeywold, setSearchKeywold}}>
+    <SearchContext.Provider value={{searchKeywold, setSearchKeywold, selectCategory, setSelectCategory}}>
     <div className="App">
       <div className="boardPick">
         <Routes>

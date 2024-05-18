@@ -1,6 +1,6 @@
 import { CategoryMatch } from "../../assets/data/categoryMatch";
 
-const CategoryTab = ({ genre }) => {
+const CategoryTab = ({ genre, type }) => {
   const matchCategory = CategoryMatch.find(
     (category) => category.genre === genre
   );
@@ -8,7 +8,7 @@ const CategoryTab = ({ genre }) => {
     return null;
   }
   return (
-    <div className="categoryTab">
+    <div className={type === "select" ? "dark" : "none"}>
       <img
         src={matchCategory.icon}
         alt={`${matchCategory.genre}`}

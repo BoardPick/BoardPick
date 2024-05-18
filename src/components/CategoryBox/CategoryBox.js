@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { SearchContext } from "../../context/SearchContext.js";
 import {
   Strategy,
   Rollplaying,
@@ -12,51 +14,56 @@ import {
   Etc,
 } from "../../assets/icon/category/category.js";
 
-const CategoryList = ({ categories, onCategoryClick }) => (
-  <ul>
-    {categories.map((tab) => (
-      <li
-        key={tab.text}
-        className="category"
-        onClick={() => onCategoryClick(tab.url)}
-      >
-        <span className="categoryIcon">{tab.icon}</span>
-        <span className="categoryName">{tab.text}</span>
-      </li>
-    ))}
-  </ul>
-);
-
 const CategoryBox = () => {
   const navigate = useNavigate();
   const url = "/category/categoryselect";
+  const data = useContext(SearchContext);
 
-  const categories = [
-    { url: "/Category/strategy", icon: <Strategy />, text: "전략게임" },
-    { url: "/Category/rollplaying", icon: <Rollplaying />, text: "롤플레잉" },
-    { url: "/Category/cardgame", icon: <Cardgame />, text: "카드게임" },
-    { url: "/Category/cooperation", icon: <Cooperation />, text: "협력게임" },
-    { url: "/Category/deduction", icon: <Deduction />, text: "추리게임" },
-    { url: "/Category/batting", icon: <Batting />, text: "베팅게임" },
-    { url: "/Category/mafia", icon: <Mafia />, text: "마피아" },
-    { url: "/Category/memory", icon: <Memory />, text: "기억력" },
-    { url: "/Category/realtime", icon: <Realtime />, text: "순발력" },
-    { url: "/Category/etc", icon: <Etc />, text: "기타게임" },
+  const category1 = [
+    { icon: <Strategy />, text: "전략게임" },
+    { icon: <Rollplaying />, text: "롤플레잉" },
+    { icon: <Cardgame />, text: "카드게임" },
+    { icon: <Cooperation />, text: "협력게임" },
+    { icon: <Deduction />, text: "추리게임" },
   ];
 
-  const handleCategoryClick = () => {
+  const category2 = [
+    { icon: <Batting />, text: "베팅게임" },
+    { icon: <Mafia />, text: "마피아" },
+    { icon: <Memory />, text: "기억력" },
+    { icon: <Realtime />, text: "순발력" },
+    { icon: <Etc />, text: "기타게임" },
+  ];
+
+  const handleCategoryClick = (genre) => {
+    data.setSelectCategory(genre);
     navigate(url);
   };
 
-  // Split categories into two rows
-  const half = Math.ceil(categories.length / 2);
-  const firstRow = categories.slice(0, half);
-  const secondRow = categories.slice(half);
-
   return (
     <div className="categorybox">
-      <CategoryList categories={firstRow} onCategoryClick={handleCategoryClick} />
-      <CategoryList categories={secondRow} onCategoryClick={handleCategoryClick} />
+      <ul>
+          {category1.map((tab) => (
+            <li
+              key={tab.text}
+              className="category" onClick={() => handleCategoryClick(tab.text)}
+            >
+              <span className="categoryIcon">{tab.icon}</span>
+              <span className="categoryName">{tab.text}</span>
+            </li>
+          ))}
+        </ul>
+      <ul>
+        {category2.map((tab) => (
+          <li
+            key={tab.text}
+            className="category" onClick={() => handleCategoryClick(tab.text)}
+          >
+            <span className="categoryIcon">{tab.icon}</span>
+            <span className="categoryName">{tab.text}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

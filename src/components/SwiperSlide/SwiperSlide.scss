@@ -8,6 +8,7 @@
     width: 100%;
     display: flex;
     gap: 8px;
+  
     .swiper-slide {
       min-width: 140px !important;
       max-width: 163.5px !important;
@@ -19,6 +20,9 @@
     }
     .swiper-slide-custom {
       max-width: 300px !important;
+    }
+    .swiper-slide-category {
+      max-width: 110px !important;
     }
   }
 }
