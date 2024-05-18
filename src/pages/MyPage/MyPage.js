@@ -26,9 +26,9 @@ const MyPage = () => {
               </div>
               <ul>
                 <li className="nickname">
-                  <strong>보드픽</strong>님 어서오세요!
+                  <strong>스위프</strong>님 안녕하세요!
                 </li>
-                <li className="email">abc1234@naver.com</li>
+                <li className="welcome">보드픽에 오신걸 환영해요!</li>
               </ul>
             </div>
           </article>

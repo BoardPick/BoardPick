@@ -43,7 +43,7 @@ const MyPick = () => {
                 className="go Category"
                 onClick={() => navigate("/category")}
               >
-                <p>내 취향 보드게임 찾아보기</p>
+                <p>보드P!CK 추천 보드게임</p>
                 <span>
                   <ChevronRight />
                 </span>

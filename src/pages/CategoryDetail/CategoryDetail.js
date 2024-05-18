@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import AppBar from "../../components/AppBar/AppBar.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
@@ -12,11 +11,29 @@ import { BoardGameElement } from "../../assets/data/boardGameElmentData.js";
 import { tagArr } from "../../assets/data/test.js";
 import RuleTab from "../../layouts/RuleTab/RuleTab.js";
 import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
+import { getBoardGameDetail } from "../../common/axios/api.js";
 
 const CategoryDetail = () => {
+  const { id } = useParams();
+  console.log(getBoardGameDetail(id));
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBoardGameDetail(id);
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,15 +42,6 @@ const CategoryDetail = () => {
   const pickCount = useSelector((state) => state.pickCount);
   const toast = useSelector((state) => state.toast);
   const isCopied = useSelector((state) => state.isCopied);
-
-  async function getData() {
-    const url = "https://jsonplaceholder.typicode.com/posts/1";
-    const response = await fetch(url);
-    const data = await response.json();
-
-    console.log(data);
-  }
-  getData();
 
   const setDecreaseCount = () => {
     dispatch({
@@ -79,31 +87,25 @@ const CategoryDetail = () => {
     }
   }, [toast]);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="categoryDetail">
       <AppBar mark type={"gradient"} />
       <div className="backImg">
-        <img src="https://cf.geekdo-images.com/WDzyiNLC4jxbxVLvovGp8w__original/img/p4_7s9oSB64a7nZe05RSR6KDi8k=/0x0/filters:format(jpeg)/pic6220818.jpg" />
+        <img src={data.imageUrl} />
       </div>
-
       <section className="boardGameInfo">
         <article className="detailThumbNail">
-          <img
-            src="https://cf.geekdo-images.com/WDzyiNLC4jxbxVLvovGp8w__original/img/p4_7s9oSB64a7nZe05RSR6KDi8k=/0x0/filters:format(jpeg)/pic6220818.jpg"
-            alt="ThumbNail"
-          />
+          <img src={data.thumbnailUrl} alt="ThumbNail" />
         </article>{" "}
         <article className="boardGameSum">
           <div className="banners">
             <CategoryBadge genre={"협력게임"} />
           </div>
-          <h1 className="boardGameName">이스케이프 룸</h1>
-          <h2 className="boardGameOne">
-            방 탈출 게임의 화제작 이스케이프 룸 패밀리!
-          </h2>
+          <h1 className="boardGameName">{data.name}</h1>
+          <h2 className="boardGameOne">{data.description}</h2>
           {reviewCount === 0 && (
             <NoticeBtn
               text={"이 보드게임 후기를 가장 먼저 작성해보세요!"}
