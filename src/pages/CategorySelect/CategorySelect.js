@@ -1,5 +1,6 @@
 import { SearchContext } from "../../context/SearchContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useSelector } from "react-redux";
 import { useState, useContext } from "react";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js"
 import SearchResult from "../../components/Search/SearchResult/SearchResult.js"
@@ -20,22 +21,20 @@ const CategorySelectArry = [
 ]
 
 const CategorySelect = () => {
-    const [onsearch, setOnsearch] = useState(false);
-    const [keyworld, setKeyworld] = useState("");
-    const [result, setResult] = useState(false);
+    const onSearch = useSelector((state) => state.onSearch);
+    const searchResult = useSelector((state) => state.searchResult);
     const log = useContext(SearchContext);
 
   return (
-    <SearchContext.Provider value={{onsearch, setOnsearch, keyworld, setKeyworld, result, setResult}}>
-      <div className="categorySelect">
+    <div className="categorySelect">
         <SearchBar />
-        { onsearch ? ( result === false ? <OnSearch /> : <SearchResult keyworld={keyworld} />) : 
+        { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={log.searchKeywold} />) : 
           <div className="selectResult">
             <div className="selectBtn">
             <Swiper>
               {CategorySelectArry.map((data, i) => (
                 <SwiperSlide key={i} className="swiper-slide-category">
-                  <CategoryTab genre={data.genre} type={data.genre === log.selectCategory ? "select" : ""} />
+                  <CategoryTab genre={data.genre} type={data.genre === log.selectCategory ? "select" : ""}/>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -43,7 +42,6 @@ const CategorySelect = () => {
           </div>
         }
       </div>
-    </SearchContext.Provider>
   );
 };
 
