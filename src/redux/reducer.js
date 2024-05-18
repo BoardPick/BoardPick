@@ -3,18 +3,15 @@ let initialState = {
   pick: false,
   picks: {},
   pickCount: 20,
-  reviewCount: 2,
+  isCopied: false,
   toast: false,
   likeCount: 2,
   myPick: [""],
   recentGame: [""],
-  // inputNick: "",
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    // case "SET_INPUT_NICK":
-    //   return { ...state, inputNick: state.inputNick };
     case "SET_ISLOGGEDIN":
       return { ...state, isLoggedIn: !state.isLoggedIn };
     case "SET_PICK":
@@ -32,12 +29,12 @@ function reducer(state = initialState, action) {
       return { ...state, pickCount: state.pickCount - 1 };
     case "SET_PICK_INCREASE":
       return { ...state, pickCount: state.pickCount + 1 };
-    case "SET_REVIEW_COUNT":
-      return { ...state, reviewCount: action.payload };
     case "SET_TOAST":
       return { ...state, toast: !state.toast };
     case "SET_LIKE":
       return { ...state, likeCount: action.payload };
+    case "SET_ISCOPY":
+      return { ...state, copy: !state.isCopied };
     case "SET_MY_PICK":
       return {
         ...state,
@@ -46,8 +43,8 @@ function reducer(state = initialState, action) {
     case "SET_RECENT_GAME":
       return {
         ...state,
-        recentGame: action.payload,
       };
+
     default:
       return { ...state };
   }
