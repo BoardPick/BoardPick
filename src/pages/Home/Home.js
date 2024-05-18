@@ -1,23 +1,110 @@
-import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useState, useEffect, useContext } from 'react';
+import { useSelector } from "react-redux";
+import { SearchContext } from "../../context/SearchContext.js";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
-import SearchResult from "../../components/Search/SearchResult/SearchResult";
+import SearchResult from "../../components/Search/SearchResult/SearchResult.js";
+import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategoryBox from "../../components/CategoryBox/CategoryBox";
-import Banner from "../../assets/image/banner.svg";
+import Rank from "../../components/ThumbNail/Rank/Rank";
+import Banner from "../../components/Banner/Banner"
+import ThumbNail from "../../components/ThumbNail/ThumbNail";
 
 const Home = () => {
-  const [onsearch, setOnsearch] = useState(false);
+  const onSearch = useSelector((state) => state.onSearch);
+  const searchResult = useSelector((state) => state.searchResult);
+  const data = useContext(SearchContext);
+
+  // useEffect(() => {
+  //   setResult(!result);
+  // }, [result]);
 
   return <div className="home">
     <SearchBar />
-    {onsearch === true ? <SearchResult keyworld={"검색 키워드"}/> :
-      <div className="wrapper">
-        <div className="banner">
-          <img src={Banner} alt="샘플이미지" onClick={() => setOnsearch(!onsearch)}/>
+    { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) :
+    <div>
+    <Banner />
+    <CategoryBox />
+
+    {/* 관심있어 할 만한 보드게임 */}
+    <article className="recommand">
+        <div className="title">
+          <div className="firstline">
+            <h1 className="name">'스위프'</h1>
+            <h1>회원님이</h1>
+          </div>
+          <h2>관심 있어 할만한 보드게임</h2>
         </div>
-        <CategoryBox />
+        <div className="wrapper">
+          <Swiper>
+            {[...Array(10)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <ThumbNail type="small" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+    </article>
+
+    {/* 오늘의 보드픽 랭킹 */}
+    <div className="pickRank">
+      <div className="miniHeader">
+        <h1 className="title">오늘의 보드P!CK 랭킹</h1>
+        <p className="info">오늘 가장 많은 P!CK을 받은 게임들만 모아봤어요!</p>
       </div>
-    }
-  </div>;
+      <div className="rankGame">
+        <Rank />
+      </div>
+    </div>
+    
+    {/* 큐레이션 */}
+    <article className="curation">
+        <div className="title">
+          <h1>#초보자도 쉽게 즐기는</h1>
+          <h2>보드게임</h2>
+        </div>
+        <div className="wrapper">
+          <Swiper>
+            {[...Array(10)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <ThumbNail type="small" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+    </article>
+    <article className="curation">
+        <div className="title">
+          <h1>#초보자도 쉽게 즐기는</h1>
+          <h2>보드게임</h2>
+        </div>
+        <div className="wrapper">
+          <Swiper>
+            {[...Array(10)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <ThumbNail type="small" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+    </article>
+    <article className="curation">
+        <div className="title">
+          <h1>#초보자도 쉽게 즐기는</h1>
+          <h2>보드게임</h2>
+        </div>
+        <div className="wrapper">
+          <Swiper>
+            {[...Array(10)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <ThumbNail type="small" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+    </article>
+    </div> }
+  </div>
 };
 
 export default Home;

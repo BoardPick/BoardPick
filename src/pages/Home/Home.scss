@@ -1,14 +1,91 @@
-.home {
-	height: 100vh;
+// .home {
+// 	height: 100vh;
+// }
+
+.recommand {
+	gap: 24px;
+	padding: 25px 35px 25px 35px;
+	border-top: 8px solid;
+	border-color: $background_default;
+
+	.title {
+		@each $font, $value in $title2 {
+			#{$font}: $value;
+		}
+		font-weight: 600;
+		padding-bottom: 20px;
+		display: flex;
+		flex-direction: column;
+
+		.firstline {
+			display: flex;
+  			justify-content: flex-start;
+			.name {
+				color: $main_color;
+				padding-right: 5px;
+			}
+		}
+
+	}
 }
 
-.banner {
-	display: flex;
-	align-items: center;
-    justify-content: center;
+.pickRank {
+	gap: 24px;
+	padding: 20px 35px 20px 35px;
+	border-top: 8px solid;
+	border-bottom: 8px solid;
+	border-color: $background_default;
+	// height: 500px;
 
-	img {
-		width: 100%;
-		cursor: pointer;
+	.miniHeader {
+		padding-top: 10px;
+		align-items: start;
+		padding-bottom: 20px;
+		border-bottom: 1px solid $line_default;
+
+		.title {
+			@each $font, $value in $title2 {
+				#{$font}: $value;
+			}
+			font-weight: 600;
+			padding-bottom: 4px;
+		}
+	
+		.info {
+			@each $font, $value in $body2 {
+				#{$font}: $value;
+			}
+			color: $text_info;
+			font-weight: 400;
+		}
+	}
+
+	.rankGame {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+}
+
+.curation {
+	gap: 24px;
+	padding: 25px 35px 15px 35px;
+
+	.title {
+		@each $font, $value in $title2 {
+			#{$font}: $value;
+		}
+		font-weight: 600;
+		padding-bottom: 20px;
+		display: flex;
+		gap: 5px;
+	}
+
+	h2 {
+		@each $font, $value in $title2 {
+			#{$font}: $value;
+		}
+		font-weight: 400;
+		color: $text_sub2;
 	}
 }

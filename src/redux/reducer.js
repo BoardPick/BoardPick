@@ -8,6 +8,11 @@ let initialState = {
   likeCount: 2,
   myPick: [""],
   recentGame: [""],
+  // inputNick: "",
+  onSearch: false,
+  keyword: "",
+  searchResult: false,
+  searchGames: [""],
 };
 
 function reducer(state = initialState, action) {
@@ -44,7 +49,16 @@ function reducer(state = initialState, action) {
       return {
         ...state,
       };
-
+    case "ON_ONSEARCH":
+      return {
+        ...state,
+        onSearch: true,
+      };
+    case "ON_SEARCHRESULT":
+      return {
+        ...state,
+        searchResult: true,
+      };
     default:
       return { ...state };
   }

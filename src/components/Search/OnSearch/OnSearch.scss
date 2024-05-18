@@ -1,0 +1,25 @@
+.recent {
+	align-items: start;
+	justify-content: center;
+    height: 100vh;
+
+	.title {
+		@each $font, $value in $body1 {
+			#{$font}: $value;
+		}
+		font-weight: bold;
+		padding-left: 5%;
+		padding-top: 5%;
+	}
+
+	.tags {
+		display: flex;
+		justify-content: flex-start;
+
+		padding: 2% 4%;
+		
+		.tag {
+			padding: 3px;
+		}
+	}
+}
