@@ -21,7 +21,8 @@ function App() {
         <Routes>
           <Route
             path="/onBoarding"
-            element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            element={<onBoarding />}
           />
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
