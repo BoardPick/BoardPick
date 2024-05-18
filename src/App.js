@@ -1,5 +1,7 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { SearchContext } from "./context/SearchContext";
+import { useState } from "react";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -18,7 +20,9 @@ import MyPageEdit from "./pages/MyPageEdit/MyPageEdit";
 function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const [searchKeywold, setSearchKeywold] = useState("");
   return (
+    <SearchContext.Provider value={{searchKeywold, setSearchKeywold}}>
     <div className="App">
       <div className="boardPick">
         <Routes>
@@ -39,6 +43,7 @@ function App() {
         {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>
     </div>
+    </SearchContext.Provider>
   );
 }
 

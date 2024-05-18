@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState, useEffect } from 'react';
-import { SearchContext } from "../../context/SearchContext";
+import { useState, useEffect, useContext } from 'react';
+import { useSelector } from "react-redux";
+import { SearchContext } from "../../context/SearchContext.js";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
 import SearchResult from "../../components/Search/SearchResult/SearchResult.js";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
@@ -10,18 +11,17 @@ import Banner from "../../components/Banner/Banner"
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 
 const Home = () => {
-  const [onsearch, setOnsearch] = useState(false);
-  const [keyworld, setKeyworld] = useState("");
-  const [result, setResult] = useState(false);
+  const onSearch = useSelector((state) => state.onSearch);
+  const searchResult = useSelector((state) => state.searchResult);
+  const data = useContext(SearchContext);
 
   // useEffect(() => {
   //   setResult(!result);
   // }, [result]);
 
-  return <SearchContext.Provider value={{onsearch, setOnsearch, keyworld, setKeyworld, result, setResult}}>
-    <div className="home">
+  return <div className="home">
     <SearchBar />
-    { onsearch ? ( result === false ? <OnSearch /> : <SearchResult keyworld={keyworld} />) :
+    { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) :
     <div>
     <Banner />
     <CategoryBox />
@@ -105,7 +105,6 @@ const Home = () => {
     </article>
     </div> }
   </div>
-  </SearchContext.Provider>
 };
 
 export default Home;

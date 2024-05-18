@@ -51,6 +51,16 @@ function reducer(state = initialState, action) {
         ...state,
         recentGame: action.payload,
       };
+    case "ON_ONSEARCH":
+      return {
+        ...state,
+        onSearch: true,
+      };
+    case "ON_SEARCHRESULT":
+      return {
+        ...state,
+        searchResult: true,
+      };
     default:
       return { ...state };
   }

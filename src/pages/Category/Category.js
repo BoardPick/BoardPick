@@ -1,5 +1,6 @@
 import { SearchContext } from "../../context/SearchContext.js";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useSelector } from "react-redux";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js"
 import SearchResult from "../../components/Search/SearchResult/SearchResult.js"
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
@@ -7,9 +8,9 @@ import CategoryBox from "../../components/CategoryBox/CategoryBox.js"
 import Button from "../../components/Btn/Button/Button.js";
 
 const Category = () => {
-  const [onsearch, setOnsearch] = useState(false);
-  const [keyworld, setKeyworld] = useState("");
-  const [result, setResult] = useState(false);
+  const onSearch = useSelector((state) => state.onSearch);
+  const searchResult = useSelector((state) => state.searchResult);
+  const data = useContext(SearchContext);
 
   const tags = [
     "#보드게임1",
@@ -20,10 +21,9 @@ const Category = () => {
   ]
 
   return (
-    <SearchContext.Provider value={{onsearch, setOnsearch, keyworld, setKeyworld, result, setResult}}>
-      <div className="Categorys">
+    <div className="Categorys">
         <SearchBar />
-        { onsearch ? ( result === false ? <OnSearch /> : <SearchResult keyworld={keyworld} />) : 
+        { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) : 
           <div className="wrapper">
             <CategoryBox />
             <div className="HotTag">
@@ -39,7 +39,6 @@ const Category = () => {
           </div>
         }
       </div>
-    </SearchContext.Provider>
   );
 };
 
