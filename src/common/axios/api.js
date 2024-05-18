@@ -6,6 +6,7 @@ const apiRoot = axios.create({
 export const getBoardGameDetail = async (id) => {
   try {
     const { data } = await apiRoot.get(`/api/boardgames/${id}`);
+    console.log(data);
     return data;
   } catch (error) {
     throw error;

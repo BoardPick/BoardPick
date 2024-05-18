@@ -1,18 +1,15 @@
- 
- .section {
+.section {
+  .banner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-	 .banner {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	
-		img {
-			height: 320px;
-			// min-height: 200px;
-			// max-height: 320px !important;
-		}
-	  }
- } 
- 
-
-  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
