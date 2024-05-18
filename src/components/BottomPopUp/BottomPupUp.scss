@@ -1,0 +1,85 @@
+.bottomPopup {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $common_white;
+  z-index: 1;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0px 0px 80px rgba($common_black, 0.1);
+  header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 0;
+    @each $font, $value in $title2 {
+      #{$font}: $value;
+      font-weight: 600;
+    }
+    .closeIcon {
+      position: absolute;
+      right: 20px;
+      cursor: pointer;
+      &::before,
+      &::after {
+        position: absolute;
+        right: 7px;
+        top: -12px;
+        content: "";
+        height: 20px;
+        width: 2px;
+        background-color: $text_default;
+        border-radius: 5px;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .shareBtnBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 30px;
+    .shareBtn {
+      width: 64px;
+      height: 64px;
+      background-color: $common_white;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid $line_default;
+      box-shadow: 0px 0px 80px rgba($common_black, 0.1);
+      cursor: pointer;
+    }
+  }
+  .toastPopUp {
+    width: calc(100% - 40px);
+    position: absolute;
+    bottom: 30%;
+    margin-bottom: 0;
+  }
+  .closeBtn {
+    width: 100%;
+    @include content();
+    padding-top: 0;
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+@media all and (min-width: 600px) {
+  .bottomPopup {
+    width: 600px;
+  }
+}

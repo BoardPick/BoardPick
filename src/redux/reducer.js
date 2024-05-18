@@ -8,7 +8,6 @@ let initialState = {
   likeCount: 2,
   myPick: [""],
   recentGame: [""],
-  // inputNick: "",
   onSearch: false,
   keyword: "",
   searchResult: false,
@@ -39,7 +38,7 @@ function reducer(state = initialState, action) {
     case "SET_LIKE":
       return { ...state, likeCount: action.payload };
     case "SET_ISCOPY":
-      return { ...state, copy: !state.isCopied };
+      return { ...state, isCopied: !state.isCopied };
     case "SET_MY_PICK":
       return {
         ...state,
