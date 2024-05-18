@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState, useEffect, useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { useSelector } from "react-redux";
 import { SearchContext } from "../../context/SearchContext.js";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
@@ -9,11 +9,14 @@ import CategoryBox from "../../components/CategoryBox/CategoryBox";
 import Rank from "../../components/ThumbNail/Rank/Rank";
 import Banner from "../../components/Banner/Banner"
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
+import { useSlidesPerView } from "../../common/util/useSliderPerView";
 
 const Home = () => {
   const onSearch = useSelector((state) => state.onSearch);
   const searchResult = useSelector((state) => state.searchResult);
   const data = useContext(SearchContext);
+  const gameTabRef = useRef(null);
+  const slidesPerView = useSlidesPerView(gameTabRef);
 
   // useEffect(() => {
   //   setResult(!result);
@@ -35,8 +38,8 @@ const Home = () => {
           </div>
           <h2>관심 있어 할만한 보드게임</h2>
         </div>
-        <div className="wrapper">
-          <Swiper>
+        <div className="slide" ref={gameTabRef} >
+          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {[...Array(10)].map((_, i) => (
               <SwiperSlide key={i}>
                 <ThumbNail type="small" />
@@ -58,13 +61,14 @@ const Home = () => {
     </div>
     
     {/* 큐레이션 */}
+    <div className="all-curation">
     <article className="curation">
         <div className="title">
           <h1>#초보자도 쉽게 즐기는</h1>
           <h2>보드게임</h2>
         </div>
-        <div className="wrapper">
-          <Swiper>
+        <div className="wrapper" ref={gameTabRef}>
+          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {[...Array(10)].map((_, i) => (
               <SwiperSlide key={i}>
                 <ThumbNail type="small" />
@@ -78,8 +82,8 @@ const Home = () => {
           <h1>#초보자도 쉽게 즐기는</h1>
           <h2>보드게임</h2>
         </div>
-        <div className="wrapper">
-          <Swiper>
+        <div className="wrapper" ref={gameTabRef}>
+          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {[...Array(10)].map((_, i) => (
               <SwiperSlide key={i}>
                 <ThumbNail type="small" />
@@ -93,8 +97,8 @@ const Home = () => {
           <h1>#초보자도 쉽게 즐기는</h1>
           <h2>보드게임</h2>
         </div>
-        <div className="wrapper">
-          <Swiper>
+        <div className="wrapper" ref={gameTabRef}>
+          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {[...Array(10)].map((_, i) => (
               <SwiperSlide key={i}>
                 <ThumbNail type="small" />
@@ -103,7 +107,8 @@ const Home = () => {
           </Swiper>
         </div>
     </article>
-    </div> }
+    </div>
+    </div>}
   </div>
 };
 
