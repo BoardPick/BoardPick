@@ -119,6 +119,9 @@
     gap: 12px;
   }
   .recentGame {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     @include content();
     border-top: 8px solid $line_light;
     background-color: $common_white;

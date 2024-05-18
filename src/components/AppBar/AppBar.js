@@ -8,11 +8,16 @@ const AppBar = ({ title, mark, type }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [copied, setCopied] = useState(false);
   const pick = useSelector((state) => state.pick);
   const setPick = () => {
     dispatch({ type: "SET_PICK", payload: !pick });
   };
+  const [isCopyBtn, setIsCopyBtn] = useState(false);
+  const isCopied = useSelector((state) => state.isCopied);
+  const setIsCopied = () => {
+    dispatch({ type: "SET_ISCOPY", payload: !isCopied });
+  };
+  console.log(isCopied);
   const handlePick = () => {
     setPick(!pick);
   };
@@ -22,7 +27,7 @@ const AppBar = ({ title, mark, type }) => {
       .writeText(currentUrl)
       .then(() => {
         alert("복사되었습니다", currentUrl);
-        setCopied(true);
+        setIsCopyBtn(true);
       })
       .catch((error) => {
         alert("URL 복사 중 오류 발생:", error);
@@ -43,7 +48,7 @@ const AppBar = ({ title, mark, type }) => {
           >
             <Bookmark />
           </button>
-          <button className="barBtn" onClick={copyCurrentUrl}>
+          <button className="barBtn" onClick={() => setIsCopied(!isCopied)}>
             <Link />
           </button>
         </span>

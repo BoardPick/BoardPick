@@ -10,9 +10,7 @@
 @import "../components/ToastPopUp/ToastPopUp.scss";
 @import "../components/Btn//NoticeBtn/NoticeBtn.scss";
 @import "../components/CategoryBadge/CategoryBadge.scss";
-@import "../components/StarScore/StarScore.scss";
 @import "../components/Btn/Button/Button.scss";
-@import "../components/ReviewContent/ReviewContent.scss";
 @import "../components/Search/SearchBar/SearchBar.scss";
 @import "../components/Search/SearchResult/SearchResult.scss";
 @import "../components/Search/SearchResult/noneResult/NoneResult.scss";
@@ -25,16 +23,18 @@
 @import "../components/AlertPopUP/AlertPopUp.scss";
 @import "../components/Banner/Banner.scss";
 @import "../components/CategoryTab/CategoryTab.scss";
+@import "../components/BottomPopUp/BottomPupUp.scss";
 
 // layout
 @import "../layouts/NavigationBar/NavigationBar.scss";
-
+@import "../layouts/RuleTab/RuleTab.scss";
 // pages
 @import "../pages/Home/Home.scss";
 @import "../pages/Category/Category.scss";
 @import "../pages/CategorySelect/CategorySelect.scss";
 @import "../pages/OnBoarding/OnBoarding.scss";
 @import "../pages/CategoryDetail/CategoryDetail.scss";
+
 @import "../pages/CategoryDetail/CategoryTab/CategoryTab.scss";
 @import "../pages/CategoryDetail/GameTab/RuleTab/RuleTab.scss";
 @import "../pages/CategoryDetail/GameTab/ReviewTab/ReviewTab.scss";
@@ -43,3 +43,8 @@
 @import "../pages/MyPickAll/MyPickAll.scss";
 @import "../pages/MyPage/MyPage.scss";
 @import "../pages/MyPageEdit/MyPageEdit.scss";
+
+// @import "../pages/SearchResult/searchResult.scss";
+@import "../pages/MyPick/MyPick.scss";
+@import "../pages/MyPickAll/MyPickAll.scss";
+

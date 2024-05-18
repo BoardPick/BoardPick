@@ -1,16 +1,21 @@
 .ThumbNail {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-
-  .thumImg {
+  gap: 8px;
+  .thumbImg {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
+    aspect-ratio: 41 / 45;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .barBtn {
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 1%;
+      right: 2%;
       cursor: pointer;
       background-color: transparent;
       border: none;
@@ -29,7 +34,7 @@
       }
     }
   }
-  .thumName {
+  .thumbName {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -46,7 +51,7 @@
         #{$font}: $value;
       }
       color: $text_info;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       overflow: hidden;
       white-space: normal;
       text-overflow: ellipsis;
@@ -63,9 +68,9 @@
     }
   }
   &.big {
-    width: 163.5px;
+    aspect-ratio: 163 / 278;
   }
   &.small {
-    width: 140px;
+    aspect-ratio: 140 / 256;
   }
 }

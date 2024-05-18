@@ -13,15 +13,13 @@ import MyPick from "./pages/MyPick/MyPick";
 import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
-import DetailReview from "./pages/DetailReview/DetailReview";
-
-import MyPageEdit from "./pages/MyPageEdit/MyPageEdit";
 
 function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [searchKeywold, setSearchKeywold] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
+  console.log(isLoggedIn);
   return (
     <SearchContext.Provider value={{searchKeywold, setSearchKeywold, selectCategory, setSelectCategory}}>
     <div className="App">
@@ -29,17 +27,16 @@ function App() {
         <Routes>
           <Route
             path="/onBoarding"
-            element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            element={<onBoarding />}
           />
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/category/categoryselect" element={<CategorySelect />} />
           <Route path="/category/:id" element={<CategoryDetail />} />
-          <Route path="/category/:id/review" element={<DetailReview />} />
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPick/all" element={<MyPickAll />} />
           <Route path="/myPage" element={<MyPage />} />
-          <Route path="/myPage/myProfileEdit" element={<MyPageEdit />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>

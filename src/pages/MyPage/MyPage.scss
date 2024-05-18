@@ -32,14 +32,16 @@
       }
       ul {
         li {
-          @each $font, $value in $body1 {
+          @each $font, $value in $title3 {
             #{$font}: $value;
           }
           &.nickname strong {
             font-weight: 600;
           }
-          &.email {
-            color: $text_info;
+          &.welcome {
+            @each $font, $value in $title3 {
+              #{$font}: $value;
+            }
           }
         }
       }

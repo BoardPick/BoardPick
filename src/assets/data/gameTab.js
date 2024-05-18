@@ -1,66 +1,10 @@
-import ReviewContent from "../../components/ReviewContent/ReviewContent";
 export const GameTabs = [
   {
     videoTit: "보드게임 설명",
-    videoCon: (
-      <img src="https://via.placeholder.com/355x158" alt="샘플이미지" />
-    ),
-  },
-  {
-    videoTit: "보드게임 구성",
-    videoCon: (
-      <img src="https://via.placeholder.com/335x158" alt="샘플이미지" />
-    ),
+    videoCon: "https://www.youtube.com/embed/37V2ajpMEic?si=hUdaV_dfZBfqeHnI",
   },
   {
     videoTit: "보드게임 규칙",
-    videoCon: (
-      <img src="https://via.placeholder.com/335x158" alt="샘플이미지" />
-    ),
-  },
-];
-
-export const ReviewTabs = [
-  {
-    reviewTab: "최근 등록 순",
-    content: (
-      <ReviewContent
-        nickName={"장유진"}
-        date={"2024-05-13"}
-        review={
-          "내용1게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임...게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임..."
-        }
-        content={
-          <ul>
-            <li>다시 플레이하고싶어요</li>
-            <li>+2</li>
-          </ul>
-        }
-      />
-    ),
-  },
-  {
-    reviewTab: "평점 높은 순",
-    content: (
-      <ReviewContent
-        nickName={"장유진"}
-        date={"2024-05-16"}
-        review={
-          "내용2게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임...게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임..."
-        }
-      />
-    ),
-  },
-  {
-    reviewTab: "평점 낮은 순",
-    content: (
-      <ReviewContent
-        nickName={"장유진"}
-        date={"2024-05-18"}
-        review={
-          "내용3게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임...게임일꾼 놓기, 자원관리, 밥 먹이기, 카드드래프트 등등 보드 게이머라면 해봐야 할 게 TOP 1임. 테마도 잘 녹아들어 있고 그냥 더 할 말이 없음. 일단 한번 시작하면 끝을 봐야하는데 이 게임..."
-        }
-      />
-    ),
+    videoCon: "https://www.youtube.com/embed/PXgd2h2cabg?si=uwHKnNEi3omVe2qn",
   },
 ];
