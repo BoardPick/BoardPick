@@ -1,5 +1,6 @@
 .categoryDetail {
   position: relative;
+  padding-bottom: 52px;
   .backImg {
     position: absolute;
     top: 0;
@@ -31,7 +32,7 @@
   }
   .boardGameInfo {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     background-color: $common_white;
     border-radius: 16px 16px 0 0;
     margin-top: 142px;
