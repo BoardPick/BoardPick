@@ -1,19 +1,24 @@
 import { SearchContext } from "../../context/SearchContext.js";
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios"
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js"
 import SearchResult from "../../components/Search/SearchResult/SearchResult.js"
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategoryBox from "../../components/CategoryBox/CategoryBox.js"
 import Button from "../../components/Btn/Button/Button.js";
-
-const API_URL = "http://ec2-13-124-98-35.ap-northeast-2.compute.amazonaws.com";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
+import { getSearchResult } from "../../common/axios/search.js";
 
 const Category = () => {
   const onSearch = useSelector((state) => state.onSearch);
   const searchResult = useSelector((state) => state.searchResult);
-  const data = useContext(SearchContext);
+  const log = useContext(SearchContext);
+
+  // console.log("test");
+  // console.log(getSearchResult(log.searchKeywold));
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const tags = [
     "#보드게임1",
@@ -23,18 +28,26 @@ const Category = () => {
     "#보드게임5"
   ]
 
-  // try {
-  //   const res = axios.get( `${API_URL}/api/boardgames/search?keyword=${data.searchKeywold}`);
-  //   console.log(res.data);
-  //     return res.data;
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getSearchResult(log.searchKeywold);
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [log.searchKeywold, searchResult]);
 
   return (
     <div className="Categorys">
         <SearchBar />
-        { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) : 
+        { onSearch ? ( searchResult === false ? <OnSearch /> : ( loading ? <Loading /> : <SearchResult gamedata={data} keyworld={log.searchKeywold}/>)) : 
           <div className="wrapper">
             <CategoryBox />
             <div className="HotTag">

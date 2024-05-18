@@ -15,7 +15,7 @@ const OnSearch = () => {
         <h1 className="title">최근 검색어</h1>
         <div className="tags">
             {tags.map((tag, i) => {
-                return (<div className="tag">
+                return (<div className="tag" key={i}>
                     <Button key={i} text={tag} size={"s36"} type={"default"}></Button>
                 </div>)
             })}

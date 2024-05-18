@@ -1,0 +1,46 @@
+.searchResult {
+	height: 100vh;
+	
+	.message {
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		height: 70vh;
+
+		.text {
+
+			padding: 15px;
+
+			.head {
+			@each $font, $value in $title2 {
+				#{$font}: $value;
+			}
+			text-align: center;
+			font-weight: bold;
+			padding-bottom: 7px;
+			display: flex;
+
+				.value {
+					color: $main_color;
+				}
+
+				.h1 {
+					justify-content: start;
+				}
+			}
+	
+			.info {
+			@each $font, $value in $body2 {
+				#{$font}: $value;
+			}
+			color: $text_info;
+			text-align: center;
+			}
+		}
+
+	}
+  }
+  

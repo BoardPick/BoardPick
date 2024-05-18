@@ -12,6 +12,7 @@ import CategoryDetail from "./pages/CategoryDetail/CategoryDetail";
 import MyPick from "./pages/MyPick/MyPick";
 import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
+import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPick/all" element={<MyPickAll />} />
           <Route path="/myPage" element={<MyPage />} />
+          <Route path="/search/:id" element={<SearchResult />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>

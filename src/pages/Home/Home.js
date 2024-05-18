@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { SearchContext } from "../../context/SearchContext.js";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
@@ -9,22 +9,40 @@ import CategoryBox from "../../components/CategoryBox/CategoryBox";
 import Rank from "../../components/ThumbNail/Rank/Rank";
 import Banner from "../../components/Banner/Banner"
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { getSearchResult } from "../../common/axios/search.js";
 
 const Home = () => {
   const onSearch = useSelector((state) => state.onSearch);
   const searchResult = useSelector((state) => state.searchResult);
-  const data = useContext(SearchContext);
+  const log = useContext(SearchContext);
   const gameTabRef = useRef(null);
   const slidesPerView = useSlidesPerView(gameTabRef);
 
-  // useEffect(() => {
-  //   setResult(!result);
-  // }, [result]);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getSearchResult(log.searchKeywold);
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [log.searchKeywold, searchResult]);
 
   return <div className="home">
     <SearchBar />
-    { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) :
+    { onSearch ? ( searchResult === false ? <OnSearch /> : ( loading ? <Loading /> : <SearchResult gamedata={data} keyworld={log.searchKeywold}/>)) :
     <div>
     <Banner />
     <CategoryBox />
