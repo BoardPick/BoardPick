@@ -96,7 +96,14 @@ const Home = () => {
         <p className="info">오늘 가장 많은 P!CK을 받은 게임들만 모아봤어요!</p>
       </div>
       {recommandData && <div className="rankGame">
-        <Rank gamedata={recommandData}/>
+        <div className="wrapper" ref={gameTabRef}>
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8} className="swiper-slide-custom">
+                <SwiperSlide>
+                  <Rank gamedata={recommandData.slice(0, 5)} />
+                  <Rank gamedata={recommandData.slice(5, 10)} />
+                </SwiperSlide>
+            </Swiper>
+          </div>
       </div>}
     </div>
     
