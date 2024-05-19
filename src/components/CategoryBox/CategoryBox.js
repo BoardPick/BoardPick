@@ -28,7 +28,7 @@ const CategoryBox = () => {
   ];
 
   const category2 = [
-    { icon: <Batting />, text: "베팅게임" },
+    { icon: <Batting />, text: "배팅게임" },
     { icon: <Mafia />, text: "마피아" },
     { icon: <Memory />, text: "기억력" },
     { icon: <Realtime />, text: "순발력" },

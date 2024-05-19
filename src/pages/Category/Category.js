@@ -1,40 +1,60 @@
 import { SearchContext } from "../../context/SearchContext.js";
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js"
 import SearchResult from "../../components/Search/SearchResult/SearchResult.js"
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategoryBox from "../../components/CategoryBox/CategoryBox.js"
 import Button from "../../components/Btn/Button/Button.js";
-
-const API_URL = "http://ec2-13-124-98-35.ap-northeast-2.compute.amazonaws.com";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
+import { getSearchResult } from "../../common/axios/search.js";
 
 const Category = () => {
+  const navigate = useNavigate();
   const onSearch = useSelector((state) => state.onSearch);
   const searchResult = useSelector((state) => state.searchResult);
-  const data = useContext(SearchContext);
+  const log = useContext(SearchContext);
+
+  // console.log("test");
+  // console.log(getSearchResult(log.searchKeywold));
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const tags = [
-    "#보드게임1",
-    "#보드게임2",
-    "#보드게임3",
-    "#보드게임4",
-    "#보드게임5"
+    { url: "/category/17", name: "#어스" },
+    { url: "/category/47", name: "#냥자역학 연구소" },
+    { url: "/category/70", name: "#키친 러시" },
+    { url: "/category/49", name: "#이스케이프 플랜" },
+    { url: "/category/27", name: "#언락!" },
+    { url: "/category/30", name: "#사건의 재구성" },
+    { url: "/category/2", name: "#아컴 호러: 카드게임" },
+    { url: "/category/64", name: "#마스터 폭스" },
+    { url: "/category/55", name: "#갱스터스 딜레마" },
+    { url: "/category/48", name: "#피드 더 크라켄" }
   ]
 
-  // try {
-  //   const res = axios.get( `${API_URL}/api/boardgames/search?keyword=${data.searchKeywold}`);
-  //   console.log(res.data);
-  //     return res.data;
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getSearchResult(log.searchKeywold);
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [log.searchKeywold, searchResult]);
 
   return (
     <div className="Categorys">
         <SearchBar />
-        { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) : 
+        { onSearch ? ( searchResult === false ? <OnSearch /> : ( loading ? <Loading /> : <SearchResult gamedata={data} keyworld={log.searchKeywold}/>)) : 
           <div className="wrapper">
             <CategoryBox />
             <div className="HotTag">
@@ -42,7 +62,7 @@ const Category = () => {
               <div className="tags">
                   {tags.map((tag, i) => {
                       return (<div className="tag">
-                        <Button key={i} text={tag} size={"s36"} type={"default"}></Button>
+                        <Button key={i} text={tag.name} size={"s36"} type={"default"} onClick={() => navigate(tag.url)}></Button>
                       </div>)
                   })}
               </div>

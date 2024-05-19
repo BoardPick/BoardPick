@@ -1,9 +1,9 @@
-import { CategoryMatch } from "../../assets/data/categoryMatch";
+import { CategoryMatch } from "../../assets/data/categoryMatch.js";
 import { SearchContext } from "../../context/SearchContext.js";
 import { useContext } from "react";
 
 
-const CategoryTab = ({ genre, type }) => {
+const CategorySelectBtn = ({ genre, type }) => {
   const log = useContext(SearchContext);
 
   const matchCategory = CategoryMatch.find(
@@ -14,7 +14,7 @@ const CategoryTab = ({ genre, type }) => {
   }
 
   const onClick = () => {
-    console.log(genre);
+    // console.log(genre);
     // log.setSelectCategory(genre);
   }
 
@@ -29,4 +29,4 @@ const CategoryTab = ({ genre, type }) => {
   );
 };
 
-export default CategoryTab;
+export default CategorySelectBtn;

@@ -1,9 +1,9 @@
 import React from "react";
+import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import NoneResult from "./noneResult/NoneResult";
-import ThumbNail from "../../ThumbNail/ThumbNail";
 
-const SearchResult = ({ gamedata, keyworld }) => {
-	console.log(gamedata);
+const SearchResult = ({ keyworld }) => {
+
 	// const SEARCH_LIST = useMemo(() => {
     //     console.log(imgSelector);
     //     if (imgSelector.state === "hasValue") {
@@ -18,7 +18,7 @@ const SearchResult = ({ gamedata, keyworld }) => {
     // }, [imgSelector])
 
   	return <div className="searchResult">
-		{gamedata.length == 0 ? <NoneResult value={keyworld} /> 
+		{keyworld !== "검색 키워드" ? <NoneResult value={keyworld} /> 
 		: <div className="Result">
 			<div className="message">
 				<div className="text">
@@ -29,17 +29,12 @@ const SearchResult = ({ gamedata, keyworld }) => {
 				</div>
 			</div>
 			<div className="ResultThumbNail">
-				{gamedata.map((data, i) => {
-                      return (<div className="thumbnail" key={i}>
-                        <ThumbNail id={data.id} img={data.imageUrl} name={data.name} info={data.description} tags={data.tags} type="big" />
-                      </div>)
-                  })}
-				{/* <ThumbNail type="big" />
 				<ThumbNail type="big" />
 				<ThumbNail type="big" />
 				<ThumbNail type="big" />
 				<ThumbNail type="big" />
-				<ThumbNail type="big" /> */}
+				<ThumbNail type="big" />
+				<ThumbNail type="big" />
 				{/* {SEARCH_LIST} */}
 			</div>
 		</div>}

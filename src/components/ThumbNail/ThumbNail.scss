@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: pointer;
   .thumbImg {
     position: relative;
     border-radius: 8px;
@@ -68,9 +69,9 @@
     }
   }
   &.big {
-    aspect-ratio: 163 / 278;
+    aspect-ratio: 163 / 278 !important;
   }
   &.small {
-    aspect-ratio: 140 / 256;
+    aspect-ratio: 140 / 256 !important;
   }
 }

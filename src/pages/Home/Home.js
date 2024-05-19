@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState, useEffect, useMemo } from 'react';
 import { useSelector } from "react-redux";
 import { SearchContext } from "../../context/SearchContext.js";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
@@ -9,22 +9,80 @@ import CategoryBox from "../../components/CategoryBox/CategoryBox";
 import Rank from "../../components/ThumbNail/Rank/Rank";
 import Banner from "../../components/Banner/Banner"
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { getSearchResult } from "../../common/axios/search.js";
+import { getRankData } from "../../common/axios/rank.js";
+import { getRecommandData } from "../../common/axios/recommand.js";
 
 const Home = () => {
   const onSearch = useSelector((state) => state.onSearch);
   const searchResult = useSelector((state) => state.searchResult);
-  const data = useContext(SearchContext);
+  const log = useContext(SearchContext);
   const gameTabRef = useRef(null);
   const slidesPerView = useSlidesPerView(gameTabRef);
 
-  // useEffect(() => {
-  //   setResult(!result);
-  // }, [result]);
+  // 검색 api 호출
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getSearchResult(log.searchKeywold);
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [log.searchKeywold, searchResult]);
+
+  // 랭킹 api 호출
+  const [rankData, setRankData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const rankData = await getRankData();
+        setRankData(rankData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 추천 api 호출
+  const [recommandData, setRecommandData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const recommandData = await getRecommandData();
+        setRecommandData(recommandData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 리턴값
   return <div className="home">
     <SearchBar />
-    { onSearch ? ( searchResult === false ? <OnSearch /> : <SearchResult keyworld={data.searchKeywold} />) :
+    { onSearch ? ( searchResult === false ? <OnSearch /> : ( loading ? <Loading /> : <SearchResult gamedata={data} keyworld={log.searchKeywold}/>)) :
     <div>
     <Banner />
     <CategoryBox />
@@ -40,9 +98,9 @@ const Home = () => {
         </div>
         <div className="slide" ref={gameTabRef} >
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {[...Array(10)].map((_, i) => (
+            {recommandData && recommandData.map((r, i) => (
               <SwiperSlide key={i}>
-                <ThumbNail type="small" />
+                <ThumbNail id={r.id} img={r.imageUrl} name={r.name} info={r.description} tags={r.tags}type="small" />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -56,7 +114,7 @@ const Home = () => {
         <p className="info">오늘 가장 많은 P!CK을 받은 게임들만 모아봤어요!</p>
       </div>
       <div className="rankGame">
-        <Rank />
+        <Rank gamedata={rankData}/>
       </div>
     </div>
     
