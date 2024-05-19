@@ -21,6 +21,7 @@ function App() {
   const [searchKeywold, setSearchKeywold] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
   console.log(isLoggedIn);
+
   return (
     <SearchContext.Provider value={{searchKeywold, setSearchKeywold, selectCategory, setSelectCategory}}>
     <div className="App">
