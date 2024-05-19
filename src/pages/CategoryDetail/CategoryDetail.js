@@ -11,6 +11,7 @@ import BoardGameElement from "../../layouts/BoardGameElement/BoardGameElement.js
 import RuleTab from "../../layouts/RuleTab/RuleTab.js";
 import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
 import { getBoardGameDetail } from "../../common/axios/api.js";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const CategoryDetail = () => {
   const { id } = useParams();
@@ -74,9 +75,8 @@ const CategoryDetail = () => {
     }
   }, [toast]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
-  console.log(data.boardGameCategories);
 
   return (
     <div className="categoryDetail">
@@ -90,7 +90,9 @@ const CategoryDetail = () => {
         </article>
         <article className="boardGameSum">
           <div className="banners">
-            <CategoryBadge genre={data.category} />
+            {data.boardGameCategories.map((cate, i) => (
+              <CategoryBadge key={i} genre={data.boardGameCategories[i]} />
+            ))}
           </div>
           <h1 className="boardGameName">{data.name}</h1>
           <h2 className="boardGameOne">{data.description}</h2>

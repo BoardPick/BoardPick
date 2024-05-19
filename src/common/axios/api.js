@@ -35,7 +35,8 @@ export const getRecsGame = async () => {
 
 export const togglePick = async (id) => {
   try {
-    const { data } = await apiRoot.post(`/api/pick/${id}`, {});
+    const { data } = await apiRoot.post(`/api/pick/${id}`);
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
