@@ -11,6 +11,7 @@ import BoardGameElement from "../../layouts/BoardGameElement/BoardGameElement.js
 import RuleTab from "../../layouts/RuleTab/RuleTab.js";
 import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
 import { getBoardGameDetail } from "../../common/axios/api.js";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const CategoryDetail = () => {
   const { id } = useParams();
@@ -74,7 +75,7 @@ const CategoryDetail = () => {
     }
   }, [toast]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
 
   return (

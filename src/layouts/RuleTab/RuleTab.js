@@ -6,31 +6,55 @@ import "swiper/css";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
 import { getBoardGameDetail } from "../../common/axios/api.js";
+import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import GameVideo from "../GameVideo/GameVideo.js";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const RuleTab = () => {
   const { id } = useParams();
   const gameTabRef = useRef({});
   const [data, setData] = useState({});
+  const [categoryData, setCategoryData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const slidesPerView = useSlidesPerView(gameTabRef);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchGameDetail = async () => {
       try {
-        const data = await getBoardGameDetail(id);
-        setData(data);
+        const gameData = await getBoardGameDetail(id);
+        setData(gameData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
       }
     };
-    fetchData();
+
+    fetchGameDetail();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    if (!data.boardGameCategories || data.boardGameCategories.length === 0)
+      return;
+
+    const fetchCategoryData = async () => {
+      setLoading(true);
+      try {
+        const categoryData = await getCategorySelect(
+          data.boardGameCategories[0]
+        );
+        setCategoryData(categoryData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchCategoryData();
+  }, [data.boardGameCategories]);
+
   return (
     <div className="gameTab" ref={gameTabRef}>
       <GameVideo data={data} />
@@ -39,14 +63,14 @@ const RuleTab = () => {
         <div className="wrapper">
           {slidesPerView && (
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-              {[...Array(10)].map((_, i) => (
+              {categoryData.map((game, i) => (
                 <SwiperSlide key={i}>
                   <ThumbNail
                     type="small"
-                    img={data.imageUrl}
-                    name={data.name}
-                    info={data.description}
-                    tags={data.tags}
+                    img={game.imageUrl}
+                    name={game.name}
+                    info={game.description}
+                    tags={game.tags}
                   />
                 </SwiperSlide>
               ))}
