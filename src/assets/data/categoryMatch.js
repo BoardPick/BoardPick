@@ -31,7 +31,7 @@ export const CategoryMatch = [
     icon: Mystery,
   },
   {
-    genre: "베팅게임",
+    genre: "배팅게임",
     icon: Batting,
   },
   {

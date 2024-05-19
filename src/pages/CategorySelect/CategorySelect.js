@@ -17,7 +17,7 @@ const CategorySelectArry = [
   {id: 2, genre: "카드게임", onSelect: false},
   {id: 3, genre: "협력게임", onSelect: false},
   {id: 4, genre: "추리게임", onSelect: false},
-  {id: 5, genre: "베팅게임", onSelect: false},
+  {id: 5, genre: "배팅게임", onSelect: false},
   {id: 6, genre: "마피아", onSelect: false},
   {id: 7, genre: "기억력", onSelect: false},
   {id: 8, genre: "순발력", onSelect: false},
@@ -80,13 +80,13 @@ const CategorySelect = ({selectCategory}) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="ResultThumbNail">
+            </div>
+            <div className="categoryThumbNail">
               {categoryData && categoryData.map((dd, i) => {
                 return (<div className="thumbnail" key={i}>
-                            <ThumbNail img={dd.imageUrl} name={dd.name} info={dd.description} type="big" />
+                            <ThumbNail img={dd.imageUrl} name={dd.name} info={dd.description} tags={dd.tags} type="big" />
                         </div>)
               })}
-            </div>
             </div>
           </div>
         }

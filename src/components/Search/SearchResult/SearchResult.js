@@ -31,7 +31,7 @@ const SearchResult = ({ gamedata, keyworld }) => {
 			<div className="ResultThumbNail">
 				{gamedata.map((data, i) => {
                       return (<div className="thumbnail" key={i}>
-                        <ThumbNail img={data.imageUrl} name={data.name} info={data.description} type="big" />
+                        <ThumbNail img={data.imageUrl} name={data.name} info={data.description} tags={data.tags} type="big" />
                       </div>)
                   })}
 				{/* <ThumbNail type="big" />

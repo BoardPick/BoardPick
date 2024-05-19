@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
-import { tagArr } from "../../assets/data/test";
+// import { tagArr } from "../../assets/data/test";
 
-const ThumbNail = ({ img, name, info, type, id }) => {
+const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const dispatch = useDispatch();
   const picks = useSelector((state) => state.picks);
 
@@ -30,8 +30,8 @@ const ThumbNail = ({ img, name, info, type, id }) => {
         <h1>{name}</h1>
         <p>{info}</p>
         <div className="hashTagBox">
-          {tagArr.slice(0, 2).map((tag, i) => (
-            <Tag key={i} tag={tag} thumb={"thumb"} />
+          {tags && tags.map((t, i) => (
+            <Tag key={i} tag={t} thumb={"thumb"} />
           ))}
         </div>
       </article>

@@ -68,9 +68,9 @@
     }
   }
   &.big {
-    aspect-ratio: 163 / 278;
+    aspect-ratio: 163 / 278 !important;
   }
   &.small {
-    aspect-ratio: 140 / 256;
+    aspect-ratio: 140 / 256 !important;
   }
 }
