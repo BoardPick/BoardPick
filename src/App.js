@@ -1,7 +1,8 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getLogInfo } from "./common/axios/loginfo";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -14,6 +15,7 @@ import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
+import Loading from "./components/Search/SearchResult/Loading/Loading";
 
 function App() {
   const location = useLocation();
@@ -21,6 +23,26 @@ function App() {
   const [searchKeywold, setSearchKeywold] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
   console.log(isLoggedIn);
+
+  // 로그인 api 호출
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [LogData, setLogData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const LogData = await getLogInfo();
+        setLogData(LogData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [isLoggedIn]);
 
   return (
     <SearchContext.Provider value={{searchKeywold, setSearchKeywold, selectCategory, setSelectCategory}}>
@@ -38,7 +60,7 @@ function App() {
           <Route path="/category/:id" element={<CategoryDetail />} />
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPick/all" element={<MyPickAll />} />
-          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/myPage" element={<MyPage LogData={LogData}/>} />
           <Route path="/search" element={<SearchResult />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}

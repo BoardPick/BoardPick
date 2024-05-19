@@ -3,41 +3,17 @@ import { useSelector } from "react-redux";
 import { ChevronRight } from "../../assets/icon/icon";
 import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
-import { useState, useEffect } from "react";
-import { getLogInfo } from "../../common/axios/loginfo.js";
-import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
+import { useState } from "react";
 
-const MyPage = () => {
+const MyPage = ({LogData}) => {
   const [loggedOut, setLoggedOut] = useState(false);
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  
 
   const handleLogout = () => {
     setLoggedOut(!loggedOut);
   };
-
-  // 로그인 api 호출
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [LogData, setLogData] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const LogData = await getLogInfo();
-        setLogData(LogData);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [isLoggedIn]);
-
-  if (loading)
-    return <Loading />
 
   return (
     <div className="MyPage">
