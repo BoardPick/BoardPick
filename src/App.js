@@ -14,6 +14,7 @@ import MyPickAll from "./pages/MyPickAll/MyPickAll";
 import MyPage from "./pages/MyPage/MyPage";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
+import Loading from "./components/Search/SearchResult/Loading/Loading";
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/myPick/all" element={<MyPickAll />} />
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/search/:id" element={<SearchResult />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}
       </div>

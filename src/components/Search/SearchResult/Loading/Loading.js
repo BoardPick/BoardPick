@@ -1,12 +1,12 @@
 import React from "react";
-import { MagnifierCharacter } from "../../../../assets/icon/character/character";
-
+import { LoadingCharacter } from "../../../../assets/icon/character/character";
+// import { MagnifierCharacter } from "../../../../assets/icon/character/character";
 
 const Loading = () => {
 
   	return <div className="Loading">
 	  <div className="message">
-	  	<MagnifierCharacter />
+	  {/* <MagnifierCharacter />
 		  <div className="text">
 			<div className="head">
 			  <h1 className="value">Loading...</h1>
@@ -16,7 +16,9 @@ const Loading = () => {
 					<p>조금만 기다려주세요!</p>
 				</span>
 			</div>
-		  </div>
+		  </div> */}
+	  	<LoadingCharacter />
+		<div className="loader"></div>
 	  </div>
   </div>
 };
