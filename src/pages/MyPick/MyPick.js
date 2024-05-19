@@ -52,10 +52,10 @@ const MyPick = () => {
     <div className="myPick">
       <section className="myPickContainer">
         <header>
-          <h1>
+          {myPickData && <h1>
             MY PICK<span>({myPickData.length}개)</span>
-          </h1>
-          {myPick.length !== 0 && (
+          </h1>}
+          {myPick && myPick.length !== 0 && (
             <Button
               type={"txt"}
               text={"전체보기"}
@@ -66,7 +66,7 @@ const MyPick = () => {
         </header>
 
         <article className="pickBox" ref={gameTabRef}>
-          {myPick.length === 0 || !isLoggedIn ? (
+          {myPick && myPick.length === 0 || !isLoggedIn ? (
             <>
               <div className="noPick">현재 등록된 PICK이 없어요!</div>
               <div
@@ -96,7 +96,7 @@ const MyPick = () => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className="go game" onClick={() => navigate("/category/:0")}>
+              <div className="go game" onClick={() => navigate("/category/1")}>
                 <p>
                   <CategoryBanner genre={"협력게임"} />
                   <span>피라미드의 제물</span>

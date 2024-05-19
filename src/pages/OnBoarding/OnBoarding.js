@@ -4,7 +4,7 @@ import { Kakao } from "../../assets/icon/icon";
 const OnBoarding = () => {
   const loginBtn = () => {
     window.location.href =
-      "http://ec2-13-124-98-35.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/kakao";
+      "https://boardpick-server.store/oauth2/authorization/kakao";
   };
   return (
     <div className="onBoarding">
