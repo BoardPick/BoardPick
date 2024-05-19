@@ -122,7 +122,7 @@ const Home = () => {
     <div className="all-curation">
     <article className="curation">
         <div className="title">
-          <h1>#초보자도 쉽게 즐기는</h1>
+          <h1>#둘이서 하기 좋은</h1>
           <h2>보드게임</h2>
         </div>
         <div className="wrapper" ref={gameTabRef}>
@@ -152,7 +152,7 @@ const Home = () => {
     </article>
     <article className="curation">
         <div className="title">
-          <h1>#초보자도 쉽게 즐기는</h1>
+          <h1>#단체가 하기 좋은</h1>
           <h2>보드게임</h2>
         </div>
         <div className="wrapper" ref={gameTabRef}>
