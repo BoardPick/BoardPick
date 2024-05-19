@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
@@ -6,6 +7,7 @@ import { getMyPick } from "../../common/axios/api";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPickAll = () => {
+  const navigate = useNavigate();
   const myPick = useSelector((state) => state.myPick);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,17 +35,32 @@ const MyPickAll = () => {
       <AppBar title={"MY PICK"} />
       <article className="pickContainer">
         <p className="myPickCount">
-          {myPick && <div><span>{myPick.length}개</span>의 보드게임</div>}
-        </p>
-        {data && <div className="picks">
-          {data.length !== 0 ? (
-            data.map((game, index) => (
-              <ThumbNail id={game.id} img={game.imageUrl} name={game.name} info={game.description} tags={game.tags} key={index} type="big" />
-            ))
-          ) : (
-            <div className="noPick">현재 등록된 PICK이 없어요!</div>
+          {myPick && (
+            <div>
+              <span>{myPick.length}개</span>의 보드게임
+            </div>
           )}
-        </div>}
+        </p>
+        {data && (
+          <div className="picks">
+            {data.length !== 0 ? (
+              data.map((game, index) => (
+                <ThumbNail
+                  id={game.id}
+                  img={game.imageUrl}
+                  name={game.name}
+                  info={game.description}
+                  tags={game.tags}
+                  key={index}
+                  onClick={() => navigate(`/category/${game.id}`)}
+                  type="big"
+                />
+              ))
+            ) : (
+              <div className="noPick">현재 등록된 PICK이 없어요!</div>
+            )}
+          </div>
+        )}
       </article>
     </div>
   );

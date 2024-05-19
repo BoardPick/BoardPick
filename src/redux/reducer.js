@@ -5,7 +5,7 @@ let initialState = {
   isCopied: false,
   toast: false,
   likeCount: 2,
-  myPick: [""],
+  myPick: [],
   recentGame: [""],
   onSearch: false,
   // keyword: "",

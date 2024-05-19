@@ -151,7 +151,10 @@ const MyPick = () => {
               <strong>'스위프'</strong>님을 위한 추천 보드게임
               <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                 {recsGameData.map((game, i) => (
-                  <SwiperSlide key={i}>
+                  <SwiperSlide
+                    key={i}
+                    onClick={() => navigate(`/category/${game.id}`)}
+                  >
                     <ThumbNail
                       type="small"
                       img={game.imageUrl}
@@ -168,7 +171,10 @@ const MyPick = () => {
               <strong>#피라미드의 제물</strong>과 비슷한 보드게임
               <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                 {recsGameData.map((game, i) => (
-                  <SwiperSlide key={i}>
+                  <SwiperSlide
+                    key={i}
+                    onClick={() => navigate(`/category/${game.id}`)}
+                  >
                     <ThumbNail
                       type="small"
                       img={game.imageUrl}
@@ -188,7 +194,10 @@ const MyPick = () => {
           <h1 className="contentTit">최근 본 보드게임</h1>
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {recsGameData.map((game, i) => (
-              <SwiperSlide key={i}>
+              <SwiperSlide
+                key={i}
+                onClick={() => navigate(`/category/${game.id}`)}
+              >
                 <ThumbNail
                   type="small"
                   img={game.imageUrl}
