@@ -14,7 +14,7 @@ const CategorySelectBtn = ({ genre, type }) => {
   }
 
   const onClick = () => {
-    console.log(genre);
+    // console.log(genre);
     // log.setSelectCategory(genre);
   }
 

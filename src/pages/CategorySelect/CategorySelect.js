@@ -67,6 +67,17 @@ const CategorySelect = ({selectCategory}) => {
       fetchData();
     }, [selectCategory]);
 
+  // log.selectCategory와 일치하는 요소를 먼저 가져오기
+  const selectedCategory = CategorySelectArry.filter(
+    (d) => d.genre === log.selectCategory
+  );
+  // log.selectCategory와 일치하지 않는 나머지 요소들을 가져오기
+  const otherCategories = CategorySelectArry.filter(
+    (d) => d.genre !== log.selectCategory
+  );
+  // 선택된 요소를 맨 앞으로 배치하고 나머지를 뒤에 추가한 새로운 배열 생성
+  const sortedCategories = selectedCategory.concat(otherCategories);
+
   return (
     <div className="categorySelect">
         <SearchBar />
@@ -74,7 +85,7 @@ const CategorySelect = ({selectCategory}) => {
           <div className="selectResult">
             <div className="selectBtn">
             <Swiper>
-              {CategorySelectArry.map((d, i) => (
+              {sortedCategories.map((d, i) => (
                 <SwiperSlide key={i} className="swiper-slide-category">
                   <CategorySelectBtn genre={d.genre} type={d.genre === log.selectCategory ? "select" : ""}/>
                 </SwiperSlide>
