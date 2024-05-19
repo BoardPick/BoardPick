@@ -33,18 +33,9 @@ export const getRecsGame = async () => {
   }
 };
 
-export const togglePick = async (id, picked) => {
+export const togglePick = async (id) => {
   try {
-    const { data } = await apiRoot.post(`/api/pick/${id}`);
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
-export const getTest = async () => {
-  try {
-    const { data } = await apiRoot.get(`/api/user`);
-    console.log(data);
+    const { data } = await apiRoot.post(`/api/pick/${id}`, {});
     return data;
   } catch (error) {
     throw error;
