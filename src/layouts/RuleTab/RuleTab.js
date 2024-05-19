@@ -46,6 +46,7 @@ const RuleTab = () => {
                     img={data.imageUrl}
                     name={data.name}
                     info={data.description}
+                    tags={data.tags}
                   />
                 </SwiperSlide>
               ))}

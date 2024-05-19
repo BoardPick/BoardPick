@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import AppBar from "../../components/AppBar/AppBar.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
+import NoticeBtn from "../../components/Btn/NoticeBtn/NoticeBtn.js";
 import Tag from "../../components/Tag/Tag";
 import ToastPopUp from "../../components/ToastPopUp/ToastPopUp.js";
 import BoardGameElement from "../../layouts/BoardGameElement/BoardGameElement.js";
@@ -89,7 +90,7 @@ const CategoryDetail = () => {
         </article>
         <article className="boardGameSum">
           <div className="banners">
-            <CategoryBadge genre={""} />
+            <CategoryBadge genre={data.category} />
           </div>
           <h1 className="boardGameName">{data.name}</h1>
           <h2 className="boardGameOne">{data.description}</h2>
