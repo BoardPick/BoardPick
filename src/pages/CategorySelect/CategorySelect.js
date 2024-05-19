@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import { useState, useContext, useEffect } from "react";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js";
-import SearchResult from "../../components/Search/SearchResult/SearchResult.js";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategorySelectBtn from "../../components/CategorySelectBtn/CategorySelectBtn.js";
 import ThumbNail from "../../components/ThumbNail/ThumbNail.js";
