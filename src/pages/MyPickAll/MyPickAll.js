@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import { getMyPick } from "../../common/axios/api";
+import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPickAll = () => {
   const myPick = useSelector((state) => state.myPick);
@@ -24,25 +25,25 @@ const MyPickAll = () => {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <Loading />;
+  // if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="myPickAll">
       <AppBar title={"MY PICK"} />
       <article className="pickContainer">
         <p className="myPickCount">
-          <span>{myPick.length}개</span>의 보드게임
+          {myPick && <div><span>{myPick.length}개</span>의 보드게임</div>}
         </p>
-        <div className="picks">
+        {data && <div className="picks">
           {data.length !== 0 ? (
             data.map((game, index) => (
-              <ThumbNail key={index} type={"big"} game={game} />
+              <ThumbNail id={game.id} img={game.imageUrl} name={game.name} info={game.description} tags={game.tags} key={index} type="big" />
             ))
           ) : (
             <div className="noPick">현재 등록된 PICK이 없어요!</div>
           )}
-        </div>
+        </div>}
       </article>
     </div>
   );
