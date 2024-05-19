@@ -33,7 +33,7 @@ function App() {
           />
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/category/categoryselect" element={<CategorySelect />} />
+          <Route path="/category/categoryselect" element={<CategorySelect selectCategory={selectCategory}/>} />
           <Route path="/category/:id" element={<CategoryDetail />} />
           <Route path="/myPick" element={<MyPick />} />
           <Route path="/myPick/all" element={<MyPickAll />} />
