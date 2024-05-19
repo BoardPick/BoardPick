@@ -2,7 +2,6 @@ let initialState = {
   isLoggedIn: true,
   pick: false,
   picks: {},
-  pickCount: 20,
   isCopied: false,
   toast: false,
   likeCount: 2,
@@ -29,10 +28,7 @@ function reducer(state = initialState, action) {
     //       [id]: !state.picks[id],
     //     },
     //   };
-    case "SET_PICK_DECREASE":
-      return { ...state, pickCount: state.pickCount - 1 };
-    case "SET_PICK_INCREASE":
-      return { ...state, pickCount: state.pickCount + 1 };
+
     case "SET_TOAST":
       return { ...state, toast: !state.toast };
     case "SET_LIKE":

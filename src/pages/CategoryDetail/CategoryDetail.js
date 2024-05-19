@@ -4,19 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import AppBar from "../../components/AppBar/AppBar.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
-import NoticeBtn from "../../components/Btn/NoticeBtn/NoticeBtn.js";
 import Tag from "../../components/Tag/Tag";
 import ToastPopUp from "../../components/ToastPopUp/ToastPopUp.js";
-import { BoardGameElement } from "../../assets/data/boardGameElmentData.js";
-import { tagArr } from "../../assets/data/test.js";
+import BoardGameElement from "../../layouts/BoardGameElement/BoardGameElement.js";
 import RuleTab from "../../layouts/RuleTab/RuleTab.js";
 import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
 import { getBoardGameDetail } from "../../common/axios/api.js";
 
 const CategoryDetail = () => {
   const { id } = useParams();
-  console.log(getBoardGameDetail(id));
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,29 +28,14 @@ const CategoryDetail = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [id]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const reviewCount = useSelector((state) => state.reviewCount);
   const pick = useSelector((state) => state.pick);
-  const pickCount = useSelector((state) => state.pickCount);
   const toast = useSelector((state) => state.toast);
   const isCopied = useSelector((state) => state.isCopied);
-
-  const setDecreaseCount = () => {
-    dispatch({
-      type: "SET_PICK_DECREASE",
-    });
-  };
-
-  const setIncreaseCount = () => {
-    dispatch({
-      type: "SET_PICK_INCREASE",
-    });
-  };
 
   const setToast = () => {
     dispatch({
@@ -62,7 +44,11 @@ const CategoryDetail = () => {
   };
 
   const handlePick = () => {
-    pick ? setIncreaseCount() : setDecreaseCount();
+    setData((prevData) => ({
+      ...prevData,
+      likes: pick ? prevData.likes + 1 : prevData.likes - 1,
+      picked: !pick,
+    }));
   };
 
   const handleClick = (e) => {
@@ -89,6 +75,7 @@ const CategoryDetail = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+  console.log(data.boardGameCategories);
 
   return (
     <div className="categoryDetail">
@@ -99,40 +86,26 @@ const CategoryDetail = () => {
       <section className="boardGameInfo">
         <article className="detailThumbNail">
           <img src={data.thumbnailUrl} alt="ThumbNail" />
-        </article>{" "}
+        </article>
         <article className="boardGameSum">
           <div className="banners">
-            <CategoryBadge genre={"협력게임"} />
+            <CategoryBadge genre={""} />
           </div>
           <h1 className="boardGameName">{data.name}</h1>
           <h2 className="boardGameOne">{data.description}</h2>
-          {reviewCount === 0 && (
-            <NoticeBtn
-              text={"이 보드게임 후기를 가장 먼저 작성해보세요!"}
-              onClick={() => navigate("/review")}
-            />
-          )}
-          {pickCount !== 0 && (
+          {data.likes > 0 && (
             <div className="pickBanner">
-              이 보드게임을 <strong className="pickCount">{pickCount}</strong>
+              이 보드게임을 <strong className="pickCount">{data.likes}</strong>
               명이 PICK 했어요!
             </div>
           )}
           <div className="hashTagBox">
-            {tagArr.map((tag, i) => (
-              <Tag key={i} tag={tag} />
+            {data.tags.map((tag, i) => (
+              <Tag key={i} tag={data.tags[i]} />
             ))}
           </div>
         </article>
-        <article className="BoardGameEleBox">
-          {BoardGameElement.map((ele, i) => (
-            <div className="BoardGameEle" key={i}>
-              <span className="EleIcon">{ele.icon}</span>
-              <span className="EleTit">{ele.title}</span>
-              <span className="EleCon">{ele.content}</span>
-            </div>
-          ))}
-        </article>
+        <BoardGameElement data={data} />
       </section>
       <RuleTab />
       <div className={`toast ${toast ? "pop" : ""}`}>

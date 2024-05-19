@@ -1,9 +1,28 @@
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
+import { getMyPick } from "../../common/axios/api";
 
 const MyPickAll = () => {
   const myPick = useSelector((state) => state.myPick);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getMyPick();
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="myPickAll">
