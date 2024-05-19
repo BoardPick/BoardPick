@@ -1,6 +1,7 @@
 import { SearchContext } from "../../context/SearchContext.js";
 import { useEffect, useState, useContext } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js"
 import SearchResult from "../../components/Search/SearchResult/SearchResult.js"
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
@@ -10,6 +11,7 @@ import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { getSearchResult } from "../../common/axios/search.js";
 
 const Category = () => {
+  const navigate = useNavigate();
   const onSearch = useSelector((state) => state.onSearch);
   const searchResult = useSelector((state) => state.searchResult);
   const log = useContext(SearchContext);
@@ -21,11 +23,16 @@ const Category = () => {
   const [error, setError] = useState(null);
 
   const tags = [
-    "#보드게임1",
-    "#보드게임2",
-    "#보드게임3",
-    "#보드게임4",
-    "#보드게임5"
+    { url: "/category/17", name: "#어스" },
+    { url: "/category/47", name: "#냥자역학 연구소" },
+    { url: "/category/70", name: "#키친 러시" },
+    { url: "/category/49", name: "#이스케이프 플랜" },
+    { url: "/category/27", name: "#언락!" },
+    { url: "/category/30", name: "#사건의 재구성" },
+    { url: "/category/2", name: "#아컴 호러: 카드게임" },
+    { url: "/category/64", name: "#마스터 폭스" },
+    { url: "/category/55", name: "#갱스터스 딜레마" },
+    { url: "/category/48", name: "#피드 더 크라켄" }
   ]
 
   useEffect(() => {
@@ -55,7 +62,7 @@ const Category = () => {
               <div className="tags">
                   {tags.map((tag, i) => {
                       return (<div className="tag">
-                        <Button key={i} text={tag} size={"s36"} type={"default"}></Button>
+                        <Button key={i} text={tag.name} size={"s36"} type={"default"} onClick={() => navigate(tag.url)}></Button>
                       </div>)
                   })}
               </div>
