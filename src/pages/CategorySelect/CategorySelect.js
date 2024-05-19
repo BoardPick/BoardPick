@@ -3,13 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import { useState, useContext, useEffect } from "react";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js"
-import SearchResult from "../../components/Search/SearchResult/SearchResult.js"
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategorySelectBtn from "../../components/CategorySelectBtn/CategorySelectBtn.js";
 import ThumbNail from "../../components/ThumbNail/ThumbNail.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
-import { getSearchResult } from "../../common/axios/search.js";
+import { logDOM } from "@testing-library/react";
 
 const CategorySelectArry = [
   {id: 0, genre: "전략게임", onSelect: false},
@@ -26,30 +25,11 @@ const CategorySelectArry = [
 
 const CategorySelect = ({selectCategory}) => {
     const onSearch = useSelector((state) => state.onSearch);
-    const searchResult = useSelector((state) => state.searchResult);
     const log = useContext(SearchContext);
   
-    const [searchData, setSearchData] = useState(null);
     const [categoryData, setCategoryData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        setLoading(true);
-        try {
-          const searchData = await getSearchResult(log.searchKeywold);
-          setSearchData(searchData);
-          setLoading(false);
-        } catch (err) {
-          setError(err.message);
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, [log.searchKeywold, searchResult]);
-  
+    const [error, setError] = useState(null);  
   
     useEffect(() => {
       const fetchData = async () => {
@@ -78,10 +58,14 @@ const CategorySelect = ({selectCategory}) => {
   // 선택된 요소를 맨 앞으로 배치하고 나머지를 뒤에 추가한 새로운 배열 생성
   const sortedCategories = selectedCategory.concat(otherCategories);
 
+  if (loading)
+    return <Loading />
+
   return (
     <div className="categorySelect">
         <SearchBar />
-        { onSearch ? ( searchResult === false ? <OnSearch /> : ( loading ? <Loading /> : <SearchResult gamedata={searchData} keyworld={log.searchKeywold}/>)) :
+        { loading ? <Loading /> : 
+        ( onSearch ? <OnSearch /> :
           <div className="selectResult">
             <div className="selectBtn">
             <Swiper>
@@ -100,7 +84,7 @@ const CategorySelect = ({selectCategory}) => {
               })}
             </div>
           </div>
-        }
+        )}
       </div>
   );
 };

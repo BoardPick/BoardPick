@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiRoot = axios.create({
-  baseURL: "http://ec2-13-124-98-35.ap-northeast-2.compute.amazonaws.com",
+  baseURL: "https://boardpick-server.store",
 });
 
 export const getBoardGameDetail = async (id) => {
