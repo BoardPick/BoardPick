@@ -12,7 +12,9 @@ import {
   useSlidesPerView,
   useSlidesPerViewPick,
 } from "../../common/util/useSliderPerView";
-import { getMyPick, getRecsGame } from "../../common/axios/api";
+import { getRecsGame } from "../../common/axios/api";
+import { getCategorySelect } from "../../common/axios/categoryselect.js";
+import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPick = () => {
   const gameTabRef = useRef({});
@@ -26,18 +28,20 @@ const MyPick = () => {
 
   const [myPickData, setMyPickData] = useState(null);
   const [recsGameData, setRecsGameData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [selectedPick, setSelectedPick] = useState({
+    name: "",
+    genre: "",
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const myPickData = await getMyPick();
         const recsGameData = await getRecsGame();
-        setMyPickData(myPickData);
         setRecsGameData(recsGameData);
         setLoading(false);
-        console.log(myPickData, recsGameData);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -46,15 +50,47 @@ const MyPick = () => {
     fetchData();
   }, []);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    if (
+      !categoryData.boardGameCategories ||
+      categoryData.boardGameCategories.length === 0
+    )
+      return;
+
+    const fetchCategoryData = async () => {
+      setLoading(true);
+      try {
+        const categoryData = await getCategorySelect(
+          categoryData.boardGameCategories[0]
+        );
+        setCategoryData(categoryData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchCategoryData();
+  }, [categoryData.boardGameCategories]);
+
+  if (loading) return <Loading />;
+
+  const handleClickPick = (name, genre) => {
+    setMyPickOn(!myPickOn);
+    setSelectedPick({
+      name: name,
+      genre: genre,
+    });
+    console.log(genre);
+  };
+
   return (
     <div className="myPick">
       <section className="myPickContainer">
         <header>
-          {myPickData && <h1>
-            MY PICK<span>({myPickData.length}개)</span>
-          </h1>}
+          <h1>MY PICK{myPickData && <span> ({myPickData.length}개)</span>}</h1>
+
           {myPick && myPick.length !== 0 && (
             <Button
               type={"txt"}
@@ -66,7 +102,7 @@ const MyPick = () => {
         </header>
 
         <article className="pickBox" ref={gameTabRef}>
-          {myPick && myPick.length === 0 || !isLoggedIn ? (
+          {(myPick && myPick.length === 0) || !isLoggedIn ? (
             <>
               <div className="noPick">현재 등록된 PICK이 없어요!</div>
               <div
@@ -82,15 +118,14 @@ const MyPick = () => {
           ) : (
             <>
               <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
-                {[...Array(10)].map((_, i) => (
-                  <SwiperSlide>
+                {recsGameData.map((game, i) => (
+                  <SwiperSlide key={i}>
                     <div
                       className={`pickThumb ${myPickOn ? "on" : ""}`}
-                      onClick={() => setMyPickOn(!myPickOn)}
+                      onClick={() => handleClickPick(game.name, game.genre)}
                     >
                       <div className="imgBox">
-                        {/* <img src={data.imageUrl} alt="ThumbNail" /> */}
-                        {myPickData}
+                        <img src={game.imageUrl} alt="ThumbNail" />
                       </div>
                     </div>
                   </SwiperSlide>
@@ -98,8 +133,8 @@ const MyPick = () => {
               </Swiper>
               <div className="go game" onClick={() => navigate("/category/1")}>
                 <p>
-                  <CategoryBanner genre={"협력게임"} />
-                  <span>피라미드의 제물</span>
+                  <CategoryBanner genre={selectedPick.genre} />
+                  <span>{selectedPick.name}</span>
                 </p>
                 <span>
                   <ChevronRight />
@@ -117,7 +152,13 @@ const MyPick = () => {
               <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                 {recsGameData.map((game, i) => (
                   <SwiperSlide key={i}>
-                    <ThumbNail type="small" name={game.name} />
+                    <ThumbNail
+                      type="small"
+                      img={game.imageUrl}
+                      name={game.name}
+                      info={game.description}
+                      tags={game.tags}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -126,9 +167,15 @@ const MyPick = () => {
             <>
               <strong>#피라미드의 제물</strong>과 비슷한 보드게임
               <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                {[...Array(10)].map((_, i) => (
+                {recsGameData.map((game, i) => (
                   <SwiperSlide key={i}>
-                    <ThumbNail type="small" />
+                    <ThumbNail
+                      type="small"
+                      img={game.imageUrl}
+                      name={game.name}
+                      info={game.description}
+                      tags={game.tags}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -140,9 +187,15 @@ const MyPick = () => {
         <article className="recentGame">
           <h1 className="contentTit">최근 본 보드게임</h1>
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {[...Array(10)].map((_, i) => (
+            {recsGameData.map((game, i) => (
               <SwiperSlide key={i}>
-                <ThumbNail type="small" />
+                <ThumbNail
+                  type="small"
+                  img={game.imageUrl}
+                  name={game.name}
+                  info={game.description}
+                  tags={game.tags}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
