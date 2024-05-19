@@ -4,7 +4,7 @@
   align-items: center;
   margin: 20px;
   padding: 20px 16px;
-  background-color: $background_deep;
+  background-color: $text_sub1;
   color: $common_white;
   border-radius: 8px;
   @each $font, $value in $body3 {

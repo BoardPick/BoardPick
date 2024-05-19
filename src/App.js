@@ -21,26 +21,36 @@ function App() {
   const [selectCategory, setSelectCategory] = useState("none");
   console.log(isLoggedIn);
   return (
-    <SearchContext.Provider value={{searchKeywold, setSearchKeywold, selectCategory, setSelectCategory}}>
-    <div className="App">
-      <div className="boardPick">
-        <Routes>
-          <Route
-            path="/onBoarding"
-            // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-            element={<OnBoarding />}
-          />
-          <Route path="/" element={<Home />} />
-          <Route path="/category" element={<Category />} />
-          <Route path="/category/categoryselect" element={<CategorySelect />} />
-          <Route path="/category/:id" element={<CategoryDetail />} />
-          <Route path="/myPick" element={<MyPick />} />
-          <Route path="/myPick/all" element={<MyPickAll />} />
-          <Route path="/myPage" element={<MyPage />} />
-        </Routes>
-        {location.pathname !== "/onBoarding" && <NavigationBar />}
+    <SearchContext.Provider
+      value={{
+        searchKeywold,
+        setSearchKeywold,
+        selectCategory,
+        setSelectCategory,
+      }}
+    >
+      <div className="App">
+        <div className="boardPick">
+          <Routes>
+            <Route
+              path="/onBoarding"
+              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              element={<OnBoarding />}
+            />
+            <Route path="/" element={<Home />} />
+            <Route path="/category" element={<Category />} />
+            <Route
+              path="/category/categoryselect"
+              element={<CategorySelect />}
+            />
+            <Route path="/category/:id" element={<CategoryDetail />} />
+            <Route path="/myPick" element={<MyPick />} />
+            <Route path="/myPick/all" element={<MyPickAll />} />
+            <Route path="/myPage" element={<MyPage />} />
+          </Routes>
+          {location.pathname !== "/onBoarding" && <NavigationBar />}
+        </div>
       </div>
-    </div>
     </SearchContext.Provider>
   );
 }

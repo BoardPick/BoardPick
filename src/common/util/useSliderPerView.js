@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useSlidesPerView = (gameTabRef) => {
-  const [slidesPerView, setSlidesPerView] = useState(null);
+  const [slidesPerView, setSlidesPerView] = useState({});
 
   const calculateSlidesPerView = () => {
     const gameTabWidth = gameTabRef.current.offsetWidth;
@@ -11,6 +11,37 @@ export const useSlidesPerView = (gameTabRef) => {
       return 3.5;
     } else {
       return 2.7;
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (gameTabRef.current) {
+        setSlidesPerView(calculateSlidesPerView());
+      }
+    };
+    setSlidesPerView(calculateSlidesPerView());
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [gameTabRef]);
+
+  return slidesPerView;
+};
+
+export const useSlidesPerViewPick = (gameTabRef) => {
+  const [slidesPerView, setSlidesPerView] = useState({});
+
+  const calculateSlidesPerView = () => {
+    const gameTabWidth = gameTabRef.current.offsetWidth;
+    if (gameTabWidth >= 375 && gameTabWidth <= 400) {
+      return 4;
+    } else if (gameTabWidth <= 600 && gameTabWidth >= 540) {
+      return 7.3;
+    } else {
+      return 5;
     }
   };
 
