@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { ChevronRight } from "../../assets/icon/icon";
 import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getLogInfo } from "../../common/axios/loginfo.js";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const MyPage = () => {
   const [loggedOut, setLoggedOut] = useState(false);
@@ -13,6 +15,29 @@ const MyPage = () => {
   const handleLogout = () => {
     setLoggedOut(!loggedOut);
   };
+
+  // 로그인 api 호출
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [LogData, setLogData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const LogData = await getLogInfo();
+        setLogData(LogData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [isLoggedIn]);
+
+  if (loading)
+    return <Loading />
 
   return (
     <div className="MyPage">
@@ -25,9 +50,9 @@ const MyPage = () => {
                 <img src={profile_brand} alt="profile" />
               </div>
               <ul>
-                <li className="nickname">
-                  <strong>스위프</strong>님 안녕하세요!
-                </li>
+                {LogData && <li className="nickname">
+                  <strong>{LogData.nickname}</strong>님 안녕하세요!
+                </li>}
                 <li className="welcome">보드픽에 오신걸 환영해요!</li>
               </ul>
             </div>
