@@ -41,8 +41,8 @@ function App() {
           <Route path="/search" element={<SearchResult />} />
         </Routes>
         {location.pathname !== "/onBoarding" && <NavigationBar />}
+        </div>
       </div>
-    </div>
     </SearchContext.Provider>
   );
 }

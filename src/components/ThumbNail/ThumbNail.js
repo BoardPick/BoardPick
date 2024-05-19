@@ -12,14 +12,11 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const handlePick = () => {
     dispatch({ type: "TOGGLE_PICK", payload: { id } });
   };
-  console.log(id);
+
   return (
     <div className={`ThumbNail ${type}`} onClick={() => {navigate(`/Category/${id}`)} }>
       <article className="thumbImg">
-        <img
-          src={img}
-          alt="썸네일이미지"
-        />
+        <img src={img} alt="썸네일이미지" />
         <button
           className={`barBtn bookmark ${picks[id] && "pickOn"}`}
           onClick={handlePick}

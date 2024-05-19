@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,22 +8,52 @@ import CategoryBanner from "../../components/CategoryBadge/CategoryBadge";
 import { ChevronRight } from "../../assets/icon/icon";
 import Button from "../../components/Btn/Button/Button";
 
-import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import {
+  useSlidesPerView,
+  useSlidesPerViewPick,
+} from "../../common/util/useSliderPerView";
+import { getMyPick, getRecsGame } from "../../common/axios/api";
 
 const MyPick = () => {
-  const gameTabRef = useRef(null);
+  const gameTabRef = useRef({});
   const myPick = useSelector((state) => state.myPick);
   const recentGame = useSelector((state) => state.recentGame);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [myPickOn, setMyPickOn] = useState(false);
   const navigate = useNavigate();
   const slidesPerView = useSlidesPerView(gameTabRef);
+  const slidesPerViewPick = useSlidesPerViewPick(gameTabRef);
+
+  const [myPickData, setMyPickData] = useState(null);
+  const [recsGameData, setRecsGameData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const myPickData = await getMyPick();
+        const recsGameData = await getRecsGame();
+        setMyPickData(myPickData);
+        setRecsGameData(recsGameData);
+        setLoading(false);
+        console.log(myPickData, recsGameData);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error: {error}</p>;
   return (
     <div className="myPick">
       <section className="myPickContainer">
         <header>
           <h1>
-            MY PICK<span>({myPick.length}개)</span>
+            MY PICK<span>({myPickData.length}개)</span>
           </h1>
           {myPick.length !== 0 && (
             <Button
@@ -51,7 +81,7 @@ const MyPick = () => {
             </>
           ) : (
             <>
-              <Swiper slidesPerView={4.5} spaceBetween={8}>
+              <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
                 {[...Array(10)].map((_, i) => (
                   <SwiperSlide>
                     <div
@@ -59,10 +89,8 @@ const MyPick = () => {
                       onClick={() => setMyPickOn(!myPickOn)}
                     >
                       <div className="imgBox">
-                        <img
-                          src="https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg"
-                          alt="ThumbNail"
-                        />
+                        {/* <img src={data.imageUrl} alt="ThumbNail" /> */}
+                        {myPickData}
                       </div>
                     </div>
                   </SwiperSlide>
@@ -86,20 +114,27 @@ const MyPick = () => {
           {myPick.length === 0 || !isLoggedIn ? (
             <>
               <strong>'스위프'</strong>님을 위한 추천 보드게임
+              <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                {recsGameData.map((game, i) => (
+                  <SwiperSlide key={i}>
+                    <ThumbNail type="small" name={game.name} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </>
           ) : (
             <>
               <strong>#피라미드의 제물</strong>과 비슷한 보드게임
+              <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                {[...Array(10)].map((_, i) => (
+                  <SwiperSlide key={i}>
+                    <ThumbNail type="small" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </>
           )}
         </h1>
-        <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-          {[...Array(10)].map((_, i) => (
-            <SwiperSlide key={i}>
-              <ThumbNail type="small" />
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </article>
       {recentGame.length !== 0 && (
         <article className="recentGame">

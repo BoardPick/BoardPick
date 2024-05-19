@@ -1,31 +1,39 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { GameTabs } from "../../assets/data/gameTab";
+
 import "swiper/css";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { getBoardGameDetail } from "../../common/axios/api.js";
+import GameVideo from "../GameVideo/GameVideo.js";
 
 const RuleTab = () => {
-  const gameTabRef = useRef(null);
+  const { id } = useParams();
+  const gameTabRef = useRef({});
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const slidesPerView = useSlidesPerView(gameTabRef);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBoardGameDetail(id);
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id]);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
   return (
     <div className="gameTab" ref={gameTabRef}>
-      {GameTabs.map((tab, i) => (
-        <section className="gameVideo" key={i}>
-          <h1 className="videoTit">{tab.videoTit}</h1>
-          <div className="videoWrap">
-            <iframe
-              src={tab.videoCon}
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </section>
-      ))}
+      <GameVideo data={data} />
       <article className="similar">
         <h1 className="videoTit">유사한 진행방식의 게임</h1>
         <div className="wrapper">
@@ -33,7 +41,12 @@ const RuleTab = () => {
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
               {[...Array(10)].map((_, i) => (
                 <SwiperSlide key={i}>
-                  <ThumbNail type="small" />
+                  <ThumbNail
+                    type="small"
+                    img={data.imageUrl}
+                    name={data.name}
+                    info={data.description}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>

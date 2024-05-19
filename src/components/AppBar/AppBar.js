@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
+import { togglePick } from "../../common/axios/api";
 
 const AppBar = ({ title, mark, type }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
@@ -12,26 +13,19 @@ const AppBar = ({ title, mark, type }) => {
   const setPick = () => {
     dispatch({ type: "SET_PICK", payload: !pick });
   };
-  const [isCopyBtn, setIsCopyBtn] = useState(false);
+
   const isCopied = useSelector((state) => state.isCopied);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-  console.log(isCopied);
-  const handlePick = () => {
-    setPick(!pick);
-  };
-  const copyCurrentUrl = () => {
-    const currentUrl = window.location.href;
-    navigator.clipboard
-      .writeText(currentUrl)
-      .then(() => {
-        alert("복사되었습니다", currentUrl);
-        setIsCopyBtn(true);
-      })
-      .catch((error) => {
-        alert("URL 복사 중 오류 발생:", error);
-      });
+
+  const handleTogglePick = async () => {
+    try {
+      const result = await togglePick();
+      console.log("PickOn:", result);
+    } catch (error) {
+      console.error("PickOff:", error);
+    }
   };
 
   return (
@@ -44,7 +38,7 @@ const AppBar = ({ title, mark, type }) => {
         <span className="leftBtns">
           <button
             className={`barBtn bookmark ${pick && "pickOn"}`}
-            onClick={handlePick}
+            onClick={handleTogglePick}
           >
             <Bookmark />
           </button>
