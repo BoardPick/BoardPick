@@ -22,7 +22,6 @@ function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [searchKeywold, setSearchKeywold] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
-  console.log(isLoggedIn);
 
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
@@ -45,25 +44,35 @@ function App() {
   }, [isLoggedIn]);
 
   return (
-    <SearchContext.Provider value={{searchKeywold, setSearchKeywold, selectCategory, setSelectCategory}}>
-    <div className="App">
-      <div className="boardPick">
-        <Routes>
-          <Route
-            path="/onBoarding"
-            // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-            element={<OnBoarding />}
-          />
-          <Route path="/" element={<Home />} />
-          <Route path="/category" element={<Category />} />
-          <Route path="/category/categoryselect" element={<CategorySelect selectCategory={selectCategory}/>} />
-          <Route path="/category/:id" element={<CategoryDetail />} />
-          <Route path="/myPick" element={<MyPick />} />
-          <Route path="/myPick/all" element={<MyPickAll />} />
-          <Route path="/myPage" element={<MyPage LogData={LogData}/>} />
-          <Route path="/search" element={<SearchResult />} />
-        </Routes>
-        {location.pathname !== "/onBoarding" && <NavigationBar />}
+    <SearchContext.Provider
+      value={{
+        searchKeywold,
+        setSearchKeywold,
+        selectCategory,
+        setSelectCategory,
+      }}
+    >
+      <div className="App">
+        <div className="boardPick">
+          <Routes>
+            <Route
+              path="/onBoarding"
+              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              element={<OnBoarding />}
+            />
+            <Route path="/" element={<Home />} />
+            <Route path="/category" element={<Category />} />
+            <Route
+              path="/category/categoryselect"
+              element={<CategorySelect selectCategory={selectCategory} />}
+            />
+            <Route path="/category/:id" element={<CategoryDetail />} />
+            <Route path="/myPick" element={<MyPick />} />
+            <Route path="/myPick/all" element={<MyPickAll />} />
+            <Route path="/myPage" element={<MyPage LogData={LogData} />} />
+            <Route path="/search" element={<SearchResult />} />
+          </Routes>
+          {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
       </div>
     </SearchContext.Provider>

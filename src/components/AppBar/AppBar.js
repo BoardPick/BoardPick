@@ -16,7 +16,7 @@ const AppBar = ({ title, mark, type }) => {
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-  console.log(isCopied);
+
   const handlePick = () => {
     setPick(!pick);
   };
