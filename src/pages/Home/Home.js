@@ -70,7 +70,7 @@ const Home = () => {
     <CategoryBox />
 
     {/* 관심있어 할 만한 보드게임 */}
-    { isLoggedIn && <article className="recommand">
+    { isLoggedIn ? <div> <article className="recommand">
         <div className="title">
           <div className="firstline">
             <h1 className="name">'스위프'</h1>
@@ -87,7 +87,7 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-    </article>}
+    </article>
 
     {/* 오늘의 보드픽 랭킹 */}
     <div className="pickRank">
@@ -102,52 +102,73 @@ const Home = () => {
     
     {/* 큐레이션 */}
     <div className="all-curation">
-    <article className="curation">
-        <div className="title">
-          <h1>#둘이서 하기 좋은</h1>
-          <h2>보드게임</h2>
-        </div>
-        <div className="wrapper" ref={gameTabRef}>
-          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {[...Array(10)].map((_, i) => (
-              <SwiperSlide key={i}>
-                <ThumbNail type="small" />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-    </article>
-    <article className="curation">
-        <div className="title">
-          <h1>#초보자도 쉽게 즐기는</h1>
-          <h2>보드게임</h2>
-        </div>
-        <div className="wrapper" ref={gameTabRef}>
-          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {[...Array(10)].map((_, i) => (
-              <SwiperSlide key={i}>
-                <ThumbNail type="small" />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-    </article>
-    <article className="curation">
-        <div className="title">
-          <h1>#단체가 하기 좋은</h1>
-          <h2>보드게임</h2>
-        </div>
-        <div className="wrapper" ref={gameTabRef}>
-          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {[...Array(10)].map((_, i) => (
-              <SwiperSlide key={i}>
-                <ThumbNail type="small" />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-    </article>
+      <article className="curation">
+          <div className="title">
+            <h1>#둘이서 하기 좋은</h1>
+            <h2>보드게임</h2>
+          </div>
+          <div className="wrapper" ref={gameTabRef}>
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {[...Array(10)].map((_, i) => (
+                <SwiperSlide key={i}>
+                  <ThumbNail type="small" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+      </article>
+      <article className="curation">
+          <div className="title">
+            <h1>#초보자도 쉽게 즐기는</h1>
+            <h2>보드게임</h2>
+          </div>
+          <div className="wrapper" ref={gameTabRef}>
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {[...Array(10)].map((_, i) => (
+                <SwiperSlide key={i}>
+                  <ThumbNail type="small" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+      </article>
+      <article className="curation">
+          <div className="title">
+            <h1>#단체가 하기 좋은</h1>
+            <h2>보드게임</h2>
+          </div>
+          <div className="wrapper" ref={gameTabRef}>
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {[...Array(10)].map((_, i) => (
+                <SwiperSlide key={i}>
+                  <ThumbNail type="small" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+      </article>
     </div>
+    </div> : 
+    
+    //비로그인시
+    <article className="recommand">
+        <div className="title">
+          <div className="firstline">
+            <h1 className="name">보드PICK</h1>
+            <h1>추천 보드게임</h1>
+          </div>
+        </div>
+        <div className="slide" ref={gameTabRef} >
+          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+            {recommandData && recommandData.map((r, i) => (
+              <SwiperSlide key={i}>
+                <ThumbNail id={r.id} img={r.imageUrl} name={r.name} info={r.description} tags={r.tags}type="small" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+    </article>
+    }
     </div>))}
   </div>
 };
