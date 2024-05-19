@@ -84,7 +84,7 @@ const CategorySelect = ({selectCategory}) => {
             <div className="categoryThumbNail">
               {categoryData && categoryData.map((dd, i) => {
                 return (<div className="thumbnail" key={i}>
-                            <ThumbNail img={dd.imageUrl} name={dd.name} info={dd.description} tags={dd.tags} type="big" />
+                            <ThumbNail id={dd.id} img={dd.imageUrl} name={dd.name} info={dd.description} tags={dd.tags} type="big" />
                         </div>)
               })}
             </div>

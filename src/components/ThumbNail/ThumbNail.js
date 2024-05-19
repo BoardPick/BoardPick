@@ -2,18 +2,19 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
+import { useNavigate } from 'react-router-dom';
 // import { tagArr } from "../../assets/data/test";
 
 const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const dispatch = useDispatch();
   const picks = useSelector((state) => state.picks);
-
+  const navigate = useNavigate();
   const handlePick = () => {
     dispatch({ type: "TOGGLE_PICK", payload: { id } });
   };
   console.log(id);
   return (
-    <div className={`ThumbNail ${type}`}>
+    <div className={`ThumbNail ${type}`} onClick={() => {navigate(`/Category/${id}`)} }>
       <article className="thumbImg">
         <img
           src={img}

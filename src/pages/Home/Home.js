@@ -100,7 +100,7 @@ const Home = () => {
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {recommandData && recommandData.map((r, i) => (
               <SwiperSlide key={i}>
-                <ThumbNail img={r.imageUrl} name={r.name} info={r.description} tags={r.tags}type="small" />
+                <ThumbNail id={r.id} img={r.imageUrl} name={r.name} info={r.description} tags={r.tags}type="small" />
               </SwiperSlide>
             ))}
           </Swiper>
