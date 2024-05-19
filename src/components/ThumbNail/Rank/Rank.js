@@ -1,14 +1,13 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css';
+import { useNavigate } from 'react-router-dom';
 
 const Rank = ({gamedata}) => {
+	const navigate = useNavigate();
 
   return (
     <div className="Rank">
-		<Swiper>
 		{ gamedata && gamedata.map((data, i) => (
-			<SwiperSlide key={i} className="swiper-slide-custom">
-				<article className="thumImg">
+			<div className="dum" >
+				<article className="thumImg" onClick={() => navigate(`/category/${data.id}`)}>
 					<img src={data.thumbnailUrl} alt="" />
 				</article>
 				<article className="thumName">
@@ -18,9 +17,8 @@ const Rank = ({gamedata}) => {
 						<p>{data.description}</p>
 					</article>
 				</article>
-			</SwiperSlide>
+			</div>
 		))}
-		</Swiper>
     </div>
   );
 };

@@ -1,44 +1,54 @@
 .Rank {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 
-	gap: 12px;
-
-	.thumImg {
-		img {
-			border-radius: 8px;
-		}
-	}
-
-	.thumName {
+	.dum {
 		display: flex;
-		align-items: flex-start;
-		justify-content: center;
-		gap: 12px;
-
-		.num {
-			color: $main_color;
-			padding-left: 12px;
-		}
+		flex-direction: row;
 		
-		.text {
-			width: 100vw;
-			
-			h1 {
-				@each $font, $value in $title4 {
-					#{$font}: $value;
-				  }
-				  color: $common_black;
-				  font-weight: 600;
+		.thumImg {
+			img {
+				border-radius: 8px;
+				width: 39px !important;
+				height: 46px !important;
+			}
+			cursor: pointer;
+		}
 	
-				}
-
-			p {
-				@each $font, $value in $body3 {
-					#{$font}: $value;
+		.thumName {
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			gap: 12px;
+	
+			.num {
+				color: $main_color;
+				padding-left: 12px;
+			}
+			
+			.text {
+				width: 100vw;
+				
+				h1 {
+					@each $font, $value in $title4 {
+						#{$font}: $value;
+					  }
+					  color: $common_black;
+					  font-weight: 600;
+		
 					}
-					color: $text_info;
-					font-weight: 400;
+	
+				p {
+					@each $font, $value in $body3 {
+						#{$font}: $value;
+						}
+						color: $text_info;
+						font-weight: 400;
+				}
 			}
 		}
 	}
+
 			
 }
