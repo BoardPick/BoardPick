@@ -19,10 +19,6 @@ const AppBar = ({ title, mark, type }) => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
 
-  const handlePick = () => {
-    setPick(!pick);
-  };
-
   const handleTogglePick = async () => {
     try {
       const result = await togglePick();

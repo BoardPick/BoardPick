@@ -53,7 +53,7 @@ const MyPick = () => {
       <section className="myPickContainer">
         <header>
           <h1>
-            MY PICK<span>({myPick.length}개)</span>
+            MY PICK<span>({myPickData.length}개)</span>
           </h1>
           {myPick.length !== 0 && (
             <Button
