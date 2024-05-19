@@ -9,7 +9,7 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const dispatch = useDispatch();
   const picks = useSelector((state) => state.picks);
   const navigate = useNavigate();
-  const handlePick = () => {
+  const handlePick = (i) => {
     dispatch({ type: "TOGGLE_PICK", payload: { id } });
   };
 

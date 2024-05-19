@@ -1,7 +1,7 @@
 let initialState = {
   isLoggedIn: true,
   pick: false,
-  picks: {},
+  picks: [],
   isCopied: false,
   toast: false,
   likeCount: 2,

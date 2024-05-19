@@ -12,7 +12,7 @@ import {
   useSlidesPerView,
   useSlidesPerViewPick,
 } from "../../common/util/useSliderPerView";
-import { getMyPick, getRecsGame } from "../../common/axios/api";
+import { getMyPick, getRecsGame, getTest } from "../../common/axios/api";
 
 const MyPick = () => {
   const gameTabRef = useRef({});
@@ -26,18 +26,22 @@ const MyPick = () => {
 
   const [myPickData, setMyPickData] = useState([]);
   const [recsGameData, setRecsGameData] = useState([]);
+  const [test, setTest] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const myPickData = await getMyPick();
+        const myPickData = await getMyPick();
         const recsGameData = await getRecsGame();
-        // setMyPickData(myPickData);
+        // const test = await getTest();
+        setMyPickData(myPickData);
         setRecsGameData(recsGameData);
+        setTest(test);
         setLoading(false);
-        console.log(myPickData, recsGameData);
+        console.log(test);
+        // console.log(myPickData, recsGameData);
       } catch (err) {
         setError(err.message);
         setLoading(false);

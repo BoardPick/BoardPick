@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiRoot = axios.create({
   baseURL: "https://boardpick-server.store",
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 export const getBoardGameDetail = async (id) => {
@@ -36,15 +36,15 @@ export const getRecsGame = async () => {
 
 export const togglePick = async (id, picked) => {
   try {
-    const { data } = await apiRoot.post(`/api/pick/${id}`, { picked });
+    const { data } = await apiRoot.post(`/api/pick/${id}`);
     return data;
   } catch (error) {
     throw error;
   }
 };
-export const test = async () => {
+export const getTest = async () => {
   try {
-    const { data } = await apiRoot.post(`/api/user`);
+    const { data } = await apiRoot.get(`/api/user`);
     console.log(data);
     return data;
   } catch (error) {
