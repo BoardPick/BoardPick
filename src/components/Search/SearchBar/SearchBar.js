@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from '../../../context/SearchContext';
+import { useNavigate } from 'react-router-dom';
 import btn from "../../../assets/icon/search.svg";
 
 const SearchBar = () => {
+	const navigate = useNavigate();
 	const onSearch = useSelector((state) => state.onSearch);
 	const searchResult = useSelector((state) => state.searchResult);
 	const dispatch = useDispatch();
@@ -21,14 +23,13 @@ const SearchBar = () => {
 	const handleKeyDown = (event) => {
 		if (event.key === "Enter") {
 			data.setSearchKeywold(tmpKeyword);
-			dispatch({type: "ON_SEARCHRESULT"});
-			// console.log("enter");
+			navigate("/search");
 		}
 	}
 
 	const onResult = () => {
 		data.setSearchKeywold(tmpKeyword);
-		dispatch({type: "ON_SEARCHRESULT"});
+		navigate("/search");
 	}
 
 	return (

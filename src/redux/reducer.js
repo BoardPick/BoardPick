@@ -8,9 +8,9 @@ let initialState = {
   myPick: [""],
   recentGame: [""],
   onSearch: false,
-  keyword: "",
+  // keyword: "",
   searchResult: false,
-  searchGames: [""],
+  // searchGames: [""],
 };
 
 function reducer(state = initialState, action) {
@@ -51,6 +51,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         searchResult: true,
+      };
+    case "OFF_ONSEARCH":
+      return {
+        ...state,
+        onSearch: false,
       };
     default:
       return { ...state };

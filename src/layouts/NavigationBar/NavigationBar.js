@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Home, Category, Bookmark, MyPage } from "../../assets/icon/icon.js";
 
 const TabBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState(location.pathname);
+  const onSearch = useSelector((state) => state.onSearch);
+  const dispatch = useDispatch();
 
   const tabs = [
     {
@@ -21,6 +24,7 @@ const TabBar = () => {
   const handleTabClick = (url) => {
     setSelectedTab(url);
     navigate(url);
+    dispatch({type: "OFF_ONSEARCH"});
   };
 
   return (
