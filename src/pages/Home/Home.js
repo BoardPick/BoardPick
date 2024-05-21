@@ -16,6 +16,8 @@ const Home = () => {
   const onSearch = useSelector((state) => state.onSearch);
   const gameTabRef = useRef({});
   const slidesPerView = useSlidesPerView(gameTabRef);
+  const todayPickRef = useRef({});
+  const slidesPerViewPick = useSlidesPerView(todayPickRef);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const [loading, setLoading] = useState(true);
@@ -112,15 +114,16 @@ const Home = () => {
                 </div>
                 {recommandData && (
                   <div className="rankGame">
-                    <div className="wrapper" ref={gameTabRef}>
+                    <div className="todayPick" ref={todayPickRef}>
                       <Swiper
-                        slidesPerView={slidesPerView}
-                        spaceBetween={8}
-                        className="swiper-slide-custom"
+                        slidesPerView={slidesPerViewPick}
+                        spaceBetween={300}
                       >
                         <SwiperSlide>
-                          <Rank gamedata={recommandData.slice(0, 5)} />
-                          <Rank gamedata={recommandData.slice(5, 10)} />
+                          <Rank gamedata={recommandData.slice(0, 5)} start={1} />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <Rank gamedata={recommandData.slice(5, 10)} start={6}/>
                         </SwiperSlide>
                       </Swiper>
                     </div>

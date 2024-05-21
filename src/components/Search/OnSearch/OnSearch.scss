@@ -3,13 +3,24 @@
 	justify-content: center;
     height: 100vh;
 
+	
 	.title {
 		@each $font, $value in $body1 {
 			#{$font}: $value;
 		}
-		font-weight: bold;
+		font-weight: 500;
 		padding-left: 5%;
 		padding-top: 5%;
+	}
+	
+	p {
+		@each $font, $value in $body2 {
+			#{$font}: $value;
+		}
+		color: $text_info;
+		font-weight: 400;
+		padding-left: 5%;
+		padding-top: 2%;
 	}
 
 	.tags {
