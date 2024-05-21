@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Rank = ({ gamedata }) => {
+const Rank = ({ gamedata, start }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +15,7 @@ const Rank = ({ gamedata }) => {
               <img src={data.thumbnailUrl} alt="" />
             </article>
             <article className="thumName">
-              <h1 className="num">{i + 1}</h1>
+              <h1 className="num">{i + start}</h1>
               <article className="text">
                 <h1>{data.name}</h1>
                 <p>{data.description}</p>

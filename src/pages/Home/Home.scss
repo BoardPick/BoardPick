@@ -4,7 +4,7 @@
 
 .recommand {
 	gap: 24px;
-	padding: 25px 35px 5px 35px;
+	padding: 25px 35px 25px 35px;
 	border-top: 8px solid;
 	border-color: $background_default;
 	
@@ -41,6 +41,7 @@
 	border-bottom: 8px solid;
 	border-color: $background_default;
 	// height: 500px;
+	cursor: pointer;
 
 	.miniHeader {
 		padding-top: 10px;

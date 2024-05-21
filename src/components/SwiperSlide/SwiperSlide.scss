@@ -16,10 +16,14 @@
       align-items: center;
     }
     .swiper-slide-custom {
-      max-width: 300px !important;
+      gap: 130px;
     }
     .swiper-slide-category {
       max-width: 110px !important;
     }
+  }
+
+  .rank-swiper .swiper-wrapper {
+    min-width: 300px;
   }
 }
