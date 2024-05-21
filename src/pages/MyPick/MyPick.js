@@ -167,49 +167,52 @@ const MyPick = () => {
         </article>
       </section>
       <article className="recommendGame" ref={gameTabRef}>
-        <h1 className="contentTit">
-          {!selectedPick ? (
-            <>
+        {!selectedPick ? (
+          <>
+            <h1 className="contentTit">
               <strong>'스위프'</strong>님을 위한 추천 보드게임
-              <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                {recentGame.map((game, i) => (
-                  <SwiperSlide
-                    key={i}
-                    onClick={() => navigate(`/category/${game.id}`)}
-                  >
-                    <ThumbNail
-                      type="small"
-                      img={game.imageUrl}
-                      name={game.name}
-                      info={game.description}
-                      tags={game.tags}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
-          ) : (
-            <>
-              <strong>{selectedPick.name}</strong>과 비슷한 보드게임
-              <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                {categoryData.map((game, i) => (
-                  <SwiperSlide
-                    key={i}
-                    onClick={() => navigate(`/category/${game.id}`)}
-                  >
-                    <ThumbNail
-                      type="small"
-                      img={game.imageUrl}
-                      name={game.name}
-                      info={game.description}
-                      tags={game.tags}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
-          )}
-        </h1>
+            </h1>
+
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {recentGame.map((game, i) => (
+                <SwiperSlide
+                  key={i}
+                  onClick={() => navigate(`/category/${game.id}`)}
+                >
+                  <ThumbNail
+                    type="small"
+                    img={game.imageUrl}
+                    name={game.name}
+                    info={game.description}
+                    tags={game.tags}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        ) : (
+          <>
+            <h1 className="contentTit">
+              <strong># {selectedPick.name}</strong>과 비슷한 보드게임
+            </h1>
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {categoryData.map((game, i) => (
+                <SwiperSlide
+                  key={i}
+                  onClick={() => navigate(`/category/${game.id}`)}
+                >
+                  <ThumbNail
+                    type="small"
+                    img={game.imageUrl}
+                    name={game.name}
+                    info={game.description}
+                    tags={game.tags}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        )}
       </article>
       {recentGame.length !== 0 && (
         <article className="recentGame">

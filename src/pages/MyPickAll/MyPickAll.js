@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
-import { getMyPick } from "../../common/axios/api";
+import { getMyPick, getRecsGame } from "../../common/axios/api";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPickAll = () => {
@@ -13,10 +13,24 @@ const MyPickAll = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getMyPick();
+  //       setData(data);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getMyPick();
+        const data = await getRecsGame();
         setData(data);
         setLoading(false);
       } catch (err) {
@@ -28,7 +42,6 @@ const MyPickAll = () => {
   }, []);
 
   if (loading) return <Loading />;
-  // if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="myPickAll">
@@ -37,7 +50,7 @@ const MyPickAll = () => {
         <p className="myPickCount">
           {myPick && (
             <div>
-              <span>{myPick.length}개</span>의 보드게임
+              <span>{data.length}개</span>의 보드게임
             </div>
           )}
         </p>
