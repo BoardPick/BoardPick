@@ -12,7 +12,7 @@ const Rank = ({ gamedata, start }) => {
               className="thumImg"
               onClick={() => navigate(`/category/${data.id}`)}
             >
-              <img src={data.thumbnailUrl} alt="" />
+              <img src={data.thumbnailUrl} alt="boardGameImg" />
             </article>
             <article className="thumName">
               <h1 className="num">{i + start}</h1>

@@ -115,15 +115,18 @@ const Home = () => {
                 {recommandData && (
                   <div className="rankGame">
                     <div className="todayPick" ref={todayPickRef}>
-                      <Swiper
-                        slidesPerView={slidesPerViewPick}
-                        spaceBetween={300}
-                      >
+                      <Swiper slidesPerView={1.3} spaceBetween={12}>
                         <SwiperSlide>
-                          <Rank gamedata={recommandData.slice(0, 5)} start={1} />
+                          <Rank
+                            gamedata={recommandData.slice(0, 5)}
+                            start={1}
+                          />
                         </SwiperSlide>
                         <SwiperSlide>
-                          <Rank gamedata={recommandData.slice(5, 10)} start={6}/>
+                          <Rank
+                            gamedata={recommandData.slice(5, 10)}
+                            start={6}
+                          />
                         </SwiperSlide>
                       </Swiper>
                     </div>
