@@ -16,7 +16,7 @@ import { getRecsGame } from "../../common/axios/api";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
-const MyPick = () => {
+const MyPick = ({ LogData }) => {
   const gameTabRef = useRef({});
   const myPick = useSelector((state) => state.myPick);
   const recentGame = useSelector((state) => state.recentGame);
@@ -26,13 +26,15 @@ const MyPick = () => {
   const slidesPerView = useSlidesPerView(gameTabRef);
   const slidesPerViewPick = useSlidesPerViewPick(gameTabRef);
 
-  const [myPickData, setMyPickData] = useState(null);
+  const [myPickData, setMyPickData] = useState([]);
   const [recsGameData, setRecsGameData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
+    id: "",
     name: "",
-    genre: "",
+    boardGameCategories: "",
   });
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -51,17 +53,11 @@ const MyPick = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      !categoryData.boardGameCategories ||
-      categoryData.boardGameCategories.length === 0
-    )
-      return;
-
     const fetchCategoryData = async () => {
-      setLoading(true);
+      setLoading(<Loading />);
       try {
         const categoryData = await getCategorySelect(
-          categoryData.boardGameCategories[0]
+          selectedPick.boardGameCategories[0]
         );
         setCategoryData(categoryData);
         setLoading(false);
@@ -72,17 +68,27 @@ const MyPick = () => {
     };
 
     fetchCategoryData();
-  }, [categoryData.boardGameCategories]);
+  }, [selectedPick.boardGameCategories]);
+
+  useEffect(() => {
+    if (recsGameData.length > 0) {
+      setSelectedPick({
+        id: recsGameData[0].id,
+        name: recsGameData[0].name,
+        boardGameCategories: recsGameData[0].boardGameCategories,
+      });
+    }
+  }, [recsGameData]); // myPick연결시 연결 데이터 수정
 
   if (loading) return <Loading />;
 
-  const handleClickPick = (name, genre) => {
+  const handleClickPick = (id, name, boardGameCategories) => {
     setMyPickOn(!myPickOn);
     setSelectedPick({
+      id: id,
       name: name,
-      genre: genre,
+      boardGameCategories: boardGameCategories,
     });
-    console.log(genre);
   };
 
   return (
@@ -100,9 +106,8 @@ const MyPick = () => {
             />
           )}
         </header>
-
         <article className="pickBox" ref={gameTabRef}>
-          {(myPick && myPick.length === 0) || !isLoggedIn ? (
+          {myPick && myPick.length === 0 ? (
             <>
               <div className="noPick">현재 등록된 PICK이 없어요!</div>
               <div
@@ -117,77 +122,98 @@ const MyPick = () => {
             </>
           ) : (
             <>
-              <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
-                {recsGameData.map((game, i) => (
-                  <SwiperSlide key={i}>
-                    <div
-                      className={`pickThumb ${myPickOn ? "on" : ""}`}
-                      onClick={() => handleClickPick(game.name, game.genre)}
-                    >
-                      <div className="imgBox">
-                        <img src={game.imageUrl} alt="ThumbNail" />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div className="go game" onClick={() => navigate("/category/1")}>
-                <p>
-                  <CategoryBanner genre={selectedPick.genre} />
-                  <span>{selectedPick.name}</span>
-                </p>
-                <span>
-                  <ChevronRight />
-                </span>
-              </div>
+              {selectedPick && (
+                <>
+                  <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
+                    {recsGameData.map((game, i) => (
+                      <SwiperSlide key={i}>
+                        <div
+                          className={`pickThumb ${
+                            selectedPick.name === game.name ? "on" : ""
+                          }`}
+                          onClick={() =>
+                            handleClickPick(
+                              game.id,
+                              game.name,
+                              game.boardGameCategories
+                            )
+                          }
+                        >
+                          <div className="imgBox">
+                            <img src={game.imageUrl} alt="ThumbNail" />
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                  <div
+                    className="go game"
+                    onClick={() => navigate(`/category/ ${selectedPick.id}`)}
+                  >
+                    <p>
+                      <CategoryBanner
+                        genre={selectedPick.boardGameCategories[0]}
+                      />
+                      <span>{selectedPick.name}</span>
+                    </p>
+                    <span>
+                      <ChevronRight />
+                    </span>
+                  </div>
+                </>
+              )}
             </>
           )}
         </article>
       </section>
       <article className="recommendGame" ref={gameTabRef}>
-        <h1 className="contentTit">
-          {myPick.length === 0 || !isLoggedIn ? (
-            <>
-              <strong>'스위프'</strong>님을 위한 추천 보드게임
-              <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                {recsGameData.map((game, i) => (
-                  <SwiperSlide
-                    key={i}
-                    onClick={() => navigate(`/category/${game.id}`)}
-                  >
-                    <ThumbNail
-                      type="small"
-                      img={game.imageUrl}
-                      name={game.name}
-                      info={game.description}
-                      tags={game.tags}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
-          ) : (
-            <>
-              <strong>#피라미드의 제물</strong>과 비슷한 보드게임
-              <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                {recsGameData.map((game, i) => (
-                  <SwiperSlide
-                    key={i}
-                    onClick={() => navigate(`/category/${game.id}`)}
-                  >
-                    <ThumbNail
-                      type="small"
-                      img={game.imageUrl}
-                      name={game.name}
-                      info={game.description}
-                      tags={game.tags}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
-          )}
-        </h1>
+        {!selectedPick ? (
+          <>
+            <h1 className="contentTit">
+              <strong>{LogData ? LogData.nickname : "사용자"}</strong>님을 위한
+              추천 보드게임
+            </h1>
+
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {recentGame.map((game, i) => (
+                <SwiperSlide
+                  key={i}
+                  onClick={() => navigate(`/category/${game.id}`)}
+                >
+                  <ThumbNail
+                    type="small"
+                    img={game.imageUrl}
+                    name={game.name}
+                    info={game.description}
+                    tags={game.tags}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        ) : (
+          <>
+            <h1 className="contentTit">
+              <strong># {selectedPick.name}</strong>과 비슷한 보드게임
+            </h1>
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {categoryData.map((game, i) => (
+                <SwiperSlide
+                  key={i}
+                  onClick={() => navigate(`/category/${game.id}`)}
+                >
+                  <ThumbNail
+                    type="small"
+                    img={game.imageUrl}
+                    name={game.name}
+                    info={game.description}
+                    tags={game.tags}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        )}
       </article>
       {recentGame.length !== 0 && (
         <article className="recentGame">

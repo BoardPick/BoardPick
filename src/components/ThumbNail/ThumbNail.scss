@@ -1,18 +1,18 @@
 .ThumbNail {
-  width: 100%;
+  // width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
   cursor: pointer;
+  box-sizing: border-box;
   .thumbImg {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    aspect-ratio: 41 / 45;
     width: 100%;
     img {
       width: 100%;
-      aspect-ratio: 41 / 45;
+      height: 100%;
       object-fit: cover;
     }
     .barBtn {
@@ -46,6 +46,12 @@
       @each $font, $value in $title4 {
         #{$font}: $value;
       }
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1; //글의 최대 라인수
+      -webkit-box-orient: vertical; // 크로스 브라우징용
       color: $text_sub1;
       font-weight: 600;
     }
@@ -65,19 +71,20 @@
 
     .hashTagBox {
       display: flex;
-
       gap: 4px;
       overflow: hidden;
     }
   }
-  // &.big {
-  //   aspect-ratio: 163 / 278 !important;
-  //   .thumbImg {
-  //     width: 170px;
-  //     aspect-ratio: 163 / 180;
-  //   }
-  // }
-  // &.small {
-  //   aspect-ratio: 140 / 256 !important;
-  // }
+  &.big {
+    aspect-ratio: 163.5 / 278;
+    .thumbImg {
+      aspect-ratio: 163 / 180;
+    }
+  }
+  &.small {
+    aspect-ratio: 140 / 256;
+    .thumbImg {
+      aspect-ratio: 7 / 8;
+    }
+  }
 }

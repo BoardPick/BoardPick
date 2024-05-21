@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
-import { getMyPick } from "../../common/axios/api";
+import { getMyPick, getRecsGame } from "../../common/axios/api";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPickAll = () => {
@@ -13,10 +13,24 @@ const MyPickAll = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getMyPick();
+  //       setData(data);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getMyPick();
+        const data = await getRecsGame();
         setData(data);
         setLoading(false);
       } catch (err) {
@@ -25,10 +39,9 @@ const MyPickAll = () => {
       }
     };
     fetchData();
-  }, []);
+  }, []); // my pick 데이터 연결 시 수정 예정
 
   if (loading) return <Loading />;
-  // if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="myPickAll">
@@ -37,28 +50,24 @@ const MyPickAll = () => {
         <p className="myPickCount">
           {myPick && (
             <div>
-              <span>{myPick.length}개</span>의 보드게임
+              <span>{data.length}개</span>의 보드게임
             </div>
           )}
         </p>
-        {data && (
+        {data && data.length !== 0 && (
           <div className="picks">
-            {data.length !== 0 ? (
-              data.map((game, index) => (
-                <ThumbNail
-                  id={game.id}
-                  img={game.imageUrl}
-                  name={game.name}
-                  info={game.description}
-                  tags={game.tags}
-                  key={index}
-                  onClick={() => navigate(`/category/${game.id}`)}
-                  type="big"
-                />
-              ))
-            ) : (
-              <div className="noPick">현재 등록된 PICK이 없어요!</div>
-            )}
+            {data.map((game, index) => (
+              <ThumbNail
+                id={game.id}
+                img={game.imageUrl}
+                name={game.name}
+                info={game.description}
+                tags={game.tags}
+                key={index}
+                onClick={() => navigate(`/category/${game.id}`)}
+                type="big"
+              />
+            ))}
           </div>
         )}
       </article>

@@ -20,13 +20,14 @@ import Loading from "./components/Search/SearchResult/Loading/Loading";
 function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const [searchKeywold, setSearchKeywold] = useState("");
+  const [searchKeyWord, setSearchKeyWord] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
 
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [LogData, setLogData] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -43,11 +44,13 @@ function App() {
     fetchData();
   }, [isLoggedIn]);
 
+  // const isLoggedIn = userData && (userData.id || userData.code) ? true : false;
+
   return (
     <SearchContext.Provider
       value={{
-        searchKeywold,
-        setSearchKeywold,
+        searchKeyWord,
+        setSearchKeyWord,
         selectCategory,
         setSelectCategory,
       }}
@@ -55,11 +58,7 @@ function App() {
       <div className="App">
         <div className="boardPick">
           <Routes>
-            <Route
-              path="/onBoarding"
-              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              element={<OnBoarding />}
-            />
+            <Route path="/onBoarding" element={<OnBoarding />} />
             <Route path="/" element={<Home />} />
             <Route path="/category" element={<Category />} />
             <Route
@@ -69,7 +68,11 @@ function App() {
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/myPick" element={<MyPick />} />
             <Route path="/myPick/all" element={<MyPickAll />} />
-            <Route path="/myPage" element={<MyPage LogData={LogData} />} />
+            <Route
+              path="/myPage"
+              element={<MyPage LogData={LogData} />}
+              LogData={LogData}
+            />
             <Route path="/search" element={<SearchResult />} />
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
