@@ -16,7 +16,7 @@ import { getRecsGame } from "../../common/axios/api";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
-const MyPick = () => {
+const MyPick = ({ LogData }) => {
   const gameTabRef = useRef({});
   const myPick = useSelector((state) => state.myPick);
   const recentGame = useSelector((state) => state.recentGame);
@@ -170,7 +170,8 @@ const MyPick = () => {
         {!selectedPick ? (
           <>
             <h1 className="contentTit">
-              <strong>'스위프'</strong>님을 위한 추천 보드게임
+              <strong>{LogData ? LogData.nickname : "사용자"}</strong>님을 위한
+              추천 보드게임
             </h1>
 
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>

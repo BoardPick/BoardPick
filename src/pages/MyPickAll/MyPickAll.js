@@ -39,7 +39,7 @@ const MyPickAll = () => {
       }
     };
     fetchData();
-  }, []);
+  }, []); // my pick 데이터 연결 시 수정 예정
 
   if (loading) return <Loading />;
 
@@ -54,24 +54,20 @@ const MyPickAll = () => {
             </div>
           )}
         </p>
-        {data && (
+        {data && data.length !== 0 && (
           <div className="picks">
-            {data.length !== 0 ? (
-              data.map((game, index) => (
-                <ThumbNail
-                  id={game.id}
-                  img={game.imageUrl}
-                  name={game.name}
-                  info={game.description}
-                  tags={game.tags}
-                  key={index}
-                  onClick={() => navigate(`/category/${game.id}`)}
-                  type="big"
-                />
-              ))
-            ) : (
-              <div className="noPick">현재 등록된 PICK이 없어요!</div>
-            )}
+            {data.map((game, index) => (
+              <ThumbNail
+                id={game.id}
+                img={game.imageUrl}
+                name={game.name}
+                info={game.description}
+                tags={game.tags}
+                key={index}
+                onClick={() => navigate(`/category/${game.id}`)}
+                type="big"
+              />
+            ))}
           </div>
         )}
       </article>

@@ -5,11 +5,10 @@ import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
 import { useState } from "react";
 
-const MyPage = ({LogData}) => {
+const MyPage = ({ LogData }) => {
   const [loggedOut, setLoggedOut] = useState(false);
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  
 
   const handleLogout = () => {
     setLoggedOut(!loggedOut);
@@ -26,9 +25,11 @@ const MyPage = ({LogData}) => {
                 <img src={profile_brand} alt="profile" />
               </div>
               <ul>
-                {LogData && <li className="nickname">
-                  <strong>{LogData.nickname}</strong>님 안녕하세요!
-                </li>}
+                <li className="nickname">
+                  <strong>{LogData ? LogData.nickname : "사용자"}</strong>님
+                  안녕하세요!
+                </li>
+
                 <li className="welcome">보드픽에 오신걸 환영해요!</li>
               </ul>
             </div>
