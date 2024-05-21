@@ -27,6 +27,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [LogData, setLogData] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -55,11 +56,7 @@ function App() {
       <div className="App">
         <div className="boardPick">
           <Routes>
-            <Route
-              path="/onBoarding"
-              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              element={<OnBoarding />}
-            />
+            <Route path="/onBoarding" element={<OnBoarding />} />
             <Route path="/" element={<Home />} />
             <Route path="/category" element={<Category />} />
             <Route

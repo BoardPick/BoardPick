@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -11,6 +11,7 @@ import GameVideo from "../GameVideo/GameVideo.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const RuleTab = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const gameTabRef = useRef({});
   const [data, setData] = useState({});
@@ -64,7 +65,10 @@ const RuleTab = () => {
           {slidesPerView && (
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
               {categoryData.map((game, i) => (
-                <SwiperSlide key={i}>
+                <SwiperSlide
+                  key={i}
+                  onClick={() => navigate(`/category/${game.id}`)}
+                >
                   <ThumbNail
                     type="small"
                     img={game.imageUrl}
