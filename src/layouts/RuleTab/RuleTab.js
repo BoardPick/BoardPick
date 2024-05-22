@@ -75,6 +75,7 @@ const RuleTab = () => {
                     name={game.name}
                     info={game.description}
                     tags={game.tags}
+                    picked={game.picked}
                   />
                 </SwiperSlide>
               ))}

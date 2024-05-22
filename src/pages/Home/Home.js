@@ -154,6 +154,7 @@ const Home = () => {
                             name={r.name}
                             info={r.description}
                             tags={r.tags}
+                            picked={r.picked}
                             type="small"
                           />
                         </SwiperSlide>
@@ -283,6 +284,7 @@ const Home = () => {
                           name={r.name}
                           info={r.description}
                           tags={r.tags}
+                          picked={r.picked}
                           type="small"
                         />
                       </SwiperSlide>

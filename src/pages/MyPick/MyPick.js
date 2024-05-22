@@ -242,6 +242,7 @@ const MyPick = ({ logData }) => {
                     name={game.name}
                     info={game.description}
                     tags={game.tags}
+                    picked={game.picked}
                   />
                 </SwiperSlide>
               ))}
@@ -264,6 +265,7 @@ const MyPick = ({ logData }) => {
                     name={game.name}
                     info={game.description}
                     tags={game.tags}
+                    picked={game.picked}
                   />
                 </SwiperSlide>
               ))}
@@ -286,6 +288,7 @@ const MyPick = ({ logData }) => {
                   name={game.name}
                   info={game.description}
                   tags={game.tags}
+                  picked={game.picked}
                 />
               </SwiperSlide>
             ))}
