@@ -1,34 +1,49 @@
 .alertPopup {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 311px;
-  height: 164px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid $line_default;
-  border-radius: 8px;
-  overflow: hidden;
-  article {
-    margin: auto 0;
-  }
-  ul {
-    width: 100%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($common_black, 0.6);
+  z-index: 1;
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 311px;
+    height: 164px;
     display: flex;
-    align-items: flex-end;
-    li {
-      width: 50%;
-      .btn {
-        width: 100%;
-        border-radius: 0;
+    flex-direction: column;
+    align-items: center;
+    background-color: $common_white;
+    border-radius: 8px;
+    overflow: hidden;
+    article {
+      margin: auto 0;
+      p {
+        @each $font, $value in $title4 {
+          #{$font}: $value;
+        }
+
         font-weight: 600;
       }
-      &.cancel {
+    }
+    ul {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      li {
+        width: 50%;
         .btn {
-          background-color: $background_default;
-          color: $text_default;
+          width: 100%;
+          border-radius: 0;
+        }
+        &.cancel {
+          .btn {
+            background-color: $background_default;
+            color: $text_default;
+          }
         }
       }
     }

@@ -36,25 +36,27 @@ const BottomPopUp = () => {
   };
   return (
     <div className="bottomPopup">
-      <header>
-        <span>공유하기</span>
-        <div className="closeIcon" onClick={handleCloseBtn} />
-      </header>
-      <article className="shareBtnBox">
-        <button className="shareBtn" onClick={handleLinkCopy}>
-          <LinkShare />
-        </button>
-        <p className="linkCopy">링크복사</p>
-      </article>
-      {isCopyBtn && <ToastPopUp ToastContent={"링크가 복사되었습니다."} />}
-      <article className="closeBtn">
-        <Button
-          type={"brand"}
-          size={"s48"}
-          text={"닫기"}
-          onClick={handleCloseBtn}
-        />
-      </article>
+      <section className="overlay">
+        <header>
+          <span>공유하기</span>
+          <div className="closeIcon" onClick={handleCloseBtn} />
+        </header>
+        <article className="shareBtnBox">
+          <button className="shareBtn" onClick={handleLinkCopy}>
+            <LinkShare />
+          </button>
+          <p className="linkCopy">링크복사</p>
+        </article>
+        {isCopyBtn && <ToastPopUp ToastContent={"링크가 복사되었습니다."} />}
+        <article className="closeBtn">
+          <Button
+            type={"brand"}
+            size={"s48"}
+            text={"닫기"}
+            onClick={handleCloseBtn}
+          />
+        </article>
+      </section>
     </div>
   );
 };

@@ -33,6 +33,7 @@ const AppBar = ({ title, mark, type, id }) => {
         console.error(error);
       });
     setPicked(!picked);
+    console.log(id);
   };
 
   return (

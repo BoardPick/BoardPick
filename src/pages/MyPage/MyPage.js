@@ -56,7 +56,7 @@ const MyPage = ({ logData }) => {
 
         <ul className="myPageList">
           <li className="cs">
-            <p>1:1오픈채팅 문의하기</p>
+            <p>1:1 오픈채팅 문의하기</p>
             <ChevronRight />
           </li>
           {isLoggedIn && (
