@@ -13,8 +13,6 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   // const setPicked = () => {
   //   dispatch({ type: "SET_PICKED", payload: !picked });
   // };
-  const [pick, setPick] = useState(false);
-  const [pickedItems, setPickedItems] = useState([]);
 
   const handlerPick = () => {
     const token = localStorage.getItem("token");
@@ -29,9 +27,6 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       .catch(function (error) {
         console.error(error);
       });
-    {
-      picked ? setPick(true) : setPick(false);
-    }
   };
 
   return (
@@ -44,7 +39,7 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       <article className="thumbImg">
         <img src={img} alt="썸네일이미지" />
         <button
-          className={`barBtn bookmark ${pick && "pickOn"}
+          className={`barBtn bookmark ${picked && "pickOn"}
           `}
           onClick={(e) => {
             e.stopPropagation();
