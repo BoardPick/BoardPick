@@ -10,22 +10,28 @@ const MyPickAll = () => {
   const navigate = useNavigate();
   const myPick = useSelector((state) => state.myPick);
   const [data, setData] = useState([]);
+  const [myPickData, setMyPickData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await getMyPick();
-  //       setData(data);
-  //       setLoading(false);
-  //     } catch (err) {
-  //       setError(err.message);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+    const fetchPickData = async () => {
+      try {
+        const myPickData = await getMyPick();
+        setMyPickData(myPickData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchPickData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +45,7 @@ const MyPickAll = () => {
       }
     };
     fetchData();
-  }, []); // my pick 데이터 연결 시 수정 예정
+  }, []);
 
   if (loading) return <Loading />;
 
@@ -50,13 +56,13 @@ const MyPickAll = () => {
         <p className="myPickCount">
           {myPick && (
             <div>
-              <span>{data.length}개</span>의 보드게임
+              <span>{myPickData.length}개</span>의 보드게임
             </div>
           )}
         </p>
-        {data && data.length !== 0 && (
+        {myPickData && myPickData.length !== 0 && (
           <div className="picks">
-            {data.map((game, index) => (
+            {myPickData.map((game, index) => (
               <ThumbNail
                 id={game.id}
                 img={game.imageUrl}

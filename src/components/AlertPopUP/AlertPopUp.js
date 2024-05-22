@@ -15,27 +15,29 @@ const AlertPopUp = ({ popText, handleLogout }) => {
   console.log(isLoggedIn);
   return (
     <div className="alertPopup">
-      <article>
-        <p>{popText}</p>
-      </article>
-      <ul>
-        <li className="cancel">
-          <Button
-            text={"취소"}
-            type={"disabled"}
-            size={"s48"}
-            onClick={handleLogout}
-          />
-        </li>
-        <li>
-          <Button
-            text={"확인"}
-            type={"brand"}
-            size={"s48"}
-            onClick={handleSubmit}
-          />
-        </li>
-      </ul>
+      <section className="overlay">
+        <article>
+          <p>{popText}</p>
+        </article>
+        <ul>
+          <li className="cancel">
+            <Button
+              text={"취소"}
+              type={"disabled"}
+              size={"s48"}
+              onClick={handleLogout}
+            />
+          </li>
+          <li>
+            <Button
+              text={"확인"}
+              type={"brand"}
+              size={"s48"}
+              onClick={handleSubmit}
+            />
+          </li>
+        </ul>
+      </section>
     </div>
   );
 };

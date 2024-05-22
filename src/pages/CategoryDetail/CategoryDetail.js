@@ -80,7 +80,7 @@ const CategoryDetail = () => {
 
   return (
     <div className="categoryDetail">
-      <AppBar mark type={"gradient"} />
+      <AppBar mark type={"gradient"} id={id} />
       <div className="backImg">
         <img src={data.imageUrl} />
       </div>

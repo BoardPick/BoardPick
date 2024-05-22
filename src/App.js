@@ -54,19 +54,17 @@ function App() {
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
-      console.log(token);
+      // console.log(token);
       navigate("/");
     }
   }, []);
 
-  const isLoggedIn =
-    logData &&
-    logData.userData &&
-    (logData.userData.id || logData.userData.code)
-      ? true
-      : false;
-
-  console.log(isLoggedIn);
+  // const isLoggedIn =
+  //   logData &&
+  //   logData.userData &&
+  //   (logData.userData.id || logData.userData.code)
+  //     ? true
+  //     : false;
 
   return (
     <SearchContext.Provider

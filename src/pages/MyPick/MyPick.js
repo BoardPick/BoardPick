@@ -36,6 +36,7 @@ const MyPick = ({ logData }) => {
   const [similarData, setSimilarData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
+    imageUrl: "",
     name: "",
     boardGameCategories: "",
   });
