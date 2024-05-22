@@ -8,8 +8,11 @@ import { togglePick } from "../../common/axios/api";
 
 const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const dispatch = useDispatch();
-  const picks = useSelector((state) => state.picks);
+  const picked = useSelector((state) => state.picks);
   const navigate = useNavigate();
+  const setPicked = () => {
+    dispatch({ type: "SET_PICKED", payload: !picked });
+  };
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -29,6 +32,7 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
       .catch(function (error) {
         console.error(error);
       });
+    setPicked(!picked);
   };
 
   return (
@@ -41,7 +45,7 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
       <article className="thumbImg">
         <img src={img} alt="썸네일이미지" />
         <button
-          className={`barBtn bookmark ${picks[id] && "pickOn"}`}
+          className={`barBtn bookmark ${picked && "pickOn"}`}
           onClick={(e) => {
             e.stopPropagation();
             handlerPick(id);
