@@ -44,7 +44,7 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
           className={`barBtn bookmark ${picks[id] && "pickOn"}`}
           onClick={(e) => {
             e.stopPropagation();
-            handlerPick();
+            handlerPick(id);
           }}
         >
           <Bookmark />
