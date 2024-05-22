@@ -176,7 +176,7 @@ const MyPick = ({ logData }) => {
             </>
           ) : (
             <>
-              {selectedPick && (
+              {selectedPick && selectedPick.length !== 0 && (
                 <>
                   <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
                     {myPickData.map((game, i) => (
