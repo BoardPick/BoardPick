@@ -31,7 +31,7 @@ function App() {
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [logData, setLogData] = useState(null);
+  const [logData, setLogData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {

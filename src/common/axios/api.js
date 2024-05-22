@@ -12,6 +12,14 @@ export const getBoardGameDetail = async (id) => {
     throw error;
   }
 };
+export const getSimilarBoardGame = async (id) => {
+  try {
+    const { data } = await apiRoot.get(`/api/boardgames/similar/${id}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const getMyPick = async () => {
   try {

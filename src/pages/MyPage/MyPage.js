@@ -26,8 +26,10 @@ const MyPage = ({ logData }) => {
               </div>
               <ul>
                 <li className="nickname">
-                  <strong>{logData ? logData.nickname : "사용자"}</strong>님
-                  안녕하세요!
+                  <strong>
+                    {logData && logData !== 0 ? logData.nickname : "사용자"}
+                  </strong>
+                  님 안녕하세요!
                 </li>
 
                 <li className="welcome">보드픽에 오신걸 환영해요!</li>
