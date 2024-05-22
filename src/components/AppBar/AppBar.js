@@ -6,7 +6,7 @@ import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 
 import { togglePick } from "../../common/axios/api";
 
-const AppBar = ({ title, mark, type, id }) => {
+const AppBar = ({ title, mark, type, id, picked }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +32,6 @@ const AppBar = ({ title, mark, type, id }) => {
       .catch(function (error) {
         console.error(error);
       });
-    setPicked(!picked);
   };
 
   return (
@@ -44,7 +43,8 @@ const AppBar = ({ title, mark, type, id }) => {
       {mark && (
         <span className="leftBtns">
           <button
-            className={`barBtn bookmark ${picked && "pickOn"}`}
+            className={`barBtn bookmark ${picked && "pickOn"}
+          `}
             onClick={(e) => {
               e.stopPropagation();
               handlerPick(id);

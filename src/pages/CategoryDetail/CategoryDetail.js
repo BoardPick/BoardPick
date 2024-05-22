@@ -33,7 +33,6 @@ const CategoryDetail = () => {
     fetchData();
   }, [id]);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const pick = useSelector((state) => state.pick);
   const toast = useSelector((state) => state.toast);
@@ -80,7 +79,7 @@ const CategoryDetail = () => {
 
   return (
     <div className="categoryDetail">
-      <AppBar mark type={"gradient"} id={id} />
+      <AppBar mark type={"gradient"} id={data.id} picked={data.picked} />
       <div className="backImg">
         <img src={data.imageUrl} />
       </div>
