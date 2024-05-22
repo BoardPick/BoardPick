@@ -92,6 +92,7 @@ const CategorySelect = ({ selectCategory }) => {
                     name={dd.name}
                     info={dd.description}
                     tags={dd.tags}
+                    picked={dd.picked}
                     type="big"
                   />
                 );

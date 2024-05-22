@@ -66,6 +66,7 @@ const MyPickAll = () => {
                 key={index}
                 onClick={() => navigate(`/category/${game.id}`)}
                 type="big"
+                picked={game.picked}
               />
             ))}
           </div>
