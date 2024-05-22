@@ -5,7 +5,7 @@ const apiRoot = axios.create({
 
 export const getLogInfo = async (token) => {
   try {
-    const { data } = await apiRoot.post(
+    const { data } = await apiRoot.get(
       `/api/user`,
       {},
       {
