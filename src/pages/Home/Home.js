@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
@@ -10,6 +10,9 @@ import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
 import { getRankData } from "../../common/axios/rank.js";
 import { getRecommandData } from "../../common/axios/recommand.js";
+import { getDuoData } from "../../common/axios/recommand.js";
+import { getPlayersData } from "../../common/axios/recommand.js";
+import { getDifficultyData } from "../../common/axios/recommand.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const Home = () => {
@@ -57,6 +60,60 @@ const Home = () => {
     };
 
     fetchData();
+  }, []);
+
+  // 둘이서 하기 좋은 게임 api 호출
+  const [duoData, setDuoData] = useState(null);
+  const fetchDuoData = async () => {
+    setLoading(true);
+    try {
+      const data = await getDuoData();
+      setDuoData(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  useMemo(() => {
+    fetchDuoData();
+  }, []);
+
+  // 초보자도 쉽게 즐기는 게임 api 호출
+  const [easyData, setEasyData] = useState(null);
+  const fetchEasyData = async () => {
+    setLoading(true);
+    try {
+      const data = await getDifficultyData();
+      setEasyData(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  useMemo(() => {
+    fetchEasyData();
+  }, []);
+
+  // 단체가 하기 좋은 게임 api 호출
+  const [TeamData, setTeamData] = useState(null);
+  const fetchTeamData = async () => {
+    setLoading(true);
+    try {
+      const data = await getPlayersData();
+      setTeamData(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  useMemo(() => {
+    fetchTeamData();
   }, []);
 
   if (loading) return <Loading />;
@@ -112,19 +169,19 @@ const Home = () => {
                     오늘 가장 많은 P!CK을 받은 게임들만 모아봤어요!
                   </p>
                 </div>
-                {recommandData && (
+                {rankData && (
                   <div className="rankGame">
                     <div className="todayPick" ref={todayPickRef}>
                       <Swiper slidesPerView={1.3} spaceBetween={12}>
                         <SwiperSlide>
                           <Rank
-                            gamedata={recommandData.slice(0, 5)}
+                            gamedata={rankData.slice(0, 5)}
                             start={1}
                           />
                         </SwiperSlide>
                         <SwiperSlide>
                           <Rank
-                            gamedata={recommandData.slice(5, 10)}
+                            gamedata={rankData.slice(5, 10)}
                             start={6}
                           />
                         </SwiperSlide>
@@ -140,45 +197,69 @@ const Home = () => {
                     <h1>#둘이서 하기 좋은</h1>
                     <h2>보드게임</h2>
                   </div>
-                  <div className="wrapper" ref={gameTabRef}>
-                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {[...Array(10)].map((_, i) => (
+                  <div className="slide" ref={gameTabRef}>
+                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                    {duoData &&
+                      duoData.map((d, i) => (
                         <SwiperSlide key={i}>
-                          <ThumbNail type="small" />
+                          <ThumbNail
+                            id={d.id}
+                            img={d.imageUrl}
+                            name={d.name}
+                            info={d.description}
+                            tags={d.tags}
+                            type="small"
+                          />
                         </SwiperSlide>
                       ))}
-                    </Swiper>
-                  </div>
+                  </Swiper>
+                </div>
                 </article>
                 <article className="curation">
                   <div className="title">
                     <h1>#초보자도 쉽게 즐기는</h1>
                     <h2>보드게임</h2>
                   </div>
-                  <div className="wrapper" ref={gameTabRef}>
-                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {[...Array(10)].map((_, i) => (
+                  <div className="slide" ref={gameTabRef}>
+                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                    {easyData &&
+                      easyData.map((r, i) => (
                         <SwiperSlide key={i}>
-                          <ThumbNail type="small" />
+                          <ThumbNail
+                            id={r.id}
+                            img={r.imageUrl}
+                            name={r.name}
+                            info={r.description}
+                            tags={r.tags}
+                            type="small"
+                          />
                         </SwiperSlide>
                       ))}
-                    </Swiper>
-                  </div>
+                  </Swiper>
+                </div>
                 </article>
                 <article className="curation">
                   <div className="title">
                     <h1>#단체가 하기 좋은</h1>
                     <h2>보드게임</h2>
                   </div>
-                  <div className="wrapper" ref={gameTabRef}>
-                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {[...Array(10)].map((_, i) => (
+                  <div className="slide" ref={gameTabRef}>
+                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                    {recommandData &&
+                      recommandData.map((r, i) => (
                         <SwiperSlide key={i}>
-                          <ThumbNail type="small" />
+                          <ThumbNail
+                            id={r.id}
+                            img={r.imageUrl}
+                            name={r.name}
+                            info={r.description}
+                            tags={r.tags}
+                            type="small"
+                          />
                         </SwiperSlide>
                       ))}
-                    </Swiper>
-                  </div>
+                  </Swiper>
+                </div>
                 </article>
               </div>
             </div>
@@ -193,8 +274,8 @@ const Home = () => {
               </div>
               <div className="slide" ref={gameTabRef}>
                 <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                  {recommandData &&
-                    recommandData.map((r, i) => (
+                  {TeamData &&
+                    TeamData.map((r, i) => (
                       <SwiperSlide key={i}>
                         <ThumbNail
                           id={r.id}

@@ -11,3 +11,30 @@ export const getRecommandData = async () => {
     throw error;
   }
 };
+
+export const getDuoData = async () => {
+  try {
+    const { data } = await apiRoot.get(`api/boardgames/list?filter=duo`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getPlayersData = async () => {
+  try {
+    const { data } = await apiRoot.get(`api/boardgames/list?filter=players`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getDifficultyData = async () => {
+  try {
+    const { data } = await apiRoot.get(`api/boardgames/list?filter=difficulty`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
