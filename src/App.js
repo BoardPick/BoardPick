@@ -39,7 +39,7 @@ function App() {
       console.error("No token found");
       return;
     }
-    const fetchData = async () => {
+    const fetchData = async (token) => {
       try {
         const logData = await getLogInfo(token);
         setLogData(logData);
@@ -50,7 +50,7 @@ function App() {
       }
     };
 
-    fetchData();
+    fetchData(token);
   }, []);
 
   useEffect(() => {

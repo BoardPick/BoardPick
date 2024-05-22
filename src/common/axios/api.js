@@ -23,16 +23,12 @@ export const getSimilarBoardGame = async (id) => {
 
 export const getMyPick = async (token) => {
   try {
-    const { data } = await apiRoot.get(
-      `/api/pick`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      }
-    );
+    const { data } = await apiRoot.get(`/api/pick`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
     return data;
   } catch (error) {
     throw error;

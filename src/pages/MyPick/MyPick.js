@@ -92,7 +92,7 @@ const MyPick = ({ logData }) => {
       }
     };
     fetchSimilarData();
-  }, [myPickData]);
+  }, []);
 
   //카테고리 api
   useEffect(() => {
@@ -239,6 +239,7 @@ const MyPick = ({ logData }) => {
                 >
                   <ThumbNail
                     type="small"
+                    id={game.id}
                     img={game.imageUrl}
                     name={game.name}
                     info={game.description}
@@ -262,6 +263,7 @@ const MyPick = ({ logData }) => {
                 >
                   <ThumbNail
                     type="small"
+                    id={game.id}
                     img={game.imageUrl}
                     name={game.name}
                     info={game.description}
@@ -285,6 +287,7 @@ const MyPick = ({ logData }) => {
               >
                 <ThumbNail
                   type="small"
+                  id={game.id}
                   img={game.imageUrl}
                   name={game.name}
                   info={game.description}
