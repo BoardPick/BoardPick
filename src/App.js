@@ -35,6 +35,12 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
       setLoading(true);
       try {
         const logData = await getLogInfo();
