@@ -10,9 +10,9 @@ const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const pick = useSelector((state) => state.pick);
-  const setPick = () => {
-    dispatch({ type: "SET_PICK", payload: !pick });
+  const picked = useSelector((state) => state.picks);
+  const setPicked = () => {
+    dispatch({ type: "SET_PICKED", payload: !picked });
   };
   const isCopied = useSelector((state) => state.isCopied);
   const setIsCopied = () => {
@@ -25,7 +25,6 @@ const AppBar = ({ title, mark, type, id }) => {
       console.error("No token found");
       return;
     }
-
     togglePick(id, token)
       .then(function (response) {
         console.log(response);
@@ -33,6 +32,7 @@ const AppBar = ({ title, mark, type, id }) => {
       .catch(function (error) {
         console.error(error);
       });
+    setPicked(!picked);
   };
 
   return (
@@ -44,7 +44,7 @@ const AppBar = ({ title, mark, type, id }) => {
       {mark && (
         <span className="leftBtns">
           <button
-            className={`barBtn bookmark ${pick && "pickOn"}`}
+            className={`barBtn bookmark ${picked && "pickOn"}`}
             onClick={(e) => {
               e.stopPropagation();
               handlerPick(id);

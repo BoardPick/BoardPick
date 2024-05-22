@@ -104,6 +104,8 @@ const MyPick = ({ logData }) => {
     });
   };
 
+  console.log(myPickData);
+
   return (
     <div className="myPick">
       <section className="myPickContainer">
