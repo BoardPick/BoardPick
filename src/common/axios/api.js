@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiRoot = axios.create({
+export const apiRoot = axios.create({
   baseURL: "https://boardpick-server.store",
 });
 
@@ -33,10 +33,18 @@ export const getRecsGame = async () => {
   }
 };
 
-export const togglePick = async (id) => {
+export const togglePick = async (id, token) => {
   try {
-    const { data } = await apiRoot.post(`/api/pick/${id}`);
-    console.log(data);
+    const { data } = await apiRoot.post(
+      `/api/pick/${id}`,
+      { id },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      }
+    );
     return data;
   } catch (error) {
     throw error;

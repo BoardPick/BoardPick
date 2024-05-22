@@ -5,7 +5,7 @@ import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
 import { useState } from "react";
 
-const MyPage = ({ LogData }) => {
+const MyPage = ({ logData }) => {
   const [loggedOut, setLoggedOut] = useState(false);
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -26,7 +26,7 @@ const MyPage = ({ LogData }) => {
               </div>
               <ul>
                 <li className="nickname">
-                  <strong>{LogData ? LogData.nickname : "사용자"}</strong>님
+                  <strong>{logData ? logData.nickname : "사용자"}</strong>님
                   안녕하세요!
                 </li>
 
