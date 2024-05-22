@@ -4,6 +4,7 @@ import { ChevronRight } from "../../assets/icon/icon";
 import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
 import { useState } from "react";
+import { getMyPick } from "../../common/axios/api";
 
 const MyPage = ({ logData }) => {
   const [loggedOut, setLoggedOut] = useState(false);
