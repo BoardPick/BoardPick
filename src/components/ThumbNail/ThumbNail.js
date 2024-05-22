@@ -6,13 +6,14 @@ import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
 import { togglePick } from "../../common/axios/api";
 
-const ThumbNail = ({ img, name, info, type, id, tags }) => {
+const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const picked = useSelector((state) => state.picked);
-  const setPicked = () => {
-    dispatch({ type: "SET_PICKED", payload: !picked });
-  };
+  // const picked = useSelector((state) => state.picked);
+  // const setPicked = () => {
+  //   dispatch({ type: "SET_PICKED", payload: !picked });
+  // };
+  const [pick, setPick] = useState(false);
   const [pickedItems, setPickedItems] = useState([]);
 
   const handlerPick = () => {
@@ -28,7 +29,9 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
       .catch(function (error) {
         console.error(error);
       });
-    setPicked(!picked);
+    {
+      picked ? setPick(true) : setPick(false);
+    }
   };
 
   return (
@@ -41,7 +44,8 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
       <article className="thumbImg">
         <img src={img} alt="썸네일이미지" />
         <button
-          className={`barBtn bookmark ${picked && "pickOn"}`}
+          className={`barBtn bookmark ${pick && "pickOn"}
+          `}
           onClick={(e) => {
             e.stopPropagation();
             handlerPick(id);
