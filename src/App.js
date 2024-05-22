@@ -33,17 +33,15 @@ function App() {
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
 
+  const token = localStorage.getItem("token");
+  if (!token) {
+    console.error("No token found");
+    return;
+  }
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("No token found");
-        return;
-      }
-
-      setLoading(true);
       try {
-        const logData = await getLogInfo();
+        const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
       } catch (err) {
