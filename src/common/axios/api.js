@@ -23,7 +23,7 @@ export const getSimilarBoardGame = async (id) => {
 
 export const getMyPick = async (token) => {
   try {
-    const { data } = await apiRoot.post(
+    const { data } = await apiRoot.get(
       `/api/pick`,
       {},
       {
