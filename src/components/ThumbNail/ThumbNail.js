@@ -15,8 +15,14 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handlerPick = () => {
-    togglePick(id)
+  const handlerPick = (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
+    togglePick(id, token)
       .then(function (response) {
         console.log(response);
       })
