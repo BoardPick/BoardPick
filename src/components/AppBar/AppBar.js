@@ -10,10 +10,6 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const picked = useSelector((state) => state.picks);
-  const setPicked = () => {
-    dispatch({ type: "SET_PICKED", payload: !picked });
-  };
   const isCopied = useSelector((state) => state.isCopied);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
