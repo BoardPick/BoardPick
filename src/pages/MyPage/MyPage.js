@@ -28,7 +28,9 @@ const MyPage = ({ logData }) => {
               <ul>
                 <li className="nickname">
                   <strong>
-                    {logData && logData !== 0 ? logData.nickname : "사용자"}
+                    {logData && logData.length !== 0
+                      ? logData.nickname
+                      : "사용자"}
                   </strong>
                   님 안녕하세요!
                 </li>
