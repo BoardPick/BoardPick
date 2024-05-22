@@ -33,12 +33,12 @@ function App() {
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
 
-  const token = localStorage.getItem("token");
-  if (!token) {
-    console.error("No token found");
-    return;
-  }
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);
