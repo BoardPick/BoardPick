@@ -52,9 +52,11 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
-    console.log(token);
-    localStorage.setItem("token", token);
-    navigate("/");
+    if (token) {
+      localStorage.setItem("token", token);
+      console.log(token);
+      navigate("/");
+    }
   }, []);
 
   const isLoggedIn =
