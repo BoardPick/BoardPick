@@ -9,11 +9,6 @@ import { togglePick } from "../../common/axios/api";
 const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const picked = useSelector((state) => state.picked);
-  // const setPicked = () => {
-  //   dispatch({ type: "SET_PICKED", payload: !picked });
-  // };
-
   const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
