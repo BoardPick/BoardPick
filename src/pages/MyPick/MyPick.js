@@ -60,9 +60,20 @@ const MyPick = ({ logData }) => {
 
   //myPick api
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
     const fetchPickData = async () => {
       try {
-        const myPickData = await getMyPick();
+        const myPickData = await getMyPick()
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
         setMyPickData(myPickData);
         setLoading(false);
       } catch (err) {
