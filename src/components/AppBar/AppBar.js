@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 
-const AppBar = ({ title, mark, type }) => {
+import { togglePick } from "../../common/axios/api";
+
+const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,8 +19,20 @@ const AppBar = ({ title, mark, type }) => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
 
-  const handlePick = () => {
-    setPick(!pick);
+  const handlerPick = (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
+    togglePick(id, token)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   return (
@@ -31,7 +45,10 @@ const AppBar = ({ title, mark, type }) => {
         <span className="leftBtns">
           <button
             className={`barBtn bookmark ${pick && "pickOn"}`}
-            onClick={handlePick}
+            onClick={(e) => {
+              e.stopPropagation();
+              handlerPick(id);
+            }}
           >
             <Bookmark />
           </button>
