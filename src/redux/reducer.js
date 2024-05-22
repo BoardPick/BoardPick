@@ -17,7 +17,7 @@ function reducer(state = initialState, action) {
     case "SET_ISLOGGEDIN":
       return { ...state, isLoggedIn: !state.isLoggedIn };
     case "SET_PICKED":
-      return { ...state, pick: !state.pick };
+      return { ...state, picked: !state.picked };
     case "SET_TOAST":
       return { ...state, toast: !state.toast };
     case "SET_LIKE":

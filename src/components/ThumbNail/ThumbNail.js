@@ -9,12 +9,13 @@ import { togglePick } from "../../common/axios/api";
 const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const picked = useSelector((state) => state.picks);
+  const picked = useSelector((state) => state.picked);
   const setPicked = () => {
     dispatch({ type: "SET_PICKED", payload: !picked });
   };
+  const [pickedItems, setPickedItems] = useState([]);
 
-  const handlerPick = (id) => {
+  const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
@@ -29,7 +30,6 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
       });
     setPicked(!picked);
   };
-  console.log(picked);
 
   return (
     <div

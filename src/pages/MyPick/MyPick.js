@@ -67,13 +67,7 @@ const MyPick = ({ logData }) => {
     }
     const fetchPickData = async () => {
       try {
-        const myPickData = await getMyPick()
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.error(error);
-          });
+        const myPickData = await getMyPick();
         setMyPickData(myPickData);
         setLoading(false);
       } catch (err) {
