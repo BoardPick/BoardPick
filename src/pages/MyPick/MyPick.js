@@ -12,7 +12,11 @@ import {
   useSlidesPerView,
   useSlidesPerViewPick,
 } from "../../common/util/useSliderPerView";
-import { getRecsGame, getMyPick } from "../../common/axios/api";
+import {
+  getRecsGame,
+  getMyPick,
+  getSimilarBoardGame,
+} from "../../common/axios/api";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
@@ -29,6 +33,7 @@ const MyPick = ({ logData }) => {
   const [myPickData, setMyPickData] = useState([]);
   const [recsGameData, setRecsGameData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const [similarData, setSimilarData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     name: "",
@@ -38,6 +43,7 @@ const MyPick = ({ logData }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  //추천 게임 api
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,8 +57,10 @@ const MyPick = ({ logData }) => {
     };
     fetchData();
   }, []);
+
+  //myPick api
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPickData = async () => {
       try {
         const myPickData = await getMyPick();
         setMyPickData(myPickData);
@@ -62,9 +70,25 @@ const MyPick = ({ logData }) => {
         setLoading(false);
       }
     };
-    fetchData();
+    fetchPickData();
   }, []);
 
+  //비슷한 게임 api
+  useEffect(() => {
+    const fetchSimilarData = async () => {
+      try {
+        const similarData = await getMyPick();
+        setSimilarData(similarData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchSimilarData();
+  }, [myPickData]);
+
+  //카테고리 api
   useEffect(() => {
     const fetchCategoryData = async () => {
       setLoading(<Loading />);
@@ -83,10 +107,12 @@ const MyPick = ({ logData }) => {
     fetchCategoryData();
   }, [selectedPick.boardGameCategories]);
 
+  //마이픽 초기값 설정
   useEffect(() => {
     if (myPickData.length > 0) {
       setSelectedPick({
         id: myPickData[0].id,
+        imageUrl: myPickData[0].imageUrl,
         name: myPickData[0].name,
         boardGameCategories: myPickData[0].boardGameCategories,
       });
@@ -95,10 +121,12 @@ const MyPick = ({ logData }) => {
 
   if (loading) return <Loading />;
 
-  const handleClickPick = (id, name, boardGameCategories) => {
+  //마이픽 선택
+  const handleClickPick = (id, imageUrl, name, boardGameCategories) => {
     setMyPickOn(!myPickOn);
     setSelectedPick({
       id: id,
+      imageUrl: imageUrl,
       name: name,
       boardGameCategories: boardGameCategories,
     });
@@ -190,8 +218,11 @@ const MyPick = ({ logData }) => {
         {myPickData && myPickData !== 0 ? (
           <>
             <h1 className="contentTit">
-              <strong>{logData ? logData.nickname : "사용자"}</strong>님을 위한
-              추천 보드게임
+              <strong>
+                {" "}
+                {logData && logData !== 0 ? logData.nickname : "사용자"}
+              </strong>
+              님을 위한 추천 보드게임
             </h1>
 
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
@@ -217,7 +248,7 @@ const MyPick = ({ logData }) => {
               <strong># {selectedPick.name}</strong>과 비슷한 보드게임
             </h1>
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-              {categoryData.map((game, i) => (
+              {similarData.map((game, i) => (
                 <SwiperSlide
                   key={i}
                   onClick={() => navigate(`/category/${game.id}`)}
