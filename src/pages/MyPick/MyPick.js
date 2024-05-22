@@ -12,11 +12,11 @@ import {
   useSlidesPerView,
   useSlidesPerViewPick,
 } from "../../common/util/useSliderPerView";
-import { getRecsGame } from "../../common/axios/api";
+import { getRecsGame, getMyPick } from "../../common/axios/api";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
-const MyPick = ({ logData, token }) => {
+const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
   const myPick = useSelector((state) => state.myPick);
   const recentGame = useSelector((state) => state.recentGame);
@@ -51,6 +51,19 @@ const MyPick = ({ logData, token }) => {
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const myPickData = await getMyPick();
+        setMyPickData(myPickData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchCategoryData = async () => {
@@ -71,14 +84,14 @@ const MyPick = ({ logData, token }) => {
   }, [selectedPick.boardGameCategories]);
 
   useEffect(() => {
-    if (recsGameData.length > 0) {
+    if (myPickData.length > 0) {
       setSelectedPick({
-        id: recsGameData[0].id,
-        name: recsGameData[0].name,
-        boardGameCategories: recsGameData[0].boardGameCategories,
+        id: myPickData[0].id,
+        name: myPickData[0].name,
+        boardGameCategories: myPickData[0].boardGameCategories,
       });
     }
-  }, [recsGameData]); // myPick연결시 연결 데이터 수정
+  }, [myPickData]);
 
   if (loading) return <Loading />;
 
@@ -95,9 +108,14 @@ const MyPick = ({ logData, token }) => {
     <div className="myPick">
       <section className="myPickContainer">
         <header>
-          <h1>MY PICK{myPickData && <span> ({myPickData.length}개)</span>}</h1>
+          <h1>
+            MY PICK
+            {myPickData && myPickData.length !== 0 && (
+              <span> ({myPickData.length}개)</span>
+            )}
+          </h1>
 
-          {myPick && myPick.length !== 0 && (
+          {myPickData && myPickData.length !== 0 && (
             <Button
               type={"txt"}
               text={"전체보기"}
@@ -107,7 +125,7 @@ const MyPick = ({ logData, token }) => {
           )}
         </header>
         <article className="pickBox" ref={gameTabRef}>
-          {myPick && myPick.length === 0 ? (
+          {myPickData && myPickData.length === 0 ? (
             <>
               <div className="noPick">현재 등록된 PICK이 없어요!</div>
               <div
@@ -125,7 +143,7 @@ const MyPick = ({ logData, token }) => {
               {selectedPick && (
                 <>
                   <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
-                    {recsGameData.map((game, i) => (
+                    {myPickData.map((game, i) => (
                       <SwiperSlide key={i}>
                         <div
                           className={`pickThumb ${
@@ -167,7 +185,7 @@ const MyPick = ({ logData, token }) => {
         </article>
       </section>
       <article className="recommendGame" ref={gameTabRef}>
-        {!selectedPick ? (
+        {myPickData && myPickData !== 0 ? (
           <>
             <h1 className="contentTit">
               <strong>{logData ? logData.nickname : "사용자"}</strong>님을 위한
@@ -175,7 +193,7 @@ const MyPick = ({ logData, token }) => {
             </h1>
 
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-              {recentGame.map((game, i) => (
+              {recsGameData.map((game, i) => (
                 <SwiperSlide
                   key={i}
                   onClick={() => navigate(`/category/${game.id}`)}
