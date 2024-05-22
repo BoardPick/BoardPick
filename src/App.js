@@ -1,5 +1,10 @@
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { SearchContext } from "./context/SearchContext";
 import { useState, useEffect } from "react";
 import { getLogInfo } from "./common/axios/loginfo";
@@ -18,22 +23,22 @@ import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import Loading from "./components/Search/SearchResult/Loading/Loading";
 
 function App() {
+  const navigate = useNavigate();
   const location = useLocation();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [searchKeyWord, setSearchKeyWord] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
 
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [LogData, setLogData] = useState(null);
+  const [logData, setLogData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const LogData = await getLogInfo();
-        setLogData(LogData);
+        const logData = await getLogInfo();
+        setLogData(logData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -42,9 +47,16 @@ function App() {
     };
 
     fetchData();
-  }, [isLoggedIn]);
+  }, []);
 
-  // const isLoggedIn = userData && (userData.id || userData.code) ? true : false;
+  const isLoggedIn =
+    logData &&
+    logData.userData &&
+    (logData.userData.id || logData.userData.code)
+      ? true
+      : false;
+
+  console.log(isLoggedIn);
 
   return (
     <SearchContext.Provider
@@ -59,7 +71,11 @@ function App() {
         <div className="boardPick">
           <Routes>
             <Route path="/onBoarding" element={<OnBoarding />} />
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              element={<Home />}
+            />
             <Route path="/category" element={<Category />} />
             <Route
               path="/category/categoryselect"
@@ -68,11 +84,7 @@ function App() {
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/myPick" element={<MyPick />} />
             <Route path="/myPick/all" element={<MyPickAll />} />
-            <Route
-              path="/myPage"
-              element={<MyPage LogData={LogData} />}
-              LogData={LogData}
-            />
+            <Route path="/myPage" element={<MyPage logData={logData} />} />
             <Route path="/search" element={<SearchResult />} />
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}

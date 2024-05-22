@@ -16,7 +16,7 @@ import { getRecsGame } from "../../common/axios/api";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
-const MyPick = ({ LogData }) => {
+const MyPick = ({ logData, token }) => {
   const gameTabRef = useRef({});
   const myPick = useSelector((state) => state.myPick);
   const recentGame = useSelector((state) => state.recentGame);
@@ -170,7 +170,7 @@ const MyPick = ({ LogData }) => {
         {!selectedPick ? (
           <>
             <h1 className="contentTit">
-              <strong>{LogData ? LogData.nickname : "사용자"}</strong>님을 위한
+              <strong>{logData ? logData.nickname : "사용자"}</strong>님을 위한
               추천 보드게임
             </h1>
 
@@ -217,7 +217,7 @@ const MyPick = ({ LogData }) => {
       </article>
       {recentGame.length !== 0 && (
         <article className="recentGame">
-          <h1 className="contentTit">최근 본 보드게임</h1>
+          <h1 className="contentTit">이런 보드게임은 어떠세요?</h1>
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
             {recsGameData.map((game, i) => (
               <SwiperSlide
