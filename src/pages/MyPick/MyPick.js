@@ -207,7 +207,7 @@ const MyPick = ({ logData }) => {
                   >
                     <p>
                       <CategoryBanner
-                        genre={selectedPick.boardGameCategories[0]}
+                      // genre={selectedPick.boardGameCategories[0]}
                       />
                       <span>{selectedPick.name}</span>
                     </p>
