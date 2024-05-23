@@ -39,7 +39,7 @@ function App() {
       console.error("No token found");
       return;
     }
-    const fetchData = async (token) => {
+    const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);
         setLogData(logData);
@@ -50,7 +50,7 @@ function App() {
       }
     };
 
-    fetchData(token);
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ function App() {
               element={<CategorySelect selectCategory={selectCategory} />}
             />
             <Route path="/category/:id" element={<CategoryDetail />} />
-            <Route path="/myPick" element={<MyPick />} />
+            <Route path="/myPick" element={<MyPick logData={logData} />} />
             <Route path="/myPick/all" element={<MyPickAll />} />
             <Route path="/myPage" element={<MyPage logData={logData} />} />
             <Route path="/search" element={<SearchResult />} />

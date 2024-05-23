@@ -39,7 +39,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       {mark && (
         <span className="leftBtns">
           <button
-            className={`barBtn bookmark ${picked && "pickOn"}
+            className={`barBtn bookmark ${picked ? "pickOn" : ""}
           `}
             onClick={(e) => {
               e.stopPropagation();

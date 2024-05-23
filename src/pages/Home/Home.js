@@ -175,16 +175,10 @@ const Home = () => {
                     <div className="todayPick" ref={todayPickRef}>
                       <Swiper slidesPerView={1.3} spaceBetween={12}>
                         <SwiperSlide>
-                          <Rank
-                            gamedata={rankData.slice(0, 5)}
-                            start={1}
-                          />
+                          <Rank gamedata={rankData.slice(0, 5)} start={1} />
                         </SwiperSlide>
                         <SwiperSlide>
-                          <Rank
-                            gamedata={rankData.slice(5, 10)}
-                            start={6}
-                          />
+                          <Rank gamedata={rankData.slice(5, 10)} start={6} />
                         </SwiperSlide>
                       </Swiper>
                     </div>
@@ -199,22 +193,23 @@ const Home = () => {
                     <h2>보드게임</h2>
                   </div>
                   <div className="slide" ref={gameTabRef}>
-                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                    {duoData &&
-                      duoData.map((d, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={d.id}
-                            img={d.imageUrl}
-                            name={d.name}
-                            info={d.description}
-                            tags={d.tags}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
-                  </Swiper>
-                </div>
+                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                      {duoData &&
+                        duoData.map((d, i) => (
+                          <SwiperSlide key={i}>
+                            <ThumbNail
+                              id={d.id}
+                              img={d.imageUrl}
+                              name={d.name}
+                              info={d.description}
+                              tags={d.tags}
+                              picked={d.picked}
+                              type="small"
+                            />
+                          </SwiperSlide>
+                        ))}
+                    </Swiper>
+                  </div>
                 </article>
                 <article className="curation">
                   <div className="title">
@@ -222,22 +217,22 @@ const Home = () => {
                     <h2>보드게임</h2>
                   </div>
                   <div className="slide" ref={gameTabRef}>
-                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                    {easyData &&
-                      easyData.map((r, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={r.id}
-                            img={r.imageUrl}
-                            name={r.name}
-                            info={r.description}
-                            tags={r.tags}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
-                  </Swiper>
-                </div>
+                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                      {easyData &&
+                        easyData.map((r, i) => (
+                          <SwiperSlide key={i}>
+                            <ThumbNail
+                              id={r.id}
+                              img={r.imageUrl}
+                              name={r.name}
+                              info={r.description}
+                              tags={r.tags}
+                              type="small"
+                            />
+                          </SwiperSlide>
+                        ))}
+                    </Swiper>
+                  </div>
                 </article>
                 <article className="curation">
                   <div className="title">
@@ -245,22 +240,22 @@ const Home = () => {
                     <h2>보드게임</h2>
                   </div>
                   <div className="slide" ref={gameTabRef}>
-                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                    {recommandData &&
-                      recommandData.map((r, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={r.id}
-                            img={r.imageUrl}
-                            name={r.name}
-                            info={r.description}
-                            tags={r.tags}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
-                  </Swiper>
-                </div>
+                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+                      {recommandData &&
+                        recommandData.map((r, i) => (
+                          <SwiperSlide key={i}>
+                            <ThumbNail
+                              id={r.id}
+                              img={r.imageUrl}
+                              name={r.name}
+                              info={r.description}
+                              tags={r.tags}
+                              type="small"
+                            />
+                          </SwiperSlide>
+                        ))}
+                    </Swiper>
+                  </div>
                 </article>
               </div>
             </div>

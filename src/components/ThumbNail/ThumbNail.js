@@ -35,7 +35,7 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       <article className="thumbImg">
         <img src={img} alt="썸네일이미지" />
         <button
-          className={`barBtn bookmark ${picked && "pickOn"}
+          className={`barBtn bookmark ${picked ? "pickOn" : ""}
           `}
           onClick={(e) => {
             e.stopPropagation();
