@@ -22,7 +22,7 @@ const MyPickAll = () => {
     }
     const fetchPickData = async () => {
       try {
-        const myPickData = await getMyPick();
+        const myPickData = await getMyPick(token);
         setMyPickData(myPickData);
         setLoading(false);
       } catch (err) {

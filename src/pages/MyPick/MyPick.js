@@ -95,23 +95,23 @@ const MyPick = ({ logData }) => {
   }, []);
 
   //카테고리 api
-  useEffect(() => {
-    const fetchCategoryData = async () => {
-      setLoading(<Loading />);
-      try {
-        const categoryData = await getCategorySelect(
-          selectedPick.boardGameCategories[0]
-        );
-        setCategoryData(categoryData);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCategoryData = async () => {
+  //     setLoading(<Loading />);
+  //     try {
+  //       const categoryData = await getCategorySelect(
+  //         selectedPick.boardGameCategories[0]
+  //       );
+  //       setCategoryData(categoryData);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchCategoryData();
-  }, [selectedPick.boardGameCategories]);
+  //   fetchCategoryData();
+  // }, [selectedPick.boardGameCategories]);
 
   //마이픽 초기값 설정
   useEffect(() => {
@@ -188,6 +188,7 @@ const MyPick = ({ logData }) => {
                           onClick={() =>
                             handleClickPick(
                               game.id,
+                              game.imageUrl,
                               game.name,
                               game.boardGameCategories
                             )
@@ -206,7 +207,7 @@ const MyPick = ({ logData }) => {
                   >
                     <p>
                       <CategoryBanner
-                      // genre={selectedPick.boardGameCategories[0]}
+                        genre={selectedPick.boardGameCategories[0]}
                       />
                       <span>{selectedPick.name}</span>
                     </p>
@@ -224,10 +225,7 @@ const MyPick = ({ logData }) => {
         {myPickData && myPickData !== 0 ? (
           <>
             <h1 className="contentTit">
-              <strong>
-                {" "}
-                {logData && logData !== 0 ? logData.nickname : "사용자"}
-              </strong>
+              <strong>{logData ? logData.nickname : "사용자"}</strong>
               님을 위한 추천 보드게임
             </h1>
 
