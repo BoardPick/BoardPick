@@ -31,7 +31,6 @@ function App() {
   const [searchKeyWord, setSearchKeyWord] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-
   const setIsLoggedIn = () => {
     dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
   };

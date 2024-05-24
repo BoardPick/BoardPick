@@ -1,5 +1,5 @@
 let initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   isCopied: false,
   toast: false,
   onSearch: false,
