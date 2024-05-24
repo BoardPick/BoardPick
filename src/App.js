@@ -156,7 +156,10 @@ function App() {
       <div className="App">
         <div className="boardPick">
           <Routes>
-            <Route path="/onBoarding" element={<OnBoarding />} />
+            <Route
+              path="/onBoarding"
+              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            />
 
             <Route path="/" element={<Home />} />
             <Route path="/category" element={<Category />} />
