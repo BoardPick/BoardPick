@@ -95,23 +95,23 @@ const MyPick = ({ logData }) => {
   }, []);
 
   //카테고리 api
-  // useEffect(() => {
-  //   const fetchCategoryData = async () => {
-  //     setLoading(<Loading />);
-  //     try {
-  //       const categoryData = await getCategorySelect(
-  //         selectedPick.boardGameCategories[0]
-  //       );
-  //       setCategoryData(categoryData);
-  //       setLoading(false);
-  //     } catch (err) {
-  //       setError(err.message);
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      setLoading(<Loading />);
+      try {
+        const categoryData = await getCategorySelect(
+          selectedPick.boardGameCategories[0]
+        );
+        setCategoryData(categoryData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
 
-  //   fetchCategoryData();
-  // }, [selectedPick.boardGameCategories]);
+    fetchCategoryData();
+  }, [selectedPick.boardGameCategories]);
 
   //마이픽 초기값 설정
   useEffect(() => {
@@ -274,7 +274,7 @@ const MyPick = ({ logData }) => {
           </>
         )}
       </article>
-      {recentGame.length !== 0 && (
+      {recsGameData && recsGameData.length !== 0 && (
         <article className="recentGame">
           <h1 className="contentTit">이런 보드게임은 어떠세요?</h1>
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
