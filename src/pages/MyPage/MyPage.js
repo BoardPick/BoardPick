@@ -11,7 +11,6 @@ const MyPage = ({ logData }) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const handleLogout = () => {
-    setLoggedOut(!loggedOut);
     window.location.href =
       "https://kauth.kakao.com/oauth/logout?client_id=6dc2d5a2c321c141f16322f2098449be&logout_redirect_uri=https://boardpick.netlify.app";
   };
@@ -57,7 +56,7 @@ const MyPage = ({ logData }) => {
             <ChevronRight />
           </li>
           {isLoggedIn && (
-            <li className="logout">
+            <li className="logout" onClick={() => setLoggedOut(!logout)}>
               <p>로그아웃</p>
               <ChevronRight />
             </li>
