@@ -70,8 +70,8 @@ function App() {
     }
   }, []);
 
-  const PrivateRoute = () => {
-    return isLoggedIn ? <Outlet /> : <Navigate to="/onBoarding" />;
+  const PrivateRoute = (token) => {
+    return getLogInfo(token) ? <Outlet /> : <Navigate to="/onBoarding" />;
   };
   console.log(isLoggedIn);
 
