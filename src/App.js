@@ -50,7 +50,6 @@ function App() {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
-        setIsLoggedIn(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -65,6 +64,7 @@ function App() {
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
+      setIsLoggedIn(true);
       navigate("/");
     }
   }, []);
@@ -81,7 +81,10 @@ function App() {
       <div className="App">
         <div className="boardPick">
           <Routes>
-            <Route path="/onBoarding" element={<OnBoarding />} />
+            <Route
+              path="/onBoarding"
+              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+            />
             <Route
               path="/"
               element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
