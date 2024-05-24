@@ -1,18 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Button from "../Btn/Button/Button";
 
-const AlertPopUp = ({ popText, handleLogout }) => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const dispatch = useDispatch();
-  const setIsLoggedIn = () => {
-    dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
-  };
-  const handleSubmit = () => {
-    setIsLoggedIn(!setIsLoggedIn);
-    handleLogout();
-  };
-  console.log(isLoggedIn);
+const AlertPopUp = ({ popText, handleCancel, handleSubmit }) => {
   return (
     <div className="alertPopup">
       <section className="overlay">
@@ -25,7 +14,7 @@ const AlertPopUp = ({ popText, handleLogout }) => {
               text={"취소"}
               type={"disabled"}
               size={"s48"}
-              onClick={handleLogout}
+              onClick={handleCancel}
             />
           </li>
           <li>

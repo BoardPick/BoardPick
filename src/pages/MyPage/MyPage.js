@@ -57,7 +57,7 @@ const MyPage = ({ logData }) => {
             <ChevronRight />
           </li>
           {isLoggedIn && (
-            <li className="logout" onClick={handleLogout}>
+            <li className="logout">
               <p>로그아웃</p>
               <ChevronRight />
             </li>
@@ -67,7 +67,8 @@ const MyPage = ({ logData }) => {
       {loggedOut && (
         <AlertPopUp
           popText={"정말 로그아웃 하시겠습니까?"}
-          handleLogout={handleLogout}
+          handleSubmit={handleLogout}
+          handleCancel={() => setLoggedOut(!loggedOut)}
         />
       )}
     </div>
