@@ -50,6 +50,7 @@ function App() {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
+        setIsLoggedIn(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -58,13 +59,15 @@ function App() {
 
     fetchData();
   }, []);
+  console.log(isLoggedIn);
+  console.log(logData);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
-      setIsLoggedIn(true);
+
       navigate("/");
     }
   }, []);
