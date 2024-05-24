@@ -4,6 +4,7 @@ import {
   useLocation,
   Navigate,
   useNavigate,
+  Outlet,
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
@@ -70,9 +71,10 @@ function App() {
     }
   }, []);
 
-  const PrivateRoute = ({ children }) => {
-    return isLoggedIn ? children : <Navigate to="/onBoarding" />;
+  const PrivateRoute = () => {
+    return isLoggedIn ? <Outlet /> : <Navigate to="/onBoarding" />;
   };
+  console.log(isLoggedIn);
 
   return (
     <SearchContext.Provider
