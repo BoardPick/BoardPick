@@ -43,21 +43,30 @@ function App() {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
-      navigate("/onBoarding");
       return;
     }
-
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);
         setLogData(logData);
+        setLoading(false);
         setIsLoggedIn(true);
       } catch (err) {
-        console.error("Error fetching data:", err);
+        setError(err.message);
+        setLoading(false);
       }
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+    if (token) {
+      localStorage.setItem("token", token);
+      navigate("/");
+    }
   }, []);
 
   return (
