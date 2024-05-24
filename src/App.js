@@ -40,6 +40,14 @@ function App() {
   const [logData, setLogData] = useState([]);
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+  }, []);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
@@ -51,6 +59,7 @@ function App() {
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
+        navigate("/");
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -58,16 +67,6 @@ function App() {
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-    if (token) {
-      localStorage.setItem("token", token);
-
-      navigate("/");
-    }
   }, []);
 
   return (
