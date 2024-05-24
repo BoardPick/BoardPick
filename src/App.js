@@ -5,6 +5,7 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
 import { useState, useEffect } from "react";
 import { getLogInfo } from "./common/axios/loginfo";
@@ -25,8 +26,14 @@ import Loading from "./components/Search/SearchResult/Loading/Loading";
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [searchKeyWord, setSearchKeyWord] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  const setIsLoggedIn = () => {
+    dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
+  };
 
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
@@ -44,6 +51,7 @@ function App() {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
+        setIsLoggedIn(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -58,12 +66,9 @@ function App() {
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
-      // console.log(token);
       navigate("/");
     }
   }, []);
-
-  const isLoggedIn = logData?.userData?.id || logData?.userData?.code;
 
   const PrivateRoute = ({ children }) => {
     return isLoggedIn ? children : <Navigate to="/onBoarding" />;
