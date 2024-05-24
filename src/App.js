@@ -37,38 +37,27 @@ function App() {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
+      navigate("/onBoarding");
       return;
     }
+
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);
         setLogData(logData);
-        setLoading(false);
       } catch (err) {
-        setError(err.message);
-        setLoading(false);
+        console.error("Error fetching data:", err);
       }
     };
 
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-    if (token) {
-      localStorage.setItem("token", token);
-      // console.log(token);
-      navigate("/");
-    }
-  }, []);
+  const isLoggedIn = logData?.userData?.id || logData?.userData?.code;
 
-  // const isLoggedIn =
-  //   logData &&
-  //   logData.userData &&
-  //   (logData.userData.id || logData.userData.code)
-  //     ? true
-  //     : false;
+  const PrivateRoute = ({ children }) => {
+    return isLoggedIn ? children : <Navigate to="/onBoarding" />;
+  };
 
   return (
     <SearchContext.Provider
@@ -83,21 +72,19 @@ function App() {
         <div className="boardPick">
           <Routes>
             <Route path="/onBoarding" element={<OnBoarding />} />
-            <Route
-              path="/"
-              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home />}
-            />
-            <Route path="/category" element={<Category />} />
-            <Route
-              path="/category/categoryselect"
-              element={<CategorySelect selectCategory={selectCategory} />}
-            />
-            <Route path="/category/:id" element={<CategoryDetail />} />
-            <Route path="/myPick" element={<MyPick logData={logData} />} />
-            <Route path="/myPick/all" element={<MyPickAll />} />
-            <Route path="/myPage" element={<MyPage logData={logData} />} />
-            <Route path="/search" element={<SearchResult />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/category" element={<Category />} />
+              <Route
+                path="/category/categoryselect"
+                element={<CategorySelect selectCategory={selectCategory} />}
+              />
+              <Route path="/category/:id" element={<CategoryDetail />} />
+              <Route path="/myPick" element={<MyPick logData={logData} />} />
+              <Route path="/myPick/all" element={<MyPickAll />} />
+              <Route path="/myPage" element={<MyPage logData={logData} />} />
+              <Route path="/search" element={<SearchResult />} />
+            </Route>
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
