@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import AppBar from "../../components/AppBar/AppBar.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
-import NoticeBtn from "../../components/Btn/NoticeBtn/NoticeBtn.js";
 import Tag from "../../components/Tag/Tag";
 import ToastPopUp from "../../components/ToastPopUp/ToastPopUp.js";
 import BoardGameElement from "../../layouts/BoardGameElement/BoardGameElement.js";
@@ -14,10 +13,18 @@ import { getBoardGameDetail } from "../../common/axios/api.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const CategoryDetail = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [data, setData] = useState({});
+  const toast = useSelector((state) => state.toast);
+  const isCopied = useSelector((state) => state.isCopied);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const setToast = () => {
+    dispatch({
+      type: "SET_TOAST",
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,37 +40,12 @@ const CategoryDetail = () => {
     fetchData();
   }, [id]);
 
-  const dispatch = useDispatch();
-  const pick = useSelector((state) => state.pick);
-  const toast = useSelector((state) => state.toast);
-  const isCopied = useSelector((state) => state.isCopied);
-
-  const setToast = () => {
-    dispatch({
-      type: "SET_TOAST",
-    });
-  };
-
-  const handlePick = () => {
+  useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      likes: pick ? prevData.likes + 1 : prevData.likes - 1,
-      picked: !pick,
+      likes: data.picked ? data.likes + 1 : data.likes - 1,
     }));
-  };
-
-  const handleClick = (e) => {
-    if (!e.target.closest(".bookmark")) return;
-    handlePick();
-    setToast(true);
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, [pick]);
+  }, [data.picked]);
 
   useEffect(() => {
     if (toast) {
@@ -72,7 +54,7 @@ const CategoryDetail = () => {
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [toast]);
+  }, [toast, setToast]);
 
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
@@ -81,7 +63,7 @@ const CategoryDetail = () => {
     <div className="categoryDetail">
       <AppBar mark type={"gradient"} id={data.id} picked={data.picked} />
       <div className="backImg">
-        <img src={data.imageUrl} />
+        <img src={data.imageUrl} alt="backgroundImg" />
       </div>
       <section className="boardGameInfo">
         <article className="detailThumbNail">
@@ -112,7 +94,9 @@ const CategoryDetail = () => {
       <RuleTab />
       <div className={`toast ${toast ? "pop" : ""}`}>
         <ToastPopUp
-          ToastContent={`보드게임${pick ? "을 PICK " : " PICK을 취소"}했어요`}
+          ToastContent={`보드게임${
+            data.picked ? "을 PICK " : " PICK을 취소"
+          }했어요`}
         />
       </div>
       {isCopied && <BottomPopUp />}
