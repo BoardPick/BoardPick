@@ -17,7 +17,7 @@ import {
   getMyPick,
   getSimilarBoardGame,
 } from "../../common/axios/api";
-import { getCategorySelect } from "../../common/axios/categoryselect.js";
+import { getRankData } from "../../common/axios/rank.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPick = ({ logData }) => {
@@ -29,8 +29,8 @@ const MyPick = ({ logData }) => {
 
   const [myPickData, setMyPickData] = useState([]);
   const [recsGameData, setRecsGameData] = useState([]);
-  const [categoryData, setCategoryData] = useState([]);
   const [similarData, setSimilarData] = useState([]);
+  const [rankData, setRankData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     imageUrl: "",
@@ -80,7 +80,7 @@ const MyPick = ({ logData }) => {
   useEffect(() => {
     const getSimilarData = async () => {
       try {
-        const similarData = await getSimilarBoardGame();
+        const similarData = await getSimilarBoardGame(selectedPick.id);
         setSimilarData(similarData);
         setLoading(false);
       } catch (err) {
@@ -89,17 +89,15 @@ const MyPick = ({ logData }) => {
       }
     };
     getSimilarData();
-  }, []);
+  }, [selectedPick.id]);
 
-  //카테고리 api
+  //픽 api
   useEffect(() => {
-    const fetchCategoryData = async () => {
-      setLoading(<Loading />);
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        const categoryData = await getCategorySelect(
-          selectedPick.boardGameCategories[0]
-        );
-        setCategoryData(categoryData);
+        const rankData = await getRankData();
+        setRankData(rankData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -107,8 +105,8 @@ const MyPick = ({ logData }) => {
       }
     };
 
-    fetchCategoryData();
-  }, [selectedPick.boardGameCategories]);
+    fetchData();
+  }, []);
 
   //마이픽 초기값 설정
   useEffect(() => {
@@ -158,7 +156,7 @@ const MyPick = ({ logData }) => {
           )}
         </header>
         <article className="pickBox" ref={gameTabRef}>
-          {myPickData && myPickData.length === 0 ? (
+          {!myPickData && myPickData.length === 0 ? (
             <>
               <div className="noPick">현재 등록된 PICK이 없어요!</div>
               <div
@@ -204,7 +202,7 @@ const MyPick = ({ logData }) => {
                   >
                     <p>
                       <CategoryBanner
-                      // genre={selectedPick.boardGameCategories[0]}
+                        genre={selectedPick.boardGameCategories[0]}
                       />
                       <span>{selectedPick.name}</span>
                     </p>
@@ -219,7 +217,7 @@ const MyPick = ({ logData }) => {
         </article>
       </section>
       <article className="recommendGame" ref={gameTabRef}>
-        {myPickData && myPickData.length === 0 ? (
+        {!myPickData && myPickData.length === 0 ? (
           <>
             <h1 className="contentTit">
               <strong>'{logData ? logData.nickname : "사용자"}'</strong>
@@ -271,11 +269,11 @@ const MyPick = ({ logData }) => {
           </>
         )}
       </article>
-      {recsGameData && recsGameData.length !== 0 && (
+      {rankData && rankData.length !== 0 && (
         <article className="recentGame">
           <h1 className="contentTit">이런 보드게임은 어떠세요?</h1>
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {recsGameData.map((game, i) => (
+            {rankData.map((game, i) => (
               <SwiperSlide
                 key={i}
                 onClick={() => navigate(`/category/${game.id}`)}

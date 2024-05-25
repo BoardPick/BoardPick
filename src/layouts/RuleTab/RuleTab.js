@@ -71,6 +71,7 @@ const RuleTab = () => {
                 >
                   <ThumbNail
                     type="small"
+                    id={game.id}
                     img={game.imageUrl}
                     name={game.name}
                     info={game.description}

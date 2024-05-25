@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
@@ -8,7 +8,12 @@ import { togglePick } from "../../common/axios/api";
 
 const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const [isPicked, setIsPicked] = useState(() => {
+    const storedIsPicked = localStorage.getItem(`thumb_${id}`);
+    return storedIsPicked !== null ? JSON.parse(storedIsPicked) : false;
+  });
   const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -17,7 +22,8 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
     }
     togglePick(id, token)
       .then(function (response) {
-        console.log(response);
+        setIsPicked(response.picked);
+        localStorage.setItem(`thumb_${id}`, JSON.stringify(response.picked));
       })
       .catch(function (error) {
         console.error(error);
@@ -34,7 +40,7 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       <article className="thumbImg">
         <img src={img} alt="썸네일이미지" />
         <button
-          className={`barBtn bookmark ${picked ? "pickOn" : ""}
+          className={`barBtn bookmark ${isPicked ? "pickOn" : ""}
           `}
           onClick={(e) => {
             e.stopPropagation();

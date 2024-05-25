@@ -20,6 +20,10 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
+  const [isPicked, setIsPicked] = useState(() => {
+    const storedIsPicked = localStorage.getItem(`thumb_${id}`);
+    return storedIsPicked !== null ? JSON.parse(storedIsPicked) : false;
+  });
 
   const handlerPick = (id) => {
     const token = localStorage.getItem("token");
@@ -29,7 +33,8 @@ const AppBar = ({ title, mark, type, id, picked }) => {
     }
     togglePick(id, token)
       .then(function (response) {
-        console.log(response);
+        setIsPicked(response.picked);
+        localStorage.setItem(`thumb_${id}`, JSON.stringify(response.picked));
       })
       .catch(function (error) {
         console.error(error);
@@ -46,7 +51,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       {mark && (
         <span className="leftBtns">
           <button
-            className={`barBtn bookmark ${picked ? "pickOn" : ""}
+            className={`barBtn bookmark ${isPicked ? "pickOn" : ""}
           `}
             onClick={(e) => {
               e.stopPropagation();
