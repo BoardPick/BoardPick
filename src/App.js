@@ -59,7 +59,7 @@ function App() {
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
-        navigate("/");
+        // navigate("/");
       } catch (err) {
         setError(err.message);
         setLoading(false);
