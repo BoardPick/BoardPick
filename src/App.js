@@ -39,35 +39,62 @@ function App() {
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-    if (token) {
-      localStorage.setItem("token", token);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const token = urlParams.get("token");
+  //   if (token) {
+  //     localStorage.setItem("token", token);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     console.error("No token found");
+  //     return;
+  //   }
+  //   const fetchData = async () => {
+  //     try {
+  //       const logData = await getLogInfo(token);
+  //       setLogData(logData);
+  //       setLoading(false);
+  //       setIsLoggedIn(true);
+  //       // navigate("/");
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    const fetchData = async () => {
+    const fetchUserDetails = async (token) => {
       try {
-        const logData = await getLogInfo(token);
-        setLogData(logData);
-        setLoading(false);
-        setIsLoggedIn(true);
-        // navigate("/");
+        const userDetails = await getLogInfo(token);
+        if (userDetails) {
+          setLogData(userDetails);
+          setIsLoggedIn(true);
+          navigate("/");
+        }
       } catch (err) {
         setError(err.message);
         setLoading(false);
+        navigate("/login");
       }
     };
 
-    fetchData();
-  }, []);
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (token) {
+      localStorage.setItem("token", token);
+      fetchUserDetails(token);
+    } else {
+      navigate("/onBoarding");
+    }
+  }, [navigate]);
 
   return (
     <SearchContext.Provider
