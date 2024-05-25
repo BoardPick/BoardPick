@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { togglePick } from "../../common/axios/api";
 
 const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handlerPick = () => {
@@ -49,7 +48,11 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
         <h1>{name}</h1>
         <p>{info}</p>
         <div className="hashTagBox">
-          {tags && tags.map((t, i) => <Tag key={i} tag={t} thumb={"thumb"} />)}
+          {tags &&
+            tags
+              .slice(0, 2)
+              .map((t, i) => <Tag key={i} tag={t} thumb={"thumb"} />)}
+          <div className="hashTag ellipis"></div>
         </div>
       </article>
     </div>

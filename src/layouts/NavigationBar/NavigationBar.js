@@ -16,15 +16,15 @@ const TabBar = () => {
       icon: <Home />,
       text: "홈",
     },
-    { url: "/Category", icon: <Category />, text: "카테고리" },
-    { url: "/MyPick", icon: <Bookmark />, text: "MY PICK" },
-    { url: "/MyPage", icon: <MyPage />, text: "내 정보" },
+    { url: "/category", icon: <Category />, text: "카테고리" },
+    { url: "/myPick", icon: <Bookmark />, text: "MY PICK" },
+    { url: "/myPage", icon: <MyPage />, text: "내 정보" },
   ];
 
   const handleTabClick = (url) => {
     setSelectedTab(url);
     navigate(url);
-    dispatch({type: "OFF_ONSEARCH"});
+    dispatch({ type: "OFF_ONSEARCH" });
   };
 
   return (
