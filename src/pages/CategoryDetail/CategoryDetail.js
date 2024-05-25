@@ -25,6 +25,10 @@ const CategoryDetail = () => {
       type: "SET_TOAST",
     });
   };
+  const [isPicked, setIsPicked] = useState(() => {
+    const storedIsPicked = localStorage.getItem(`thumb_${id}`);
+    return storedIsPicked !== null ? JSON.parse(storedIsPicked) : false;
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -45,13 +49,6 @@ const CategoryDetail = () => {
     fetchData();
   }, [id]);
 
-  // useEffect(() => {
-  //   setData((prevData) => ({
-  //     ...prevData,
-  //     likes: data.picked ? data.likes + 1 : data.likes - 1,
-  //   }));
-  // }, [data.picked]);
-
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => {
@@ -63,6 +60,7 @@ const CategoryDetail = () => {
 
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
+  console.log(isPicked);
 
   return (
     <div className="categoryDetail">
@@ -82,15 +80,15 @@ const CategoryDetail = () => {
           </div>
           <h1 className="boardGameName">{data.name}</h1>
           <h2 className="boardGameOne">{data.description}</h2>
-          {data.likes > 0 && (
+          {/* {data.likes > 0 && (
             <div className="pickBanner">
-              이 보드게임을
+              이 보드게임을{" "}
               <strong className="pickCount">
-                {data.picked ? data.likes + 1 : data.likes - 1}
+                {isPicked ? data.likes + 1 : data.likes - 1}
               </strong>
               명이 PICK 했어요!
             </div>
-          )}
+          )} */}
           <div className="hashTagBox">
             {data.tags.map((tag, i) => (
               <Tag key={i} tag={data.tags[i]} />
@@ -100,13 +98,13 @@ const CategoryDetail = () => {
         <BoardGameElement data={data} />
       </section>
       <RuleTab />
-      <div className={`toast ${toast ? "pop" : ""}`}>
+      {/* <div className={`toast ${toast ? "pop" : ""}`}>
         <ToastPopUp
           ToastContent={`보드게임${
-            data.picked ? "을 PICK " : " PICK을 취소"
+            isPicked ? "을 PICK " : " PICK을 취소"
           }했어요`}
         />
-      </div>
+      </div> */}
       {isCopied && <BottomPopUp />}
     </div>
   );

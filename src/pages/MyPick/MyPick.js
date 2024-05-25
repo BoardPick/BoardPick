@@ -80,7 +80,7 @@ const MyPick = ({ logData }) => {
   useEffect(() => {
     const getSimilarData = async () => {
       try {
-        const similarData = await getSimilarBoardGame();
+        const similarData = await getSimilarBoardGame(selectedPick.id);
         setSimilarData(similarData);
         setLoading(false);
       } catch (err) {
@@ -89,7 +89,7 @@ const MyPick = ({ logData }) => {
       }
     };
     getSimilarData();
-  }, []);
+  }, [selectedPick.id]);
 
   //카테고리 api
   useEffect(() => {
@@ -158,7 +158,7 @@ const MyPick = ({ logData }) => {
           )}
         </header>
         <article className="pickBox" ref={gameTabRef}>
-          {myPickData && myPickData.length === 0 ? (
+          {!myPickData && myPickData.length === 0 ? (
             <>
               <div className="noPick">현재 등록된 PICK이 없어요!</div>
               <div
@@ -204,7 +204,7 @@ const MyPick = ({ logData }) => {
                   >
                     <p>
                       <CategoryBanner
-                      // genre={selectedPick.boardGameCategories[0]}
+                        genre={selectedPick.boardGameCategories[0]}
                       />
                       <span>{selectedPick.name}</span>
                     </p>
