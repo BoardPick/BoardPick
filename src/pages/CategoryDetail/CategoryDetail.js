@@ -27,6 +27,11 @@ const CategoryDetail = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
     const fetchData = async () => {
       try {
         const data = await getBoardGameDetail(id);
@@ -40,12 +45,12 @@ const CategoryDetail = () => {
     fetchData();
   }, [id]);
 
-  useEffect(() => {
-    setData((prevData) => ({
-      ...prevData,
-      likes: data.picked ? data.likes + 1 : data.likes - 1,
-    }));
-  }, [data.picked]);
+  // useEffect(() => {
+  //   setData((prevData) => ({
+  //     ...prevData,
+  //     likes: data.picked ? data.likes + 1 : data.likes - 1,
+  //   }));
+  // }, [data.picked]);
 
   useEffect(() => {
     if (toast) {
@@ -79,7 +84,10 @@ const CategoryDetail = () => {
           <h2 className="boardGameOne">{data.description}</h2>
           {data.likes > 0 && (
             <div className="pickBanner">
-              이 보드게임을 <strong className="pickCount">{data.likes}</strong>
+              이 보드게임을
+              <strong className="pickCount">
+                {data.picked ? data.likes + 1 : data.likes - 1}
+              </strong>
               명이 PICK 했어요!
             </div>
           )}
