@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { SearchContext } from "../../context/SearchContext.js";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory } from "../../redux/actions.js";
+// import { SearchContext } from "../../context/SearchContext.js";
 import {
   Strategy,
   Rollplaying,
@@ -17,7 +18,9 @@ import {
 const CategoryBox = () => {
   const navigate = useNavigate();
   const url = "/category/categoryselect";
-  const data = useContext(SearchContext);
+  // const data = useContext(SearchContext);
+  const selectCategory = useSelector((state) => state.selectCategory);
+  const dispatch = useDispatch();
 
   const category1 = [
     { icon: <Strategy />, text: "전략게임" },
@@ -36,7 +39,8 @@ const CategoryBox = () => {
   ];
 
   const handleCategoryClick = (genre) => {
-    data.setSelectCategory(genre);
+    // data.setSelectCategory(genre);
+    dispatch(setCategory(genre));
     navigate(url);
   };
 

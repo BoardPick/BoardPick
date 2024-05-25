@@ -27,7 +27,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchKeywold, setSearchKeywold] = useState("");
-  const [selectCategory, setSelectCategory] = useState("none");
+  // const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const setIsLoggedIn = () => {
@@ -74,11 +74,11 @@ function App() {
       value={{
         searchKeywold,
         setSearchKeywold,
-        selectCategory,
-        setSelectCategory,
+        // selectCategory,
+        // setSelectCategory,
       }}
     >
-      <div className="App">
+      {/* <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -151,8 +151,8 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div>
-      {/* <div className="App">
+      </div> */}
+      <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -164,7 +164,7 @@ function App() {
             <Route path="/category" element={<Category />} />
             <Route
               path="/category/categoryselect"
-              element={<CategorySelect selectCategory={selectCategory} />}
+              element={<CategorySelect />}
             />
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/myPick" element={<MyPick logData={logData} />} />
@@ -174,7 +174,7 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div> */}
+      </div>
     </SearchContext.Provider>
   );
 }
