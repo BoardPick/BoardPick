@@ -26,7 +26,7 @@ import { useSelector, useDispatch } from "react-redux";
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchKeyWord, setSearchKeyWord] = useState("");
+  const [searchKeywold, setSearchKeywold] = useState("");
   const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
@@ -72,13 +72,13 @@ function App() {
   return (
     <SearchContext.Provider
       value={{
-        searchKeyWord,
-        setSearchKeyWord,
+        searchKeywold,
+        setSearchKeywold,
         selectCategory,
         setSelectCategory,
       }}
     >
-      <div className="App">
+      {/* <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -151,8 +151,8 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div>
-      {/* <div className="App">
+      </div> */}
+      <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -174,7 +174,7 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div> */}
+      </div>
     </SearchContext.Provider>
   );
 }
