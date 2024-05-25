@@ -56,7 +56,7 @@ const MyPage = ({ logData }) => {
             <ChevronRight />
           </li>
           {isLoggedIn && (
-            <li className="logout" onClick={() => setLoggedOut(!logout)}>
+            <li className="logout" onClick={() => setLoggedOut(!loggedOut)}>
               <p>로그아웃</p>
               <ChevronRight />
             </li>
