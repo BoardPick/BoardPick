@@ -78,9 +78,9 @@ const MyPick = ({ logData }) => {
 
   //비슷한 게임 api
   useEffect(() => {
-    const fetchSimilarData = async () => {
+    const getSimilarData = async () => {
       try {
-        const similarData = await getMyPick();
+        const similarData = await getSimilarBoardGame();
         setSimilarData(similarData);
         setLoading(false);
       } catch (err) {
@@ -88,7 +88,7 @@ const MyPick = ({ logData }) => {
         setLoading(false);
       }
     };
-    fetchSimilarData();
+    getSimilarData();
   }, []);
 
   //카테고리 api
