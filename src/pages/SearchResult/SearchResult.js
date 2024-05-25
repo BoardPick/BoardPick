@@ -29,7 +29,7 @@ const SearchResult = () => {
     };
 
     fetchData();
-  }, [log.searchKeWord]);
+  }, [log.searchKeywold]);
 
   if (loading) return <Loading />;
 
