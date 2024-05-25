@@ -22,9 +22,6 @@ import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
-  const myPick = useSelector((state) => state.myPick);
-  const recentGame = useSelector((state) => state.recentGame);
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [myPickOn, setMyPickOn] = useState(false);
   const navigate = useNavigate();
   const slidesPerView = useSlidesPerView(gameTabRef);
@@ -222,10 +219,10 @@ const MyPick = ({ logData }) => {
         </article>
       </section>
       <article className="recommendGame" ref={gameTabRef}>
-        {myPickData && myPickData !== 0 ? (
+        {myPickData && myPickData.length === 0 ? (
           <>
             <h1 className="contentTit">
-              <strong>{logData ? logData.nickname : "사용자"}</strong>
+              <strong>'{logData ? logData.nickname : "사용자"}'</strong>
               님을 위한 추천 보드게임
             </h1>
 
