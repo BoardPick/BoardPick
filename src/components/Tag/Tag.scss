@@ -1,4 +1,7 @@
 .hashTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid $line_default;
   border-radius: 80px;
   padding: 4px 10px;
@@ -17,9 +20,4 @@
   &::before {
     content: "#";
   }
-  // &:last-child {
-  //   &::before {
-  //     content: "";
-  //   }
-  // }
 }

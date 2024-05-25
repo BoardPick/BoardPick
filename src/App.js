@@ -49,6 +49,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    navigate("/");
     if (!token) {
       console.error("No token found");
       return;
