@@ -135,7 +135,7 @@ const MyPick = ({ logData }) => {
     });
   };
 
-  console.log(myPickData);
+  // console.log(myPickData);
 
   return (
     <div className="myPick">
