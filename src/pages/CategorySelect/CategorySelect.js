@@ -65,11 +65,6 @@ const CategorySelect = () => {
   );
   // 선택된 요소를 맨 앞으로 배치하고 나머지를 뒤에 추가한 새로운 배열 생성
   const sortedCategories = selectedCategory.concat(otherCategories);
-
-  const onClick = (genre) => {
-    // dispatch(setCategory(genre));
-    navigate(`/category/${genre}`);
-  }
   
   if (loading) return <Loading />;
 
@@ -89,7 +84,7 @@ const CategorySelect = () => {
                   <CategorySelectBtn
                     genre={d.genre}
                     type={d.genre === this.props.match.params.name ? "select" : ""}
-                    onClick={() => onClick(d.genre)}
+                    onClick={() => navigate(`/categoryselect/${d.genre}`)}
                   />
                 </SwiperSlide>
               ))}
