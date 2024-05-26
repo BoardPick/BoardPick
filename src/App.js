@@ -40,7 +40,7 @@ function App() {
   const [logData, setLogData] = useState([]);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(location.search);
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
@@ -49,6 +49,9 @@ function App() {
     if (!storeToken) {
       console.error("No token found");
       return;
+    }
+    if (location.pathname === `/auth/oauth-success?token=${storeToken}`) {
+      navigate("/");
     }
     const fetchData = async () => {
       try {
@@ -64,15 +67,6 @@ function App() {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (
-      window.location.pathname ===
-      `/auth/oauth-success?token=${localStorage.getItem("token")}`
-    ) {
-      navigate("/");
-    }
-  }, [window.location.pathname, navigate]);
 
   return (
     <SearchContext.Provider
