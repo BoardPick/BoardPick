@@ -38,45 +38,46 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
+  const [loginChecked, setLoginChecked] = useState(false); // 로그인 상태 체크 여부
+  const [loginRedirected, setLoginRedirected] = useState(false);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
-    const handleAuth = async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get("token");
-
-      if (token) {
-        localStorage.setItem("token", token);
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+    const storeToken = localStorage.getItem("token");
+    if (!storeToken) {
+      console.error("No token found");
+      return;
+    }
+    const fetchData = async () => {
+      try {
+        const logData = await getLogInfo(token);
+        setLogData(logData);
+        setLoading(false);
         setIsLoggedIn(true);
-      } else {
-        const storedToken = localStorage.getItem("token");
-        if (!storedToken) {
-          console.error("No token found");
-          setIsLoggedIn(false);
-          setLoading(false);
-          return;
-        }
-
-        try {
-          const logData = await getLogInfo(storedToken);
-          setLogData(logData);
-          setIsLoggedIn(true);
-        } catch (err) {
-          setError(err.message);
-          setIsLoggedIn(false);
-        } finally {
-          setLoading(false);
-        }
+        setLoginChecked(true);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+        setLoginChecked(true);
       }
     };
 
-    handleAuth();
-  }, [setIsLoggedIn]);
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (
       isLoggedIn &&
-      location.pathname ===
-        `/auth/oauth-success?token=${localStorage.getItem("token")}`
+      location ===
+        `https://boardpick.netlify.app/auth/oauth-success?token=${localStorage.getItem(
+          "token"
+        )}`
     ) {
       navigate("/");
     }
