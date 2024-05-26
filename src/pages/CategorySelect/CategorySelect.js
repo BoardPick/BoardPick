@@ -84,7 +84,7 @@ const CategorySelect = () => {
                   <CategorySelectBtn
                     genre={d.genre}
                     type={d.genre === this.props.match.params.name ? "select" : ""}
-                    onClick={() => navigate(`/categoryselect/${d.genre}`)}
+                    onClick={() => navigate(`/category/${d.genre}`)}
                   />
                 </SwiperSlide>
               ))}
