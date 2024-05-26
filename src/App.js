@@ -160,12 +160,12 @@ function App() {
               element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
             />
 
-            <Route path="/" element={<Home />} />
-            <Route path="/category" element={<Category />} />
             <Route
-              path="/category/select/:name"
-              element={<CategorySelect />}
+              path="/"
+              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
             />
+            <Route path="/category" element={<Category />} />
+            <Route path="/category/select/:name" element={<CategorySelect />} />
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/myPick" element={<MyPick logData={logData} />} />
             <Route path="/myPick/all" element={<MyPickAll />} />
