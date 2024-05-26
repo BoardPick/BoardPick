@@ -5,7 +5,7 @@ const apiRoot = axios.create({
 
 export const getCategorySelect = async (name) => {
   try {
-    const { data } = await apiRoot.get(`/api/boardgames?category=${name}`);
+    const { data } = await apiRoot.get(`/api/boardgames?category=${encodeURIComponent(name)}`);
     return data;
   } catch (error) {
     throw error;
