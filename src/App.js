@@ -50,15 +50,16 @@ function App() {
       console.error("No token found");
       return;
     }
-    if (location.pathname === `/auth/oauth-success?token=${storeToken}`) {
-      navigate("/");
-    }
+
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
+        if (location.pathname === `/auth/oauth-success?token=${storeToken}`) {
+          navigate("/");
+        }
       } catch (err) {
         setError(err.message);
         setLoading(false);
