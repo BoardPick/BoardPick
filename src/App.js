@@ -75,7 +75,8 @@ function App() {
   useEffect(() => {
     if (
       isLoggedIn &&
-      location.pathname === `/${localStorage.getItem("token")}`
+      location.pathname ===
+        `/auth/oauth-success?token=${localStorage.getItem("token")}`
     ) {
       navigate("/");
     }
