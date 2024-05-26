@@ -39,7 +39,7 @@ const RuleTab = () => {
   useEffect(() => {
     const getSimilarData = async () => {
       try {
-        const similarData = await getSimilarBoardGame(data.id);
+        const similarData = await getSimilarBoardGame(id);
         setSimilarData(similarData);
         setLoading(false);
       } catch (err) {
@@ -48,7 +48,7 @@ const RuleTab = () => {
       }
     };
     getSimilarData();
-  }, [data.id]);
+  }, [id]);
 
   return (
     <div className="gameTab" ref={gameTabRef}>

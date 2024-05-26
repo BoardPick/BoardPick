@@ -118,7 +118,7 @@ const MyPick = ({ logData }) => {
         boardGameCategories: myPickData[0].boardGameCategories,
       });
     }
-  }, [myPickData]);
+  }, []);
 
   if (loading) return <Loading />;
 
@@ -132,8 +132,6 @@ const MyPick = ({ logData }) => {
       boardGameCategories: boardGameCategories,
     });
   };
-
-  // console.log(myPickData);
 
   return (
     <div className="myPick">
@@ -198,7 +196,7 @@ const MyPick = ({ logData }) => {
                   </Swiper>
                   <div
                     className="go game"
-                    onClick={() => navigate(`/category/ ${selectedPick.id}`)}
+                    onClick={() => navigate(`/category/${selectedPick.id}`)}
                   >
                     <p>
                       <CategoryBanner
