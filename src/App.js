@@ -72,11 +72,9 @@ function App() {
       value={{
         searchKeywold,
         setSearchKeywold,
-        // selectCategory,
-        // setSelectCategory,
       }}
     >
-      {/* <div className="App">
+      <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -85,21 +83,11 @@ function App() {
             />
             <Route
               path="/"
-              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              element={isLoggedIn ? <Home logData={logData} /> : <Navigate to="/onBoarding" />}
             />
             <Route path="/category" element={<Category />} />
             <Route
-              path="/category/categoryselect"
-              element={
-                isLoggedIn ? (
-                  <CategorySelect selectCategory={selectCategory} />
-                ) : (
-                  <Navigate to="/onBoarding" />
-                )
-              }
-            />
-            <Route
-              path="/category/categoryselect"
+              path="/category/select/:name"
               element={
                 isLoggedIn ? (
                   <CategorySelect selectCategory={selectCategory} />
@@ -149,32 +137,32 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div> */}
-      <div className="App">
-        <div className="boardPick">
-          <Routes>
-            <Route
-              path="/onBoarding"
-              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              element={<OnBoarding />}
-            />
-
-            <Route
-              path="/"
-              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home logData={logData}/>}
-            />
-            <Route path="/category" element={<Category />} />
-            <Route path="/category/select/:name" element={<CategorySelect />} />
-            <Route path="/category/:id" element={<CategoryDetail />} />
-            <Route path="/myPick" element={<MyPick logData={logData} />} />
-            <Route path="/myPick/all" element={<MyPickAll />} />
-            <Route path="/myPage" element={<MyPage logData={logData} />} />
-            <Route path="/search" element={<SearchResult />} />
-          </Routes>
-          {location.pathname !== "/onBoarding" && <NavigationBar />}
-        </div>
       </div>
+      // <div className="App">
+      //   <div className="boardPick">
+      //     <Routes>
+      //       <Route
+      //         path="/onBoarding"
+      //         // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+      //         element={<OnBoarding />}
+      //       />
+
+      //       <Route
+      //         path="/"
+      //         // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+      //         element={<Home logData={logData}/>}
+      //       />
+      //       <Route path="/category" element={<Category />} />
+      //       <Route path="/category/select/:name" element={<CategorySelect />} />
+      //       <Route path="/category/:id" element={<CategoryDetail />} />
+      //       <Route path="/myPick" element={<MyPick logData={logData} />} />
+      //       <Route path="/myPick/all" element={<MyPickAll />} />
+      //       <Route path="/myPage" element={<MyPage logData={logData} />} />
+      //       <Route path="/search" element={<SearchResult />} />
+      //     </Routes>
+      //     {location.pathname !== "/onBoarding" && <NavigationBar />}
+      //   </div>
+      // </div>
     </SearchContext.Provider>
   );
 }
