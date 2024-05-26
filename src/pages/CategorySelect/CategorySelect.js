@@ -43,7 +43,7 @@ const CategorySelect = () => {
       setLoading(true);
       try {
         console.log({name});
-        const categoryData = await getCategorySelect({name});
+        const categoryData = await getCategorySelect(name);
         setCategoryData(categoryData);
         setLoading(false);
       } catch (err) {
@@ -53,25 +53,25 @@ const CategorySelect = () => {
     };
 
     fetchData();
-  }, []);
+  }, [name]);
 
   // log.selectCategory와 일치하는 요소를 먼저 가져오기
   const selectedCategory = CategorySelectArry.filter(
-    (d) => d.genre === {name}
+    (d) => d.genre === name
   );
   // log.selectCategory와 일치하지 않는 나머지 요소들을 가져오기
   const otherCategories = CategorySelectArry.filter(
-    (d) => d.genre !== {name}
+    (d) => d.genre !== name
   );
   // 선택된 요소를 맨 앞으로 배치하고 나머지를 뒤에 추가한 새로운 배열 생성
   const sortedCategories = selectedCategory.concat(otherCategories);
-
-  if (loading) return <Loading />;
 
   const onClick = (genre) => {
     // dispatch(setCategory(genre));
     navigate(`/categoryselect/${genre}`);
   }
+  
+  if (loading) return <Loading />;
 
   return (
     <div className="categorySelect">
@@ -88,8 +88,8 @@ const CategorySelect = () => {
                 <SwiperSlide key={i} className="swiper-slide-category">
                   <CategorySelectBtn
                     genre={d.genre}
-                    type={d.genre === {name} ? "select" : ""}
-                    onClick={onClick(d.genre)}
+                    type={d.genre === name ? "select" : ""}
+                    onClick{() => onClick(d.genre)}
                   />
                 </SwiperSlide>
               ))}
