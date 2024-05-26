@@ -26,7 +26,7 @@ const CategoryDetail = () => {
     });
   };
   const [isPicked, setIsPicked] = useState(() => {
-    const storedIsPicked = localStorage.getItem(`thumb_${this.props.match.params.id}`);
+    const storedIsPicked = localStorage.getItem(`thumb_${id}`);
     return storedIsPicked !== null ? JSON.parse(storedIsPicked) : false;
   });
 
@@ -38,7 +38,7 @@ const CategoryDetail = () => {
     }
     const fetchData = async () => {
       try {
-        const data = await getBoardGameDetail(this.props.match.params.id);
+        const data = await getBoardGameDetail(id);
         setData(data);
         setLoading(false);
       } catch (err) {
