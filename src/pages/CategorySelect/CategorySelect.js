@@ -31,7 +31,7 @@ const CategorySelect = () => {
   // const log = useContext(SearchContext);
   // const selectCategory = useSelector((state) => state.selectCategory);
   // const dispatch = useDispatch();
-  const { category } = useParams();
+  const { name } = useParams();
   const navigate = useNavigate();
 
   const [categoryData, setCategoryData] = useState(null);
@@ -42,7 +42,7 @@ const CategorySelect = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const categoryData = await getCategorySelect(category);
+        const categoryData = await getCategorySelect(name);
         setCategoryData(categoryData);
         setLoading(false);
       } catch (err) {
@@ -56,11 +56,11 @@ const CategorySelect = () => {
 
   // log.selectCategory와 일치하는 요소를 먼저 가져오기
   const selectedCategory = CategorySelectArry.filter(
-    (d) => d.genre === category
+    (d) => d.genre === name
   );
   // log.selectCategory와 일치하지 않는 나머지 요소들을 가져오기
   const otherCategories = CategorySelectArry.filter(
-    (d) => d.genre !== category
+    (d) => d.genre !== name
   );
   // 선택된 요소를 맨 앞으로 배치하고 나머지를 뒤에 추가한 새로운 배열 생성
   const sortedCategories = selectedCategory.concat(otherCategories);
@@ -87,7 +87,7 @@ const CategorySelect = () => {
                 <SwiperSlide key={i} className="swiper-slide-category">
                   <CategorySelectBtn
                     genre={d.genre}
-                    type={d.genre === category ? "select" : ""}
+                    type={d.genre === name ? "select" : ""}
                     onClick={onClick(d.genre)}
                   />
                 </SwiperSlide>
