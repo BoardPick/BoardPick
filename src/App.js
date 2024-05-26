@@ -33,6 +33,11 @@ function App() {
   const setIsLoggedIn = () => {
     dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
   };
+  // 최근 검색어 저장
+  const loadedRecentKeyword = localStorage.getItem('recentKeyword')
+    ? JSON.parse(localStorage.getItem('recentKeyword'))
+    : [];
+  const [recentKeyword, setRecentKeyword] = useState(Array.isArray(loadedRecentKeyword) ? loadedRecentKeyword : []);
 
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
@@ -72,6 +77,8 @@ function App() {
       value={{
         searchKeywold,
         setSearchKeywold,
+        recentKeyword,
+        setRecentKeyword,
       }}
     >
        {/* <div className="App">

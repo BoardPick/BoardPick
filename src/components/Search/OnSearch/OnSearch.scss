@@ -24,13 +24,16 @@
 	}
 
 	.tags {
-		display: flex;
+		display: inline-flex;  /* 자식 요소들을 가로로 정렬 */
+		flex-wrap: wrap;  /* 자식 요소들이 줄 바꿈을 할 수 있도록 설정 */
 		justify-content: flex-start;
-
-		padding: 2% 4%;
-		
-		.tag {
-			padding: 3px;
-		}
+	
+		padding: 2% 3%;
+	}
+	
+	.tag {
+		padding: 3px;
+		flex: 0 1 auto;  /* 자식 요소들이 컨테이너의 크기에 맞게 자동으로 줄어들거나 늘어나도록 설정 */
+		max-width: 100%;  /* 자식 요소들이 컨테이너의 최대 너비를 넘지 않도록 설정 */
 	}
 }

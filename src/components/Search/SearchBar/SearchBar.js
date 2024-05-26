@@ -23,14 +23,31 @@ const SearchBar = () => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       data.setSearchKeywold(tmpKeyword);
+      
+    const updatedRecentKeyword = [...data.recentKeyword, tmpKeyword];
+    window.localStorage.setItem(
+      'recentKeyword',
+      JSON.stringify(updatedRecentKeyword)
+    );
+    data.setRecentKeyword(updatedRecentKeyword);
+
       navigate("/search");
     }
   };
 
   const onResult = () => {
     data.setSearchKeywold(tmpKeyword);
+  
+    const updatedRecentKeyword = [...data.recentKeyword, tmpKeyword];
+    window.localStorage.setItem(
+      'recentKeyword',
+      JSON.stringify(updatedRecentKeyword)
+    );
+    data.setRecentKeyword(updatedRecentKeyword);
+  
     navigate("/search");
   };
+
 
   return (
     <div className="SearchBar">
