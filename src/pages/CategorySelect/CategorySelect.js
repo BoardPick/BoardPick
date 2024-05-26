@@ -2,7 +2,7 @@ import { SearchContext } from "../../context/SearchContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory } from "../../redux/actions.js";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
@@ -12,6 +12,7 @@ import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import { logDOM } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
+import { useSlidesPerView } from "../../common/util/useSliderPerView";
 
 const CategorySelectArry = [
   { id: 0, genre: "전략게임", onSelect: false },
@@ -32,7 +33,8 @@ const CategorySelect = () => {
   // const selectCategory = useSelector((state) => state.selectCategory);
   // const dispatch = useDispatch();
   const { name } = useParams();
-  const navigate = useNavigate();
+  const categoryTabRef = useRef({});
+  const slidesPerView = useSlidesPerView(categoryTabRef);
 
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,14 +75,13 @@ const CategorySelect = () => {
         <OnSearch />
       ) : (
         <div className="selectResult">
-          <div className="selectBtn">
-            <Swiper>
+          <div className="selectBtn" ref={categoryTabRef}>
+            <Swiper slidesPerView={3.3} spaceBetween={8} breakpoints={{520: {slidesPerView: 5}}}>
               {sortedCategories.map((d, i) => (
                 <SwiperSlide key={i} className="swiper-slide-category">
                   <CategorySelectBtn
                     genre={d.genre}
                     type={d.genre === name ? "select" : ""}
-                    onClick={() => navigate(`/category/select/${d.genre}`)}
                   />
                 </SwiperSlide>
               ))}
