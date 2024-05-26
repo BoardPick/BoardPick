@@ -45,32 +45,46 @@ function App() {
   const [logData, setLogData] = useState([]);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-    if (token) {
-      localStorage.setItem("token", token);
-    }
-  }, []);
+    const handleAuth = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    const fetchData = async () => {
-      try {
-        const logData = await getLogInfo(token);
-        setLogData(logData);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
+      if (token) {
+        localStorage.setItem("token", token);
+        setIsLoggedIn(true);
+      } else {
+        const storedToken = localStorage.getItem("token");
+        if (!storedToken) {
+          console.error("No token found");
+          setIsLoggedIn(false);
+          setLoading(false);
+          return;
+        }
+
+        try {
+          const logData = await getLogInfo(storedToken);
+          setLogData(logData);
+          setIsLoggedIn(true);
+        } catch (err) {
+          setError(err.message);
+          setIsLoggedIn(false);
+        } finally {
+          setLoading(false);
+        }
       }
     };
 
-    fetchData();
-  }, []);
+    handleAuth();
+  }, [setIsLoggedIn]);
+
+  useEffect(() => {
+    if (
+      isLoggedIn &&
+      location.pathname === `/${localStorage.getItem("token")}`
+    ) {
+      navigate("/");
+    }
+  }, [isLoggedIn, location.pathname, navigate]);
 
   return (
     <SearchContext.Provider
