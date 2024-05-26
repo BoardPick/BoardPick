@@ -74,71 +74,71 @@ function App() {
         setSearchKeywold,
       }}
     >
-      <div className="App">
-        <div className="boardPick">
-          <Routes>
-            <Route
-              path="/onBoarding"
-              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-            />
-            <Route
-              path="/"
-              element={isLoggedIn ? <Home logData={logData} /> : <Navigate to="/onBoarding" />}
-            />
-            <Route path="/category" element={<Category />} />
-            <Route
-              path="/category/select/:name"
-              element={
-                isLoggedIn ? (
-                  <CategorySelect />
-                ) : (
-                  <Navigate to="/onBoarding" />
-                )
-              }
-            />
-            <Route
-              path="/category/:id"
-              element={
-                isLoggedIn ? <CategoryDetail /> : <Navigate to="/onBoarding" />
-              }
-            />
-            <Route
-              path="/myPick"
-              element={
-                isLoggedIn ? (
-                  <MyPick logData={logData} />
-                ) : (
-                  <Navigate to="/onBoarding" />
-                )
-              }
-            />
-            <Route
-              path="/myPick/all"
-              element={
-                isLoggedIn ? <MyPickAll /> : <Navigate to="/onBoarding" />
-              }
-            />
-            <Route
-              path="/myPage"
-              element={
-                isLoggedIn ? (
-                  <MyPage logData={logData} />
-                ) : (
-                  <Navigate to="/onBoarding" />
-                )
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
-              }
-            />
-          </Routes>
-          {location.pathname !== "/onBoarding" && <NavigationBar />}
-        </div>
-      </div>
-       {/* <div className="App">
+      // <div className="App">
+      //   <div className="boardPick">
+      //     <Routes>
+      //       <Route
+      //         path="/onBoarding"
+      //         element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+      //       />
+      //       <Route
+      //         path="/"
+      //         element={isLoggedIn ? <Home logData={logData} /> : <Navigate to="/onBoarding" />}
+      //       />
+      //       <Route path="/category" element={<Category />} />
+      //       <Route
+      //         path="/category/select/:name"
+      //         element={
+      //           isLoggedIn ? (
+      //             <CategorySelect />
+      //           ) : (
+      //             <Navigate to="/onBoarding" />
+      //           )
+      //         }
+      //       />
+      //       <Route
+      //         path="/category/:id"
+      //         element={
+      //           isLoggedIn ? <CategoryDetail /> : <Navigate to="/onBoarding" />
+      //         }
+      //       />
+      //       <Route
+      //         path="/myPick"
+      //         element={
+      //           isLoggedIn ? (
+      //             <MyPick logData={logData} />
+      //           ) : (
+      //             <Navigate to="/onBoarding" />
+      //           )
+      //         }
+      //       />
+      //       <Route
+      //         path="/myPick/all"
+      //         element={
+      //           isLoggedIn ? <MyPickAll /> : <Navigate to="/onBoarding" />
+      //         }
+      //       />
+      //       <Route
+      //         path="/myPage"
+      //         element={
+      //           isLoggedIn ? (
+      //             <MyPage logData={logData} />
+      //           ) : (
+      //             <Navigate to="/onBoarding" />
+      //           )
+      //         }
+      //       />
+      //       <Route
+      //         path="/search"
+      //         element={
+      //           isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
+      //         }
+      //       />
+      //     </Routes>
+      //     {location.pathname !== "/onBoarding" && <NavigationBar />}
+      //   </div>
+      // </div>
+       <div className="App">
          <div className="boardPick">
            <Routes>
              <Route
@@ -162,7 +162,7 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div> */}
+      </div>
     </SearchContext.Provider>
   );
 }
