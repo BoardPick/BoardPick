@@ -90,7 +90,7 @@ function App() {
               path="/category/select/:name"
               element={
                 isLoggedIn ? (
-                  <CategorySelect selectCategory={selectCategory} />
+                  <CategorySelect />
                 ) : (
                   <Navigate to="/onBoarding" />
                 )
@@ -138,31 +138,31 @@ function App() {
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
       </div>
-      // <div className="App">
-      //   <div className="boardPick">
-      //     <Routes>
-      //       <Route
-      //         path="/onBoarding"
-      //         // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-      //         element={<OnBoarding />}
-      //       />
+       {/* <div className="App">
+         <div className="boardPick">
+           <Routes>
+             <Route
+              path="/onBoarding"
+              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              element={<OnBoarding />}
+            />
 
-      //       <Route
-      //         path="/"
-      //         // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-      //         element={<Home logData={logData}/>}
-      //       />
-      //       <Route path="/category" element={<Category />} />
-      //       <Route path="/category/select/:name" element={<CategorySelect />} />
-      //       <Route path="/category/:id" element={<CategoryDetail />} />
-      //       <Route path="/myPick" element={<MyPick logData={logData} />} />
-      //       <Route path="/myPick/all" element={<MyPickAll />} />
-      //       <Route path="/myPage" element={<MyPage logData={logData} />} />
-      //       <Route path="/search" element={<SearchResult />} />
-      //     </Routes>
-      //     {location.pathname !== "/onBoarding" && <NavigationBar />}
-      //   </div>
-      // </div>
+            <Route
+              path="/"
+              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              element={<Home logData={logData}/>}
+            />
+            <Route path="/category" element={<Category />} />
+            <Route path="/category/select/:name" element={<CategorySelect />} />
+            <Route path="/category/:id" element={<CategoryDetail />} />
+            <Route path="/myPick" element={<MyPick logData={logData} />} />
+            <Route path="/myPick/all" element={<MyPickAll />} />
+            <Route path="/myPage" element={<MyPage logData={logData} />} />
+            <Route path="/search" element={<SearchResult />} />
+          </Routes>
+          {location.pathname !== "/onBoarding" && <NavigationBar />}
+        </div>
+      </div> */}
     </SearchContext.Provider>
   );
 }
