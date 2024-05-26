@@ -74,7 +74,7 @@ function App() {
       navigate("/"); // 로그인 성공 시 홈으로 이동
       setLoginRedirected(true); // 최초 로그인 리디렉션 완료 표시
     }
-  }, [loginChecked, isLoggedIn, navigate, loginRedirected]);
+  }, [isLoggedIn, navigate, loginRedirected]);
 
   return (
     <SearchContext.Provider
