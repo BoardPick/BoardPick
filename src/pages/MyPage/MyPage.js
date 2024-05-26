@@ -53,7 +53,12 @@ const MyPage = ({ logData }) => {
         )}
 
         <ul className="myPageList">
-          <li className="cs">
+          <li
+            className="cs"
+            onClick={() =>
+              (window.location.href = "https://open.kakao.com/o/s9NgFOtg")
+            }
+          >
             <p>1:1 오픈채팅 문의하기</p>
             <ChevronRight />
           </li>

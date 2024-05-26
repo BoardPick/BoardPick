@@ -157,12 +157,14 @@ function App() {
           <Routes>
             <Route
               path="/onBoarding"
-              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              element={<OnBoarding />}
             />
 
             <Route
               path="/"
-              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              element={<Home />}
             />
             <Route path="/category" element={<Category />} />
             <Route path="/category/select/:name" element={<CategorySelect />} />

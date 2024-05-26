@@ -74,7 +74,7 @@ const MyPick = ({ logData }) => {
       }
     };
     fetchPickData();
-  }, []);
+  }, [myPickData]);
 
   //비슷한 게임 api
   useEffect(() => {
