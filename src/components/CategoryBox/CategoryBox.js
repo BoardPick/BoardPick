@@ -23,19 +23,19 @@ const CategoryBox = () => {
   // const dispatch = useDispatch();
 
   const category1 = [
-    { icon: <Strategy />, text: "전략게임", url: "/category/전략게임" },
-    { icon: <Rollplaying />, text: "롤플레잉", url: "/category/롤플레잉" },
-    { icon: <Cardgame />, text: "카드게임", url: "/category/카드게임" },
-    { icon: <Cooperation />, text: "협력게임", url: "/category/협력게임" },
-    { icon: <Deduction />, text: "추리게임", url: "/category/추리게임" },
+    { icon: <Strategy />, text: "전략게임", url: "/category/select/전략게임" },
+    { icon: <Rollplaying />, text: "롤플레잉", url: "/category/select/롤플레잉" },
+    { icon: <Cardgame />, text: "카드게임", url: "/category/select/카드게임" },
+    { icon: <Cooperation />, text: "협력게임", url: "/category/select/협력게임" },
+    { icon: <Deduction />, text: "추리게임", url: "/category/select/추리게임" },
   ];
 
   const category2 = [
-    { icon: <Batting />, text: "배팅게임", url: "/category/배팅게임" },
-    { icon: <Mafia />, text: "마피아", url: "/category/마피아" },
-    { icon: <Memory />, text: "기억력", url: "/category/기억력" },
-    { icon: <Realtime />, text: "순발력", url: "/category/순발력" },
-    { icon: <Etc />, text: "기타게임", url: "/category/기타게임" },
+    { icon: <Batting />, text: "배팅게임", url: "/category/select/배팅게임" },
+    { icon: <Mafia />, text: "마피아", url: "/category/select/마피아" },
+    { icon: <Memory />, text: "기억력", url: "/category/select/기억력" },
+    { icon: <Realtime />, text: "순발력", url: "/category/select/순발력" },
+    { icon: <Etc />, text: "기타게임", url: "/category/select/기타게임" },
   ];
 
   const handleCategoryClick = (url) => {
