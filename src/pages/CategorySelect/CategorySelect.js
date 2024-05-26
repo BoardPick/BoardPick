@@ -40,9 +40,9 @@ const CategorySelect = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(name);
       setLoading(true);
       try {
-        console.log({name});
         const categoryData = await getCategorySelect(name);
         setCategoryData(categoryData);
         setLoading(false);
