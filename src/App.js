@@ -38,9 +38,13 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
+  const [loginChecked, setLoginChecked] = useState(false); // 로그인 상태 체크 여부
+  const [loginRedirected, setLoginRedirected] = useState(false);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
@@ -50,19 +54,17 @@ function App() {
       console.error("No token found");
       return;
     }
-
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
-        if (location.pathname === `/auth/oauth-success?token=${storeToken}`) {
-          navigate("/");
-        }
+        setLoginChecked(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
+        setLoginChecked(true);
       }
     };
 
