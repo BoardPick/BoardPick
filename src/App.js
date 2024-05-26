@@ -27,7 +27,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchKeywold, setSearchKeywold] = useState("");
-  const [selectCategory, setSelectCategory] = useState("none");
+  // const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const setIsLoggedIn = () => {
@@ -74,8 +74,8 @@ function App() {
       value={{
         searchKeywold,
         setSearchKeywold,
-        selectCategory,
-        setSelectCategory,
+        // selectCategory,
+        // setSelectCategory,
       }}
     >
       {/* <div className="App">
@@ -163,8 +163,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/category" element={<Category />} />
             <Route
-              path="/category/categoryselect"
-              element={<CategorySelect selectCategory={selectCategory} />}
+              path="/category/select/:name"
+              element={<CategorySelect />}
             />
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/myPick" element={<MyPick logData={logData} />} />

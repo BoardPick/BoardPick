@@ -1,10 +1,12 @@
+import { SET_CATEGORY } from "./actionTypes.js";
+
 let initialState = {
   isLoggedIn: false,
   isCopied: false,
   toast: false,
   onSearch: false,
   searchResult: false,
-  pickedItems: {},
+  selectCategory: "none",
 };
 
 function reducer(state = initialState, action) {
@@ -38,7 +40,11 @@ function reducer(state = initialState, action) {
         ...state,
         onSearch: false,
       };
-
+    case "SET_CATEGORY":
+      return {
+        ...state,
+        selectCategory: action.payload,
+      };
     default:
       return { ...state };
   }

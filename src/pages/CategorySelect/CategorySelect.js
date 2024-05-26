@@ -1,7 +1,9 @@
 import { SearchContext } from "../../context/SearchContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory } from "../../redux/actions.js";
 import { useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategorySelectBtn from "../../components/CategorySelectBtn/CategorySelectBtn.js";
@@ -9,6 +11,7 @@ import ThumbNail from "../../components/ThumbNail/ThumbNail.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import { logDOM } from "@testing-library/react";
+import { useNavigate } from 'react-router-dom';
 
 const CategorySelectArry = [
   { id: 0, genre: "전략게임", onSelect: false },
@@ -23,9 +26,13 @@ const CategorySelectArry = [
   { id: 9, genre: "기타게임", onSelect: false },
 ];
 
-const CategorySelect = ({ selectCategory }) => {
+const CategorySelect = () => {
   const onSearch = useSelector((state) => state.onSearch);
-  const log = useContext(SearchContext);
+  // const log = useContext(SearchContext);
+  // const selectCategory = useSelector((state) => state.selectCategory);
+  // const dispatch = useDispatch();
+  const { name } = useParams();
+  const navigate = useNavigate();
 
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -33,9 +40,10 @@ const CategorySelect = ({ selectCategory }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(name);
       setLoading(true);
       try {
-        const categoryData = await getCategorySelect(selectCategory);
+        const categoryData = await getCategorySelect(name);
         setCategoryData(categoryData);
         setLoading(false);
       } catch (err) {
@@ -45,19 +53,19 @@ const CategorySelect = ({ selectCategory }) => {
     };
 
     fetchData();
-  }, [selectCategory]);
+  }, [name]);
 
   // log.selectCategory와 일치하는 요소를 먼저 가져오기
   const selectedCategory = CategorySelectArry.filter(
-    (d) => d.genre === log.selectCategory
+    (d) => d.genre === name
   );
   // log.selectCategory와 일치하지 않는 나머지 요소들을 가져오기
   const otherCategories = CategorySelectArry.filter(
-    (d) => d.genre !== log.selectCategory
+    (d) => d.genre !== name
   );
   // 선택된 요소를 맨 앞으로 배치하고 나머지를 뒤에 추가한 새로운 배열 생성
   const sortedCategories = selectedCategory.concat(otherCategories);
-
+  
   if (loading) return <Loading />;
 
   return (
@@ -75,7 +83,8 @@ const CategorySelect = ({ selectCategory }) => {
                 <SwiperSlide key={i} className="swiper-slide-category">
                   <CategorySelectBtn
                     genre={d.genre}
-                    type={d.genre === log.selectCategory ? "select" : ""}
+                    type={d.genre === name ? "select" : ""}
+                    onClick={() => navigate(`/category/select/${d.genre}`)}
                   />
                 </SwiperSlide>
               ))}
