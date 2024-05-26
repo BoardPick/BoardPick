@@ -4,18 +4,10 @@ import { logo } from "../../assets/image/image";
 import { Kakao } from "../../assets/icon/icon";
 
 const OnBoarding = () => {
-  const navigate = useNavigate();
   const loginBtn = () => {
     window.location.href =
       "https://boardpick-server.store/oauth2/authorization/kakao";
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/");
-    }
-  }, [navigate]);
 
   return (
     <div className="onBoarding">
