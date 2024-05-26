@@ -110,15 +110,15 @@ const MyPick = ({ logData }) => {
 
   //마이픽 초기값 설정
   useEffect(() => {
-    if (myPickData.length > 0) {
-      setSelectedPick({
-        id: myPickData[0].id,
-        imageUrl: myPickData[0].imageUrl,
-        name: myPickData[0].name,
-        boardGameCategories: myPickData[0].boardGameCategories,
-      });
-    }
-  }, []);
+    if (myPickData.length === 0 || selectedPick.id) return;
+
+    setSelectedPick({
+      id: myPickData[0].id,
+      imageUrl: myPickData[0].imageUrl,
+      name: myPickData[0].name,
+      boardGameCategories: myPickData[0].boardGameCategories,
+    });
+  }, [myPickData, selectedPick.id]);
 
   if (loading) return <Loading />;
 
