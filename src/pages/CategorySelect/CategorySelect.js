@@ -68,7 +68,7 @@ const CategorySelect = () => {
 
   const onClick = (genre) => {
     // dispatch(setCategory(genre));
-    navigate(`/categoryselect/${genre}`);
+    navigate(`/category/${genre}`);
   }
   
   if (loading) return <Loading />;
@@ -89,7 +89,7 @@ const CategorySelect = () => {
                   <CategorySelectBtn
                     genre={d.genre}
                     type={d.genre === name ? "select" : ""}
-                    onClick{() => onClick(d.genre)}
+                    onClick={() => onClick(d.genre)}
                   />
                 </SwiperSlide>
               ))}
