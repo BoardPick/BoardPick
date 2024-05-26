@@ -38,10 +38,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
-  const [loginChecked, setLoginChecked] = useState(false); // 로그인 상태 체크 여부
-  const [loginRedirected, setLoginRedirected] = useState(false);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -60,11 +56,9 @@ function App() {
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
-        setLoginChecked(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
-        setLoginChecked(true);
       }
     };
 
@@ -73,15 +67,12 @@ function App() {
 
   useEffect(() => {
     if (
-      isLoggedIn &&
-      location ===
-        `https://boardpick.netlify.app/auth/oauth-success?token=${localStorage.getItem(
-          "token"
-        )}`
+      window.location.pathname ===
+      `/auth/oauth-success?token=${localStorage.getItem("token")}`
     ) {
       navigate("/");
     }
-  }, [isLoggedIn, location.pathname, navigate]);
+  }, [window.location.pathname, navigate]);
 
   return (
     <SearchContext.Provider
