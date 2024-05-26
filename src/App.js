@@ -38,7 +38,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
-  const [loginRedirected, setLoginRedirected] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -59,7 +58,6 @@ function App() {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setLoading(false);
-        setIsLoggedIn(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -68,13 +66,6 @@ function App() {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (isLoggedIn && !loginRedirected) {
-      navigate("/"); // 로그인 성공 시 홈으로 이동
-      setLoginRedirected(true); // 최초 로그인 리디렉션 완료 표시
-    }
-  }, [isLoggedIn, navigate, loginRedirected]);
 
   return (
     <SearchContext.Provider
