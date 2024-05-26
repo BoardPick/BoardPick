@@ -162,7 +162,7 @@ function App() {
             <Route
               path="/"
               // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home />}
+              element={<Home logData={logData}/>}
             />
             <Route path="/category" element={<Category />} />
             <Route path="/category/select/:name" element={<CategorySelect />} />

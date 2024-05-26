@@ -15,7 +15,7 @@ import { getPlayersData } from "../../common/axios/recommand.js";
 import { getDifficultyData } from "../../common/axios/recommand.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
-const Home = () => {
+const Home = ({ logData }) => {
   const onSearch = useSelector((state) => state.onSearch);
   const gameTabRef = useRef({});
   const slidesPerView = useSlidesPerView(gameTabRef);
@@ -134,11 +134,10 @@ const Home = () => {
           {/* 관심있어 할 만한 보드게임 */}
           {isLoggedIn ? (
             <div>
-              {" "}
               <article className="recommand">
                 <div className="title">
                   <div className="firstline">
-                    <h1 className="name">'스위프'</h1>
+                    <h1 className="name">{logData ? logData.nickname : "사용자"}</h1>
                     <h1>회원님이</h1>
                   </div>
                   <h2>관심 있어 할만한 보드게임</h2>
