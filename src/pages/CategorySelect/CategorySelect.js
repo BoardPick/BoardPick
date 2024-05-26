@@ -69,6 +69,7 @@ const CategorySelect = () => {
   if (loading) return <Loading />;
 
   return (
+    console.log(this.props.match);
     <div className="categorySelect">
       <SearchBar />
       {loading ? (
