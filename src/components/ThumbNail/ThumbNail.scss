@@ -92,11 +92,27 @@
       aspect-ratio: 41 / 45;
       flex: 2;
     }
+    .hashTagBox {
+      &.tagBig {
+        display: flex;
+      }
+      &.tagSmall {
+        display: none;
+      }
+    }
   }
   &.small {
     // aspect-ratio: 140 / 256;
     .thumbImg {
       aspect-ratio: 7 / 8;
+    }
+    .hashTagBox {
+      &.tagBig {
+        display: none;
+      }
+      &.tagSmall {
+        display: flex;
+      }
     }
   }
 }

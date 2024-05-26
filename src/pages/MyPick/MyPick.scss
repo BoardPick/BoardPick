@@ -111,23 +111,36 @@
           }
         }
       }
+      .swiper-horizontal {
+        padding: 0;
+      }
     }
   }
   .recommendGame {
-    @include content();
+    // @include content();
     display: flex;
     flex-direction: column;
     gap: 12px;
     background-color: $common_white;
+    padding: 24px 0;
+    .contentTit {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
   .recentGame {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    @include content();
+    // @include content();
     border-top: 8px solid $line_light;
     background-color: $common_white;
+    padding: 24px 0;
     padding-bottom: calc(80px + 52px);
+    .contentTit {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
   .swiper .swiper-wrapper .swiper-slide {
     background-color: transparent;
