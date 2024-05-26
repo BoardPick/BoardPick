@@ -31,11 +31,11 @@ const CategoryDetail = () => {
   });
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   console.error("No token found");
+    //   return;
+    // }
     const fetchData = async () => {
       try {
         const data = await getBoardGameDetail(id);

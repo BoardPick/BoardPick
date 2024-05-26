@@ -76,7 +76,6 @@
           #{$font}: $value;
         }
         color: $text_info;
-        margin-bottom: 16px;
       }
 
       .pickBanner {
@@ -85,6 +84,7 @@
         background-color: $background_brand;
         border-radius: 4px;
         padding: 6px 12px;
+        margin-top: 16px;
 
         @each $font, $value in $caption1 {
           #{$font}: $value;

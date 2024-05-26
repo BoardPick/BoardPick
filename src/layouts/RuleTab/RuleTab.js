@@ -8,6 +8,7 @@ import { useSlidesPerView } from "../../common/util/useSliderPerView";
 import { getBoardGameDetail } from "../../common/axios/api.js";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
 import GameVideo from "../GameVideo/GameVideo.js";
+import { getSimilarBoardGame } from "../../common/axios/api.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const RuleTab = () => {
@@ -15,7 +16,7 @@ const RuleTab = () => {
   const { id } = useParams();
   const gameTabRef = useRef({});
   const [data, setData] = useState({});
-  const [categoryData, setCategoryData] = useState([]);
+  const [similarData, setSimilarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const slidesPerView = useSlidesPerView(gameTabRef);
@@ -36,25 +37,18 @@ const RuleTab = () => {
   }, [id]);
 
   useEffect(() => {
-    if (!data.boardGameCategories || data.boardGameCategories.length === 0)
-      return;
-
-    const fetchCategoryData = async () => {
-      setLoading(true);
+    const getSimilarData = async () => {
       try {
-        const categoryData = await getCategorySelect(
-          data.boardGameCategories[0]
-        );
-        setCategoryData(categoryData);
+        const similarData = await getSimilarBoardGame(data.id);
+        setSimilarData(similarData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
       }
     };
-
-    fetchCategoryData();
-  }, [data.boardGameCategories]);
+    getSimilarData();
+  }, [data.id]);
 
   return (
     <div className="gameTab" ref={gameTabRef}>
@@ -64,10 +58,13 @@ const RuleTab = () => {
         <div className="wrapper">
           {slidesPerView && (
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-              {categoryData.map((game, i) => (
+              {similarData.map((game, i) => (
                 <SwiperSlide
                   key={i}
-                  onClick={() => navigate(`/category/${game.id}`)}
+                  onClick={() => {
+                    navigate(`/category/${game.id}`);
+                    window.scrollTo(0, 0);
+                  }}
                 >
                   <ThumbNail
                     type="small"
