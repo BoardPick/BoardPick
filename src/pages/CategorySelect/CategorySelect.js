@@ -42,6 +42,7 @@ const CategorySelect = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        console.log({name});
         const categoryData = await getCategorySelect({name});
         setCategoryData(categoryData);
         setLoading(false);
