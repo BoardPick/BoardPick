@@ -1,10 +1,6 @@
 import { CategoryMatch } from "../../assets/data/categoryMatch.js";
-import { SearchContext } from "../../context/SearchContext.js";
-import { useContext } from "react";
-
 
 const CategorySelectBtn = ({ genre, type }) => {
-  const log = useContext(SearchContext);
 
   const matchCategory = CategoryMatch.find(
     (category) => category.genre === genre
@@ -13,12 +9,8 @@ const CategorySelectBtn = ({ genre, type }) => {
     return null;
   }
 
-  const onClick = () => {
-    log.setSelectCategory(genre);
-  }
-
   return (
-    <div className={type === "select" ? "dark" : "none"} onClick={onClick()}>
+    <div className={type === "select" ? "dark" : "none"}>
       <img
         src={matchCategory.icon}
         alt={`${matchCategory.genre}`}
