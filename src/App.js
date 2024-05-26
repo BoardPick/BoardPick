@@ -78,7 +78,7 @@ function App() {
         setSelectCategory,
       }}
     >
-      <div className="App">
+      {/* <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -151,8 +151,8 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div>
-      {/* <div className="App">
+      </div> */}
+      <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
@@ -174,7 +174,7 @@ function App() {
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>
-      </div> */}
+      </div>
     </SearchContext.Provider>
   );
 }
