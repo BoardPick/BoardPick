@@ -163,7 +163,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/category" element={<Category />} />
             <Route
-              path="/categoryselect/:name"
+              path="/category/:name"
               element={<CategorySelect />}
             />
             <Route path="/category/:id" element={<CategoryDetail />} />
