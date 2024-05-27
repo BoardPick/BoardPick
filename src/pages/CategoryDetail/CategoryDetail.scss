@@ -139,10 +139,14 @@
     max-width: 600px;
     min-width: 375px;
     position: fixed;
-    bottom: -999px;
+    // bottom: -999px;
+    bottom: 40px;
     z-index: 999;
+    opacity: 0;
+    transition: 0.1s;
     &.pop {
       bottom: 40px;
+      opacity: 1;
     }
   }
 }
