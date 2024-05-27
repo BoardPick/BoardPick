@@ -16,8 +16,9 @@ import {
   getRecsGame,
   getMyPick,
   getSimilarBoardGame,
+  getSuggestGame,
 } from "../../common/axios/api";
-import { getRankData } from "../../common/axios/rank.js";
+
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 
 const MyPick = ({ logData }) => {
@@ -30,7 +31,7 @@ const MyPick = ({ logData }) => {
   const [myPickData, setMyPickData] = useState([]);
   const [recsGameData, setRecsGameData] = useState([]);
   const [similarData, setSimilarData] = useState([]);
-  const [rankData, setRankData] = useState([]);
+  const [suggestData, setSuggestData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     imageUrl: "",
@@ -91,13 +92,13 @@ const MyPick = ({ logData }) => {
     getSimilarData();
   }, [selectedPick.id]);
 
-  //픽 api
+  //제안 api
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSuggestData = async () => {
       setLoading(true);
       try {
-        const rankData = await getRankData();
-        setRankData(rankData);
+        const suggestData = await getSuggestGame();
+        setSuggestData(suggestData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -105,7 +106,7 @@ const MyPick = ({ logData }) => {
       }
     };
 
-    fetchData();
+    fetchSuggestData();
   }, []);
 
   //마이픽 초기값 설정
@@ -267,11 +268,11 @@ const MyPick = ({ logData }) => {
           </>
         )}
       </article>
-      {rankData && rankData.length !== 0 && (
+      {suggestData && suggestData.length !== 0 && (
         <article className="recentGame">
           <h1 className="contentTit">이런 보드게임은 어떠세요?</h1>
           <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-            {rankData.map((game, i) => (
+            {suggestData.map((game, i) => (
               <SwiperSlide
                 key={i}
                 onClick={() => navigate(`/category/${game.id}`)}

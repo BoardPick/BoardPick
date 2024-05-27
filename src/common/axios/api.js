@@ -44,6 +44,14 @@ export const getRecsGame = async () => {
     throw error;
   }
 };
+export const getSuggestGame = async () => {
+  try {
+    const { data } = await apiRoot.get(`/api/boardgames/suggestion`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const togglePick = async (id, token) => {
   try {
