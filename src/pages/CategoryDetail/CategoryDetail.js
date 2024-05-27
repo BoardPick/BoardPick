@@ -20,12 +20,25 @@ const CategoryDetail = () => {
   const isCopied = useSelector((state) => state.isCopied);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const setToast = () => {
+  // const setToast = () => {
+  //   dispatch({
+  //     type: "SET_TOAST",
+  //   });
+  // };
+  const isPicked = useSelector((state) => state.pickedItems[id] || false);
+  const setToastPick = (value) => {
     dispatch({
-      type: "SET_TOAST",
+      type: "SET_TOAST_PICK",
+      payload: value,
     });
   };
-  const isPicked = useSelector((state) => state.pickedItems[id] || false);
+
+  const setToastUnpick = (value) => {
+    dispatch({
+      type: "SET_TOAST_UNPICK",
+      payload: value,
+    });
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -47,13 +60,19 @@ const CategoryDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    if (toast) {
+    if (toast.pick) {
       const timer = setTimeout(() => {
-        setToast(false);
+        setToastPick(false);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [toast, setToast]);
+    if (toast.unpick) {
+      const timer = setTimeout(() => {
+        setToastUnpick(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast, setToastPick, setToastUnpick]);
 
   useEffect(() => {
     setData((prevData) => ({
@@ -101,11 +120,11 @@ const CategoryDetail = () => {
       <RuleTab />
 
       {isPicked ? (
-        <div className={`toast ${toast ? "pop" : ""}`}>
+        <div className={`toast ${toast.pick ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임을 PICK 했어요"} />
         </div>
       ) : (
-        <div className={`toast ${toast ? "pop" : ""}`}>
+        <div className={`toast ${toast.unpick ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임 PICK을 취소했어요"} />
         </div>
       )}
