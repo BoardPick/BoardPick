@@ -75,11 +75,23 @@ const MyPick = ({ logData }) => {
       }
     };
     fetchPickData();
+  }, [myPickData, selectedPick]);
+
+  //마이픽 초기값 설정
+  useEffect(() => {
+    if (myPickData.length === 0 || selectedPick.id) return;
+    setSelectedPick({
+      id: myPickData[0].id,
+      imageUrl: myPickData[0].imageUrl,
+      name: myPickData[0].name,
+      boardGameCategories: myPickData[0].boardGameCategories,
+    });
   }, [myPickData]);
 
   //비슷한 게임 api
   useEffect(() => {
     const getSimilarData = async () => {
+      if (!selectedPick.id) return;
       try {
         const similarData = await getSimilarBoardGame(selectedPick.id);
         setSimilarData(similarData);
@@ -89,6 +101,7 @@ const MyPick = ({ logData }) => {
         setLoading(false);
       }
     };
+
     getSimilarData();
   }, [selectedPick.id]);
 
@@ -109,18 +122,6 @@ const MyPick = ({ logData }) => {
     fetchSuggestData();
   }, []);
 
-  //마이픽 초기값 설정
-  useEffect(() => {
-    if (myPickData.length === 0 || selectedPick.id) return;
-
-    setSelectedPick({
-      id: myPickData[0].id,
-      imageUrl: myPickData[0].imageUrl,
-      name: myPickData[0].name,
-      boardGameCategories: myPickData[0].boardGameCategories,
-    });
-  }, [myPickData, selectedPick.id]);
-
   if (loading) return <Loading />;
 
   //마이픽 선택
@@ -132,6 +133,7 @@ const MyPick = ({ logData }) => {
       name: name,
       boardGameCategories: boardGameCategories,
     });
+    console.log(myPickData);
   };
 
   return (
