@@ -72,7 +72,6 @@ function App() {
 
     fetchData();
   }, []);
-  console.log(logData);
 
   return (
     <SearchContext.Provider

@@ -38,6 +38,7 @@ const RuleTab = () => {
 
   useEffect(() => {
     const getSimilarData = async () => {
+      if (!id) return;
       try {
         const similarData = await getSimilarBoardGame(id);
         setSimilarData(similarData);
