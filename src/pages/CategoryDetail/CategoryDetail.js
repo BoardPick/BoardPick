@@ -25,10 +25,7 @@ const CategoryDetail = () => {
       type: "SET_TOAST",
     });
   };
-  const [isPicked, setIsPicked] = useState(() => {
-    const storedIsPicked = localStorage.getItem(`thumb_${id}`);
-    return storedIsPicked !== null ? JSON.parse(storedIsPicked) : false;
-  });
+  const isPicked = useSelector((state) => state.pickedItems[id] || false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -58,6 +55,10 @@ const CategoryDetail = () => {
     }
   }, [toast, setToast]);
 
+  useEffect(() => {
+    return isPicked ? data.likes + 1 : data.likes - 1;
+  }, [isPicked]);
+
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
   console.log(isPicked);
@@ -80,15 +81,12 @@ const CategoryDetail = () => {
           </div>
           <h1 className="boardGameName">{data.name}</h1>
           <h2 className="boardGameOne">{data.description}</h2>
-          {/* {data.likes > 0 && (
+          {data.likes > 0 && (
             <div className="pickBanner">
-              이 보드게임을{" "}
-              <strong className="pickCount">
-                {isPicked ? data.likes + 1 : data.likes - 1}
-              </strong>
+              이 보드게임을 <strong className="pickCount">{data.likes}</strong>
               명이 PICK 했어요!
             </div>
-          )} */}
+          )}
           <div className="hashTagBox">
             {data.tags.map((tag, i) => (
               <Tag key={i} tag={data.tags[i]} />
