@@ -38,10 +38,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
-  const [loginChecked, setLoginChecked] = useState(false); // 로그인 상태 체크 여부
-  const [loginRedirected, setLoginRedirected] = useState(false);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -49,6 +45,7 @@ function App() {
     if (token) {
       localStorage.setItem("token", token);
     }
+
     const storeToken = localStorage.getItem("token");
     if (!storeToken) {
       console.error("No token found");
@@ -60,15 +57,14 @@ function App() {
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
-        setLoginChecked(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
-        setLoginChecked(true);
       }
     };
 
     fetchData();
+    navigate("/");
   }, []);
 
   return (
@@ -159,14 +155,14 @@ function App() {
           <Routes>
             <Route
               path="/onBoarding"
-              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              element={<OnBoarding />}
+              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              // element={<OnBoarding />}
             />
 
             <Route
               path="/"
-              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home />}
+              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              // element={<Home />}
             />
             <Route path="/category" element={<Category />} />
             <Route path="/category/select/:name" element={<CategorySelect />} />
