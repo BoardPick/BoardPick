@@ -70,6 +70,7 @@ function App() {
     };
 
     fetchData();
+    navigate("/");
   }, []);
 
   return (
