@@ -10,7 +10,14 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const toast = useSelector((state) => state.toast);
   const isCopied = useSelector((state) => state.isCopied);
+  // const [isClickable, setIsClickable] = useState(true);
+  const setToast = () => {
+    dispatch({
+      type: "SET_TOAST",
+    });
+  };
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
