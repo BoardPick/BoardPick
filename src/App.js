@@ -52,7 +52,6 @@ function App() {
     if (token) {
       localStorage.setItem("token", token);
       navigate("/");
-      location.reload();
     }
     const storeToken = localStorage.getItem("token");
     if (!storeToken) {
