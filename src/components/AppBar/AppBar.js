@@ -33,7 +33,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       return;
     }
     if (!isClickable) {
-      console.log("잠깐");
+      // console.log("잠깐");
       return;
     }
     setIsClickable(false);
