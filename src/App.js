@@ -60,7 +60,7 @@ function App() {
     }
     const fetchData = async () => {
       try {
-        const logData = await getLogInfo(token);
+        const logData = await getLogInfo(storeToken);
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
@@ -72,6 +72,7 @@ function App() {
 
     fetchData();
   }, []);
+  console.log(logData);
 
   return (
     <SearchContext.Provider
