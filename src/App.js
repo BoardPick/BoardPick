@@ -34,19 +34,17 @@ function App() {
     dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
   };
   // 최근 검색어 저장
-  const loadedRecentKeyword = localStorage.getItem('recentKeyword')
-    ? JSON.parse(localStorage.getItem('recentKeyword'))
+  const loadedRecentKeyword = localStorage.getItem("recentKeyword")
+    ? JSON.parse(localStorage.getItem("recentKeyword"))
     : [];
-  const [recentKeyword, setRecentKeyword] = useState(Array.isArray(loadedRecentKeyword) ? loadedRecentKeyword : []);
+  const [recentKeyword, setRecentKeyword] = useState(
+    Array.isArray(loadedRecentKeyword) ? loadedRecentKeyword : []
+  );
 
   // 로그인 api 호출
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
-  const [loginChecked, setLoginChecked] = useState(false); // 로그인 상태 체크 여부
-  const [loginRedirected, setLoginRedirected] = useState(false);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -65,11 +63,9 @@ function App() {
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
-        setLoginChecked(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
-        setLoginChecked(true);
       }
     };
 
@@ -85,7 +81,7 @@ function App() {
         setRecentKeyword,
       }}
     >
-       {/* <div className="App">
+      {/* <div className="App">
          <div className="boardPick">
            <Routes>
              <Route
@@ -150,9 +146,9 @@ function App() {
          </div>
        </div> */}
       <div className="App">
-         <div className="boardPick">
-           <Routes>
-             <Route
+        <div className="boardPick">
+          <Routes>
+            <Route
               path="/onBoarding"
               // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
               element={<OnBoarding />}
@@ -161,7 +157,7 @@ function App() {
             <Route
               path="/"
               // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home logData={logData}/>}
+              element={<Home logData={logData} />}
             />
             <Route path="/category" element={<Category />} />
             <Route path="/category/select/:name" element={<CategorySelect />} />
