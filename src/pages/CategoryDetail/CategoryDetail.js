@@ -98,13 +98,13 @@ const CategoryDetail = () => {
         <BoardGameElement data={data} />
       </section>
       <RuleTab />
-      {/* <div className={`toast ${toast ? "pop" : ""}`}>
+      <div className={`toast ${toast ? "pop" : ""}`}>
         <ToastPopUp
           ToastContent={`보드게임${
             isPicked ? "을 PICK " : " PICK을 취소"
           }했어요`}
         />
-      </div> */}
+      </div>
       {isCopied && <BottomPopUp />}
     </div>
   );
