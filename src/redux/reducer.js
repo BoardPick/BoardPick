@@ -3,7 +3,10 @@ import { SET_CATEGORY } from "./actionTypes.js";
 let initialState = {
   isLoggedIn: false,
   isCopied: false,
-  toast: false,
+  toast: {
+    pick: false,
+    unpick: false,
+  },
   onSearch: false,
   searchResult: false,
   selectCategory: "none",
@@ -14,8 +17,24 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case "SET_ISLOGGEDIN":
       return { ...state, isLoggedIn: !state.isLoggedIn };
-    case "SET_TOAST":
-      return { ...state, toast: !state.toast };
+    // case "SET_TOAST":
+    //   return { ...state, toast: !state.toast };
+    case "SET_TOAST_PICK":
+      return {
+        ...state,
+        toast: {
+          ...state.toast,
+          pick: action.payload,
+        },
+      };
+    case "SET_TOAST_UNPICK":
+      return {
+        ...state,
+        toast: {
+          ...state.toast,
+          unpick: action.payload,
+        },
+      };
     case "SET_ISCOPY":
       return { ...state, isCopied: !state.isCopied };
     case "ON_ONSEARCH":

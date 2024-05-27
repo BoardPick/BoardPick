@@ -84,6 +84,8 @@ const CategoryDetail = () => {
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
   console.log(isPicked);
+  console.log(toast.pick);
+  console.log(toast.unpick);
 
   return (
     <div className="categoryDetail">
