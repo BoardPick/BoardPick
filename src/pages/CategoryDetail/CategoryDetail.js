@@ -20,11 +20,6 @@ const CategoryDetail = () => {
   const isCopied = useSelector((state) => state.isCopied);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const setToast = () => {
-  //   dispatch({
-  //     type: "SET_TOAST",
-  //   });
-  // };
   const isPicked = useSelector((state) => state.pickedItems[id] || false);
   const setToastPick = (value) => {
     dispatch({
@@ -32,7 +27,6 @@ const CategoryDetail = () => {
       payload: value,
     });
   };
-
   const setToastUnpick = (value) => {
     dispatch({
       type: "SET_TOAST_UNPICK",

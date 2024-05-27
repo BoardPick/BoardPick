@@ -43,10 +43,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [logData, setLogData] = useState([]);
-  const [loginChecked, setLoginChecked] = useState(false); // 로그인 상태 체크 여부
-  const [loginRedirected, setLoginRedirected] = useState(false);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -65,15 +61,14 @@ function App() {
         setLogData(logData);
         setLoading(false);
         setIsLoggedIn(true);
-        setLoginChecked(true);
       } catch (err) {
         setError(err.message);
         setLoading(false);
-        setLoginChecked(true);
       }
     };
 
     fetchData();
+    navigate("/");
   }, []);
 
   return (
