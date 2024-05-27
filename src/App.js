@@ -51,6 +51,8 @@ function App() {
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
+      navigate("/");
+      location.reload();
     }
     const storeToken = localStorage.getItem("token");
     if (!storeToken) {
@@ -70,7 +72,6 @@ function App() {
     };
 
     fetchData();
-    navigate("/");
   }, []);
 
   return (
