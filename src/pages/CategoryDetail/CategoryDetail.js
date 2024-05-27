@@ -99,13 +99,17 @@ const CategoryDetail = () => {
         <BoardGameElement data={data} />
       </section>
       <RuleTab />
-      <div className={`toast ${toast ? "pop" : ""}`}>
-        {isPicked ? (
+
+      {isPicked ? (
+        <div className={`toast ${toast ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임을 PICK 했어요"} />
-        ) : (
+        </div>
+      ) : (
+        <div className={`toast ${toast ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임 PICK을 취소했어요"} />
-        )}
-      </div>
+        </div>
+      )}
+
       {isCopied && <BottomPopUp />}
     </div>
   );
