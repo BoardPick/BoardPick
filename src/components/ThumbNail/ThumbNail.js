@@ -9,11 +9,7 @@ import { togglePick } from "../../common/axios/api";
 const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [isPicked, setIsPicked] = useState(() => {
-    const storedIsPicked = localStorage.getItem(`thumb_${id}`);
-    return storedIsPicked !== null ? JSON.parse(storedIsPicked) : false;
-  });
+  const isPicked = useSelector((state) => state.pickedItems[id] || false);
   const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -22,8 +18,10 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
     }
     togglePick(id, token)
       .then(function (response) {
-        setIsPicked(response.picked);
-        localStorage.setItem(`thumb_${id}`, JSON.stringify(response.picked));
+        dispatch({
+          type: "SET_IS_PICKED",
+          payload: { id, isPicked: response.picked },
+        });
       })
       .catch(function (error) {
         console.error(error);
