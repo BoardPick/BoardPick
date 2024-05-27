@@ -22,6 +22,19 @@ const AppBar = ({ title, mark, type, id, picked }) => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
   const isPicked = useSelector((state) => state.pickedItems[id] || false);
+  const setToastPick = (value) => {
+    dispatch({
+      type: "SET_TOAST_PICK",
+      payload: value,
+    });
+  };
+
+  const setToastUnpick = (value) => {
+    dispatch({
+      type: "SET_TOAST_UNPICK",
+      payload: value,
+    });
+  };
 
   const handlerPick = (id) => {
     const token = localStorage.getItem("token");
@@ -29,27 +42,22 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       console.error("No token found");
       return;
     }
-    // if (!isClickable) {
-    //   // console.log("잠깐");
-    //   return;
-    // }
-    // setIsClickable(false);
+
     togglePick(id, token)
       .then(function (response) {
         dispatch({
           type: "SET_IS_PICKED",
           payload: { id, isPicked: response.picked },
         });
+        if (response.picked) {
+          setToastPick(true);
+        } else {
+          setToastUnpick(true);
+        }
       })
       .catch(function (error) {
         console.error(error);
       });
-    // .finally(() => {
-    //   setTimeout(() => {
-    //     setIsClickable(true);
-    //   }, 2000);
-    // });
-    setToast(!toast);
   };
 
   return (
