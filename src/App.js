@@ -45,7 +45,6 @@ function App() {
     if (token) {
       localStorage.setItem("token", token);
     }
-
     const storeToken = localStorage.getItem("token");
     if (!storeToken) {
       console.error("No token found");
@@ -155,14 +154,14 @@ function App() {
           <Routes>
             <Route
               path="/onBoarding"
-              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              // element={<OnBoarding />}
+              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
+              element={<OnBoarding />}
             />
 
             <Route
               path="/"
-              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              // element={<Home />}
+              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              element={<Home />}
             />
             <Route path="/category" element={<Category />} />
             <Route path="/category/select/:name" element={<CategorySelect />} />
