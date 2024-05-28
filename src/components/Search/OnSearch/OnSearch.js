@@ -27,7 +27,7 @@ const OnSearch = () => {
 
     useEffect(() => {
         if (selectedTag) {
-            navigate(`/search/${selectedTag}`);
+            navigate(`/search/${encodeURIComponent(selectedTag)}`);
             dispatch({ type: "OFF_ONSEARCH" });
         }
     }, [selectedTag]);
