@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
+import OnSearch from "../../components/Search/OnSearch/OnSearch";
 import NoneResult from "../../components/Search/SearchResult/noneResult/NoneResult";
 import SearchBar from "../../components/Search/SearchBar/SearchBar";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
@@ -9,6 +10,7 @@ import { getSearchResult } from "../../common/axios/search";
 
 const SearchResult = () => {
   const log = useContext(SearchContext);
+  const onSearch = useSelector((state) => state.onSearch);
 
   // 검색 api 호출
   const [searchData, setSearchData] = useState(null);
@@ -38,7 +40,7 @@ const SearchResult = () => {
       <SearchBar />
       {loading ? (
         <Loading />
-      ) : searchData.length == 0 ? (
+      ) : (onSearch ? (<OnSearch />) : (searchData.length == 0 ? (
         <NoneResult value={log.searchKeywold} />
       ) : (
         <div className="Result">
@@ -66,9 +68,9 @@ const SearchResult = () => {
                     />
                   </div>
                 );
-              })}
+            })}
           </div>
-        </div>
+        </div>))
       )}
     </div>
   );

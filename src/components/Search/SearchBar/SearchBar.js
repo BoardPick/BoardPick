@@ -23,29 +23,41 @@ const SearchBar = () => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       data.setSearchKeywold(tmpKeyword);
-      
-    const updatedRecentKeyword = [...data.recentKeyword, tmpKeyword];
-    window.localStorage.setItem(
-      'recentKeyword',
-      JSON.stringify(updatedRecentKeyword)
-    );
-    data.setRecentKeyword(updatedRecentKeyword);
+  
+      const updatedRecentKeyword = [tmpKeyword, ...data.recentKeyword];
+
+      if (updatedRecentKeyword.length > 10) {
+        updatedRecentKeyword.pop();
+      }
+
+      window.localStorage.setItem(
+        'recentKeyword',
+        JSON.stringify(updatedRecentKeyword)
+      );
+      data.setRecentKeyword(updatedRecentKeyword);
 
       navigate("/search");
+      dispatch({ type: "OFF_ONSEARCH" });
     }
   };
 
   const onResult = () => {
     data.setSearchKeywold(tmpKeyword);
   
-    const updatedRecentKeyword = [...data.recentKeyword, tmpKeyword];
+    const updatedRecentKeyword = [tmpKeyword, ...data.recentKeyword];
+
+    if (updatedRecentKeyword.length > 10) {
+      updatedRecentKeyword.pop();
+    }
+
     window.localStorage.setItem(
       'recentKeyword',
       JSON.stringify(updatedRecentKeyword)
     );
     data.setRecentKeyword(updatedRecentKeyword);
-  
+
     navigate("/search");
+    dispatch({ type: "OFF_ONSEARCH" });
   };
 
 
