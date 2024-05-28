@@ -15,7 +15,9 @@ const Rank = ({ gamedata, start }) => {
               <img src={data.thumbnailUrl} alt="boardGameImg" />
             </article>
             <article className="thumName">
-              <h1 className="num">{i + start}</h1>
+              <div className="ranknum">
+                <h1>{i + start}</h1>
+              </div>
               <article className="text">
                 <h1>{data.name}</h1>
                 <p>{data.description}</p>

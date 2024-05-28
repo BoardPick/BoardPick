@@ -147,7 +147,7 @@ function App() {
               element={<MyPage logData={logData} />}
             />
             <Route
-              path="/search"
+              path="/search/:name"
               // element={
               //   isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
               // }
