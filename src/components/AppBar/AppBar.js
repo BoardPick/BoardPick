@@ -28,12 +28,6 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       payload: value,
     });
   };
-  const setIsPicked = (id, isPicked) => {
-    dispatch({
-      type: "SET_IS_PICKED",
-      payload: { id, isPicked },
-    });
-  };
 
   const handlerPick = (id) => {
     const token = localStorage.getItem("token");
@@ -44,7 +38,10 @@ const AppBar = ({ title, mark, type, id, picked }) => {
 
     togglePick(id, token)
       .then(function (response) {
-        setIsPicked(id, response.Picked);
+        dispatch({
+          type: "SET_IS_PICKED",
+          payload: { id, isPicked: response.picked },
+        });
         if (response.picked) {
           setToastPick(true);
         } else {
