@@ -1,7 +1,8 @@
 .searchResult {
-	height: 100vh;
+	// height: 100vh;
 	
 	.Result {
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		
@@ -35,6 +36,8 @@
 
 		.ResultThumbNail {
 			padding: 0 20px;
+			padding-bottom: 80px;
+			background-color: $common_white;
 
 			width: 100%;
 			display: grid;

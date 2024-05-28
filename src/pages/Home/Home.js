@@ -132,9 +132,9 @@ const Home = ({ logData }) => {
           <CategoryBox />
 
           {/* 관심있어 할 만한 보드게임 */}
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
             <div>
-              <article className="recommand">
+              {recommandData && <article className="recommand">
                 <div className="title">
                   <div className="firstline">
                     <h1 className="name">{logData ? logData.nickname : "사용자"}</h1>
@@ -144,8 +144,7 @@ const Home = ({ logData }) => {
                 </div>
                 <div className="slide" ref={gameTabRef}>
                   <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                    {recommandData &&
-                      recommandData.map((r, i) => (
+                    {recommandData.map((r, i) => (
                         <SwiperSlide key={i}>
                           <ThumbNail
                             id={r.id}
@@ -160,16 +159,15 @@ const Home = ({ logData }) => {
                       ))}
                   </Swiper>
                 </div>
-              </article>
+              </article>}
               {/* 오늘의 보드픽 랭킹 */}
-              <div className="pickRank">
+              {rankData && <div className="pickRank">
                 <div className="miniHeader">
                   <h1 className="title">오늘의 보드P!CK 랭킹</h1>
                   <p className="info">
                     오늘 가장 많은 P!CK을 받은 게임들만 모아봤어요!
                   </p>
                 </div>
-                {rankData && (
                   <div className="rankGame">
                     <div className="todayPick" ref={todayPickRef}>
                       <Swiper slidesPerView={1.3} spaceBetween={12}>
@@ -182,19 +180,17 @@ const Home = ({ logData }) => {
                       </Swiper>
                     </div>
                   </div>
-                )}
-              </div>
+              </div>}
               {/* 큐레이션 */}
               <div className="all-curation">
-                <article className="curation">
+                {duoData && (<article className="curation">
                   <div className="title">
                     <h1>#둘이서 하기 좋은</h1>
                     <h2>보드게임</h2>
                   </div>
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {duoData &&
-                        duoData.map((d, i) => (
+                      {duoData.map((d, i) => (
                           <SwiperSlide key={i}>
                             <ThumbNail
                               id={d.id}
@@ -209,16 +205,15 @@ const Home = ({ logData }) => {
                         ))}
                     </Swiper>
                   </div>
-                </article>
-                <article className="curation">
+                </article>)}
+                {easyData && (<article className="curation">
                   <div className="title">
                     <h1>#초보자도 쉽게 즐기는</h1>
                     <h2>보드게임</h2>
                   </div>
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {easyData &&
-                        easyData.map((r, i) => (
+                      {easyData.map((r, i) => (
                           <SwiperSlide key={i}>
                             <ThumbNail
                               id={r.id}
@@ -232,16 +227,15 @@ const Home = ({ logData }) => {
                         ))}
                     </Swiper>
                   </div>
-                </article>
-                <article className="curation">
+                </article>)}
+                {TeamData && (<article className="curation">
                   <div className="title">
                     <h1>#단체가 하기 좋은</h1>
                     <h2>보드게임</h2>
                   </div>
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {recommandData &&
-                        recommandData.map((r, i) => (
+                      {TeamData.map((r, i) => (
                           <SwiperSlide key={i}>
                             <ThumbNail
                               id={r.id}
@@ -255,7 +249,7 @@ const Home = ({ logData }) => {
                         ))}
                     </Swiper>
                   </div>
-                </article>
+                </article>)}
               </div>
             </div>
           ) : (
