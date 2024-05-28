@@ -47,11 +47,13 @@ const AppBar = ({ title, mark, type, id, picked }) => {
         } else {
           setToastUnpick(true);
         }
+        console.log(response.picked);
       })
       .catch(function (error) {
         console.error(error);
       });
   };
+  console.log(isPicked);
 
   return (
     <div className={`AppBar ${BarType}`}>
