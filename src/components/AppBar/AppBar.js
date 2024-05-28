@@ -14,7 +14,14 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-  const isPicked = useSelector((state) => state.pickedItems[id]);
+  // const isPicked = useSelector((state) => state.pickedItems[id]);
+  // const setIsPicked = (id, isPicked) => {
+  //   dispatch({
+  //     type: "SET_IS_PICKED",
+  //     payload: { id, isPicked },
+  //   });
+  // };
+  const [isPicked, setIsPicked] = useState(picked);
   const setToastPick = (value) => {
     dispatch({
       type: "SET_TOAST_PICK",
@@ -38,14 +45,12 @@ const AppBar = ({ title, mark, type, id, picked }) => {
 
     togglePick(id, token)
       .then(function (response) {
-        dispatch({
-          type: "SET_IS_PICKED",
-          payload: { id, isPicked: response.picked },
-        });
         if (response.picked) {
           setToastPick(true);
+          setIsPicked(true);
         } else {
           setToastUnpick(true);
+          setIsPicked(false);
         }
         console.log(response.picked);
       })
@@ -53,7 +58,6 @@ const AppBar = ({ title, mark, type, id, picked }) => {
         console.error(error);
       });
   };
-  console.log(isPicked);
 
   return (
     <div className={`AppBar ${BarType}`}>
