@@ -14,7 +14,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-  // const isPicked = useSelector((state) => state.pickedItems[id]);
+  const isPicked = useSelector((state) => state.pickedItems[id]);
   // const setIsPicked = (id, isPicked) => {
   //   dispatch({
   //     type: "SET_IS_PICKED",
