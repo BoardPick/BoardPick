@@ -16,7 +16,7 @@ const AppBar = ({ title, mark, type, id }) => {
   };
 
   const getIsPicked = () => {
-    const storedIsPicked = localStorage.getItem("isPicked");
+    const storedIsPicked = localStorage.getItem(`picked_${id}`);
     return storedIsPicked ? JSON.parse(storedIsPicked) : false;
   };
 
@@ -25,7 +25,7 @@ const AppBar = ({ title, mark, type, id }) => {
       type: "SET_IS_PICKED",
       payload: { id, isPicked: value },
     });
-    localStorage.setItem("isPicked", JSON.stringify(value));
+    localStorage.setItem(`picked_${id}`, JSON.stringify(value));
   };
 
   useEffect(() => {
