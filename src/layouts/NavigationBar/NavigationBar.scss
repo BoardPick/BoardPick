@@ -9,44 +9,47 @@
   transform: translateX(-50%);
   background-color: $common_white;
   border-top: 1px solid $line_default;
-
   ul {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
-    .menu {
+    li {
       width: calc(100% / 4);
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: $text_info;
-      cursor: pointer;
-      .menuName {
+      .menu {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         color: $text_info;
-        font-size: 11px;
-        line-height: 16px;
-        letter-spacing: -2.5%;
-      }
-      &.on {
+        cursor: pointer;
+        text-decoration: none;
         .menuName {
-          color: $main_color;
+          color: $text_info;
+          font-size: 11px;
+          line-height: 16px;
+          letter-spacing: -2.5%;
         }
-        svg {
-          fill: $main_color;
-          path,
-          circle {
-            stroke: $main_color;
+        &.active {
+          .menuName {
+            color: $main_color;
+          }
+          svg {
+            fill: $main_color;
+            path,
+            circle {
+              stroke: $main_color;
+            }
           }
         }
-      }
-      &:nth-child(1) {
-        &.on {
-          path {
-            &:nth-child(2) {
-              stroke: white;
+        &:nth-child(1) {
+          &.active {
+            path {
+              &:nth-child(2) {
+                stroke: $common_white;
+              }
             }
           }
         }

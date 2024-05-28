@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Home, Category, Bookmark, MyPage } from "../../assets/icon/icon.js";
+import { NavLink } from "react-router-dom";
 
 const TabBar = () => {
   const location = useLocation();
@@ -31,18 +32,16 @@ const TabBar = () => {
     <div className="NavigationBar">
       <ul>
         {tabs.map((tab, i) => (
-          <li
-            key={i}
-            className={`menu ${
-              selectedTab === tab.url ||
-              (tab.url !== "/" && location.pathname.includes(tab.url))
-                ? "on"
-                : ""
-            }`}
-            onClick={() => handleTabClick(tab.url)}
-          >
-            <span className="menuIcon">{tab.icon}</span>
-            <span className="menuName">{tab.text}</span>
+          <li>
+            <NavLink
+              to={`${tab.url}`}
+              key={i}
+              className="menu"
+              onClick={() => handleTabClick(tab.url)}
+            >
+              <span className="menuIcon">{tab.icon}</span>
+              <span className="menuName">{tab.text}</span>
+            </NavLink>
           </li>
         ))}
       </ul>
