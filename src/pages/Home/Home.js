@@ -254,7 +254,7 @@ const Home = ({ logData }) => {
             </div>
           ) : (
             //비로그인시
-            <article className="recommand">
+            <article className="recommand-visitor">
               <div className="title">
                 <div className="firstline">
                   <h1 className="name">보드PICK</h1>

@@ -1,5 +1,5 @@
 // .home {
-// 	height: 100vh;
+// 	// padding-bottom: 80px;
 // }
 
 .recommand {
@@ -109,5 +109,39 @@
       font-weight: 400;
       color: $text_sub2;
     }
+  }
+}
+
+.recommand-visitor {
+  gap: 24px;
+  padding: 32px 0;
+  padding-bottom: 80px;
+  border-top: 8px solid;
+  border-color: $background_default;
+
+  .title {
+    @each $font, $value in $title2 {
+      #{$font}: $value;
+    }
+    font-weight: 600;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .firstline {
+      display: flex;
+      justify-content: flex-start;
+      .name {
+        color: $main_color;
+        padding-right: 5px;
+      }
+    }
+  }
+  .slide {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
 }
