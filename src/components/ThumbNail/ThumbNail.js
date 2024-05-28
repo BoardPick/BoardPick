@@ -10,23 +10,6 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isPicked = useSelector((state) => state.pickedItems[id] || false);
-
-  const getIsPicked = () => {
-    const storedIsPicked = localStorage.getItem(`picked_${id}`);
-    return storedIsPicked ? JSON.parse(storedIsPicked) : false;
-  };
-  const setIsPickedSave = (value) => {
-    dispatch({
-      type: "SET_IS_PICKED",
-      payload: { id, isPicked: value },
-    });
-    localStorage.setItem(`picked_${id}`, JSON.stringify(value));
-  };
-  useEffect(() => {
-    const storedIsPicked = getIsPicked();
-    setIsPickedSave(storedIsPicked);
-  }, []);
-
   const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
