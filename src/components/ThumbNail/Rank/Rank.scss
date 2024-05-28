@@ -23,9 +23,15 @@
       justify-content: center;
       gap: 12px;
 
-      .num {
-        color: $main_color;
+      .ranknum {
         padding-left: 12px;
+        h1 {
+          @each $font, $value in $title4 {
+            #{$font}: $value;
+          }
+          color: $main_color;
+          font-weight: 600;
+        }
       }
 
       .text {
@@ -41,6 +47,7 @@
           -webkit-box-orient: vertical; // 크로스 브라우징용
           overflow: hidden; /* 넘치는 텍스트를 숨김 */
           text-overflow: ellipsis;
+          padding-bottom: 3px;
         }
 
         p {

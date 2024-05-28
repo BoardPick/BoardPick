@@ -37,7 +37,7 @@
 
 .pickRank {
   gap: 24px;
-  padding: 20px 35px 20px 35px;
+  padding: 10px 0;
   border-top: 8px solid;
   border-bottom: 8px solid;
   border-color: $background_default;
@@ -45,10 +45,11 @@
   cursor: pointer;
 
   .miniHeader {
-    padding-top: 10px;
     align-items: start;
-    padding-bottom: 20px;
-    border-bottom: 1px solid $line_default;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
     .title {
       @each $font, $value in $title2 {
@@ -56,10 +57,8 @@
       }
       font-weight: 600;
       padding-bottom: 4px;
-      padding-left: 20px;
-      padding-right: 20px;
     }
-
+    
     .info {
       @each $font, $value in $body2 {
         #{$font}: $value;
@@ -67,6 +66,15 @@
       color: $text_info;
       font-weight: 400;
     }
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      border-bottom: 1px solid $line_default;
+    }  
   }
 
   .rankGame {
@@ -77,8 +85,10 @@
 
 .all-curation {
   padding: 32px 0;
+  padding-bottom: 80px;
+
   .curation {
-    gap: 24px;
+    padding-bottom: 30px;
 
     .title {
       @each $font, $value in $title2 {
