@@ -5,9 +5,6 @@ import { Home, Category, Bookmark, MyPage } from "../../assets/icon/icon.js";
 import { NavLink } from "react-router-dom";
 
 const TabBar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState(location.pathname);
   const onSearch = useSelector((state) => state.onSearch);
   const dispatch = useDispatch();
 
@@ -16,15 +13,19 @@ const TabBar = () => {
       url: "/",
       icon: <Home />,
       text: "홈",
+      class: "home",
     },
-    { url: "/category", icon: <Category />, text: "카테고리" },
-    { url: "/myPick", icon: <Bookmark />, text: "MY PICK" },
-    { url: "/myPage", icon: <MyPage />, text: "내 정보" },
+    {
+      url: "/category",
+      icon: <Category />,
+      text: "카테고리",
+      class: "category",
+    },
+    { url: "/myPick", icon: <Bookmark />, text: "MY PICK", class: "myPick" },
+    { url: "/myPage", icon: <MyPage />, text: "내 정보", class: "myPage" },
   ];
 
-  const handleTabClick = (url) => {
-    setSelectedTab(url);
-    navigate(url);
+  const handleTabClick = () => {
     dispatch({ type: "OFF_ONSEARCH" });
   };
 
@@ -36,7 +37,7 @@ const TabBar = () => {
             <NavLink
               to={`${tab.url}`}
               key={i}
-              className="menu"
+              className={`menu ${tab.class}`}
               onClick={() => handleTabClick(tab.url)}
             >
               <span className="menuIcon">{tab.icon}</span>
