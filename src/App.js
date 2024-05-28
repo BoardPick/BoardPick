@@ -87,71 +87,62 @@ function App() {
           <Routes>
             <Route
               path="/onBoarding"
-              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              element={<OnBoarding />}
+              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
             />
 
             <Route
               path="/"
-              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home logData={logData} />}
+              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
             />
             <Route
               path="/category"
-              // element={
-              //   isLoggedIn ? <Category /> : <Navigate to="/onBoarding" />
-              // }
-              element={<Category />}
+              element={
+                isLoggedIn ? <Category /> : <Navigate to="/onBoarding" />
+              }
             />
             <Route
               path="/category/select/:name"
-              // element={
-              //   isLoggedIn ? <CategorySelect /> : <Navigate to="/onBoarding" />
-              // }
-              element={<CategorySelect />}
+              element={
+                isLoggedIn ? <CategorySelect /> : <Navigate to="/onBoarding" />
+              }
             />
             <Route
               path="/category/:id"
-              // element={
-              //   isLoggedIn ? <CategoryDetail /> : <Navigate to="/onBoarding" />
-              // }
-              element={<CategoryDetail />}
+              element={
+                isLoggedIn ? <CategoryDetail /> : <Navigate to="/onBoarding" />
+              }
             />
             <Route
               path="/myPick"
-              // element={
-              //   isLoggedIn ? (
-              //     <MyPick logData={logData} />
-              //   ) : (
-              //     <Navigate to="/onBoarding" />
-              //   )
-              // }
-              element={<MyPick logData={logData} />}
+              element={
+                isLoggedIn ? (
+                  <MyPick logData={logData} />
+                ) : (
+                  <Navigate to="/onBoarding" />
+                )
+              }
             />
             <Route
               path="/myPick/all"
-              // element={
-              //   isLoggedIn ? <MyPickAll /> : <Navigate to="/onBoarding" />
-              // }
-              element={<MyPickAll />}
+              element={
+                isLoggedIn ? <MyPickAll /> : <Navigate to="/onBoarding" />
+              }
             />
             <Route
               path="/myPage"
-              // element={
-              //   isLoggedIn ? (
-              //     <MyPage logData={logData} />
-              //   ) : (
-              //     <Navigate to="/onBoarding" />
-              //   )
-              // }
-              element={<MyPage logData={logData} />}
+              element={
+                isLoggedIn ? (
+                  <MyPage logData={logData} />
+                ) : (
+                  <Navigate to="/onBoarding" />
+                )
+              }
             />
             <Route
               path="/search/:name"
-              // element={
-              //   isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
-              // }
-              element={<SearchResult />}
+              element={
+                isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
+              }
             />
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
