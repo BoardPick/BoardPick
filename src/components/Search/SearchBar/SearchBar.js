@@ -21,33 +21,7 @@ const SearchBar = () => {
     dispatch({ type: "ON_ONSEARCH" });
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      if (tmpKeyword === "")
-        return ;
-      data.setSearchKeywold(tmpKeyword);
-      console.log(tmpKeyword);
-  
-      const updatedRecentKeyword = [tmpKeyword, ...data.recentKeyword];
-      console.log(updatedRecentKeyword);
-
-      if (updatedRecentKeyword.length > 10) {
-        updatedRecentKeyword.pop();
-      }
-
-      window.localStorage.setItem(
-        'recentKeyword',
-        JSON.stringify(updatedRecentKeyword)
-      );
-      data.setRecentKeyword(updatedRecentKeyword);
-      console.log(data.recentKeyword);
-
-      navigate(`/search/${tmpKeyword}`);
-      dispatch({ type: "OFF_ONSEARCH" });
-    }
-  };
-
-  const onResult = () => {
+  const setResultPage = () => {
     if (tmpKeyword === "")
         return ;
     data.setSearchKeywold(tmpKeyword);
@@ -70,6 +44,17 @@ const SearchBar = () => {
 
   const rmvInput = () => {
     setTmpKeyword("");
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (e.isComposing || e.keyCode === 229) return;
+      setResultPage();
+    }
+  };
+
+  const onResult = () => {
+    setResultPage();
   }
 
   return (
