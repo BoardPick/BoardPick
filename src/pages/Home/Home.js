@@ -132,7 +132,7 @@ const Home = ({ logData }) => {
           <CategoryBox />
 
           {/* 관심있어 할 만한 보드게임 */}
-          {!isLoggedIn ? (
+          {/* {!isLoggedIn ? ( */}
             <div>
               {recommandData && <article className="recommand">
                 <div className="title">
@@ -252,7 +252,7 @@ const Home = ({ logData }) => {
                 </article>)}
               </div>
             </div>
-          ) : (
+          {/* ) : (
             //비로그인시
             <article className="recommand-visitor">
               <div className="title">
@@ -280,7 +280,7 @@ const Home = ({ logData }) => {
                 </Swiper>
               </div>
             </article>
-          )}
+          )} */}
         </div>
       )}
     </div>
