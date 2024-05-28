@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -6,7 +6,7 @@ import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 
 import { togglePick } from "../../common/axios/api";
 
-const AppBar = ({ title, mark, type, id, picked }) => {
+const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -14,6 +14,25 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
+
+  const getIsPicked = () => {
+    const storedIsPicked = localStorage.getItem("isPicked");
+    return storedIsPicked ? JSON.parse(storedIsPicked) : false;
+  };
+
+  const setIsPickedSave = (value) => {
+    dispatch({
+      type: "SET_IS_PICKED",
+      payload: { id, isPicked: value },
+    });
+    localStorage.setItem("isPicked", JSON.stringify(value));
+  };
+
+  useEffect(() => {
+    const storedIsPicked = getIsPicked();
+    setIsPickedSave(storedIsPicked);
+  }, []);
+
   const isPicked = useSelector((state) => state.pickedItems[id] || false);
   const setToastPick = (value) => {
     dispatch({
@@ -29,7 +48,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
     });
   };
 
-  const handlerPick = (id) => {
+  const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
@@ -38,10 +57,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
 
     togglePick(id, token)
       .then(function (response) {
-        dispatch({
-          type: "SET_IS_PICKED",
-          payload: { id, isPicked: response.picked },
-        });
+        setIsPickedSave(response.picked);
         if (response.picked) {
           setToastPick(true);
         } else {
