@@ -13,6 +13,7 @@ const SearchResult = () => {
   const log = useContext(SearchContext);
   const onSearch = useSelector((state) => state.onSearch);
   const { name } = useParams();
+  const decodedName = decodeURIComponent(name);
 
   // 검색 api 호출
   const [searchData, setSearchData] = useState(null);
@@ -23,7 +24,7 @@ const SearchResult = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const searchData = await getSearchResult(name);
+        const searchData = await getSearchResult(decodedName);
         setSearchData(searchData);
         setLoading(false);
       } catch (err) {
@@ -43,13 +44,13 @@ const SearchResult = () => {
       {loading ? (
         <Loading />
       ) : (onSearch ? (<OnSearch />) : (searchData.length == 0 ? (
-        <NoneResult value={name} />
+        <NoneResult value={decodedName} />
       ) : (
         <div className="Result">
           <div className="message">
             <div className="texts">
               <div className="heads">
-                <h1 className="values">'{name}'</h1>
+                <h1 className="values">'{decodedName}'</h1>
                 <h1 className="h1s">에 대한 검색결과에요!</h1>
               </div>
             </div>

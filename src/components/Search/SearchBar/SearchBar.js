@@ -38,7 +38,7 @@ const SearchBar = () => {
     );
     data.setRecentKeyword(updatedRecentKeyword);
 
-    navigate(`/search/${tmpKeyword}`);
+    navigate(`/search/${encodeURIComponent(tmpKeyword)}`);
     dispatch({ type: "OFF_ONSEARCH" });
   };
 
