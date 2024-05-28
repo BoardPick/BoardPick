@@ -21,7 +21,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   //     payload: { id, isPicked },
   //   });
   // };
-  const [isPicked, setIsPicked] = useState(picked);
+  // const [isPicked, setIsPicked] = useState(picked);
   const setToastPick = (value) => {
     dispatch({
       type: "SET_TOAST_PICK",
@@ -47,12 +47,11 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       .then(function (response) {
         if (response.picked) {
           setToastPick(true);
-          setIsPicked(true);
+          // setIsPicked(true);
         } else {
           setToastUnpick(true);
-          setIsPicked(false);
+          // setIsPicked(false);
         }
-        console.log(response.picked);
       })
       .catch(function (error) {
         console.error(error);
