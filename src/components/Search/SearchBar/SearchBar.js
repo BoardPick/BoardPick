@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "../../../context/SearchContext";
 import { useNavigate } from "react-router-dom";
 import btn from "../../../assets/icon/search.svg";
+import rmv from "../../../assets/icon/remove.svg"
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -22,9 +23,13 @@ const SearchBar = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
+      if (tmpKeyword === "")
+        return ;
       data.setSearchKeywold(tmpKeyword);
+      console.log(tmpKeyword);
   
       const updatedRecentKeyword = [tmpKeyword, ...data.recentKeyword];
+      console.log(updatedRecentKeyword);
 
       if (updatedRecentKeyword.length > 10) {
         updatedRecentKeyword.pop();
@@ -35,13 +40,16 @@ const SearchBar = () => {
         JSON.stringify(updatedRecentKeyword)
       );
       data.setRecentKeyword(updatedRecentKeyword);
+      console.log(data.recentKeyword);
 
-      navigate("/search");
+      navigate(`/search/${tmpKeyword}`);
       dispatch({ type: "OFF_ONSEARCH" });
     }
   };
 
   const onResult = () => {
+    if (tmpKeyword === "")
+        return ;
     data.setSearchKeywold(tmpKeyword);
   
     const updatedRecentKeyword = [tmpKeyword, ...data.recentKeyword];
@@ -56,10 +64,13 @@ const SearchBar = () => {
     );
     data.setRecentKeyword(updatedRecentKeyword);
 
-    navigate("/search");
+    navigate(`/search/${tmpKeyword}`);
     dispatch({ type: "OFF_ONSEARCH" });
   };
 
+  const rmvInput = () => {
+    setTmpKeyword("");
+  }
 
   return (
     <div className="SearchBar">
@@ -73,6 +84,7 @@ const SearchBar = () => {
           onKeyDown={handleKeyDown}
           onClick={onClick}
         />
+        {onSearch && <img className="rmv" src={rmv} alt="삭제버튼" onClick={rmvInput} /> }
         <img className="img" src={btn} alt="돋보기" onClick={onResult} />
       </div>
     </div>

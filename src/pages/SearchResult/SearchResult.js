@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import OnSearch from "../../components/Search/OnSearch/OnSearch";
 import NoneResult from "../../components/Search/SearchResult/noneResult/NoneResult";
@@ -11,6 +12,7 @@ import { getSearchResult } from "../../common/axios/search";
 const SearchResult = () => {
   const log = useContext(SearchContext);
   const onSearch = useSelector((state) => state.onSearch);
+  const { name } = useParams();
 
   // 검색 api 호출
   const [searchData, setSearchData] = useState(null);
@@ -21,7 +23,7 @@ const SearchResult = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const searchData = await getSearchResult(log.searchKeywold);
+        const searchData = await getSearchResult(name);
         setSearchData(searchData);
         setLoading(false);
       } catch (err) {
@@ -31,7 +33,7 @@ const SearchResult = () => {
     };
 
     fetchData();
-  }, [log.searchKeywold]);
+  }, [name]);
 
   if (loading) return <Loading />;
 
@@ -41,13 +43,13 @@ const SearchResult = () => {
       {loading ? (
         <Loading />
       ) : (onSearch ? (<OnSearch />) : (searchData.length == 0 ? (
-        <NoneResult value={log.searchKeywold} />
+        <NoneResult value={name} />
       ) : (
         <div className="Result">
           <div className="message">
             <div className="texts">
               <div className="heads">
-                <h1 className="values">'{log.searchKeywold}'</h1>
+                <h1 className="values">'{name}'</h1>
                 <h1 className="h1s">에 대한 검색결과에요!</h1>
               </div>
             </div>

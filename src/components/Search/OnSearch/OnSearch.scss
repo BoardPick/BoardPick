@@ -1,15 +1,27 @@
 .recent {
-	align-items: start;
-	justify-content: center;
+	display: flex;
+	flex-direction: column;
     height: 100vh;
-	
-	.title {
-		@each $font, $value in $body1 {
-			#{$font}: $value;
+
+	.head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		.title {
+			@each $font, $value in $body1 {
+				#{$font}: $value;
+			}
+			font-weight: 500;
+			padding: 15px 20px;
 		}
-		font-weight: 500;
-		padding: 15px 20px;
+		.allrmv {
+			text-decoration: underline;
+			text-underline-offset: 3px;
+			cursor: pointer;
+		}
 	}
+	
 	
 	p {
 		@each $font, $value in $body2 {
@@ -61,7 +73,7 @@
 			  }
 			  color: $text_default;
 			  padding: 0;
-			//   cursor: pointer;
+			  cursor: pointer;
 			}
 
 			.rmv {
