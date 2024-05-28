@@ -43,10 +43,10 @@ const SearchResult = () => {
       ) : (
         <div className="Result">
           <div className="message">
-            <div className="text">
-              <div className="head">
-                <h1 className="value">'{log.searchKeywold}'</h1>
-                <h1 className="h1">에 대한 검색결과에요!</h1>
+            <div className="texts">
+              <div className="heads">
+                <h1 className="values">'{log.searchKeywold}'</h1>
+                <h1 className="h1s">에 대한 검색결과에요!</h1>
               </div>
             </div>
           </div>
