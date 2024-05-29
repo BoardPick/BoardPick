@@ -16,7 +16,8 @@ const CategoryDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [data, setData] = useState({});
-  const toast = useSelector((state) => state.toast);
+  const toastPick = useSelector((state) => state.toast?.pick);
+  const toastUnPick = useSelector((state) => state.toast?.unpick);
   const isCopied = useSelector((state) => state.isCopied);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,19 +57,19 @@ const CategoryDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    if (toast.pick) {
+    if (toastPick) {
       const timer = setTimeout(() => {
         setToastPick(false);
       }, 2000);
       return () => clearTimeout(timer);
     }
-    if (toast.unpick) {
+    if (toastUnPick) {
       const timer = setTimeout(() => {
         setToastUnpick(false);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [toast, setToastPick, setToastUnpick]);
+  }, [toastPick, toastUnPick, setToastPick, setToastUnpick]);
 
   useEffect(() => {
     setData((prevData) => ({
@@ -80,8 +81,8 @@ const CategoryDetail = () => {
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
   console.log(isPicked);
-  console.log(toast.pick);
-  console.log(toast.unpick);
+  console.log(toastPick);
+  console.log(toastUnPick);
 
   return (
     <div className="categoryDetail">
@@ -118,11 +119,11 @@ const CategoryDetail = () => {
       <RuleTab />
 
       {isPicked ? (
-        <div className={`toast ${toast.pick ? "pop" : ""}`}>
+        <div className={`toast ${toastPick ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임을 PICK 했어요"} />
         </div>
       ) : (
-        <div className={`toast ${toast.unpick ? "pop" : ""}`}>
+        <div className={`toast ${toastUnPick ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임 PICK을 취소했어요"} />
         </div>
       )}

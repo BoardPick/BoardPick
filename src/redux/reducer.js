@@ -1,4 +1,15 @@
-import { SET_CATEGORY } from "./actionTypes.js";
+// import { SET_CATEGORY } from "./actionTypes.js";
+import {
+  SET_ISLOGGEDIN,
+  SET_TOAST_PICK,
+  SET_TOAST_UNPICK,
+  SET_ISCOPY,
+  ON_ONSEARCH,
+  ON_SEARCHRESULT,
+  OFF_ONSEARCH,
+  SET_CATEGORY,
+  SET_IS_PICKED,
+} from "./actionTypes.js";
 
 let initialState = {
   isLoggedIn: false,
