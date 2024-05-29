@@ -52,20 +52,20 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       <article className="thumbName">
         <h1>{name}</h1>
         <p>{info}</p>
-        <div className="hashTagBox tagBig">
+        <div className="hashTagBox">
           {tags &&
             tags
               .slice(0, 2)
               .map((t, i) => <Tag key={i} tag={t} thumb={"thumb"} />)}
           <div className="hashTag ellipis"></div>
         </div>
-        <div className="hashTagBox tagSmall">
+        {/* <div className="hashTagBox tagSmall">
           {tags &&
             tags
               .slice(0, 1)
               .map((t, i) => <Tag key={i} tag={t} thumb={"thumb"} />)}
           <div className="hashTag ellipis"></div>
-        </div>
+        </div> */}
       </article>
     </div>
   );
