@@ -33,7 +33,7 @@ const TabBar = () => {
     <div className="NavigationBar">
       <ul>
         {tabs.map((tab, i) => (
-          <li>
+          <li key={i}>
             <NavLink
               to={`${tab.url}`}
               key={i}
