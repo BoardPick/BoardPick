@@ -92,7 +92,7 @@ function App() {
 
             <Route
               path="/"
-              element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
+              element={isLoggedIn ? <Home logData={logData}/> : <Navigate to="/onBoarding" />}
             />
             <Route
               path="/category"
