@@ -30,8 +30,8 @@ function App() {
   // const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
-  const setIsLoggedIn = () => {
-    dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
+  const setIsLoggedIn = (value) => {
+    dispatch({ type: "SET_ISLOGGEDIN", payload: value });
   };
   // 최근 검색어 저장
   const loadedRecentKeyword = localStorage.getItem("recentKeyword")
@@ -51,21 +51,24 @@ function App() {
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
-      navigate("/");
+      // navigate("/");
     }
     const storeToken = localStorage.getItem("token");
     if (!storeToken) {
+      setLoading(false);
       console.error("No token found");
       return;
     }
+
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(storeToken);
         setLogData(logData);
-        setLoading(false);
         setIsLoggedIn(true);
       } catch (err) {
         setError(err.message);
+        setIsLoggedIn(false);
+      } finally {
         setLoading(false);
       }
     };
@@ -73,6 +76,9 @@ function App() {
     fetchData();
   }, []);
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <SearchContext.Provider
       value={{

@@ -10,6 +10,7 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isPicked = useSelector((state) => state.pickedItems[id] || false);
+
   const handlerPick = () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -22,6 +23,7 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
           type: "SET_IS_PICKED",
           payload: { id, isPicked: response.picked },
         });
+        console.log(response.picked);
       })
       .catch(function (error) {
         console.error(error);
