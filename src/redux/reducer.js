@@ -21,7 +21,7 @@ let initialState = {
   onSearch: false,
   searchResult: false,
   selectCategory: "none",
-  pickedItems: {},
+  pickedItems: [],
 };
 
 function reducer(state = initialState, action) {
@@ -66,13 +66,20 @@ function reducer(state = initialState, action) {
         ...state,
         selectCategory: action.payload,
       };
-    case "SET_IS_PICKED":
+    case "ADD_PICKED_ITEM":
       return {
         ...state,
         pickedItems: {
           ...state.pickedItems,
-          [action.payload.id]: action.payload.isPicked,
+          [action.payload]: true,
         },
+      };
+    case "REMOVE_PICKED_ITEM":
+      const { [action.payload]: removedItem, ...remainingItems } =
+        state.pickedItems;
+      return {
+        ...state,
+        pickedItems: remainingItems,
       };
     default:
       return { ...state };
