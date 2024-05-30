@@ -70,3 +70,12 @@ export const togglePick = async (id, token) => {
     throw error;
   }
 };
+
+export const getPickItem = async (id) => {
+  try {
+    const { data } = await apiRoot.get(`/api/pick/get/${id}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
