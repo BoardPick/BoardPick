@@ -10,6 +10,13 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isPicked = useSelector((state) => state.pickedItems[id]);
+  const addPickItem = () => {
+    dispatch({ type: "ADD_PICKED_ITEM", payload: id });
+  };
+
+  const removePickItem = () => {
+    dispatch({ type: "REMOVE_PICKED_ITEM", payload: id });
+  };
 
   const handlerPick = () => {
     const token = localStorage.getItem("token");
@@ -18,13 +25,14 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       return;
     }
     togglePick(id, token)
-      .then(function (response) {
-        dispatch({
-          type: "SET_IS_PICKED",
-          payload: { id, isPicked: response.picked },
-        });
+      .then((response) => {
+        if (response.picked) {
+          addPickItem(id);
+        } else {
+          removePickItem(id);
+        }
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error(error);
       });
   };
