@@ -1,13 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ChevronRight } from "../../assets/icon/icon";
-// import {
-//   profile_brand,
-//   profile_blue,
-//   profile_green,
-//   profile_pink,
-//   profile_yellow,
-// } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
 import { useState } from "react";
 
@@ -22,15 +15,6 @@ const MyPage = ({ logData }) => {
 
     localStorage.removeItem("token");
   };
-
-  // const profile = [
-  //   profile_brand,
-  //   profile_pink,
-  //   profile_yellow,
-  //   profile_green,
-  //   profile_blue,
-  // ];
-  // const randomIdx = Math.floor(Math.random() * profile.length);
 
   return (
     <div className="MyPage">
