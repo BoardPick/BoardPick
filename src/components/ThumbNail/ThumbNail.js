@@ -74,7 +74,7 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
       <article className="thumbName">
         <h1>{name}</h1>
         <p>{info}</p>
-        <div className="hashTagBox">
+        <div className="hashTagBox tagBig">
           {tags &&
             tags
               .slice(0, 2)
