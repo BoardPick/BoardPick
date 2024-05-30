@@ -4,21 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
-import { togglePick } from "../../common/axios/api";
+import { getPickId, togglePick } from "../../common/axios/api";
 
 const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isPicked = useSelector((state) => state.pickedItems[id]);
-  const addPickItem = () => {
-    dispatch({ type: "ADD_PICKED_ITEM", payload: id });
-  };
 
-  const removePickItem = () => {
-    dispatch({ type: "REMOVE_PICKED_ITEM", payload: id });
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handlerPick = () => {
+  const [pickId, setPickId] = useState([]);
+
+  const isPicked = pickId && pickId.includes(id);
+
+  const handlerPick = (id) => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
@@ -26,16 +25,31 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
     }
     togglePick(id, token)
       .then((response) => {
-        if (response.picked) {
-          addPickItem(id);
-        } else {
-          removePickItem(id);
-        }
+        console.log(response);
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+    const fetchData = async () => {
+      try {
+        const pickId = await getPickId(token);
+        setPickId(pickId);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [pickId]);
 
   return (
     <div
@@ -67,13 +81,13 @@ const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
               .map((t, i) => <Tag key={i} tag={t} thumb={"thumb"} />)}
           <div className="hashTag ellipis"></div>
         </div>
-        {/* <div className="hashTagBox tagSmall">
+        <div className="hashTagBox tagSmall">
           {tags &&
             tags
               .slice(0, 1)
               .map((t, i) => <Tag key={i} tag={t} thumb={"thumb"} />)}
           <div className="hashTag ellipis"></div>
-        </div> */}
+        </div>
       </article>
     </div>
   );

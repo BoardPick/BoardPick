@@ -70,3 +70,17 @@ export const togglePick = async (id, token) => {
     throw error;
   }
 };
+
+export const getPickId = async (token) => {
+  try {
+    const { data } = await apiRoot.get(`/api/pick/get-ids`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
