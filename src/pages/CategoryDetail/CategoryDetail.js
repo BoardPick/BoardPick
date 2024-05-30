@@ -9,7 +9,7 @@ import ToastPopUp from "../../components/ToastPopUp/ToastPopUp.js";
 import BoardGameElement from "../../layouts/BoardGameElement/BoardGameElement.js";
 import RuleTab from "../../layouts/RuleTab/RuleTab.js";
 import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
-import { getBoardGameDetail } from "../../common/axios/api.js";
+import { getBoardGameDetail, getPickId } from "../../common/axios/api.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const CategoryDetail = () => {
@@ -22,7 +22,10 @@ const CategoryDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const isPicked = useSelector((state) => state.pickedItems[id] || false);
+  // const isPicked = useSelector((state) => state.pickedItems[id] || false);
+  const [pickId, setPickId] = useState([]);
+  const isPicked = pickId && pickId.includes(id);
+
   const setToastPick = (value) => {
     dispatch({
       type: "SET_TOAST_PICK",
