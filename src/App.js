@@ -5,9 +5,17 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
 import { useState, useEffect } from "react";
 import { getLogInfo } from "./common/axios/loginfo";
+import {
+  profile_brand,
+  profile_blue,
+  profile_green,
+  profile_pink,
+  profile_yellow,
+} from "../src/assets/image/image";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -21,7 +29,6 @@ import MyPage from "./pages/MyPage/MyPage";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import Loading from "./components/Search/SearchResult/Loading/Loading";
-import { useSelector, useDispatch } from "react-redux";
 
 function App() {
   const navigate = useNavigate();
@@ -65,6 +72,28 @@ function App() {
         const logData = await getLogInfo(storeToken);
         setLogData(logData);
         setIsLoggedIn(true);
+        let profile = localStorage.getItem("profileImage");
+        if (!profile) {
+          const profileImages = [
+            profile_brand,
+            profile_pink,
+            profile_yellow,
+            profile_green,
+            profile_blue,
+          ];
+          const randomIdx = Math.floor(Math.random() * profileImages.length);
+          profile = profileImages[randomIdx];
+          localStorage.setItem("profileImage", profile);
+        }
+
+        setLogData((prevLogData) => ({
+          ...prevLogData,
+          profileImage:
+            logData.profileImage !==
+            "http://t1.kakaocdn.net/account_images/default_profile.jpeg.twg.thumb.R640x640"
+              ? logData.profileImage
+              : profile,
+        }));
       } catch (err) {
         setError(err.message);
         setIsLoggedIn(false);
@@ -98,7 +127,13 @@ function App() {
 
             <Route
               path="/"
-              element={isLoggedIn ? <Home logData={logData}/> : <Navigate to="/onBoarding" />}
+              element={
+                isLoggedIn ? (
+                  <Home logData={logData} />
+                ) : (
+                  <Navigate to="/onBoarding" />
+                )
+              }
             />
             <Route
               path="/category"
