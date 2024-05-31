@@ -57,7 +57,7 @@
         #{$font}: $value;
       }
       font-family: $font-family600;
-      // font-weight: 600;
+      font-weight: 600;
       padding-bottom: 4px;
     }
 
@@ -97,7 +97,7 @@
         #{$font}: $value;
       }
       font-family: $font-family600;
-      // font-weight: 600;
+      font-weight: 600;
       padding-bottom: 20px;
       display: flex;
       gap: 5px;
@@ -127,14 +127,14 @@
       #{$font}: $value;
     }
     font-family: $font-family600;
-    // font-weight: 600;
+    font-weight: 600;
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
     font-family: $font-family700;
-    // font-weight: 700;
+    font-weight: 700;
 
     .firstline {
       display: flex;

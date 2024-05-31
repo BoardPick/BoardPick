@@ -25,7 +25,7 @@
   .genre {
     font-size: 14px;
     font-family: $font-family500;
-    // font-weight: 500;
+    font-weight: 500;
     line-height: 20px;
     color: $text_default;
   }
@@ -57,8 +57,8 @@
 
   .genre {
     font-size: 14px;
-    font-family: $font-family500;
-    // font-weight: 500;
+    font-family: $font;
+    font-weight: 500;
     line-height: 20px;
     color: $common_white;
   }
