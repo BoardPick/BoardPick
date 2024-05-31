@@ -28,8 +28,9 @@
       padding: 14px 0;
       @each $font, $value in $title2 {
         #{$font}: $value;
-        font-weight: 600;
       }
+      font-family: $font-family600;
+      // font-weight: 600;
       .closeIcon {
         position: absolute;
         right: 20px;

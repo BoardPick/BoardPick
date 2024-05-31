@@ -25,8 +25,8 @@
         @each $font, $value in $title4 {
           #{$font}: $value;
         }
-
-        font-weight: 600;
+        font-family: $font-family600;
+        // font-weight: 600;
       }
     }
     ul {

@@ -56,7 +56,8 @@
       @each $font, $value in $title2 {
         #{$font}: $value;
       }
-      font-weight: 600;
+      font-family: $font-family600;
+      // font-weight: 600;
       padding-bottom: 4px;
     }
 
@@ -95,7 +96,8 @@
       @each $font, $value in $title2 {
         #{$font}: $value;
       }
-      font-weight: 600;
+      font-family: $font-family600;
+      // font-weight: 600;
       padding-bottom: 20px;
       display: flex;
       gap: 5px;
@@ -124,13 +126,15 @@
     @each $font, $value in $title2 {
       #{$font}: $value;
     }
-    font-weight: 600;
+    font-family: $font-family600;
+    // font-weight: 600;
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
-    font-weight: 700;
+    font-family: $font-family700;
+    // font-weight: 700;
 
     .firstline {
       display: flex;
