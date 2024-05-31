@@ -8,23 +8,24 @@
 
   width: 104px;
   height: 38px;
-  
+
   border-radius: 4px;
   border: 1px solid $line_default;
   background-color: $common_white;
 
   gap: 5px;
-  
+
   cursor: pointer;
-  
+
   img {
     width: 24px;
     height: 24px;
   }
-  
+
   .genre {
     font-size: 14px;
-    font-weight: 500;
+    font-family: $font-family500;
+    // font-weight: 500;
     line-height: 20px;
     color: $text_default;
   }
@@ -40,23 +41,24 @@
 
   width: 104px;
   height: 38px;
-  
+
   border-radius: 4px;
   filter: drop-shadow(4px #000000);
   background-color: $sub_color;
 
   gap: 5px;
-  
+
   cursor: pointer;
-  
+
   img {
     width: 24px;
     height: 24px;
   }
-  
+
   .genre {
     font-size: 14px;
-    font-weight: 500;
+    font-family: $font-family500;
+    // font-weight: 500;
     line-height: 20px;
     color: $common_white;
   }

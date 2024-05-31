@@ -29,7 +29,8 @@
       @each $font, $value in $title3 {
         #{$font}: $value;
       }
-      font-weight: 600;
+      // font-weight: 600;
+      font-family: $font-family600;
       color: $common_white;
     }
     .pickBox {

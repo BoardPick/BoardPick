@@ -30,7 +30,8 @@
             #{$font}: $value;
           }
           color: $main_color;
-          font-weight: 600;
+          font-family: $font-family600;
+          // font-weight: 600;
         }
       }
 
@@ -41,7 +42,8 @@
             #{$font}: $value;
           }
           color: $common_black;
-          font-weight: 600;
+          font-family: $font-family600;
+          // font-weight: 600;
           display: -webkit-box;
           -webkit-line-clamp: 1; //글의 최대 라인수
           -webkit-box-orient: vertical; // 크로스 브라우징용
