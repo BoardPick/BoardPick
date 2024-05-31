@@ -68,7 +68,7 @@
           #{$font}: $value;
         }
         font-family: $font-family700;
-        // font-weight: 700;
+        font-weight: 700;
         margin-bottom: 4px;
         margin-top: 12px;
       }
@@ -98,7 +98,7 @@
         }
         .pickCount {
           font-family: $font-family600;
-          // font-weight: bold;
+          font-weight: bold;
           margin-left: 3px;
         }
       }

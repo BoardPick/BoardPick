@@ -53,7 +53,7 @@
       -webkit-box-orient: vertical; // 크로스 브라우징용
       color: $text_sub1;
       font-family: $font-family600;
-      // font-weight: 600;
+      font-weight: 600;
     }
     p {
       @each $font, $value in $body3 {

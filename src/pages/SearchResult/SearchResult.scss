@@ -1,58 +1,58 @@
 .searchResult {
-	// height: 100vh;
-	
-	.Result {
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		
-		.message {
-			align-items: flex-start;
-			justify-content: flex-start;
-			height: 64px;
-			padding: 24px 20px 8px 20px;
+  // height: 100vh;
 
-			.texts {
-	
-				.heads {
-				@each $font, $value in $title2 {
-					#{$font}: $value;
-				}
-				text-align: center;
-				font-weight: bold;
-				padding-bottom: 7px;
-				display: flex;
-	
-					.values {
-						color: $main_color;
-					}
-	
-					.h1s {
-						justify-content: start;
-					}
-				}
-			}
-		}
+  .Result {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-		.ResultThumbNail {
-			padding: 0 20px;
-			padding-bottom: 80px;
-			background-color: $common_white;
+    .message {
+      align-items: flex-start;
+      justify-content: flex-start;
+      height: 64px;
+      padding: 24px 20px 8px 20px;
 
-			width: 100%;
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 32px 8px;
-		}
-	}
+      .texts {
+        .heads {
+          @each $font, $value in $title2 {
+            #{$font}: $value;
+          }
+          text-align: center;
+          font-weight: 600;
+          font-family: $font-family600;
+          padding-bottom: 7px;
+          display: flex;
+
+          .values {
+            color: $main_color;
+          }
+
+          .h1s {
+            justify-content: start;
+          }
+        }
+      }
+    }
+
+    .ResultThumbNail {
+      padding: 0 20px;
+      padding-bottom: 80px;
+      background-color: $common_white;
+
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px 8px;
+    }
+  }
 }
 
 @media all and (min-width: 450px) {
-	.searchResult {
-	  .Result {
-		.ResultThumbNail {
-		  grid-template-columns: repeat(3, 1fr);
-		}
-	  }
-	}
+  .searchResult {
+    .Result {
+      .ResultThumbNail {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
+}

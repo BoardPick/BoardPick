@@ -7,7 +7,7 @@
       #{$font}: $value;
     }
     font-family: $font-family600;
-    // font-weight: 600;
+    font-weight: 600;
   }
   .myInfoContainer {
     display: flex;
@@ -39,7 +39,7 @@
           }
           &.nickname strong {
             font-family: $font-family600;
-            // font-weight: 600;
+            font-weight: 600;
           }
           &.welcome {
             @each $font, $value in $title3 {
@@ -64,7 +64,7 @@
         }
         strong {
           font-family: $font-family700;
-          // font-weight: 700;
+          font-weight: 700;
           margin: 0 5px;
         }
       }
