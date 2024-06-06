@@ -19,7 +19,8 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-
+  const toastPick = useSelector((state) => state.toast?.pick);
+  const toastUnPick = useSelector((state) => state.toast?.unpick);
   const setToastPick = (value) => {
     dispatch({ type: "SET_TOAST_PICK", payload: value });
   };
@@ -42,6 +43,8 @@ const AppBar = ({ title, mark, type, id, picked }) => {
         } else {
           setToastUnpick(true);
         }
+        console.log(response.picked);
+        console.log(isPicked);
       })
       .catch((error) => {
         console.error(error);
@@ -66,6 +69,21 @@ const AppBar = ({ title, mark, type, id, picked }) => {
     };
     fetchData();
   }, [pickId]);
+
+  useEffect(() => {
+    if (toastPick) {
+      const timer = setTimeout(() => {
+        setToastPick(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+    if (toastUnPick) {
+      const timer = setTimeout(() => {
+        setToastUnpick(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastPick, toastUnPick]);
 
   return (
     <div className={`AppBar ${BarType}`}>
