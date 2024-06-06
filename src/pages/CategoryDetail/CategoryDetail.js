@@ -26,20 +26,6 @@ const CategoryDetail = () => {
   const [pickId, setPickId] = useState([]);
   const isPicked = pickId && pickId.includes(id);
 
-  const setToastPick = (value) => {
-    dispatch({
-      type: "SET_TOAST_PICK",
-      payload: value,
-    });
-  };
-
-  const setToastUnpick = (value) => {
-    dispatch({
-      type: "SET_TOAST_UNPICK",
-      payload: value,
-    });
-  };
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -58,21 +44,6 @@ const CategoryDetail = () => {
     };
     fetchData();
   }, [id]);
-
-  useEffect(() => {
-    if (toastPick) {
-      const timer = setTimeout(() => {
-        setToastPick(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-    if (toastUnPick) {
-      const timer = setTimeout(() => {
-        setToastUnpick(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [toastPick, toastUnPick, setToastPick, setToastUnpick]);
 
   useEffect(() => {
     setData((prevData) => ({
