@@ -12,6 +12,8 @@ const MyPage = ({ logData }) => {
   const handleLogout = () => {
     window.location.href =
       "https://kauth.kakao.com/oauth/logout?client_id=6dc2d5a2c321c141f16322f2098449be&logout_redirect_uri=https://boardpick.netlify.app";
+    // localStorage.clear();
+    // isLoggedIn(false);
   };
 
   return (

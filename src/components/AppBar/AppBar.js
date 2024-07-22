@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 import { togglePick, getPickId } from "../../common/axios/api";
+import { useBoardGameData } from "../../common/util/useAxios";
 
-const AppBar = ({ title, mark, type, id, picked }) => {
+const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -14,11 +15,11 @@ const AppBar = ({ title, mark, type, id, picked }) => {
   const [error, setError] = useState(null);
   const [pickId, setPickId] = useState([]);
 
-  const isPicked = pickId && pickId.includes(id);
-
+  const isPicked = pickId.includes(id);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
+  const toast = useSelector((state) => state.toast);
   const toastPick = useSelector((state) => state.toast?.pick);
   const toastUnPick = useSelector((state) => state.toast?.unpick);
   const setToastPick = (value) => {
@@ -39,12 +40,15 @@ const AppBar = ({ title, mark, type, id, picked }) => {
     togglePick(id, token)
       .then((response) => {
         if (response.picked) {
-          setToastPick(true);
-        } else {
+          setToastPick(false);
           setToastUnpick(true);
+        } else {
+          setToastPick(true);
+          setToastUnpick(false);
         }
         console.log(response.picked);
         console.log(isPicked);
+        console.log(pickId);
       })
       .catch((error) => {
         console.error(error);

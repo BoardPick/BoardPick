@@ -21,24 +21,27 @@ const CategoryDetail = () => {
   const isCopied = useSelector((state) => state.isCopied);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // const isPicked = useSelector((state) => state.pickedItems[id] || false);
   const [pickId, setPickId] = useState([]);
-  const isPicked = pickId && pickId.includes(id);
+
+  const isPicked = pickId.includes(id);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
     const fetchData = async () => {
       try {
-        const data = await getBoardGameDetail(id);
-        setData(data);
-        setLoading(false);
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("No token found");
+          return;
+        }
+        const [boardGameData, pickIdData] = await Promise.all([
+          getBoardGameDetail(id),
+          getPickId(token),
+        ]);
+        setData(boardGameData);
+        setPickId(pickIdData);
       } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -57,7 +60,7 @@ const CategoryDetail = () => {
 
   return (
     <div className="categoryDetail">
-      <AppBar mark type={"gradient"} id={data.id} picked={data.picked} />
+      <AppBar mark type={"gradient"} id={data.id} />
       <div className="backImg">
         <img src={data.imageUrl} alt="backgroundImg" />
       </div>
@@ -68,7 +71,7 @@ const CategoryDetail = () => {
         <article className="boardGameSum">
           <div className="banners">
             {data.boardGameCategories.map((cate, i) => (
-              <CategoryBadge key={i} genre={data.boardGameCategories[i]} />
+              <CategoryBadge key={i} genre={cate} />
             ))}
           </div>
           <h1 className="boardGameName">{data.name}</h1>
@@ -81,7 +84,7 @@ const CategoryDetail = () => {
           )}
           <div className="hashTagBox">
             {data.tags.map((tag, i) => (
-              <Tag key={i} tag={data.tags[i]} />
+              <Tag key={i} tag={tag} />
             ))}
           </div>
         </article>

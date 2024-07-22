@@ -133,11 +133,14 @@ const Home = ({ logData }) => {
 
           {/* 관심있어 할 만한 보드게임 */}
           {/* {!isLoggedIn ? ( */}
-            <div>
-              {recommandData && <article className="recommand">
+          <div>
+            {recommandData && (
+              <article className="recommand">
                 <div className="title">
                   <div className="firstline">
-                    <h1 className="name">{logData ? logData.nickname : "사용자"}</h1>
+                    <h1 className="name">
+                      {logData ? logData.nickname : "사용자"}
+                    </h1>
                     <h1>회원님이</h1>
                   </div>
                   <h2>관심 있어 할만한 보드게임</h2>
@@ -145,45 +148,49 @@ const Home = ({ logData }) => {
                 <div className="slide" ref={gameTabRef}>
                   <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                     {recommandData.map((r, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={r.id}
-                            img={r.imageUrl}
-                            name={r.name}
-                            info={r.description}
-                            tags={r.tags}
-                            picked={r.picked}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
+                      <SwiperSlide key={i}>
+                        <ThumbNail
+                          id={r.id}
+                          img={r.imageUrl}
+                          name={r.name}
+                          info={r.description}
+                          tags={r.tags}
+                          picked={r.picked}
+                          type="small"
+                        />
+                      </SwiperSlide>
+                    ))}
                   </Swiper>
                 </div>
-              </article>}
-              {/* 오늘의 보드픽 랭킹 */}
-              {rankData && <div className="pickRank">
+              </article>
+            )}
+            {/* 오늘의 보드픽 랭킹 */}
+            {rankData && (
+              <div className="pickRank">
                 <div className="miniHeader">
                   <h1 className="title">오늘의 보드P!CK 랭킹</h1>
                   <p className="info">
                     오늘 가장 많은 P!CK을 받은 게임들만 모아봤어요!
                   </p>
                 </div>
-                  <div className="rankGame">
-                    <div className="todayPick" ref={todayPickRef}>
-                      <Swiper slidesPerView={1.3} spaceBetween={12}>
-                        <SwiperSlide>
-                          <Rank gamedata={rankData.slice(0, 5)} start={1} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <Rank gamedata={rankData.slice(5, 10)} start={6} />
-                        </SwiperSlide>
-                      </Swiper>
-                    </div>
+                <div className="rankGame">
+                  <div className="todayPick" ref={todayPickRef}>
+                    <Swiper slidesPerView={1.3} spaceBetween={12}>
+                      <SwiperSlide>
+                        <Rank gamedata={rankData.slice(0, 5)} start={1} />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Rank gamedata={rankData.slice(5, 10)} start={6} />
+                      </SwiperSlide>
+                    </Swiper>
                   </div>
-              </div>}
-              {/* 큐레이션 */}
-              <div className="all-curation">
-                {duoData && (<article className="curation">
+                </div>
+              </div>
+            )}
+            {/* 큐레이션 */}
+            <div className="all-curation">
+              {duoData && (
+                <article className="curation">
                   <div className="title">
                     <h1>#둘이서 하기 좋은</h1>
                     <h2>보드게임</h2>
@@ -191,22 +198,24 @@ const Home = ({ logData }) => {
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                       {duoData.map((d, i) => (
-                          <SwiperSlide key={i}>
-                            <ThumbNail
-                              id={d.id}
-                              img={d.imageUrl}
-                              name={d.name}
-                              info={d.description}
-                              tags={d.tags}
-                              picked={d.picked}
-                              type="small"
-                            />
-                          </SwiperSlide>
-                        ))}
+                        <SwiperSlide key={i}>
+                          <ThumbNail
+                            id={d.id}
+                            img={d.imageUrl}
+                            name={d.name}
+                            info={d.description}
+                            tags={d.tags}
+                            picked={d.picked}
+                            type="small"
+                          />
+                        </SwiperSlide>
+                      ))}
                     </Swiper>
                   </div>
-                </article>)}
-                {easyData && (<article className="curation">
+                </article>
+              )}
+              {easyData && (
+                <article className="curation">
                   <div className="title">
                     <h1>#초보자도 쉽게 즐기는</h1>
                     <h2>보드게임</h2>
@@ -214,21 +223,23 @@ const Home = ({ logData }) => {
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                       {easyData.map((r, i) => (
-                          <SwiperSlide key={i}>
-                            <ThumbNail
-                              id={r.id}
-                              img={r.imageUrl}
-                              name={r.name}
-                              info={r.description}
-                              tags={r.tags}
-                              type="small"
-                            />
-                          </SwiperSlide>
-                        ))}
+                        <SwiperSlide key={i}>
+                          <ThumbNail
+                            id={r.id}
+                            img={r.imageUrl}
+                            name={r.name}
+                            info={r.description}
+                            tags={r.tags}
+                            type="small"
+                          />
+                        </SwiperSlide>
+                      ))}
                     </Swiper>
                   </div>
-                </article>)}
-                {TeamData && (<article className="curation">
+                </article>
+              )}
+              {TeamData && (
+                <article className="curation">
                   <div className="title">
                     <h1>#단체가 하기 좋은</h1>
                     <h2>보드게임</h2>
@@ -236,22 +247,23 @@ const Home = ({ logData }) => {
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
                       {TeamData.map((r, i) => (
-                          <SwiperSlide key={i}>
-                            <ThumbNail
-                              id={r.id}
-                              img={r.imageUrl}
-                              name={r.name}
-                              info={r.description}
-                              tags={r.tags}
-                              type="small"
-                            />
-                          </SwiperSlide>
-                        ))}
+                        <SwiperSlide key={i}>
+                          <ThumbNail
+                            id={r.id}
+                            img={r.imageUrl}
+                            name={r.name}
+                            info={r.description}
+                            tags={r.tags}
+                            type="small"
+                          />
+                        </SwiperSlide>
+                      ))}
                     </Swiper>
                   </div>
-                </article>)}
-              </div>
+                </article>
+              )}
             </div>
+          </div>
           {/* ) : (
             //비로그인시
             <article className="recommand-visitor">
