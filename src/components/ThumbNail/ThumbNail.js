@@ -6,7 +6,7 @@ import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
 import { getPickId, togglePick } from "../../common/axios/api";
 
-const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
+const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
