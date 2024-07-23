@@ -148,15 +148,14 @@ const MyPick = ({ logData }) => {
         similarData={similarData}
         selectedPick={selectedPick}
       />
-      <article className="suggestGame" ref={gameTabRef}>
-        <GameSlide
-          className={"contentTit"}
-          title={"이런 보드게임은 어떠세요?"}
-          slidesPerView={slidesPerView}
-          games={suggestData}
-          onClick={(id) => navigate(`/category/${id}`)}
-        />
-      </article>
+
+      <GameSlide
+        classNameBox={"suggestGame"}
+        classNameTit={"contentTit"}
+        title={"이런 보드게임은 어떠세요?"}
+        slidesPerView={slidesPerView}
+        games={suggestData}
+      />
     </div>
   );
 };

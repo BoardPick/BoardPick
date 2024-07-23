@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useSlidesPerView = (gameTabRef) => {
-  const [slidesPerView, setSlidesPerView] = useState(3.5);
+  const [slidesPerView, setSlidesPerView] = useState({});
 
   const calculateSlidesPerView = () => {
     const gameTabWidth = gameTabRef.current.offsetWidth;
