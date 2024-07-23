@@ -12,7 +12,6 @@ import GameSlide from "../../components/GameSlide/GameSlide.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const RuleTab = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const gameTabRef = useRef({});
   const slidesPerView = useSlidesPerView(gameTabRef);
@@ -54,14 +53,13 @@ const RuleTab = () => {
   return (
     <div className="gameTab">
       <GameVideo data={data} />
-      <article className="similar" ref={gameTabRef}>
-        <GameSlide
-          className={"videoTit"}
-          title={"유사한 진행방식의 게임"}
-          slidesPerView={slidesPerView}
-          games={similarData}
-        />
-      </article>
+      <GameSlide
+        classNameBox={"similar"}
+        classNameTit={"videoTit"}
+        title={"유사한 진행방식의 게임"}
+        slidesPerView={slidesPerView}
+        games={similarData}
+      />
     </div>
   );
 };

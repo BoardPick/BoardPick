@@ -11,35 +11,32 @@ const RecommendGame = ({
   similarData,
   selectedPick,
 }) => {
-  const navigate = useNavigate();
   const slidesPerView = useSlidesPerView(gameTabRef);
-  return (
-    <article className="recommendGame" ref={gameTabRef}>
-      {!myPickData && myPickData.length === 0 ? (
-        <GameSlide
-          className={"contentTit"}
-          title={
-            <span>
-              <strong>'{logData ? logData.nickname : "사용자"}'</strong>
-              님을 위한 추천 보드게임
-            </span>
-          }
-          slidesPerView={slidesPerView}
-          games={recsGameData}
-        />
-      ) : (
-        <GameSlide
-          className={"contentTit"}
-          title={
-            <span>
-              <strong>#{selectedPick.name}</strong>과 비슷한 보드게임
-            </span>
-          }
-          slidesPerView={slidesPerView}
-          games={similarData}
-        />
-      )}
-    </article>
+  return !myPickData && myPickData.length === 0 ? (
+    <GameSlide
+      classNameBox={"recommendGame"}
+      classNameTit={"contentTit"}
+      title={
+        <span>
+          <strong>'{logData ? logData.nickname : "사용자"}'</strong>
+          님을 위한 추천 보드게임
+        </span>
+      }
+      slidesPerView={slidesPerView}
+      games={recsGameData}
+    />
+  ) : (
+    <GameSlide
+      classNameBox={"recommendGame"}
+      classNameTit={"contentTit"}
+      title={
+        <span>
+          <strong>#{selectedPick.name}</strong>과 비슷한 보드게임
+        </span>
+      }
+      slidesPerView={slidesPerView}
+      games={similarData}
+    />
   );
 };
 
