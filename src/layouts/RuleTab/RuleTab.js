@@ -57,7 +57,6 @@ const RuleTab = () => {
         classNameBox={"similar"}
         classNameTit={"videoTit"}
         title={"유사한 진행방식의 게임"}
-        slidesPerView={slidesPerView}
         games={similarData}
       />
     </div>

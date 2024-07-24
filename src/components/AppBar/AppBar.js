@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 import { togglePick, getPickId } from "../../common/axios/api";
-import { useBoardGameData } from "../../common/util/useAxios";
+import { useBoardGameData, usePickId } from "../../common/util/useAxios";
 
 const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
@@ -11,10 +11,7 @@ const AppBar = ({ title, mark, type, id }) => {
   const dispatch = useDispatch();
   const isCopied = useSelector((state) => state.isCopied);
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [pickId, setPickId] = useState([]);
-
+  const { pickId, loading, error } = usePickId();
   const isPicked = pickId.includes(id);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
@@ -54,25 +51,6 @@ const AppBar = ({ title, mark, type, id }) => {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    const fetchData = async () => {
-      try {
-        const pickId = await getPickId(token);
-        setPickId(pickId);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [pickId]);
 
   useEffect(() => {
     if (toastPick) {

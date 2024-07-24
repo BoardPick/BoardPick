@@ -1,31 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../../components/Btn/Button/Button";
-import PickBox from "../../layouts/PickBox/PickBox";
-
-import {
-  getRecsGame,
-  getMyPick,
-  getSimilarBoardGame,
-  getSuggestGame,
-} from "../../common/axios/api";
-import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { getMyPick, getSimilarBoardGame } from "../../common/axios/api";
+import { useSuggestGame, useRecsGame } from "../../common/util/useAxios";
 
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 import RecommendGame from "../../layouts/RecommendGame/RecommendGame";
 import GameSlide from "../../components/GameSlide/GameSlide";
+import Button from "../../components/Btn/Button/Button";
+import PickBox from "../../layouts/PickBox/PickBox";
 
 const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
-  const slidesPerView = useSlidesPerView(gameTabRef);
-  const [myPickOn, setMyPickOn] = useState(false);
   const navigate = useNavigate();
-
+  const [myPickOn, setMyPickOn] = useState(false);
   const [myPickData, setMyPickData] = useState([]);
-  const [recsGameData, setRecsGameData] = useState([]);
   const [similarData, setSimilarData] = useState([]);
-  const [suggestData, setSuggestData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     imageUrl: "",
@@ -37,23 +27,8 @@ const MyPick = ({ logData }) => {
   const [error, setError] = useState(null);
 
   //추천, 제안
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [recsGameData, suggestData] = await Promise.all([
-          getRecsGame(),
-          getSuggestGame(),
-        ]);
-        setRecsGameData(recsGameData);
-        setSuggestData(suggestData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const { suggestData, loading: sLoading, error: sError } = useSuggestGame();
+  const { recsGameData, loading: rLoading, error: rError } = useRecsGame();
 
   //myPick api
   useEffect(() => {
@@ -101,7 +76,8 @@ const MyPick = ({ logData }) => {
     getSimilarData();
   }, [selectedPick.id]);
 
-  if (loading) return <Loading />;
+  if (loading || sLoading) return <Loading />;
+  // if (error || sError) return console.log(error);
 
   //마이픽 선택
   const handleClickPick = (id, imageUrl, name, boardGameCategories) => {
@@ -137,23 +113,22 @@ const MyPick = ({ logData }) => {
           gameTabRef={gameTabRef}
           myPickData={myPickData}
           selectedPick={selectedPick}
-          onClick={handleClickPick}
+          handleClickPick={handleClickPick}
         />
       </section>
       <RecommendGame
         gameTabRef={gameTabRef}
         myPickData={myPickData}
         logData={logData}
-        recsGameData={recsGameData}
         similarData={similarData}
         selectedPick={selectedPick}
+        recsGameData={recsGameData}
       />
 
       <GameSlide
         classNameBox={"suggestGame"}
         classNameTit={"contentTit"}
         title={"이런 보드게임은 어떠세요?"}
-        slidesPerView={slidesPerView}
         games={suggestData}
       />
     </div>

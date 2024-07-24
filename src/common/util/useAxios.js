@@ -9,7 +9,7 @@ import {
 } from "../axios/api";
 
 export const useBoardGameData = (id) => {
-  const [data, setData] = useState({});
+  const [gameData, setGameData] = useState({});
   const [pickId, setPickId] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,12 +23,9 @@ export const useBoardGameData = (id) => {
           setLoading(false);
           return;
         }
-        const [boardGameData, pickIdData] = await Promise.all([
-          getBoardGameDetail(id),
-          getPickId(token),
-        ]);
-        setData(boardGameData);
-        setPickId(pickIdData);
+        const boardGameData = await getBoardGameDetail(id);
+
+        setGameData(boardGameData);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -37,44 +34,47 @@ export const useBoardGameData = (id) => {
     };
     fetchData();
   }, [id]);
-  return { data, setData, pickId, loading, error };
+  return { gameData, setGameData, loading, error };
 };
 
-export const useSimilarData = async (id) => {
-  const [similarData, setSimilarData] = useState([]);
+export const usePickId = () => {
+  const [pickId, setPickId] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    const getSimilarData = async () => {
-      if (!id) return;
+    const fetchData = async () => {
       try {
-        const similarData = await getSimilarBoardGame(id);
-        setSimilarData(similarData);
-        setLoading(false);
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("No token found");
+          setLoading(false);
+          return;
+        }
+        const pickIdData = await getPickId(token);
+
+        setPickId(pickIdData);
       } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
-    getSimilarData();
-  }, [id]);
-  return { similarData, loading, error };
+    fetchData();
+  }, [pickId]);
+  return { pickId, loading, error };
 };
 
-export const useRecommendSuggest = async () => {
+export const useSuggestGame = () => {
   const [suggestData, setSuggestData] = useState([]);
-  const [recsGameData, setRecsGameData] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [suggestData, recsGameData] = await Promise.all([
-          getRecsGame(),
-          getSuggestGame(),
-        ]);
-        setRecsGameData(recsGameData);
+        const suggestData = await getSuggestGame();
+
         setSuggestData(suggestData);
       } catch (err) {
         setError(err.message);
@@ -84,7 +84,50 @@ export const useRecommendSuggest = async () => {
     };
     fetchData();
   }, []);
-  return { suggestData, recsGameData, loading, error };
+
+  return { suggestData, loading, error };
+};
+export const useRecsGame = () => {
+  const [recsGameData, setRecsGameData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const recsData = await getRecsGame();
+        setRecsGameData(recsData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return { recsGameData, loading, error };
+};
+
+export const useSimilarGame = (id) => {
+  const [similarData, setSimilarData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const similarData = await getSimilarBoardGame(id);
+        setSimilarData(similarData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+  return { similarData, loading, error };
 };
 
 export const useMyPick = async () => {
@@ -109,6 +152,6 @@ export const useMyPick = async () => {
       }
     };
     fetchPickData();
-  }, []);
-  return { myPickData, loading, error };
+  }, [myPickData]);
+  return { myPickData, setMyPickData, loading, error };
 };

@@ -52,10 +52,10 @@ const PickBox = ({ gameTabRef, myPickData, selectedPick, handleClickPick }) => {
                 className="go game"
                 onClick={() => navigate(`/category/${selectedPick.id}`)}
               >
-                <p>
+                <span>
                   <CategoryBanner genre={selectedPick.boardGameCategories[0]} />
                   <span>{selectedPick.name}</span>
-                </p>
+                </span>
                 <span>
                   <ChevronRight />
                 </span>
