@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { getMyPick, getSimilarBoardGame } from "../../common/axios/api";
-import { useSuggestRecsGame } from "../../common/util/useAxios";
+import { useSuggestGame, useRecsGame } from "../../common/util/useAxios";
 
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 import RecommendGame from "../../layouts/RecommendGame/RecommendGame";
@@ -27,12 +27,8 @@ const MyPick = ({ logData }) => {
   const [error, setError] = useState(null);
 
   //추천, 제안
-  const {
-    suggestData,
-    recsGameData,
-    loading: srLoading,
-    error: srError,
-  } = useSuggestRecsGame();
+  const { suggestData, loading: sLoading, error: sError } = useSuggestGame();
+  const { recsGameData, loading: rLoading, error: rError } = useRecsGame();
 
   //myPick api
   useEffect(() => {
@@ -80,8 +76,8 @@ const MyPick = ({ logData }) => {
     getSimilarData();
   }, [selectedPick.id]);
 
-  if (loading || srLoading) return <Loading />;
-  // if (error || srError) return console.log(error);
+  if (loading || sLoading) return <Loading />;
+  // if (error || sError) return console.log(error);
 
   //마이픽 선택
   const handleClickPick = (id, imageUrl, name, boardGameCategories) => {

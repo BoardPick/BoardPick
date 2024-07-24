@@ -64,8 +64,30 @@ export const usePickId = () => {
   return { pickId, loading, error };
 };
 
-export const useSuggestRecsGame = () => {
+export const useSuggestGame = () => {
   const [suggestData, setSuggestData] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const suggestData = await getSuggestGame();
+
+        setSuggestData(suggestData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return { suggestData, loading, error };
+};
+export const useRecsGame = () => {
   const [recsGameData, setRecsGameData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -73,11 +95,7 @@ export const useSuggestRecsGame = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [suggestData, recsData] = await Promise.all([
-          getSuggestGame(),
-          getRecsGame(),
-        ]);
-        setSuggestData(suggestData);
+        const recsData = await getRecsGame();
         setRecsGameData(recsData);
       } catch (err) {
         setError(err.message);
@@ -88,7 +106,7 @@ export const useSuggestRecsGame = () => {
     fetchData();
   }, []);
 
-  return { recsGameData, suggestData, loading, error };
+  return { recsGameData, loading, error };
 };
 
 export const useSimilarGame = (id) => {

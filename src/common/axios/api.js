@@ -18,10 +18,19 @@ export const getSuggestGame = async () => {
   const { data } = await apiRoot.get(`/api/boardgames/suggestion`);
   return data;
 };
-
 export const getSimilarBoardGame = async (id) => {
   const similarGame = await apiRoot.get(`/api/boardgames/similar/${id}`);
   return similarGame.data;
+};
+
+export const getLogInfo = async (token) => {
+  const { data } = await apiRoot.get(`/api/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+  return data;
 };
 export const getMyPick = async (token) => {
   const { data } = await apiRoot.get(`/api/pick`, {
