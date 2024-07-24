@@ -4,17 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
-import { getPickId, togglePick } from "../../common/axios/api";
+import { togglePick } from "../../common/axios/api";
+import { usePickId } from "../../common/util/useAxios";
 
 const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [pickId, setPickId] = useState([]);
-
+  const { pickId, loading, error } = usePickId();
   const isPicked = pickId && pickId.includes(id);
 
   const handlerPick = (id) => {
@@ -31,25 +27,6 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    const fetchData = async () => {
-      try {
-        const pickId = await getPickId(token);
-        setPickId(pickId);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [pickId]);
 
   return (
     <div

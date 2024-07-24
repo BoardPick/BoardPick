@@ -5,7 +5,6 @@ export const useSlidesPerView = (gameTabRef) => {
 
   const calculateSlidesPerView = () => {
     const gameTabWidth = gameTabRef.current.offsetWidth;
-    console.log(gameTabWidth);
     if (gameTabWidth >= 375 && gameTabWidth <= 400) {
       return 2.5;
     } else if (gameTabWidth <= 600 && gameTabWidth >= 540) {
