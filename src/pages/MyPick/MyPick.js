@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { getMyPick, getSimilarBoardGame } from "../../common/axios/api";
-import { useSuggestGame, useRecsGame } from "../../common/util/useAxios";
+import { getMyPick } from "../../common/axios/api";
+import {
+  useSuggestGame,
+  useRecsGame,
+  useSimilarData,
+} from "../../common/util/useAxios";
 
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 import RecommendGame from "../../layouts/RecommendGame/RecommendGame";
@@ -15,7 +19,6 @@ const MyPick = ({ logData }) => {
   const navigate = useNavigate();
   const [myPickOn, setMyPickOn] = useState(false);
   const [myPickData, setMyPickData] = useState([]);
-  const [similarData, setSimilarData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     imageUrl: "",
@@ -27,8 +30,22 @@ const MyPick = ({ logData }) => {
   const [error, setError] = useState(null);
 
   //추천, 제안
-  const { suggestData, loading: sLoading, error: sError } = useSuggestGame();
-  const { recsGameData, loading: rLoading, error: rError } = useRecsGame();
+  const {
+    data: suggestData,
+    loading: sLoading,
+    error: sError,
+  } = useSuggestGame();
+  const {
+    data: recsGameData,
+    loading: rLoading,
+    error: rError,
+  } = useRecsGame();
+  //비슷한 게임 api
+  const {
+    data: similarData,
+    loading: similarLoading,
+    error: similarError,
+  } = useSimilarData(selectedPick.id);
 
   //myPick api
   useEffect(() => {
@@ -61,23 +78,8 @@ const MyPick = ({ logData }) => {
     });
   }, [myPickData]);
 
-  //비슷한 게임 api
-  useEffect(() => {
-    const getSimilarData = async () => {
-      try {
-        const similarData = await getSimilarBoardGame(selectedPick.id);
-        setSimilarData(similarData);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    getSimilarData();
-  }, [selectedPick.id]);
-
-  if (loading || sLoading) return <Loading />;
-  // if (error || sError) return console.log(error);
+  if (loading || sLoading || similarLoading) return <Loading />;
+  if (error || sError) return console.log(error);
 
   //마이픽 선택
   const handleClickPick = (id, imageUrl, name, boardGameCategories) => {

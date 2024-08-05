@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getMyPick } from "../../common/axios/api";
-import { useRecsGame } from "../../common/util/useAxios";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
@@ -33,8 +32,6 @@ const MyPickAll = () => {
     };
     fetchPickData();
   }, []);
-
-  const { recsGameData, loading: rLoading, error: rError } = useRecsGame();
 
   if (loading) return <Loading />;
 

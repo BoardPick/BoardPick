@@ -10,13 +10,12 @@ import {
 import GameVideo from "../GameVideo/GameVideo.js";
 import GameSlide from "../../components/GameSlide/GameSlide.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
+import { useSimilarData } from "../../common/util/useAxios.js";
 
 const RuleTab = () => {
   const { id } = useParams();
-  const gameTabRef = useRef({});
-  const slidesPerView = useSlidesPerView(gameTabRef);
+
   const [data, setData] = useState({});
-  const [similarData, setSimilarData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -35,20 +34,14 @@ const RuleTab = () => {
     fetchGameDetail();
   }, [id]);
 
-  useEffect(() => {
-    const getSimilarData = async () => {
-      if (!id) return;
-      try {
-        const similarData = await getSimilarBoardGame(id);
-        setSimilarData(similarData);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    getSimilarData();
-  }, [id]);
+  const {
+    data: similarData,
+    loading: similarLoading,
+    error: similarError,
+  } = useSimilarData(id);
+
+  if (similarLoading) return <Loading />;
+  if (similarError) return console.log(similarError);
 
   return (
     <div className="gameTab">

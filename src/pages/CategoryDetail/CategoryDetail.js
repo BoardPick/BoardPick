@@ -13,7 +13,7 @@ import RuleTab from "../../layouts/RuleTab/RuleTab.js";
 import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
-const CategoryDetail = () => {
+const CategoryDetail = ({ fetchFunction }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -22,8 +22,8 @@ const CategoryDetail = () => {
   const isCopied = useSelector((state) => state.isCopied);
 
   const {
-    gameData,
-    setGameData,
+    data: gameData,
+    setData: setGameData,
     loading: gameLoading,
     error: gameError,
   } = useBoardGameData(id);
