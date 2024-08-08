@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getMyPick } from "../../common/axios/api";
 import {
+  useMyPick,
   useSuggestGame,
   useRecsGame,
   useSimilarData,
@@ -18,7 +19,7 @@ const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
   const navigate = useNavigate();
   const [myPickOn, setMyPickOn] = useState(false);
-  const [myPickData, setMyPickData] = useState([]);
+  // const [myPickData, setMyPickData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     imageUrl: "",
@@ -28,6 +29,14 @@ const MyPick = ({ logData }) => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  //픽한 게임
+  const {
+    data: myPickData,
+    setData: setMyPickData,
+    loading: loadingPick,
+    error: errorPick,
+  } = useMyPick();
 
   //추천, 제안
   const {
@@ -41,11 +50,13 @@ const MyPick = ({ logData }) => {
     error: rError,
   } = useRecsGame();
   //비슷한 게임 api
+  const id = selectedPick.id;
+
   const {
     data: similarData,
     loading: similarLoading,
     error: similarError,
-  } = useSimilarData(selectedPick.id);
+  } = useSimilarData(id);
 
   //myPick api
   useEffect(() => {

@@ -34,7 +34,6 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchKeywold, setSearchKeywold] = useState("");
-  // const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const setIsLoggedIn = (value) => {
@@ -60,16 +59,18 @@ function App() {
       localStorage.setItem("token", token);
       navigate("/");
     }
-    const storeToken = localStorage.getItem("token");
-    if (!storeToken) {
-      setLoading(false);
-      console.error("No token found");
-      return;
-    }
+  }, []);
 
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const logData = await getLogInfo(storeToken);
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setLoading(false);
+          console.error("No token found");
+          return;
+        }
+        const logData = await getLogInfo(token);
         setLogData(logData);
         setIsLoggedIn(true);
         let profile = localStorage.getItem("profileImage");

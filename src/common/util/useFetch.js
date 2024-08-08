@@ -13,6 +13,7 @@ export const useFetch = (fetchFunction, dependencies = []) => {
           setLoading(false);
           return;
         }
+
         const boardGameData = await fetchFunction(token);
         setData(boardGameData);
       } catch (err) {

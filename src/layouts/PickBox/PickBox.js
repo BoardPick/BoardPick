@@ -15,7 +15,7 @@ const PickBox = ({ gameTabRef, myPickData, selectedPick, handleClickPick }) => {
         <>
           <div className="noPick">현재 등록된 PICK이 없어요!</div>
           <div className="go Category" onClick={() => navigate("/category")}>
-            <p>보드P!CK 추천 보드게임</p>
+            <p>내 취향 보드게임 찾아보기</p>
             <span>
               <ChevronRight />
             </span>

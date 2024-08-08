@@ -5,35 +5,20 @@ import { getMyPick } from "../../common/axios/api";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
+import { useMyPick } from "../../common/util/useAxios";
 
 const MyPickAll = () => {
   const navigate = useNavigate();
   const myPick = useSelector((state) => state.myPick);
-  const [data, setData] = useState([]);
-  const [myPickData, setMyPickData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    const fetchPickData = async () => {
-      try {
-        const myPickData = await getMyPick(token);
-        setMyPickData(myPickData);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchPickData();
-  }, []);
+  const {
+    data: myPickData,
+    setData: setMyPickData,
+    loading: loadingPick,
+    error: errorPick,
+  } = useMyPick();
 
-  if (loading) return <Loading />;
+  if (loadingPick) return <Loading />;
 
   return (
     <div className="myPickAll">
