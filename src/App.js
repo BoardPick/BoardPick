@@ -8,7 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
 import { useState, useEffect } from "react";
-import { getLogInfo } from "./common/axios/loginfo";
+import { getLogInfo } from "./common/axios/api";
 import {
   profile_brand,
   profile_blue,
@@ -29,6 +29,7 @@ import MyPage from "./pages/MyPage/MyPage";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import Loading from "./components/Search/SearchResult/Loading/Loading";
+import { useLogData } from "./common/util/useAxios";
 
 function App() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ function App() {
         const logData = await getLogInfo(token);
         setLogData(logData);
         setIsLoggedIn(true);
+
         let profile = localStorage.getItem("profileImage");
         if (!profile) {
           const profileImages = [
@@ -105,6 +107,7 @@ function App() {
 
     fetchData();
   }, []);
+  // const { data: logData, loading: logLoading, error: logError } = useLogData();
 
   if (loading) {
     return <Loading />;

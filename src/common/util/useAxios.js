@@ -7,11 +7,16 @@ import {
   getSuggestGame,
   getRecsGame,
   getMyPick,
+  getLogInfo,
 } from "../axios/api";
 
 export const useBoardGame = (fetchFunction) => {
   return useFetch(fetchFunction);
 };
+
+// export const useLogData = () => {
+//   return useFetch(() => getLogInfo);
+// };
 
 export const useBoardGameData = (id) => {
   return useFetch(() => getBoardGameDetail(id), [id]);
