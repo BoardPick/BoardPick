@@ -11,9 +11,7 @@ const MyPage = ({ logData }) => {
 
   const handleLogout = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/logout?client_id=6dc2d5a2c321c141f16322f2098449be&logout_redirect_uri=https://boardpick.netlify.app";
-    // localStorage.clear();
-    // isLoggedIn(false);
+      "https://kauth.kakao.com/oauth/logout?client_id={process.env.REACT_APP_CLIENT_ID}&logout_redirect_uri=https://boardpick.netlify.app";
   };
 
   return (
@@ -71,9 +69,11 @@ const MyPage = ({ logData }) => {
       </section>
       {loggedOut && (
         <AlertPopUp
-          popText={"정말 로그아웃 하시겠습니까?"}
+          popText="정말 로그아웃 하시겠습니까?"
           handleSubmit={handleLogout}
-          handleCancel={() => setLoggedOut(!loggedOut)}
+          handleCancel={() => {
+            setLoggedOut(!loggedOut);
+          }}
         />
       )}
     </div>
