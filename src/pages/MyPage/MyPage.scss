@@ -6,6 +6,7 @@
     @each $font, $value in $title2 {
       #{$font}: $value;
     }
+    font-family: $font-family600;
     font-weight: 600;
   }
   .myInfoContainer {
@@ -24,10 +25,11 @@
         height: 52px;
         border: 50%;
         overflow: hidden;
+        border-radius: 50%;
         img {
           width: 100%;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
         }
       }
       ul {
@@ -36,7 +38,8 @@
             #{$font}: $value;
           }
           &.nickname strong {
-            font-weight: 600;
+            font-family: $font-family600;
+            // font-weight: 600;
           }
           &.welcome {
             @each $font, $value in $title3 {
@@ -60,6 +63,7 @@
           #{$font}: $value;
         }
         strong {
+          font-family: $font-family700;
           font-weight: 700;
           margin: 0 5px;
         }

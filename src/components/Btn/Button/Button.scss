@@ -7,7 +7,7 @@
   border: none;
   padding: 14px 16px;
   color: $common_white;
-  font-family: $font;
+  font-family: $font-family;
   cursor: pointer;
   &.btn_brand {
     background-color: $main_color;
@@ -64,5 +64,9 @@
     }
     padding: 3px 8px;
     border-radius: 4px;
+  }
+
+  .rmv {
+    cursor: pointer;
   }
 }

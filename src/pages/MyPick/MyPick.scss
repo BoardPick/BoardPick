@@ -6,6 +6,7 @@
       #{$font}: $value;
     }
     strong {
+      font-family: $font-family600;
       font-weight: 600;
       // margin-right: 3px;
     }
@@ -30,6 +31,7 @@
         #{$font}: $value;
       }
       font-weight: 600;
+      font-family: $font-family600;
       color: $common_white;
     }
     .pickBox {
@@ -51,7 +53,7 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        p {
+        span {
           @each $font, $value in $body1 {
             #{$font}: $value;
           }
@@ -67,8 +69,10 @@
           }
         }
         &.game {
-          p {
+          span {
             display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 12px;
             .categoryBadge {
               background-color: transparent;
@@ -117,7 +121,6 @@
     }
   }
   .recommendGame {
-    // @include content();
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -128,11 +131,10 @@
       padding-right: 20px;
     }
   }
-  .recentGame {
+  .suggestGame {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    // @include content();
     border-top: 8px solid $line_light;
     background-color: $common_white;
     padding: 24px 0;

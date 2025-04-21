@@ -23,9 +23,16 @@
       justify-content: center;
       gap: 12px;
 
-      .num {
-        color: $main_color;
+      .ranknum {
         padding-left: 12px;
+        h1 {
+          @each $font, $value in $title4 {
+            #{$font}: $value;
+          }
+          color: $main_color;
+          font-family: $font-family600;
+          font-weight: 600;
+        }
       }
 
       .text {
@@ -35,12 +42,14 @@
             #{$font}: $value;
           }
           color: $common_black;
+          font-family: $font-family600;
           font-weight: 600;
           display: -webkit-box;
           -webkit-line-clamp: 1; //글의 최대 라인수
           -webkit-box-orient: vertical; // 크로스 브라우징용
           overflow: hidden; /* 넘치는 텍스트를 숨김 */
           text-overflow: ellipsis;
+          padding-bottom: 3px;
         }
 
         p {

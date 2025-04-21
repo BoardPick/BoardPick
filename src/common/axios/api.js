@@ -1,9 +1,12 @@
 import axios from "axios";
 import boardGameData from "../../assets/data/boardGameData.json";
 
+const baseURL = "https://boardpick-server.store";
+
 export const apiRoot = axios.create({
-  baseURL: "https://boardpick-server.store",
+  baseURL: baseURL,
 });
+
 
 //API용
 // export const getBoardGameDetail = async (id) => {
@@ -34,19 +37,25 @@ export const getSimilarBoardGame = (id) => {
   return data;
 };
 
-export const getMyPick = async (token) => {
-  try {
-    const { data } = await apiRoot.get(`/api/pick`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+export const getLogInfo = async (token) => {
+  const { data } = await apiRoot.get(`/api/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+  return data;
 };
+export const getMyPick = async (token) => {
+  const { data } = await apiRoot.get(`/api/pick`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+  return data;
+};
+
 
 // export const getRecsGame = async () => {
 //   try {
@@ -71,22 +80,19 @@ export const getRecsGame = () => {
 // };
 export const getSuggestGame = () => {
   return boardGameData;
+
 };
 
 export const togglePick = async (id, token) => {
-  try {
-    const { data } = await apiRoot.post(
-      `/api/pick/${id}`,
-      { id },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      }
-    );
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  const { data } = await apiRoot.post(
+    `/api/pick/${id}`,
+    { id },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return data;
 };

@@ -67,6 +67,7 @@
         @each $font, $value in $title2 {
           #{$font}: $value;
         }
+        font-family: $font-family700;
         font-weight: 700;
         margin-bottom: 4px;
         margin-top: 12px;
@@ -96,6 +97,7 @@
           margin-right: 6px;
         }
         .pickCount {
+          font-family: $font-family600;
           font-weight: bold;
           margin-left: 3px;
         }

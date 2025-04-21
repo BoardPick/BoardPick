@@ -1,5 +1,5 @@
 // .home {
-// 	height: 100vh;
+// 	// padding-bottom: 80px;
 // }
 
 .recommand {
@@ -12,7 +12,8 @@
     @each $font, $value in $title2 {
       #{$font}: $value;
     }
-    font-weight: 600;
+    font-family: $font-family700;
+    font-weight: normal;
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -37,7 +38,7 @@
 
 .pickRank {
   gap: 24px;
-  padding: 20px 35px 20px 35px;
+  padding: 10px 0;
   border-top: 8px solid;
   border-bottom: 8px solid;
   border-color: $background_default;
@@ -45,19 +46,19 @@
   cursor: pointer;
 
   .miniHeader {
-    padding-top: 10px;
     align-items: start;
-    padding-bottom: 20px;
-    border-bottom: 1px solid $line_default;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
     .title {
       @each $font, $value in $title2 {
         #{$font}: $value;
       }
+      font-family: $font-family600;
       font-weight: 600;
       padding-bottom: 4px;
-      padding-left: 20px;
-      padding-right: 20px;
     }
 
     .info {
@@ -66,6 +67,15 @@
       }
       color: $text_info;
       font-weight: 400;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      border-bottom: 1px solid $line_default;
     }
   }
 
@@ -77,13 +87,16 @@
 
 .all-curation {
   padding: 32px 0;
+  padding-bottom: 80px;
+
   .curation {
-    gap: 24px;
+    padding-bottom: 30px;
 
     .title {
       @each $font, $value in $title2 {
         #{$font}: $value;
       }
+      font-family: $font-family600;
       font-weight: 600;
       padding-bottom: 20px;
       display: flex;
@@ -99,5 +112,43 @@
       font-weight: 400;
       color: $text_sub2;
     }
+  }
+}
+
+.recommand-visitor {
+  gap: 24px;
+  padding: 32px 0;
+  padding-bottom: 80px;
+  border-top: 8px solid;
+  border-color: $background_default;
+
+  .title {
+    @each $font, $value in $title2 {
+      #{$font}: $value;
+    }
+    font-family: $font-family600;
+    font-weight: 600;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: $font-family700;
+    font-weight: 700;
+
+    .firstline {
+      display: flex;
+      justify-content: flex-start;
+
+      .name {
+        color: $main_color;
+        padding-right: 5px;
+      }
+    }
+  }
+  .slide {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
 }

@@ -1,37 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
 
-import ThumbNail from "../../components/ThumbNail/ThumbNail";
-import CategoryBanner from "../../components/CategoryBadge/CategoryBadge";
-import { ChevronRight } from "../../assets/icon/icon";
-import Button from "../../components/Btn/Button/Button";
-
+import { getMyPick } from "../../common/axios/api";
 import {
-  useSlidesPerView,
-  useSlidesPerViewPick,
-} from "../../common/util/useSliderPerView";
-import {
-  getRecsGame,
-  getMyPick,
-  getSimilarBoardGame,
-  getSuggestGame,
-} from "../../common/axios/api";
+  useMyPick,
+  useSuggestGame,
+  useRecsGame,
+  useSimilarData,
+} from "../../common/util/useAxios";
 
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
+import RecommendGame from "../../layouts/RecommendGame/RecommendGame";
+import GameSlide from "../../components/GameSlide/GameSlide";
+import Button from "../../components/Btn/Button/Button";
+import PickBox from "../../layouts/PickBox/PickBox";
 
 const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
-  const [myPickOn, setMyPickOn] = useState(false);
   const navigate = useNavigate();
-  const slidesPerView = useSlidesPerView(gameTabRef);
-  const slidesPerViewPick = useSlidesPerViewPick(gameTabRef);
-
-  const [myPickData, setMyPickData] = useState([]);
-  const [recsGameData, setRecsGameData] = useState([]);
-  const [similarData, setSimilarData] = useState([]);
-  const [suggestData, setSuggestData] = useState([]);
+  const [myPickOn, setMyPickOn] = useState(false);
+  // const [myPickData, setMyPickData] = useState([]);
   const [selectedPick, setSelectedPick] = useState({
     id: "",
     imageUrl: "",
@@ -41,6 +29,7 @@ const MyPick = ({ logData }) => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   //추천 게임 api
   useEffect(() => {
@@ -57,6 +46,7 @@ const MyPick = ({ logData }) => {
     };
     fetchData();
   }, []);
+
 
   //myPick api
   // useEffect(() => {
@@ -77,6 +67,7 @@ const MyPick = ({ logData }) => {
   //   };
   //   fetchPickData();
   // }, [myPickData]);
+
 
   //비슷한 게임 api
   useEffect(() => {
@@ -112,19 +103,20 @@ const MyPick = ({ logData }) => {
     fetchSuggestData();
   }, []);
 
+
   //마이픽 초기값 설정
   useEffect(() => {
     if (myPickData.length === 0 || selectedPick.id) return;
-
     setSelectedPick({
       id: myPickData[0].id,
       imageUrl: myPickData[0].imageUrl,
       name: myPickData[0].name,
       boardGameCategories: myPickData[0].boardGameCategories,
     });
-  }, [myPickData, selectedPick.id]);
+  }, [myPickData]);
 
-  if (loading) return <Loading />;
+  if (loading || sLoading || similarLoading) return <Loading />;
+  if (error || sError) return console.log(error);
 
   //마이픽 선택
   const handleClickPick = (id, imageUrl, name, boardGameCategories) => {
@@ -147,7 +139,6 @@ const MyPick = ({ logData }) => {
               <span> ({myPickData.length}개)</span>
             )}
           </h1>
-
           {myPickData && myPickData.length !== 0 && (
             <Button
               type={"txt"}
@@ -157,67 +148,14 @@ const MyPick = ({ logData }) => {
             />
           )}
         </header>
-        <article className="pickBox" ref={gameTabRef}>
-          {!myPickData && myPickData.length === 0 ? (
-            <>
-              <div className="noPick">현재 등록된 PICK이 없어요!</div>
-              <div
-                className="go Category"
-                onClick={() => navigate("/category")}
-              >
-                <p>보드P!CK 추천 보드게임</p>
-                <span>
-                  <ChevronRight />
-                </span>
-              </div>
-            </>
-          ) : (
-            <>
-              {selectedPick && selectedPick.length !== 0 && (
-                <>
-                  <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
-                    {myPickData.map((game, i) => (
-                      <SwiperSlide key={i}>
-                        <div
-                          className={`pickThumb ${
-                            selectedPick.name === game.name ? "on" : ""
-                          }`}
-                          onClick={() =>
-                            handleClickPick(
-                              game.id,
-                              game.imageUrl,
-                              game.name,
-                              game.boardGameCategories
-                            )
-                          }
-                        >
-                          <div className="imgBox">
-                            <img src={game.imageUrl} alt="ThumbNail" />
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                  <div
-                    className="go game"
-                    onClick={() => navigate(`/category/${selectedPick.id}`)}
-                  >
-                    <p>
-                      <CategoryBanner
-                        genre={selectedPick.boardGameCategories[0]}
-                      />
-                      <span>{selectedPick.name}</span>
-                    </p>
-                    <span>
-                      <ChevronRight />
-                    </span>
-                  </div>
-                </>
-              )}
-            </>
-          )}
-        </article>
+        <PickBox
+          gameTabRef={gameTabRef}
+          myPickData={myPickData}
+          selectedPick={selectedPick}
+          handleClickPick={handleClickPick}
+        />
       </section>
+
       <article className="recommendGame" ref={gameTabRef}>
         {!myPickData && myPickData.length === 0 ? (
           <>
@@ -294,6 +232,7 @@ const MyPick = ({ logData }) => {
           </Swiper>
         </article>
       )}
+
     </div>
   );
 };

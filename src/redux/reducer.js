@@ -1,4 +1,15 @@
-import { SET_CATEGORY } from "./actionTypes.js";
+// import { SET_CATEGORY } from "./actionTypes.js";
+import {
+  SET_ISLOGGEDIN,
+  SET_TOAST_PICK,
+  SET_TOAST_UNPICK,
+  SET_ISCOPY,
+  ON_ONSEARCH,
+  ON_SEARCHRESULT,
+  OFF_ONSEARCH,
+  SET_CATEGORY,
+  SET_IS_PICKED,
+} from "./actionTypes.js";
 
 let initialState = {
   isLoggedIn: false,
@@ -10,7 +21,6 @@ let initialState = {
   onSearch: false,
   searchResult: false,
   selectCategory: "none",
-  pickedItems: {},
 };
 
 function reducer(state = initialState, action) {
@@ -55,14 +65,7 @@ function reducer(state = initialState, action) {
         ...state,
         selectCategory: action.payload,
       };
-    case "SET_IS_PICKED":
-      return {
-        ...state,
-        pickedItems: {
-          ...state.pickedItems,
-          [action.payload.id]: action.payload.isPicked,
-        },
-      };
+
     default:
       return { ...state };
   }

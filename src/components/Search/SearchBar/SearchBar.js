@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "../../../context/SearchContext";
 import { useNavigate } from "react-router-dom";
 import btn from "../../../assets/icon/search.svg";
+import rmv from "../../../assets/icon/remove.svg"
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -20,34 +21,41 @@ const SearchBar = () => {
     dispatch({ type: "ON_ONSEARCH" });
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      data.setSearchKeywold(tmpKeyword);
-      
-    const updatedRecentKeyword = [...data.recentKeyword, tmpKeyword];
+  const setResultPage = () => {
+    if (tmpKeyword === "")
+        return ;
+    data.setSearchKeywold(tmpKeyword);
+  
+    const updatedRecentKeyword = [tmpKeyword, ...data.recentKeyword];
+
+    if (updatedRecentKeyword.length > 10) {
+      updatedRecentKeyword.pop();
+    }
+
     window.localStorage.setItem(
       'recentKeyword',
       JSON.stringify(updatedRecentKeyword)
     );
     data.setRecentKeyword(updatedRecentKeyword);
 
-      navigate("/search");
+    navigate(`/search/${encodeURIComponent(tmpKeyword)}`);
+    dispatch({ type: "OFF_ONSEARCH" });
+  };
+
+  const rmvInput = () => {
+    setTmpKeyword("");
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (e.isComposing || e.keyCode === 229) return;
+      setResultPage();
     }
   };
 
   const onResult = () => {
-    data.setSearchKeywold(tmpKeyword);
-  
-    const updatedRecentKeyword = [...data.recentKeyword, tmpKeyword];
-    window.localStorage.setItem(
-      'recentKeyword',
-      JSON.stringify(updatedRecentKeyword)
-    );
-    data.setRecentKeyword(updatedRecentKeyword);
-  
-    navigate("/search");
-  };
-
+    setResultPage();
+  }
 
   return (
     <div className="SearchBar">
@@ -61,6 +69,7 @@ const SearchBar = () => {
           onKeyDown={handleKeyDown}
           onClick={onClick}
         />
+        {onSearch && <img className="rmv" src={rmv} alt="삭제버튼" onClick={rmvInput} /> }
         <img className="img" src={btn} alt="돋보기" onClick={onResult} />
       </div>
     </div>

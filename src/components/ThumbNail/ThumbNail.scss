@@ -46,12 +46,11 @@
         #{$font}: $value;
       }
       overflow: hidden;
-      white-space: normal;
-      text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 1; //글의 최대 라인수
       -webkit-box-orient: vertical; // 크로스 브라우징용
       color: $text_sub1;
+      font-family: $font-family600;
       font-weight: 600;
     }
     p {
@@ -61,8 +60,6 @@
       color: $text_info;
       margin-bottom: 16px;
       overflow: hidden;
-      white-space: normal;
-      text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2; //글의 최대 라인수
       -webkit-box-orient: vertical; // 크로스 브라우징용

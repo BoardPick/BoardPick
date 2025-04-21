@@ -1,32 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
+import { togglePick, getPickId } from "../../common/axios/api";
+import { useBoardGameData, usePickId } from "../../common/util/useAxios";
 
-import { togglePick } from "../../common/axios/api";
-
-const AppBar = ({ title, mark, type, id, picked }) => {
+const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCopied = useSelector((state) => state.isCopied);
+
+  const { pickId, loading, error } = usePickId();
+  const isPicked = pickId.includes(id);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-  const isPicked = useSelector((state) => state.pickedItems[id] || false);
+  const toast = useSelector((state) => state.toast);
+  const toastPick = useSelector((state) => state.toast?.pick);
+  const toastUnPick = useSelector((state) => state.toast?.unpick);
   const setToastPick = (value) => {
-    dispatch({
-      type: "SET_TOAST_PICK",
-      payload: value,
-    });
+    dispatch({ type: "SET_TOAST_PICK", payload: value });
   };
 
   const setToastUnpick = (value) => {
-    dispatch({
-      type: "SET_TOAST_UNPICK",
-      payload: value,
-    });
+    dispatch({ type: "SET_TOAST_UNPICK", payload: value });
   };
 
   const handlerPick = (id) => {
@@ -37,21 +35,37 @@ const AppBar = ({ title, mark, type, id, picked }) => {
     }
 
     togglePick(id, token)
-      .then(function (response) {
-        dispatch({
-          type: "SET_IS_PICKED",
-          payload: { id, isPicked: response.picked },
-        });
+      .then((response) => {
         if (response.picked) {
-          setToastPick(true);
-        } else {
+          setToastPick(false);
           setToastUnpick(true);
+        } else {
+          setToastPick(true);
+          setToastUnpick(false);
         }
+        console.log(response.picked);
+        console.log(isPicked);
+        console.log(pickId);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error(error);
       });
   };
+
+  useEffect(() => {
+    if (toastPick) {
+      const timer = setTimeout(() => {
+        setToastPick(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+    if (toastUnPick) {
+      const timer = setTimeout(() => {
+        setToastUnpick(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastPick, toastUnPick]);
 
   return (
     <div className={`AppBar ${BarType}`}>
@@ -62,8 +76,7 @@ const AppBar = ({ title, mark, type, id, picked }) => {
       {mark && (
         <span className="leftBtns">
           <button
-            className={`barBtn bookmark ${isPicked ? "pickOn" : ""}
-          `}
+            className={`barBtn bookmark ${isPicked ? "pickOn" : ""}`}
             onClick={(e) => {
               e.stopPropagation();
               handlerPick(id);

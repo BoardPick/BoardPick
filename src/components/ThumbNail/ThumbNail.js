@@ -5,25 +5,25 @@ import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
 import { togglePick } from "../../common/axios/api";
+import { usePickId } from "../../common/util/useAxios";
 
-const ThumbNail = ({ img, name, info, type, id, tags, picked }) => {
+const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isPicked = useSelector((state) => state.pickedItems[id] || false);
-  const handlerPick = () => {
+  const { pickId, loading, error } = usePickId();
+  const isPicked = pickId && pickId.includes(id);
+
+  const handlerPick = (id) => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
       return;
     }
     togglePick(id, token)
-      .then(function (response) {
-        dispatch({
-          type: "SET_IS_PICKED",
-          payload: { id, isPicked: response.picked },
-        });
+      .then((response) => {
+        console.log(response);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error(error);
       });
   };

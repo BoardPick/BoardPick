@@ -26,7 +26,7 @@ export const useSlidesPerView = (gameTabRef) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [gameTabRef]);
+  }, [gameTabRef.current]);
 
   return slidesPerView;
 };

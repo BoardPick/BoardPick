@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ChevronRight } from "../../assets/icon/icon";
-import { profile_brand } from "../../assets/image/image";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
 import { useState } from "react";
 
@@ -12,9 +11,7 @@ const MyPage = ({ logData }) => {
 
   const handleLogout = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/logout?client_id=6dc2d5a2c321c141f16322f2098449be&logout_redirect_uri=https://boardpick.netlify.app";
-
-    localStorage.removeItem("token");
+      "https://kauth.kakao.com/oauth/logout?client_id={process.env.REACT_APP_CLIENT_ID}&logout_redirect_uri=https://boardpick.netlify.app";
   };
 
   return (
@@ -25,7 +22,7 @@ const MyPage = ({ logData }) => {
           <article className="myInfoContainer">
             <div className="myInfo">
               <div className="profileImg">
-                <img src={profile_brand} alt="profile" />
+                <img src={logData.profileImage} alt="profile" />
               </div>
               <ul>
                 <li className="nickname">
@@ -72,9 +69,11 @@ const MyPage = ({ logData }) => {
       </section>
       {loggedOut && (
         <AlertPopUp
-          popText={"정말 로그아웃 하시겠습니까?"}
+          popText="정말 로그아웃 하시겠습니까?"
           handleSubmit={handleLogout}
-          handleCancel={() => setLoggedOut(!loggedOut)}
+          handleCancel={() => {
+            setLoggedOut(!loggedOut);
+          }}
         />
       )}
     </div>

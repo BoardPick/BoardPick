@@ -5,9 +5,17 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
 import { useState, useEffect } from "react";
-import { getLogInfo } from "./common/axios/loginfo";
+import { getLogInfo } from "./common/axios/api";
+import {
+  profile_brand,
+  profile_blue,
+  profile_green,
+  profile_pink,
+  profile_yellow,
+} from "../src/assets/image/image";
 
 import "./App.scss";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -21,17 +29,16 @@ import MyPage from "./pages/MyPage/MyPage";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import Loading from "./components/Search/SearchResult/Loading/Loading";
-import { useSelector, useDispatch } from "react-redux";
+import { useLogData } from "./common/util/useAxios";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchKeywold, setSearchKeywold] = useState("");
-  // const [selectCategory, setSelectCategory] = useState("none");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
-  const setIsLoggedIn = () => {
-    dispatch({ type: "SET_ISLOGGEDIN", payload: !isLoggedIn });
+  const setIsLoggedIn = (value) => {
+    dispatch({ type: "SET_ISLOGGEDIN", payload: value });
   };
   // 최근 검색어 저장
   const loadedRecentKeyword = localStorage.getItem("recentKeyword")
@@ -51,27 +58,64 @@ function App() {
     const token = urlParams.get("token");
     if (token) {
       localStorage.setItem("token", token);
+      navigate("/");
     }
+
     // const storeToken = localStorage.getItem("token");
     // if (!storeToken) {
     //   console.error("No token found");
     //   return;
     // }
+
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setLoading(false);
+          console.error("No token found");
+          return;
+        }
         const logData = await getLogInfo(token);
         setLogData(logData);
-        setLoading(false);
         setIsLoggedIn(true);
+
+        let profile = localStorage.getItem("profileImage");
+        if (!profile) {
+          const profileImages = [
+            profile_brand,
+            profile_pink,
+            profile_yellow,
+            profile_green,
+            profile_blue,
+          ];
+          const randomIdx = Math.floor(Math.random() * profileImages.length);
+          profile = profileImages[randomIdx];
+          localStorage.setItem("profileImage", profile);
+        }
+
+        setLogData((prevLogData) => ({
+          ...prevLogData,
+          profileImage:
+            logData.profileImage !==
+            "http://t1.kakaocdn.net/account_images/default_profile.jpeg.twg.thumb.R640x640"
+              ? logData.profileImage
+              : profile,
+        }));
       } catch (err) {
         setError(err.message);
+        setIsLoggedIn(false);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchData();
   }, []);
+  // const { data: logData, loading: logLoading, error: logError } = useLogData();
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <SearchContext.Provider
       value={{
@@ -81,91 +125,74 @@ function App() {
         setRecentKeyword,
       }}
     >
-      {/* <div className="App">
-         <div className="boardPick">
-           <Routes>
-             <Route
-               path="/onBoarding"
-               element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-             />
-             <Route
-               path="/"
-               element={isLoggedIn ? <Home logData={logData} /> : <Navigate to="/onBoarding" />}
-             />
-             <Route path="/category" element={<Category />} />
-             <Route
-               path="/category/select/:name"
-               element={
-                 isLoggedIn ? (
-                   <CategorySelect />
-                 ) : (
-                   <Navigate to="/onBoarding" />
-                 )
-               }
-             />
-             <Route
-               path="/category/:id"
-               element={
-                 isLoggedIn ? <CategoryDetail /> : <Navigate to="/onBoarding" />
-               }
-             />
-             <Route
-               path="/myPick"
-               element={
-                 isLoggedIn ? (
-                   <MyPick logData={logData} />
-                 ) : (
-                   <Navigate to="/onBoarding" />
-                 )
-               }
-             />
-             <Route
-               path="/myPick/all"
-               element={
-                 isLoggedIn ? <MyPickAll /> : <Navigate to="/onBoarding" />
-               }
-             />
-             <Route
-               path="/myPage"
-               element={
-                 isLoggedIn ? (
-                   <MyPage logData={logData} />
-                 ) : (
-                   <Navigate to="/onBoarding" />
-                 )
-               }
-             />
-             <Route
-               path="/search"
-               element={
-                 isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
-               }
-             />
-           </Routes>
-           {location.pathname !== "/onBoarding" && <NavigationBar />}
-         </div>
-       </div> */}
       <div className="App">
         <div className="boardPick">
           <Routes>
             <Route
               path="/onBoarding"
-              // element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
-              element={<OnBoarding />}
+              element={isLoggedIn ? <Navigate to="/" /> : <OnBoarding />}
             />
 
             <Route
               path="/"
-              // element={isLoggedIn ? <Home /> : <Navigate to="/onBoarding" />}
-              element={<Home logData={logData} />}
+              element={
+                isLoggedIn ? (
+                  <Home logData={logData} />
+                ) : (
+                  <Navigate to="/onBoarding" />
+                )
+              }
             />
-            <Route path="/category" element={<Category />} />
-            <Route path="/category/select/:name" element={<CategorySelect />} />
-            <Route path="/category/:id" element={<CategoryDetail />} />
-            <Route path="/myPick" element={<MyPick logData={logData} />} />
-            <Route path="/myPick/all" element={<MyPickAll />} />
-            <Route path="/myPage" element={<MyPage logData={logData} />} />
-            <Route path="/search" element={<SearchResult />} />
+            <Route
+              path="/category"
+              element={
+                isLoggedIn ? <Category /> : <Navigate to="/onBoarding" />
+              }
+            />
+            <Route
+              path="/category/select/:name"
+              element={
+                isLoggedIn ? <CategorySelect /> : <Navigate to="/onBoarding" />
+              }
+            />
+            <Route
+              path="/category/:id"
+              element={
+                isLoggedIn ? <CategoryDetail /> : <Navigate to="/onBoarding" />
+              }
+            />
+            <Route
+              path="/myPick"
+              element={
+                isLoggedIn ? (
+                  <MyPick logData={logData} />
+                ) : (
+                  <Navigate to="/onBoarding" />
+                )
+              }
+            />
+            <Route
+              path="/myPick/all"
+              element={
+                isLoggedIn ? <MyPickAll /> : <Navigate to="/onBoarding" />
+              }
+            />
+            <Route
+              path="/myPage"
+              element={
+                isLoggedIn ? (
+                  <MyPage logData={logData} />
+                ) : (
+                  <Navigate to="/onBoarding" />
+                )
+              }
+            />
+            <Route
+              path="/search/:name"
+              element={
+                isLoggedIn ? <SearchResult /> : <Navigate to="/onBoarding" />
+              }
+            />
           </Routes>
           {location.pathname !== "/onBoarding" && <NavigationBar />}
         </div>

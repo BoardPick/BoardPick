@@ -1,39 +1,84 @@
 .recent {
-	align-items: start;
-	justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-	
-	.title {
-		@each $font, $value in $body1 {
-			#{$font}: $value;
-		}
-		font-weight: 500;
-		padding-left: 5%;
-		padding-top: 5%;
-	}
-	
-	p {
-		@each $font, $value in $body2 {
-			#{$font}: $value;
-		}
-		color: $text_info;
-		font-weight: 400;
-		padding-left: 5%;
-		padding-top: 2%;
-	}
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .title {
+      @each $font, $value in $body1 {
+        #{$font}: $value;
+      }
+      font-family: $font-family500;
+      font-weight: 500;
+      padding: 15px 20px;
+    }
+    .allrmv {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+  }
 
-	.tags {
-		display: inline-flex;  /* 자식 요소들을 가로로 정렬 */
-		flex-wrap: wrap;  /* 자식 요소들이 줄 바꿈을 할 수 있도록 설정 */
-		justify-content: flex-start;
-	
-		padding: 2% 3%;
-	}
-	
-	.tag {
-		padding: 3px;
-		flex: 0 1 auto;  /* 자식 요소들이 컨테이너의 크기에 맞게 자동으로 줄어들거나 늘어나도록 설정 */
-		max-width: 100%;  /* 자식 요소들이 컨테이너의 최대 너비를 넘지 않도록 설정 */
-	}
+  p {
+    @each $font, $value in $body2 {
+      #{$font}: $value;
+    }
+    color: $text_info;
+    font-weight: 400;
+    padding: 0 20px;
+  }
+
+  .tags {
+    display: inline-flex; /* 자식 요소들을 가로로 정렬 */
+    flex-wrap: wrap; /* 자식 요소들이 줄 바꿈을 할 수 있도록 설정 */
+    justify-content: flex-start;
+
+    padding: 0 20px;
+    gap: 8px;
+  }
+
+  .tag {
+    flex: 0 1 auto; /* 자식 요소들이 컨테이너의 크기에 맞게 자동으로 줄어들거나 늘어나도록 설정 */
+    max-width: 100%; /* 자식 요소들이 컨테이너의 최대 너비를 넘지 않도록 설정 */
+
+    .tagkey {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      border-radius: 4px;
+      border: none;
+      padding: 7px 12px;
+      color: $common_white;
+      font-family: $font-family;
+
+      background-color: $common_white;
+      color: $text_default;
+      border: 1px solid $line_default;
+      height: 32px;
+
+      &.p {
+        background-color: transparent;
+        color: $text_default;
+        text-decoration: underline;
+      }
+
+      .txt {
+        @each $font, $value in $button4 {
+          #{$font}: $value;
+        }
+        color: $text_default;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .rmv {
+        cursor: pointer;
+      }
+    }
+  }
 }

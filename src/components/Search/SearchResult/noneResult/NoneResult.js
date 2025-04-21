@@ -28,7 +28,7 @@ noneResult.defaultProps = {
 	value: "코드네임",
 	h1: "에 대한 검색결과가 없어요.",
 	p1: "아직 많은 보드게임이 준비되어 있지 않습니다!",
-	p2: "조만간 보드게임에서 만나보실 수 있어요!",
+	p2: "조만간 보드픽에서 만나보실 수 있어요!",
   };
 
 export default noneResult;
