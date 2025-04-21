@@ -60,9 +60,13 @@ function App() {
       localStorage.setItem("token", token);
       navigate("/");
     }
-  }, []);
 
-  useEffect(() => {
+    // const storeToken = localStorage.getItem("token");
+    // if (!storeToken) {
+    //   console.error("No token found");
+    //   return;
+    // }
+
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");

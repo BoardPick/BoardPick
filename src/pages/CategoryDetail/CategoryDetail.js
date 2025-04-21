@@ -17,9 +17,28 @@ const CategoryDetail = ({ fetchFunction }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const toastPick = useSelector((state) => state.toast?.pick);
-  const toastUnPick = useSelector((state) => state.toast?.unpick);
-  const isCopied = useSelector((state) => state.isCopied);
+
+  useEffect(() => {
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   console.error("No token found");
+    //   return;
+    // }
+    const fetchData = async () => {
+      try {
+        // const data = await getBoardGameDetail(id); //API용
+        const data = getBoardGameDetail(id); //json용
+
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id]);
+
 
   const {
     data: gameData,
@@ -37,8 +56,10 @@ const CategoryDetail = ({ fetchFunction }) => {
     }));
   }, [isPicked]);
 
-  if (gameLoading || pickIdLoading) return <Loading />;
-  if (gameError || pickIdError) return console.log(gameError || pickIdError);
+
+  if (loading) return <Loading />;
+  if (error) return <p>Error: {error}</p>;
+
 
   return (
     <div className="categoryDetail">
@@ -52,8 +73,10 @@ const CategoryDetail = ({ fetchFunction }) => {
         </article>
         <article className="boardGameSum">
           <div className="banners">
-            {gameData.boardGameCategories.map((cate, i) => (
-              <CategoryBadge key={i} genre={cate} />
+
+            {data.boardGameCategories?.map((cate, i) => (
+              <CategoryBadge key={i} genre={data.boardGameCategories[i]} />
+
             ))}
           </div>
           <h1 className="boardGameName">{gameData.name}</h1>
@@ -66,8 +89,10 @@ const CategoryDetail = ({ fetchFunction }) => {
             </div>
           )}
           <div className="hashTagBox">
-            {gameData.tags.map((tag, i) => (
-              <Tag key={i} tag={tag} />
+
+            {data.tags?.map((tag, i) => (
+              <Tag key={i} tag={data.tags[i]} />
+
             ))}
           </div>
         </article>

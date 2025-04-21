@@ -14,15 +14,15 @@ const Category = () => {
 
   const tags = [
     { url: "/category/17", name: "#어스" },
-    { url: "/category/47", name: "#냥자역학 연구소" },
-    { url: "/category/70", name: "#키친 러시" },
-    { url: "/category/49", name: "#이스케이프 플랜" },
-    { url: "/category/27", name: "#언락!" },
-    { url: "/category/30", name: "#사건의 재구성" },
+    { url: "/category/10", name: "#테라포밍마스" },
+    { url: "/category/9", name: "#글룸헤이븐" },
+    { url: "/category/1", name: "#메이지나이트" },
+    { url: "/category/3", name: "#광기의 저택" },
+    { url: "/category/20", name: "#스플렌더" },
     { url: "/category/2", name: "#아컴 호러: 카드게임" },
-    { url: "/category/64", name: "#마스터 폭스" },
-    { url: "/category/55", name: "#갱스터스 딜레마" },
-    { url: "/category/48", name: "#피드 더 크라켄" },
+    { url: "/category/5", name: "#투 매니 본즈" },
+    { url: "/category/14", name: "#7 원더스 대결" },
+    { url: "/category/18", name: "#스컬킹" },
   ];
 
   return (

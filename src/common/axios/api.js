@@ -1,4 +1,5 @@
 import axios from "axios";
+import boardGameData from "../../assets/data/boardGameData.json";
 
 const baseURL = "https://boardpick-server.store";
 
@@ -6,21 +7,34 @@ export const apiRoot = axios.create({
   baseURL: baseURL,
 });
 
-export const getBoardGameDetail = async (id) => {
-  const boardGameDetail = await apiRoot.get(`/api/boardgames/${id}`);
-  return boardGameDetail.data;
-};
-export const getRecsGame = async () => {
-  const { data } = await apiRoot.get(`/api/boardgames/recs`);
+
+//API용
+// export const getBoardGameDetail = async (id) => {
+//   try {
+//     const { data } = await apiRoot.get(`/api/boardgames/${id}`);
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+//json용
+export const getBoardGameDetail = (id) => {
+  const data = boardGameData.find((item) => item.id === Number(id));
   return data;
 };
-export const getSuggestGame = async () => {
-  const { data } = await apiRoot.get(`/api/boardgames/suggestion`);
+
+// export const getSimilarBoardGame = async (id) => {
+//   try {
+//     const { data } = await apiRoot.get(`/api/boardgames/similar/${id}`);
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+export const getSimilarBoardGame = (id) => {
+  const data = boardGameData.find((item) => item.id === Number(id));
   return data;
-};
-export const getSimilarBoardGame = async (id) => {
-  const similarGame = await apiRoot.get(`/api/boardgames/similar/${id}`);
-  return similarGame.data;
 };
 
 export const getLogInfo = async (token) => {
@@ -42,14 +56,31 @@ export const getMyPick = async (token) => {
   return data;
 };
 
-export const getPickId = async (token) => {
-  const pickId = await apiRoot.get(`/api/pick/get-ids`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    withCredentials: true,
-  });
-  return pickId.data;
+
+// export const getRecsGame = async () => {
+//   try {
+//     const { data } = await apiRoot.get(`/api/boardgames/recs`);
+//     // console.log(data);
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+export const getRecsGame = () => {
+  return boardGameData;
+};
+
+// export const getSuggestGame = async () => {
+//   try {
+//     const { data } = await apiRoot.get(`/api/boardgames/suggestion`);
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+export const getSuggestGame = () => {
+  return boardGameData;
+
 };
 
 export const togglePick = async (id, token) => {

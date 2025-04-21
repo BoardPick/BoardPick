@@ -22,7 +22,8 @@ const RuleTab = () => {
   useEffect(() => {
     const fetchGameDetail = async () => {
       try {
-        const gameData = await getBoardGameDetail(id);
+        // const gameData = await getBoardGameDetail(id);
+        const gameData = getBoardGameDetail(id);
         setData(gameData);
         setLoading(false);
       } catch (err) {
@@ -34,24 +35,56 @@ const RuleTab = () => {
     fetchGameDetail();
   }, [id]);
 
-  const {
-    data: similarData,
-    loading: similarLoading,
-    error: similarError,
-  } = useSimilarData(id);
 
-  if (similarLoading) return <Loading />;
-  if (similarError) return console.log(similarError);
+  useEffect(() => {
+    const getSimilarData = async () => {
+      try {
+        // const similarData = await getSimilarBoardGame(id);
+        const similarData = getSimilarBoardGame(id);
+        setSimilarData([similarData]);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    getSimilarData();
+  }, [id]);
+
 
   return (
     <div className="gameTab">
       <GameVideo data={data} />
-      <GameSlide
-        classNameBox={"similar"}
-        classNameTit={"videoTit"}
-        title={"유사한 진행방식의 게임"}
-        games={similarData}
-      />
+
+      <article className="similar">
+        <h1 className="videoTit">유사한 진행방식의 게임</h1>
+        <div className="wrapper">
+          {slidesPerView && (
+            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+              {similarData?.map((game, i) => (
+                <SwiperSlide
+                  key={i}
+                  onClick={() => {
+                    navigate(`/category/${game.id}`);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <ThumbNail
+                    type="small"
+                    id={game.id}
+                    img={game.imageUrl}
+                    name={game.name}
+                    info={game.description}
+                    tags={game.tags}
+                    picked={game.picked}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+        </div>
+      </article>
+
     </div>
   );
 };
