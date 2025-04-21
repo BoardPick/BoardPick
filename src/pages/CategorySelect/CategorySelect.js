@@ -45,7 +45,8 @@ const CategorySelect = () => {
       console.log(name);
       setLoading(true);
       try {
-        const categoryData = await getCategorySelect(name);
+        // const categoryData = await getCategorySelect(name);
+        const categoryData = getCategorySelect(name);
         setCategoryData(categoryData);
         setLoading(false);
       } catch (err) {
@@ -76,7 +77,11 @@ const CategorySelect = () => {
       ) : (
         <div className="selectResult">
           <div className="selectBtn" ref={categoryTabRef}>
-            <Swiper slidesPerView={3.3} spaceBetween={8} breakpoints={{520: {slidesPerView: 5}}}>
+            <Swiper
+              slidesPerView={3.3}
+              spaceBetween={8}
+              breakpoints={{ 520: { slidesPerView: 5 } }}
+            >
               {sortedCategories.map((d, i) => (
                 <SwiperSlide key={i} className="swiper-slide-category">
                   <CategorySelectBtn

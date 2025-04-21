@@ -37,14 +37,16 @@ const CategoryDetail = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   console.error("No token found");
+    //   return;
+    // }
     const fetchData = async () => {
       try {
-        const data = await getBoardGameDetail(id);
+        // const data = await getBoardGameDetail(id); //API용
+        const data = getBoardGameDetail(id); //json용
+
         setData(data);
         setLoading(false);
       } catch (err) {
@@ -79,9 +81,6 @@ const CategoryDetail = () => {
 
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
-  console.log(isPicked);
-  console.log(toast.pick);
-  console.log(toast.unpick);
 
   return (
     <div className="categoryDetail">
@@ -95,7 +94,7 @@ const CategoryDetail = () => {
         </article>
         <article className="boardGameSum">
           <div className="banners">
-            {data.boardGameCategories.map((cate, i) => (
+            {data.boardGameCategories?.map((cate, i) => (
               <CategoryBadge key={i} genre={data.boardGameCategories[i]} />
             ))}
           </div>
@@ -108,7 +107,7 @@ const CategoryDetail = () => {
             </div>
           )}
           <div className="hashTagBox">
-            {data.tags.map((tag, i) => (
+            {data.tags?.map((tag, i) => (
               <Tag key={i} tag={data.tags[i]} />
             ))}
           </div>

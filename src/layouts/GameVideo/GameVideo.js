@@ -4,11 +4,11 @@ const GameVideo = ({ data }) => {
   const GameTabs = [
     {
       videoTit: "보드게임 규칙",
-      videoCon: `${data.rule}`,
+      videoCon: `${data?.rule}`,
     },
     {
       videoTit: "보드게임 관련영상",
-      videoCon: `${data.extraVideo}`,
+      videoCon: `${data?.extraVideo}`,
     },
   ];
 

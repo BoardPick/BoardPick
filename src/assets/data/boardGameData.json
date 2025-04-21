@@ -1,0 +1,518 @@
+[
+  {
+    "id": 1,
+    "thumbnailUrl": "https://cf.geekdo-images.com/jgsT5y5qKlOR08CuHG7xfw__thumb/img/DM78RCe2olPBHUesY9V-GS56gCU=/fit-in/200x150/filters:strip_icc()/pic4411189.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/jgsT5y5qKlOR08CuHG7xfw__original/img/mnPgX4nM_l1JnXFE16dAZjGS8sw=/0x0/filters:format(jpeg)/pic4411189.jpg",
+    "name": "메이지나이트",
+    "description": "환상의 땅을 정복하면서,  군대를 지휘하고 주문과 유물을 모으세요",
+    "rating": 12,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtime": 150,
+    "ageLimit": 14,
+    "difficulty": "초고수",
+    "rule": "https://www.youtube.com/embed/TPthcatH9XQ",
+    "extraVideo": "https://www.youtube.com/embed/cFu_EoY1WtQ",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["전략게임", "롤플레잉"],
+    "userBoardGames": [
+      {
+        "id": 25080,
+        "date": "2024-12-20T10:09:47.895+00:00"
+      }
+    ],
+    "tags": ["모험", "탐험", "판타지"]
+  },
+
+  {
+    "id": 2,
+    "thumbnailUrl": "https://cf.geekdo-images.com/B5F5ulz0UivNgrI9Ky0euA__thumb/img/L8ouPl5jv2Ye9MC4R_Os2zSGigE=/fit-in/200x150/filters:strip_icc()/pic3122349.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/B5F5ulz0UivNgrI9Ky0euA__original/img/guEKCewM_2e5ugltSN3dTSwdZJI=/0x0/filters:format(jpeg)/pic3122349.jpg",
+    "name": "아컴 호러: 카드게임",
+    "description": "우주의 운명을 구걸하면서,  아캄의 공포를 조사하세요",
+    "rating": 13,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 2,
+    "playtime": 90,
+    "ageLimit": 14,
+    "difficulty": "고수",
+    "rule": "https://www.youtube.com/embed/oSdJ0kwkm7U",
+    "extraVideo": "",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["카드게임", "롤플레잉"],
+    "userBoardGames": [
+      {
+        "id": 23909,
+        "date": "2024-05-29T08:38:53.566+00:00"
+      },
+      {
+        "id": 23926,
+        "date": "2024-05-29T11:50:50.579+00:00"
+      }
+    ],
+    "tags": ["모험", "판타지", "공포"]
+  },
+
+  {
+    "id": 3,
+    "thumbnailUrl": "https://cf.geekdo-images.com/LIooA9bTdjnE9qmhjL-UFw__thumb/img/kwaa7aI2sMeyWV5JSRKcKrS5hC8=/fit-in/200x150/filters:strip_icc()/pic3118622.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/LIooA9bTdjnE9qmhjL-UFw__original/img/Go6c8-ZiXomS8E7X4MBCdDd-aZc=/0x0/filters:format(jpeg)/pic3118622.jpg",
+    "name": "광기의 저택 ",
+    "description": " 조사 팀과 함께 아캄의 미스터리를 풀어보세요",
+    "rating": 44,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playtime": 150,
+    "ageLimit": 14,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/Ht9TuDdST44",
+    "extraVideo": "https://www.youtube.com/embed/QrbwuUY4Fs4",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["협력게임", "롤플레잉"],
+    "userBoardGames": [
+      {
+        "id": 24979,
+        "date": "2024-10-27T06:52:49.020+00:00"
+      }
+    ],
+    "tags": ["모험", "탐험", "판타지"]
+  },
+
+  {
+    "id": 4,
+    "thumbnailUrl": "https://cf.geekdo-images.com/oxdsZKIX5_3ovDo38EIaeg__thumb/img/I1oCwOcGxAOVx2VE2LcXuKWoLvY=/fit-in/200x150/filters:strip_icc()/pic1872452.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/oxdsZKIX5_3ovDo38EIaeg__original/img/vxK08kQAEn5qPbejK2CUTyWOsig=/0x0/filters:format(jpeg)/pic1872452.jpg",
+    "name": "엘드리치 호러",
+    "description": "수사관들은 고대의 종말을 막기 위해 전 세계를 여행한다. ",
+    "rating": 40,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 8,
+    "playtime": 180,
+    "ageLimit": 14,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/7hyWSm870e8",
+    "extraVideo": "https://www.youtube.com/embed/y1DVHI7c8A0",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["롤플레잉", "협력게임"],
+    "userBoardGames": [
+      {
+        "id": 24981,
+        "date": "2024-10-27T06:52:51.610+00:00"
+      }
+    ],
+    "tags": ["모험", "판타지", "공포"]
+  },
+
+  {
+    "id": 5,
+    "thumbnailUrl": "https://cf.geekdo-images.com/wKwRk0wYBcrtLAfgn4PCdg__thumb/img/mJNzYNKvYWDlaaD12V32BJ453d0=/fit-in/200x150/filters:strip_icc()/pic6624445.png",
+    "imageUrl": "https://cf.geekdo-images.com/wKwRk0wYBcrtLAfgn4PCdg__original/img/Wpp0vzsVe4HxXGUqiZ1hDvwAHZU=/0x0/filters:format(png)/pic6624445.png",
+    "name": "투 매니 본즈",
+    "description": "마지막 보스 대결로 가는 길에 서사시적인 모험에서 독특한 주사위를 투수하세요",
+    "rating": 227,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtime": 75,
+    "ageLimit": 12,
+    "difficulty": "고수",
+    "rule": "https://www.youtube.com/embed/Px6cX8kyIhQ",
+    "extraVideo": "https://www.youtube.com/embed/-mGfsa7gB5Y",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["롤플레잉", "협력게임"],
+    "userBoardGames": [
+      {
+        "id": 24978,
+        "date": "2024-10-27T06:52:42.294+00:00"
+      }
+    ],
+    "tags": ["모험", "판타지", "주사위"]
+  },
+
+  {
+    "id": 6,
+    "thumbnailUrl": "https://cf.geekdo-images.com/pZFrbWXBzrkxqOotg05D9Q__thumb/img/nrgg_ID3yq1r5dZ6iWe4de3GW6E=/fit-in/200x150/filters:strip_icc()/pic1312072.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/pZFrbWXBzrkxqOotg05D9Q__original/img/2cwA1euTZ-Lm7hMBEJTBkrRl1dQ=/0x0/filters:format(jpeg)/pic1312072.jpg",
+    "name": "마이스 앤 미스틱",
+    "description": "쥐로 변한 후 왕자와 그의 동맹국들은 거대한 규모의 이야기를 경험한다",
+    "rating": 309,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtime": 75,
+    "ageLimit": 7,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/DUgBgIyvGIg",
+    "extraVideo": "https://www.youtube.com/embed/fMnkn5wOWVA",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["롤플레잉", "협력게임"],
+    "userBoardGames": [
+      {
+        "id": 24980,
+        "date": "2024-10-27T06:52:50.440+00:00"
+      }
+    ],
+    "tags": ["모험", "탐험", "판타지"]
+  },
+
+  {
+    "id": 7,
+    "thumbnailUrl": "https://cf.geekdo-images.com/gQOQW7p1RWHzY54Lrs-_pA__thumb/img/qmypl6agXd78n1_vAiO5LZcCXHc=/fit-in/200x150/filters:strip_icc()/pic3315915.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/gQOQW7p1RWHzY54Lrs-_pA__original/img/PSC8BO2njNcBJhxvi0IV5Jb5hgo=/0x0/filters:format(jpeg)/pic3315915.jpg",
+    "name": "디스 워 오브 마인: 보드게임",
+    "description": "전쟁으로 파괴된 도시에 갇힌 민간인들은 생존을 위해 어려운 결정을 내려야 한다",
+    "rating": 187,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 6,
+    "playtime": 80,
+    "ageLimit": 18,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/4YqkDSIJAb0",
+    "extraVideo": "https://www.youtube.com/embed/8foFagyNSGE",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["롤플레잉", "협력게임"],
+    "userBoardGames": [],
+    "tags": ["모험", "탐험", "협상"]
+  },
+
+  {
+    "id": 8,
+    "thumbnailUrl": "https://cf.geekdo-images.com/KLDb0vR3w8mfaHgIGF0gHw__thumb/img/ZgQsHsvdxXZr4DbMGUBSTArBp3o=/fit-in/200x150/filters:strip_icc()/pic1809823.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/KLDb0vR3w8mfaHgIGF0gHw__original/img/9YTYFSMwiRA01ZRNG0R5e9Rq01E=/0x0/filters:format(jpeg)/pic1809823.jpg",
+    "name": "한밤의 늑대인간",
+    "description": "하룻밤만 지속되는 앱 중심의 늑대인간. 늑대와 마을 사람들은 조심해!",
+    "rating": 98,
+    "ratingCount": 0,
+    "minPlayers": 3,
+    "maxPlayers": 10,
+    "playtime": 10,
+    "ageLimit": 8,
+    "difficulty": "왕초보",
+    "rule": "https://www.youtube.com/embed/KpTbyI6KOVc",
+    "extraVideo": "https://www.youtube.com/embed/ybRlfURvOTU",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["롤플레잉", "카드게임"],
+    "userBoardGames": [],
+    "tags": ["블러핑", "공포", "추리"]
+  },
+
+  {
+    "id": 9,
+    "thumbnailUrl": "https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__thumb/img/veqFeP4d_3zNhFc3GNBkV95rBEQ=/fit-in/200x150/filters:strip_icc()/pic2437871.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__original/img/7d-lj5Gd1e8PFnD97LYFah2c45M=/0x0/filters:format(jpeg)/pic2437871.jpg",
+    "name": "글룸헤이븐",
+    "description": "전략적 카드 플레이로 괴물을 정복하세요. 당신의 유산을 남기기 위한 당신의 탐구를 완수하세요",
+    "rating": 1,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtime": 90,
+    "ageLimit": 14,
+    "difficulty": "고수",
+    "rule": "https://www.youtube.com/embed/Wck7YRZ77Xk",
+    "extraVideo": "https://www.youtube.com/embed/Si3XQuYNj-A",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["전략게임", "협력게임"],
+    "userBoardGames": [
+      {
+        "id": 25021,
+        "date": "2024-12-20T09:38:59.263+00:00"
+      }
+    ],
+    "tags": ["모험", "탐험", "판타지"]
+  },
+
+  {
+    "id": 10,
+    "thumbnailUrl": "https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__thumb/img/BTxqxgYay5tHJfVoJ2NF5g43_gA=/fit-in/200x150/filters:strip_icc()/pic3536616.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__original/img/thIqWDnH9utKuoKVEUqveDixprI=/0x0/filters:format(jpeg)/pic3536616.jpg",
+    "name": "테라포밍마스",
+    "description": "화성을 거주할 수 있게 만들고 기업 제국을 건설하기 위해,  라이벌 CEO와 경쟁하세요",
+    "rating": 3,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playtime": 120,
+    "ageLimit": 12,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/zOhNZ6xSwlo",
+    "extraVideo": "https://www.youtube.com/embed/VnpjkXaB-m4",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["전략게임"],
+    "userBoardGames": [
+      {
+        "id": 25024,
+        "date": "2024-12-20T09:44:04.514+00:00"
+      }
+    ],
+    "tags": ["경제", "타일", "점수계산"]
+  },
+
+  {
+    "id": 11,
+    "thumbnailUrl": "https://cf.geekdo-images.com/hGWFm3hbMlCDsfCsauOQ4g__thumb/img/NNG7Ijyx4evp5gcVReis9i0koas=/fit-in/200x150/filters:strip_icc()/pic5375625.png",
+    "imageUrl": "https://cf.geekdo-images.com/hGWFm3hbMlCDsfCsauOQ4g__original/img/tjlflQtUPFiTpLpwk1NCVCS29Ic=/0x0/filters:format(png)/pic5375625.png",
+    "name": "가이아 프로젝트",
+    "description": "14종의 외계 종 중 하나로 은하계를 확장하고,  연구하고,  업그레이드하고,  정착시키세요",
+    "rating": 5,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtime": 105,
+    "ageLimit": 12,
+    "difficulty": "초고수",
+    "rule": "https://www.youtube.com/embed/u-Zj2z9yfvk",
+    "extraVideo": "",
+    "likes": 2,
+    "picked": false,
+    "boardGameCategories": ["전략게임"],
+    "userBoardGames": [
+      {
+        "id": 23927,
+        "date": "2024-05-29T11:50:51.169+00:00"
+      },
+      {
+        "id": 24967,
+        "date": "2024-09-06T14:07:50.808+00:00"
+      }
+    ],
+    "tags": ["SF", "문명", "경제"]
+  },
+
+  {
+    "id": 12,
+    "thumbnailUrl": "https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__thumb/img/o18rjEemoWaVru9Y2TyPwuIaRfE=/fit-in/200x150/filters:strip_icc()/pic3490053.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg",
+    "name": "브라스: 버밍엄",
+    "description": "네트워크를 구축하고 산업을 성장시키고 산업 혁명의 세계를 탐색하세요",
+    "rating": 6,
+    "ratingCount": 0,
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playtime": 90,
+    "ageLimit": 14,
+    "difficulty": "고수",
+    "rule": "https://www.youtube.com/embed/GJ1twqv-Rf0",
+    "extraVideo": "https://www.youtube.com/embed/OSqu-9zeNCw",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["전략게임"],
+    "userBoardGames": [
+      {
+        "id": 24971,
+        "date": "2024-10-21T17:54:57.373+00:00"
+      }
+    ],
+    "tags": ["경제"]
+  },
+
+  {
+    "id": 13,
+    "thumbnailUrl": "https://cf.geekdo-images.com/pNCiUUphnoeWOYfsWq0kng__thumb/img/p7alNkNy8Avm8UISmhYHCiMz5bE=/fit-in/200x150/filters:strip_icc()/pic3530661.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/pNCiUUphnoeWOYfsWq0kng__original/img/Iae47UtAd_RXVd5tJ3YzbDHOv4E=/0x0/filters:format(jpeg)/pic3530661.jpg",
+    "name": "황혼의 투쟁",
+    "description": "냉전을 재현하고 미국과 소련 간의 서사시적인 충돌에서 역사를 다시 쓰세요",
+    "rating": 10,
+    "ratingCount": 0,
+    "minPlayers": 2,
+    "maxPlayers": 2,
+    "playtime": 135,
+    "ageLimit": 13,
+    "difficulty": "고수",
+    "rule": "https://www.youtube.com/embed/2gCnz5TE4aI",
+    "extraVideo": "",
+    "likes": 1,
+    "picked": false,
+    "boardGameCategories": ["전략게임"],
+    "userBoardGames": [
+      {
+        "id": 24972,
+        "date": "2024-10-21T17:54:58.775+00:00"
+      }
+    ],
+    "tags": ["전쟁", "주사위"]
+  },
+
+  {
+    "id": 14,
+    "thumbnailUrl": "https://cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__thumb/img/gV1-ckZSIC-dCxxpq1Y7GmPITzQ=/fit-in/200x150/filters:strip_icc()/pic2576399.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__original/img/Ju836WNSaW7Mab9Vjq2TJ_FqhWQ=/0x0/filters:format(jpeg)/pic2576399.jpg",
+    "name": "7 원더스 대결",
+    "description": "고대 문명의 지도자가 되어 자원을 관리하고 군사력을 키워 경쟁하자!",
+    "rating": 2,
+    "ratingCount": 0,
+    "minPlayers": 2,
+    "maxPlayers": 2,
+    "playtime": 30,
+    "ageLimit": 10,
+    "difficulty": "초보",
+    "rule": "https://www.youtube.com/embed/Vq57rlu9OnQ",
+    "extraVideo": "https://www.youtube.com/embed/Rl4mKOmyDIc",
+    "likes": 2,
+    "picked": false,
+    "boardGameCategories": ["전략게임", "카드게임"],
+    "userBoardGames": [
+      {
+        "id": 24973,
+        "date": "2024-10-21T17:54:59.647+00:00"
+      },
+      {
+        "id": 24995,
+        "date": "2024-12-18T08:41:24.637+00:00"
+      }
+    ],
+    "tags": ["도시 건설", "문명", "경제"]
+  },
+
+  {
+    "id": 15,
+    "thumbnailUrl": "https://cf.geekdo-images.com/QFiIRd2kimaMqTyWsX0aUg__thumb/img/5fLo89ChZH6Wzukk36bhZ-EpBS0=/fit-in/200x150/filters:strip_icc()/pic158548.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/QFiIRd2kimaMqTyWsX0aUg__original/img/DOgIp57F7tKZvxeITGAd3e_Q9as=/0x0/filters:format(jpeg)/pic158548.jpg",
+    "name": "푸에르토 리코",
+    "description": "플레이어가 푸에르토리코의 식민지 총독 역할을 맡아 작물 재배, 상품 거래, 건물 건설 등을 통해 승점을 모으는 보드 게임입니다.",
+    "rating": 4,
+    "ratingCount": 0,
+    "minPlayers": 3,
+    "maxPlayers": 5,
+    "playtime": 105,
+    "ageLimit": 12,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/KCfUVS8h5TE",
+    "extraVideo": "https://www.youtube.com/embed/KD2h_0E7S14",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["전략게임"],
+    "userBoardGames": [],
+    "tags": ["도시 건설", "경제"]
+  },
+
+  {
+    "id": 16,
+    "thumbnailUrl": "https://cf.geekdo-images.com/dDDo2Hexl80ucK1IlqTk-g__thumb/img/GHGdnCfeysoP_34gLnofJcNivW8=/fit-in/200x150/filters:strip_icc()/pic831744.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/dDDo2Hexl80ucK1IlqTk-g__original/img/toobKoejPiHpfpHk4SYd1UAJafw=/0x0/filters:format(jpeg)/pic831744.jpg",
+    "name": "아그리콜라",
+    "description": "밭을 뿌리고 가축을 기르며 농장을 지으세요. 하지만 먹는 거 잊지 마!",
+    "rating": 8,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playtime": 90,
+    "ageLimit": 12,
+    "difficulty": "고수",
+    "rule": "https://www.youtube.com/embed/DN2s-A-wlYE",
+    "extraVideo": "https://www.youtube.com/embed/UWilsDFM-xI",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["전략게임"],
+    "userBoardGames": [],
+    "tags": ["경제"]
+  },
+
+  {
+    "id": 17,
+    "thumbnailUrl": "https://cf.geekdo-images.com/0xqF_KyOb7V26Lu5YT3fxw__thumb/img/ABTwzzMGekkz2jVl01LC4789TcQ=/fit-in/200x150/filters:strip_icc()/pic6699821.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/0xqF_KyOb7V26Lu5YT3fxw__original/img/uqxMcj1QPt-U34drYdL6mmv2eos=/0x0/filters:format(jpeg)/pic6699821.jpg",
+    "name": "어스",
+    "description": "상품을 배송하고 건물을 짓고,  다른 사람들보다 당신에게 더 도움이 되는 역할을 선택하세요",
+    "rating": 484,
+    "ratingCount": 0,
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playtime": 60,
+    "ageLimit": 13,
+    "difficulty": "중수",
+    "rule": "https://www.youtube.com/embed/EKQb3MX1el8",
+    "extraVideo": "https://www.youtube.com/embed/OOEdQUktDao",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["카드게임", "전략게임"],
+    "userBoardGames": [],
+    "tags": ["자원 승점", "타일 놓기", "환경"]
+  },
+
+  {
+    "id": 18,
+    "thumbnailUrl": "https://cf.geekdo-images.com/jiL3MIGH_w3g6El3OHVVig__thumb/img/zvLGO1LcTpJABii1C8-CXDbjPSs=/fit-in/200x150/filters:strip_icc()/pic6137456.png",
+    "imageUrl": "https://cf.geekdo-images.com/jiL3MIGH_w3g6El3OHVVig__original/img/JlMGgWGzFWmqz4s5DMLpPuHMUzg=/0x0/filters:format(png)/pic6137456.png",
+    "name": "스컬킹",
+    "description": "해적이 되어 치밀한 베팅과 블러핑을 통해 상대를 속이고 보물을 쟁취하세요!",
+    "rating": 17,
+    "ratingCount": 0,
+    "minPlayers": 2,
+    "maxPlayers": 6,
+    "playtime": 30,
+    "ageLimit": 8,
+    "difficulty": "왕초보",
+    "rule": "https://www.youtube.com/embed/jax6Y2Dx_GE",
+    "extraVideo": "https://www.youtube.com/embed/vzOMSz14NTY",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["카드게임"],
+    "userBoardGames": [],
+    "tags": ["항해", "해적", "카드"]
+  },
+
+  {
+    "id": 19,
+    "thumbnailUrl": "https://cf.geekdo-images.com/LPa6rsGcv8S0-OeNjCOAEQ__thumb/img/RKui79VjUbQAzTWaPu44ytupzDs=/fit-in/200x150/filters:strip_icc()/pic1398895.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/LPa6rsGcv8S0-OeNjCOAEQ__original/img/AF8HHaIad1re-eg3kd9mlm2j_ss=/0x0/filters:format(jpeg)/pic1398895.jpg",
+    "name": "레지스탕스:아발론",
+    "description": "선한 기사 또는 악한 수하가 되어 정체를 숨긴 채 임무를 완수하세요!",
+    "rating": 22,
+    "ratingCount": 0,
+    "minPlayers": 5,
+    "maxPlayers": 10,
+    "playtime": 30,
+    "ageLimit": 13,
+    "difficulty": "왕초보",
+    "rule": "https://www.youtube.com/embed/P4IA9TKXahA",
+    "extraVideo": "https://www.youtube.com/embed/xKy6R-PblOA",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["카드게임", "추리게임"],
+    "userBoardGames": [
+      {
+        "id": 23925,
+        "date": "2024-05-29T11:50:46.398+00:00"
+      }
+    ],
+    "tags": ["블러핑", "협상", "스파이"]
+  },
+
+  {
+    "id": 20,
+    "thumbnailUrl": "https://cf.geekdo-images.com/rwOMxx4q5yuElIvo-1-OFw__thumb/img/D4hkkHfOgu22PwgJomjplWAveuo=/fit-in/200x150/filters:strip_icc()/pic1904079.jpg",
+    "imageUrl": "https://cf.geekdo-images.com/rwOMxx4q5yuElIvo-1-OFw__original/img/Y2tUGY2nPTGd_epJYKQXPkQD8AM=/0x0/filters:format(jpeg)/pic1904079.jpg",
+    "name": "스플렌더",
+    "description": "르네상스 시대의 상인 조합의 수장으로서 가장 많은 재산을 모아 중세 최고의 보석상이 되어보세요!",
+    "rating": 23,
+    "ratingCount": 0,
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playtime": 30,
+    "ageLimit": 10,
+    "difficulty": "왕초보",
+    "rule": "https://www.youtube.com/embed/CBpy1kS4x_Q",
+    "extraVideo": "https://www.youtube.com/embed/qRXkffEeGOo",
+    "likes": 0,
+    "picked": false,
+    "boardGameCategories": ["카드게임"],
+    "userBoardGames": [],
+    "tags": ["경제", "르네상스", "카드"]
+  }
+]

@@ -52,11 +52,11 @@ function App() {
     if (token) {
       localStorage.setItem("token", token);
     }
-    const storeToken = localStorage.getItem("token");
-    if (!storeToken) {
-      console.error("No token found");
-      return;
-    }
+    // const storeToken = localStorage.getItem("token");
+    // if (!storeToken) {
+    //   console.error("No token found");
+    //   return;
+    // }
     const fetchData = async () => {
       try {
         const logData = await getLogInfo(token);

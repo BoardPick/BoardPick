@@ -24,7 +24,8 @@ const RuleTab = () => {
   useEffect(() => {
     const fetchGameDetail = async () => {
       try {
-        const gameData = await getBoardGameDetail(id);
+        // const gameData = await getBoardGameDetail(id);
+        const gameData = getBoardGameDetail(id);
         setData(gameData);
         setLoading(false);
       } catch (err) {
@@ -39,8 +40,9 @@ const RuleTab = () => {
   useEffect(() => {
     const getSimilarData = async () => {
       try {
-        const similarData = await getSimilarBoardGame(id);
-        setSimilarData(similarData);
+        // const similarData = await getSimilarBoardGame(id);
+        const similarData = getSimilarBoardGame(id);
+        setSimilarData([similarData]);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -58,7 +60,7 @@ const RuleTab = () => {
         <div className="wrapper">
           {slidesPerView && (
             <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-              {similarData.map((game, i) => (
+              {similarData?.map((game, i) => (
                 <SwiperSlide
                   key={i}
                   onClick={() => {

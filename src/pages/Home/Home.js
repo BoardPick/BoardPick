@@ -137,7 +137,9 @@ const Home = ({ logData }) => {
               <article className="recommand">
                 <div className="title">
                   <div className="firstline">
-                    <h1 className="name">{logData ? logData.nickname : "사용자"}</h1>
+                    <h1 className="name">
+                      {logData ? logData.nickname : "사용자"}
+                    </h1>
                     <h1>회원님이</h1>
                   </div>
                   <h2>관심 있어 할만한 보드게임</h2>

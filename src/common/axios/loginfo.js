@@ -5,13 +5,13 @@ const apiRoot = axios.create({
 
 export const getLogInfo = async (token) => {
   try {
-    const { data } = await apiRoot.get(`/api/user`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    });
-    return data;
+    // const { data } = await apiRoot.get(`/api/user`, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    //   withCredentials: true,
+    // });
+    // return data;
   } catch (error) {
     throw error;
   }
