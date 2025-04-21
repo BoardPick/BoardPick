@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useFetch } from "./useFetch";
 import {
   getBoardGameDetail,
-  getPickId,
+  // getPickId,
   getSimilarBoardGame,
   getSuggestGame,
   getRecsGame,
@@ -48,15 +48,14 @@ export const usePickId = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          console.error("No token found");
-          setLoading(false);
-          return;
-        }
-        const pickIdData = await getPickId(token);
-
-        setPickId(pickIdData);
+        // const token = localStorage.getItem("token");
+        // if (!token) {
+        //   console.error("No token found");
+        //   setLoading(false);
+        //   return;
+        // }
+        // const pickIdData = await getPickId(token);
+        // setPickId(pickIdData);
       } catch (err) {
         setError(err.message);
       } finally {

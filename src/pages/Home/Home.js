@@ -9,10 +9,12 @@ import Banner from "../../components/Banner/Banner";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
 import { getRankData } from "../../common/axios/rank.js";
-import { getRecommandData } from "../../common/axios/recommand.js";
-import { getDuoData } from "../../common/axios/recommand.js";
-import { getPlayersData } from "../../common/axios/recommand.js";
-import { getDifficultyData } from "../../common/axios/recommand.js";
+import {
+  getRecommandData,
+  getDuoData,
+  getPlayersData,
+  getDifficultyData,
+} from "../../common/axios/recommand.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const Home = ({ logData }) => {
@@ -20,7 +22,6 @@ const Home = ({ logData }) => {
   const gameTabRef = useRef({});
   const slidesPerView = useSlidesPerView(gameTabRef);
   const todayPickRef = useRef({});
-  const slidesPerViewPick = useSlidesPerView(todayPickRef);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const [loading, setLoading] = useState(true);
@@ -117,6 +118,7 @@ const Home = ({ logData }) => {
   }, []);
 
   if (loading) return <Loading />;
+  if (error) return <p>Error: {error}</p>;
 
   // 리턴값
   return (

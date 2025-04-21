@@ -1,23 +1,27 @@
 import { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
 import {
   getBoardGameDetail,
   getSimilarBoardGame,
 } from "../../common/axios/api.js";
-
+import ThumbNail from "../../components/ThumbNail/ThumbNail.js";
 import GameVideo from "../GameVideo/GameVideo.js";
 import GameSlide from "../../components/GameSlide/GameSlide.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
-import { useSimilarData } from "../../common/util/useAxios.js";
 
 const RuleTab = () => {
   const { id } = useParams();
+  const gameTabRef = useRef({});
+  const navigate = useNavigate();
 
   const [data, setData] = useState({});
+  const [similarData, setSimilarData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const slidesPerView = useSlidesPerView(gameTabRef);
 
   useEffect(() => {
     const fetchGameDetail = async () => {
@@ -35,7 +39,6 @@ const RuleTab = () => {
     fetchGameDetail();
   }, [id]);
 
-
   useEffect(() => {
     const getSimilarData = async () => {
       try {
@@ -51,7 +54,6 @@ const RuleTab = () => {
     getSimilarData();
   }, [id]);
 
-
   return (
     <div className="gameTab">
       <GameVideo data={data} />
@@ -59,32 +61,29 @@ const RuleTab = () => {
       <article className="similar">
         <h1 className="videoTit">유사한 진행방식의 게임</h1>
         <div className="wrapper">
-          {slidesPerView && (
-            <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-              {similarData?.map((game, i) => (
-                <SwiperSlide
-                  key={i}
-                  onClick={() => {
-                    navigate(`/category/${game.id}`);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <ThumbNail
-                    type="small"
-                    id={game.id}
-                    img={game.imageUrl}
-                    name={game.name}
-                    info={game.description}
-                    tags={game.tags}
-                    picked={game.picked}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
+          <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
+            {similarData?.map((game, i) => (
+              <SwiperSlide
+                key={i}
+                onClick={() => {
+                  navigate(`/category/${game.id}`);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <ThumbNail
+                  type="small"
+                  id={game.id}
+                  img={game.imageUrl}
+                  name={game.name}
+                  info={game.description}
+                  tags={game.tags}
+                  picked={game.picked}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </article>
-
     </div>
   );
 };

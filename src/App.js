@@ -8,7 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { SearchContext } from "./context/SearchContext";
 import { useState, useEffect } from "react";
-import { getLogInfo } from "./common/axios/api";
+import { getLogInfo } from "./common/axios/loginfo";
 import {
   profile_brand,
   profile_blue,
@@ -29,17 +29,17 @@ import MyPage from "./pages/MyPage/MyPage";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import NavigationBar from "./layouts/NavigationBar/NavigationBar";
 import Loading from "./components/Search/SearchResult/Loading/Loading";
-import { useLogData } from "./common/util/useAxios";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [searchKeywold, setSearchKeywold] = useState("");
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const dispatch = useDispatch();
   const setIsLoggedIn = (value) => {
     dispatch({ type: "SET_ISLOGGEDIN", payload: value });
   };
+
   // 최근 검색어 저장
   const loadedRecentKeyword = localStorage.getItem("recentKeyword")
     ? JSON.parse(localStorage.getItem("recentKeyword"))
@@ -69,12 +69,12 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          setLoading(false);
-          console.error("No token found");
-          return;
-        }
+        // const token = localStorage.getItem("token");
+        // if (!token) {
+        //   setLoading(false);
+        //   console.error("No token found");
+        //   return;
+        // }
         const logData = await getLogInfo(token);
         setLogData(logData);
         setIsLoggedIn(true);
@@ -93,14 +93,14 @@ function App() {
           localStorage.setItem("profileImage", profile);
         }
 
-        setLogData((prevLogData) => ({
-          ...prevLogData,
-          profileImage:
-            logData.profileImage !==
-            "http://t1.kakaocdn.net/account_images/default_profile.jpeg.twg.thumb.R640x640"
-              ? logData.profileImage
-              : profile,
-        }));
+        // setLogData((prevLogData) => ({
+        //   ...prevLogData,
+        //   profileImage:
+        //     logData.profileImage !==
+        //     "http://t1.kakaocdn.net/account_images/default_profile.jpeg.twg.thumb.R640x640"
+        //       ? logData.profileImage
+        //       : profile,
+        // }));
       } catch (err) {
         setError(err.message);
         setIsLoggedIn(false);

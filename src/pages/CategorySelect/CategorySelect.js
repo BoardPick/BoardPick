@@ -1,17 +1,14 @@
-import { SearchContext } from "../../context/SearchContext.js";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSelector, useDispatch } from "react-redux";
-import { setCategory } from "../../redux/actions.js";
-import { useState, useContext, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategorySelectBtn from "../../components/CategorySelectBtn/CategorySelectBtn.js";
 import ThumbNail from "../../components/ThumbNail/ThumbNail.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
-import { logDOM } from "@testing-library/react";
-import { useNavigate } from "react-router-dom";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
 
 const CategorySelectArry = [
@@ -34,7 +31,6 @@ const CategorySelect = () => {
   // const dispatch = useDispatch();
   const { name } = useParams();
   const categoryTabRef = useRef({});
-  const slidesPerView = useSlidesPerView(categoryTabRef);
 
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);

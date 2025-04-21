@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // import { setCategory } from "../../redux/actions.js";
 // import { SearchContext } from "../../context/SearchContext.js";
 import {
@@ -24,9 +23,17 @@ const CategoryBox = () => {
 
   const category1 = [
     { icon: <Strategy />, text: "전략게임", url: "/category/select/전략게임" },
-    { icon: <Rollplaying />, text: "롤플레잉", url: "/category/select/롤플레잉" },
+    {
+      icon: <Rollplaying />,
+      text: "롤플레잉",
+      url: "/category/select/롤플레잉",
+    },
     { icon: <Cardgame />, text: "카드게임", url: "/category/select/카드게임" },
-    { icon: <Cooperation />, text: "협력게임", url: "/category/select/협력게임" },
+    {
+      icon: <Cooperation />,
+      text: "협력게임",
+      url: "/category/select/협력게임",
+    },
     { icon: <Deduction />, text: "추리게임", url: "/category/select/추리게임" },
   ];
 
@@ -47,21 +54,23 @@ const CategoryBox = () => {
   return (
     <div className="categorybox">
       <ul>
-          {category1.map((tab) => (
-            <li
-              key={tab.text}
-              className="category" onClick={() => handleCategoryClick(tab.url)}
-            >
-              <span className="categoryIcon">{tab.icon}</span>
-              <span className="categoryName">{tab.text}</span>
-            </li>
-          ))}
-        </ul>
+        {category1.map((tab) => (
+          <li
+            key={tab.text}
+            className="category"
+            onClick={() => handleCategoryClick(tab.url)}
+          >
+            <span className="categoryIcon">{tab.icon}</span>
+            <span className="categoryName">{tab.text}</span>
+          </li>
+        ))}
+      </ul>
       <ul>
         {category2.map((tab) => (
           <li
             key={tab.text}
-            className="category" onClick={() => handleCategoryClick(tab.url)}
+            className="category"
+            onClick={() => handleCategoryClick(tab.url)}
           >
             <span className="categoryIcon">{tab.icon}</span>
             <span className="categoryName">{tab.text}</span>

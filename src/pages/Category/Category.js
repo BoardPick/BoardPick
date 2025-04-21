@@ -1,11 +1,11 @@
-import { SearchContext } from "../../context/SearchContext.js";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/Search/SearchBar/SearchBar.js";
 import OnSearch from "../../components/Search/OnSearch/OnSearch.js";
 import CategoryBox from "../../components/CategoryBox/CategoryBox.js";
 import Button from "../../components/Btn/Button/Button.js";
+import { SearchContext } from "../../context/SearchContext.js";
 
 const Category = () => {
   const navigate = useNavigate();

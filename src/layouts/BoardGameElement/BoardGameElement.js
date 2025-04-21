@@ -8,9 +8,9 @@ const BoardGameElement = ({ data }) => {
       title: "추천인원",
       content: `${
         data.minPlayers === data.maxPlayers
-          ? `${data.maxPlayers}명`
-          : `${data.minPlayers}-${data.maxPlayers}명`
-      }`,
+          ? `${data.maxPlayers}`
+          : `${data.minPlayers}-${data.maxPlayers}`
+      }명`,
     },
     {
       icon: <Time />,

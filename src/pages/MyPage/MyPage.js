@@ -3,6 +3,13 @@ import { useSelector } from "react-redux";
 import { ChevronRight } from "../../assets/icon/icon";
 import AlertPopUp from "../../components/AlertPopUP/AlertPopUp";
 import { useState } from "react";
+import {
+  profile_brand,
+  profile_blue,
+  profile_green,
+  profile_pink,
+  profile_yellow,
+} from "../../assets/image/image";
 
 const MyPage = ({ logData }) => {
   const [loggedOut, setLoggedOut] = useState(false);
@@ -13,6 +20,14 @@ const MyPage = ({ logData }) => {
     window.location.href =
       "https://kauth.kakao.com/oauth/logout?client_id={process.env.REACT_APP_CLIENT_ID}&logout_redirect_uri=https://boardpick.netlify.app";
   };
+  const profileImages = [
+    profile_brand,
+    profile_pink,
+    profile_yellow,
+    profile_green,
+    profile_blue,
+  ];
+  const randomIdx = Math.floor(Math.random() * profileImages.length);
 
   return (
     <div className="MyPage">
@@ -22,7 +37,8 @@ const MyPage = ({ logData }) => {
           <article className="myInfoContainer">
             <div className="myInfo">
               <div className="profileImg">
-                <img src={logData.profileImage} alt="profile" />
+                {/* <img src={logData.profileImage} alt="profile" /> */}
+                <img src={profileImages[randomIdx]} alt="profile" />
               </div>
               <ul>
                 <li className="nickname">

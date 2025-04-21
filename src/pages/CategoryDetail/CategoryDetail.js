@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { useBoardGameData, usePickId } from "../../common/util/useAxios.js";
+import { useSelector } from "react-redux";
+import { getBoardGameDetail } from "../../common/axios/api.js";
+import { usePickId } from "../../common/util/useAxios.js";
 
 import AppBar from "../../components/AppBar/AppBar.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";
@@ -14,9 +14,14 @@ import BottomPopUp from "../../components/BottomPopUp/BottomPopUp.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 
 const CategoryDetail = ({ fetchFunction }) => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const isCopied = useSelector((state) => state.isCopied);
+  const toastPick = useSelector((state) => state.toastPick);
+  const toastUnPick = useSelector((state) => state.toastUnPick);
 
+  const { id } = useParams();
 
   useEffect(() => {
     // const token = localStorage.getItem("token");
@@ -39,68 +44,54 @@ const CategoryDetail = ({ fetchFunction }) => {
     fetchData();
   }, [id]);
 
+  // const { pickId, loading: pickIdLoading, error: pickIdError } = usePickId();
+  // const isPicked = pickId.includes(id);
 
-  const {
-    data: gameData,
-    setData: setGameData,
-    loading: gameLoading,
-    error: gameError,
-  } = useBoardGameData(id);
-  const { pickId, loading: pickIdLoading, error: pickIdError } = usePickId();
-  const isPicked = pickId.includes(id);
-
-  useEffect(() => {
-    setGameData((prevData) => ({
-      ...prevData,
-      likes: isPicked ? prevData.likes + 1 : prevData.likes - 1,
-    }));
-  }, [isPicked]);
-
+  // useEffect(() => {
+  //   setGameData((prevData) => ({
+  //     ...prevData,
+  //     likes: isPicked ? prevData.likes + 1 : prevData.likes - 1,
+  //   }));
+  // }, [isPicked]);
 
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
 
-
   return (
     <div className="categoryDetail">
-      <AppBar mark type={"gradient"} id={gameData.id} />
+      <AppBar mark type={"gradient"} id={data.id} />
       <div className="backImg">
-        <img src={gameData.imageUrl} alt="backgroundImg" />
+        <img src={data.imageUrl} alt="backgroundImg" />
       </div>
       <section className="boardGameInfo">
         <article className="detailThumbNail">
-          <img src={gameData.thumbnailUrl} alt="ThumbNail" />
+          <img src={data.thumbnailUrl} alt="ThumbNail" />
         </article>
         <article className="boardGameSum">
           <div className="banners">
-
             {data.boardGameCategories?.map((cate, i) => (
               <CategoryBadge key={i} genre={data.boardGameCategories[i]} />
-
             ))}
           </div>
-          <h1 className="boardGameName">{gameData.name}</h1>
-          <h2 className="boardGameOne">{gameData.description}</h2>
-          {gameData.likes > 0 && (
+          <h1 className="boardGameName">{data.name}</h1>
+          <h2 className="boardGameOne">{data.description}</h2>
+          {data.likes > 0 && (
             <div className="pickBanner">
-              이 보드게임을{" "}
-              <strong className="pickCount">{gameData.likes}</strong>
+              이 보드게임을 <strong className="pickCount">{data.likes}</strong>
               명이 PICK 했어요!
             </div>
           )}
           <div className="hashTagBox">
-
             {data.tags?.map((tag, i) => (
               <Tag key={i} tag={data.tags[i]} />
-
             ))}
           </div>
         </article>
-        <BoardGameElement data={gameData} />
+        <BoardGameElement data={data} />
       </section>
       <RuleTab />
 
-      {isPicked ? (
+      {/* {isPicked ? (
         <div className={`toast ${toastPick ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임을 PICK 했어요"} />
         </div>
@@ -108,7 +99,7 @@ const CategoryDetail = ({ fetchFunction }) => {
         <div className={`toast ${toastUnPick ? "pop" : ""}`}>
           <ToastPopUp ToastContent={"보드게임 PICK을 취소했어요"} />
         </div>
-      )}
+      )} */}
 
       {isCopied && <BottomPopUp />}
     </div>
