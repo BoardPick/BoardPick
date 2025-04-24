@@ -24,8 +24,7 @@ const SearchResult = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // const searchData = await getSearchResult(decodedName);
-        const searchData = getSearchResult(name);
+        const searchData = await getSearchResult(decodedName);
         setSearchData(searchData);
         setLoading(false);
       } catch (err) {

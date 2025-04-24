@@ -112,9 +112,6 @@ const Home = ({ logData }) => {
       setLoading(false);
     }
   };
-  console.log(teamData, "teamData");
-  console.log(duoData, "duoData");
-  console.log(easyData, "easyData");
 
   useMemo(() => {
     fetchTeamData();

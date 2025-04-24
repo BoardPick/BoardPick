@@ -31,9 +31,7 @@ const CategoryDetail = ({ fetchFunction }) => {
     // }
     const fetchData = async () => {
       try {
-        // const data = await getBoardGameDetail(id); //API용
-        const data = getBoardGameDetail(id); //json용
-
+        const data = await getBoardGameDetail(id);
         setData(data);
         setLoading(false);
       } catch (err) {

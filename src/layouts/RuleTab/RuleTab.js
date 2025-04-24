@@ -26,11 +26,11 @@ const RuleTab = () => {
   useEffect(() => {
     const fetchGameData = async () => {
       try {
-        const gameData = getBoardGameDetail(id);
+        const gameData = await getBoardGameDetail(id);
         setData(gameData);
 
         const gameCategories = gameData.boardGameCategories;
-        const similarGames = getSimilarBoardGame(gameCategories, id);
+        const similarGames = await getSimilarBoardGame(gameCategories, id);
         setSimilarData(similarGames);
 
         setLoading(false);

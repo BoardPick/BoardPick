@@ -36,6 +36,7 @@ export const getSimilarBoardGame = (categories, id) => {
       game.id !== Number(id) &&
       game.boardGameCategories.some((category) => categories.includes(category))
   );
+
   const sortedData = filterData
     .map((game) => ({
       ...game,
@@ -44,8 +45,6 @@ export const getSimilarBoardGame = (categories, id) => {
       ).length,
     }))
     .sort((a, b) => b.matchingCount - a.matchingCount);
-  console.log(sortedData);
-
   return sortedData;
 };
 

@@ -41,8 +41,7 @@ const CategorySelect = () => {
       console.log(name);
       setLoading(true);
       try {
-        // const categoryData = await getCategorySelect(name);
-        const categoryData = getCategorySelect(name);
+        const categoryData = await getCategorySelect(name);
         setCategoryData(categoryData);
         setLoading(false);
       } catch (err) {

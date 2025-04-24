@@ -46,8 +46,7 @@ const MyPick = ({ logData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const recsGameData = await getRecsGame();
-        const recsGameData = getRecsGame();
+        const recsGameData = await getRecsGame();
         setRecsGameData(recsGameData);
         setLoading(false);
       } catch (err) {
@@ -82,8 +81,7 @@ const MyPick = ({ logData }) => {
   useEffect(() => {
     const getSimilarData = async () => {
       try {
-        // const similarData = await getSimilarBoardGame(selectedPick.id);
-        const similarData = getSimilarBoardGame(selectedPick.id);
+        const similarData = await getSimilarBoardGame(selectedPick.id);
         setSimilarData(similarData);
         setLoading(false);
       } catch (err) {
@@ -99,8 +97,7 @@ const MyPick = ({ logData }) => {
     const fetchSuggestData = async () => {
       setLoading(true);
       try {
-        // const suggestData = await getSuggestGame();
-        const suggestData = getSimilarBoardGame();
+        const suggestData = await getSuggestGame();
         setSuggestData(suggestData);
         setLoading(false);
       } catch (err) {
