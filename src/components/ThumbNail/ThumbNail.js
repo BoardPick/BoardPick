@@ -14,12 +14,13 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const isPicked = pickId && pickId.includes(id);
 
   const handlerPick = (id) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    togglePick(id, token)
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   console.error("No token found");
+    //   return;
+    // }
+    // togglePick(id, token)
+    togglePick(id)
       .then((response) => {
         console.log(response);
       })

@@ -24,11 +24,15 @@ const RuleTab = () => {
   const slidesPerView = useSlidesPerView(gameTabRef);
 
   useEffect(() => {
-    const fetchGameDetail = async () => {
+    const fetchGameData = async () => {
       try {
-        // const gameData = await getBoardGameDetail(id);
         const gameData = getBoardGameDetail(id);
         setData(gameData);
+
+        const gameCategories = gameData.boardGameCategories;
+        const similarGames = getSimilarBoardGame(gameCategories, id);
+        setSimilarData(similarGames);
+
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -36,22 +40,7 @@ const RuleTab = () => {
       }
     };
 
-    fetchGameDetail();
-  }, [id]);
-
-  useEffect(() => {
-    const getSimilarData = async () => {
-      try {
-        // const similarData = await getSimilarBoardGame(id);
-        const similarData = getSimilarBoardGame(id);
-        setSimilarData([similarData]);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    getSimilarData();
+    fetchGameData();
   }, [id]);
 
   return (

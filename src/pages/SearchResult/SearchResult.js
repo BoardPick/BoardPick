@@ -8,7 +8,6 @@ import SearchBar from "../../components/Search/SearchBar/SearchBar";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 import { SearchContext } from "../../context/SearchContext";
 import { getSearchResult } from "../../common/axios/search";
-import { getBoardGameDetail } from "../../common/axios/api";
 
 const SearchResult = () => {
   const log = useContext(SearchContext);

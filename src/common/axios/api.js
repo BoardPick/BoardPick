@@ -29,9 +29,24 @@ export const getBoardGameDetail = (id) => {
 //     throw error;
 //   }
 // };
-export const getSimilarBoardGame = (id) => {
-  const data = boardGameData.find((item) => item.id === Number(id));
-  return data;
+
+export const getSimilarBoardGame = (categories, id) => {
+  const filterData = boardGameData.filter(
+    (game) =>
+      game.id !== Number(id) &&
+      game.boardGameCategories.some((category) => categories.includes(category))
+  );
+  const sortedData = filterData
+    .map((game) => ({
+      ...game,
+      matchingCount: game.boardGameCategories.filter((category) =>
+        categories.includes(category)
+      ).length,
+    }))
+    .sort((a, b) => b.matchingCount - a.matchingCount);
+  console.log(sortedData);
+
+  return sortedData;
 };
 
 export const getMyPick = async (token) => {
