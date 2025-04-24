@@ -100,7 +100,7 @@ const Home = ({ logData }) => {
   }, []);
 
   // 단체가 하기 좋은 게임 api 호출
-  const [TeamData, setTeamData] = useState(null);
+  const [teamData, setTeamData] = useState(null);
   const fetchTeamData = async () => {
     setLoading(true);
     try {
@@ -112,6 +112,9 @@ const Home = ({ logData }) => {
       setLoading(false);
     }
   };
+  console.log(teamData, "teamData");
+  console.log(duoData, "duoData");
+  console.log(easyData, "easyData");
 
   useMemo(() => {
     fetchTeamData();
@@ -240,7 +243,7 @@ const Home = ({ logData }) => {
                   </div>
                 </article>
               )}
-              {TeamData && (
+              {teamData && (
                 <article className="curation">
                   <div className="title">
                     <h1>#단체가 하기 좋은</h1>
@@ -248,7 +251,7 @@ const Home = ({ logData }) => {
                   </div>
                   <div className="slide" ref={gameTabRef}>
                     <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {TeamData.map((r, i) => (
+                      {teamData.map((r, i) => (
                         <SwiperSlide key={i}>
                           <ThumbNail
                             id={r.id}

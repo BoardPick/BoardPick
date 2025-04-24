@@ -26,7 +26,7 @@ export const getRecommandData = () => {
 //   }
 // };
 export const getDuoData = () => {
-  return boardGameData.filter((game) => game.minPlayers === 2);
+  return boardGameData.filter((game) => game.minPlayers === 2).slice(0, 5);
 };
 
 // export const getPlayersData = async () => {
@@ -38,7 +38,7 @@ export const getDuoData = () => {
 //   }
 // };
 export const getPlayersData = () => {
-  return boardGameData.filter((game) => game.maxPlayers > 2);
+  return boardGameData.filter((game) => game.maxPlayers > 2).slice(0, 5);
 };
 
 // export const getDifficultyData = async () => {
@@ -50,7 +50,9 @@ export const getPlayersData = () => {
 //   }
 // };
 export const getDifficultyData = () => {
-  return boardGameData.filter(
-    (game) => game.difficulty === "초보" || game.difficulty === "왕초보"
-  );
+  return boardGameData
+    .filter(
+      (game) => game.difficulty === "초보" || game.difficulty === "왕초보"
+    )
+    .slice(0, 5);
 };
