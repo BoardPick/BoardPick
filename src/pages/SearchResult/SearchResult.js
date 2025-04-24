@@ -8,6 +8,7 @@ import SearchBar from "../../components/Search/SearchBar/SearchBar";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
 import { SearchContext } from "../../context/SearchContext";
 import { getSearchResult } from "../../common/axios/search";
+import { getBoardGameDetail } from "../../common/axios/api";
 
 const SearchResult = () => {
   const log = useContext(SearchContext);
@@ -24,7 +25,8 @@ const SearchResult = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const searchData = await getSearchResult(decodedName);
+        // const searchData = await getSearchResult(decodedName);
+        const searchData = getSearchResult(name);
         setSearchData(searchData);
         setLoading(false);
       } catch (err) {
@@ -43,7 +45,9 @@ const SearchResult = () => {
       <SearchBar />
       {loading ? (
         <Loading />
-      ) : (onSearch ? (<OnSearch />) : (searchData.length == 0 ? (
+      ) : onSearch ? (
+        <OnSearch />
+      ) : searchData && searchData.length === 0 ? (
         <NoneResult value={decodedName} />
       ) : (
         <div className="Result">
@@ -71,9 +75,9 @@ const SearchResult = () => {
                     />
                   </div>
                 );
-            })}
+              })}
           </div>
-        </div>))
+        </div>
       )}
     </div>
   );
