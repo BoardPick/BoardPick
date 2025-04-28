@@ -10,13 +10,29 @@ import { useMyPick } from "../../common/util/useAxios";
 const MyPickAll = () => {
   const navigate = useNavigate();
   const myPick = useSelector((state) => state.myPick);
-
-  const {
-    data: myPickData,
-    setData: setMyPickData,
-    loading: loadingPick,
-    error: errorPick,
-  } = useMyPick();
+  const [myPickData, setMyPickData] = useState();
+  const [loadingPick, setLoadingPick] = useState(true);
+  const [error, setError] = useState(null);
+  // const {
+  //   data: myPickData,
+  //   setData: setMyPickData,
+  //   loading: loadingPick,
+  //   error: errorPick,
+  // } = useMyPick();
+  useEffect(() => {
+    const fetchPickData = async () => {
+      try {
+        // const myPickData = await getMyPick(token);
+        const myPickData = await getMyPick();
+        setMyPickData(myPickData);
+        setLoadingPick(false);
+      } catch (err) {
+        setError(err.message);
+        setLoadingPick(false);
+      }
+    };
+    fetchPickData();
+  }, []);
 
   if (loadingPick) return <Loading />;
 

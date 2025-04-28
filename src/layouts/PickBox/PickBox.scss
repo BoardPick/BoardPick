@@ -1,0 +1,74 @@
+.pickBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .noPick {
+    color: #bbb;
+    height: 76px;
+    @each $font, $value in $body1 {
+      #{$font}: $value;
+    }
+    padding: 12px 0;
+  }
+  .go {
+    height: 36px;
+    color: $common_white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    .goCategory {
+      width: 100%;
+      height: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .categoryBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @each $font, $value in $body1 {
+          #{$font}: $value;
+        }
+        padding: 8px 0;
+      }
+      svg {
+        width: 18px;
+        height: 19px;
+        path {
+          stroke: $common_white;
+        }
+      }
+    }
+  }
+
+  .pickThumb {
+    width: 100%;
+    // height: 76px;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 5px;
+    aspect-ratio: 58/64;
+    .imgBox {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.6;
+      }
+    }
+    &.on {
+      border: 1.5px solid $common_white;
+      img {
+        opacity: 1;
+      }
+    }
+  }
+  .swiper-horizontal {
+    padding: 0;
+  }
+}

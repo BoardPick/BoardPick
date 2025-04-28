@@ -50,13 +50,16 @@ export const getSimilarBoardGame = (categories, id) => {
 
 export const getMyPick = async (token) => {
   try {
-    const { data } = await apiRoot.get(`/api/pick`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      // },
-      // withCredentials: true,
-    });
-    return data;
+    // const { data } = await apiRoot.get(`/api/pick`, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    //   withCredentials: true,
+    // });
+    const data = JSON.parse(localStorage.getItem("pick")) || [];
+    const pickedData = boardGameData.filter((game) => data.includes(game.id));
+
+    return pickedData;
   } catch (error) {
     throw error;
   }
@@ -72,7 +75,7 @@ export const getMyPick = async (token) => {
 //   }
 // };
 export const getRecsGame = () => {
-  return boardGameData;
+  return [...boardGameData].sort(() => Math.random() - 0.5);
 };
 
 // export const getSuggestGame = async () => {

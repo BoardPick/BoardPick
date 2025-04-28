@@ -1,6 +1,6 @@
 import { CategoryMatch } from "../../assets/data/categoryMatch";
 
-const CategoryBanner = ({ genre }) => {
+const CategoryBanner = ({ genre, myPick }) => {
   const matchCategory = CategoryMatch.find(
     (category) => category.genre === genre
   );
@@ -8,14 +8,10 @@ const CategoryBanner = ({ genre }) => {
     return null;
   }
   return (
-    <div className="categoryBadge">
-      <img
-        className="categoryGenre"
-        src={matchCategory.icon}
-        alt={`${matchCategory.genre}`}
-      />
+    <span className={`categoryBadge ${myPick ? "myPick" : ""}`}>
+      <img src={matchCategory.icon} alt={matchCategory.genre} />
       <span>{genre}</span>
-    </div>
+    </span>
   );
 };
 

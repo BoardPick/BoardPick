@@ -34,110 +34,15 @@
       font-family: $font-family600;
       color: $common_white;
     }
-    .pickBox {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      .noPick {
-        color: #bbb;
-        height: 76px;
-        @each $font, $value in $body1 {
-          #{$font}: $value;
-        }
-        padding: 12px 0;
-      }
-      .go {
-        color: $common_white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        span {
-          @each $font, $value in $body1 {
-            #{$font}: $value;
-          }
-          padding: 8px 0;
-        }
-        span {
-          svg {
-            width: 18px;
-            height: 19px;
-            path {
-              stroke: $common_white;
-            }
-          }
-        }
-        &.game {
-          span {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            .categoryBadge {
-              background-color: transparent;
-              @each $font, $value in $button3 {
-                #{$font}: $value;
-              }
-              color: $common_white;
-              img {
-                width: 20px;
-                height: 20px;
-              }
-            }
-          }
-        }
-      }
+  }
 
-      .pickThumb {
-        width: 100%;
-        // height: 76px;
-        border-radius: 8px;
-        overflow: hidden;
-        padding: 5px;
-        aspect-ratio: 58/64;
-        .imgBox {
-          width: 100%;
-          height: 100%;
-          border-radius: 8px;
-          overflow: hidden;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-          }
-        }
-        &.on {
-          border: 1.5px solid $common_white;
-          img {
-            opacity: 1;
-          }
-        }
-      }
-      .swiper-horizontal {
-        padding: 0;
-      }
-    }
-  }
-  .recommendGame {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background-color: $common_white;
-    padding: 24px 0;
-    .contentTit {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
   .suggestGame {
     display: flex;
     flex-direction: column;
     gap: 12px;
     border-top: 8px solid $line_light;
     background-color: $common_white;
-    padding: 24px 0;
+    padding-bottom: 24px;
     padding-bottom: calc(80px + 52px);
     .contentTit {
       padding-left: 20px;

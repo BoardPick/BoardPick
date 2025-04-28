@@ -9,61 +9,61 @@ const PickBox = ({ gameTabRef, myPickData, selectedPick, handleClickPick }) => {
   const navigate = useNavigate();
   const slidesPerViewPick = useSlidesPerViewPick(gameTabRef);
 
+  const handleNavigateCategory = () => navigate("/category");
+  const handleNavigateGame = () => navigate(`/category/${selectedPick.id}`);
+
   return (
     <article className="pickBox" ref={gameTabRef}>
-      {myPickData.length === 0 ? (
-        <>
-          <div className="noPick">현재 등록된 PICK이 없어요!</div>
-          <div className="go Category" onClick={() => navigate("/category")}>
-            <p>내 취향 보드게임 찾아보기</p>
-            <span>
-              <ChevronRight />
-            </span>
-          </div>
-        </>
+      {!myPickData || myPickData.length === 0 ? (
+        <div className="noPick">현재 등록된 PICK이 없어요!</div>
       ) : (
         <>
           {selectedPick && (
-            <>
-              <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
-                {myPickData.map((game, i) => (
-                  <SwiperSlide key={i}>
-                    <div
-                      className={`pickThumb ${
-                        selectedPick.name === game.name ? "on" : ""
-                      }`}
-                      onClick={() =>
-                        handleClickPick(
-                          game.id,
-                          game.imageUrl,
-                          game.name,
-                          game.boardGameCategories
-                        )
-                      }
-                    >
-                      <div className="imgBox">
-                        <img src={game.imageUrl} alt="ThumbNail" />
-                      </div>
+            <Swiper slidesPerView={slidesPerViewPick} spaceBetween={8}>
+              {myPickData.map((game) => (
+                <SwiperSlide key={game.id}>
+                  <div
+                    className={`pickThumb ${
+                      selectedPick.name === game.name ? "on" : ""
+                    }`}
+                    onClick={() =>
+                      handleClickPick(
+                        game.id,
+                        game.imageUrl,
+                        game.name,
+                        game.boardGameCategories
+                      )
+                    }
+                  >
+                    <div className="imgBox">
+                      <img src={game.imageUrl} alt="ThumbNail" />
                     </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div
-                className="go game"
-                onClick={() => navigate(`/category/${selectedPick.id}`)}
-              >
-                <span>
-                  <CategoryBanner genre={selectedPick.boardGameCategories[0]} />
-                  <span>{selectedPick.name}</span>
-                </span>
-                <span>
-                  <ChevronRight />
-                </span>
-              </div>
-            </>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           )}
         </>
       )}
+      <div
+        className="go"
+        onClick={!myPickData ? handleNavigateCategory : handleNavigateGame}
+      >
+        <div className="goCategory">
+          {!myPickData || myPickData.length === 0 ? (
+            <p>내 취향 보드게임 찾아보기</p>
+          ) : (
+            <span className="categoryBox">
+              <CategoryBanner
+                genre={selectedPick.boardGameCategories[0]}
+                myPick
+              />
+              <span>{selectedPick.name}</span>
+            </span>
+          )}
+          <ChevronRight />
+        </div>
+      </div>
     </article>
   );
 };

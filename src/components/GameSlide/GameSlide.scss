@@ -1,0 +1,11 @@
+.gameSlide {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: $common_white;
+  padding: 24px 0;
+  .contentTit {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

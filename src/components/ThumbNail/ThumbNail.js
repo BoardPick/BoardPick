@@ -9,8 +9,9 @@ import { usePickId } from "../../common/util/useAxios";
 
 const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { pickId, loading, error } = usePickId();
+  // const { pickId, loading, error } = usePickId();
+  const pickId = JSON.parse(localStorage.getItem("pick")) || [];
+
   const isPicked = pickId && pickId.includes(id);
 
   const handlerPick = (id) => {
@@ -20,13 +21,26 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
     //   return;
     // }
     // togglePick(id, token)
-    togglePick(id)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // togglePick(id)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+
+    const picks = JSON.parse(localStorage.getItem("pick")) || [];
+
+    const isPicked = picks.includes(id);
+
+    let updatedPicks;
+    if (isPicked) {
+      updatedPicks = picks.filter((pickId) => pickId !== id);
+    } else {
+      updatedPicks = [id, ...picks];
+    }
+
+    localStorage.setItem("pick", JSON.stringify(updatedPicks));
   };
 
   return (

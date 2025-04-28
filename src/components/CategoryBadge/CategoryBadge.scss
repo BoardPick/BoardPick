@@ -2,16 +2,31 @@
   padding: 2px 6px;
   background-color: $background_default;
   border-radius: 4px;
-  font-size: 13px;
+
   font-weight: 400;
-  line-height: 18px;
+
   color: $text_sub2;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  .categoryGenre {
+  @each $font, $value in $button4 {
+    #{$font}: $value;
+  }
+  img {
     width: 14px;
     height: 14px;
+  }
+  &.myPick {
+    height: inherit;
+    background-color: transparent;
+    @each $font, $value in $button3 {
+      #{$font}: $value;
+    }
+    color: $common_white;
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
