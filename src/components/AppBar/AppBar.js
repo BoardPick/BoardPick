@@ -11,7 +11,8 @@ const AppBar = ({ title, mark, type, id }) => {
   const dispatch = useDispatch();
   const isCopied = useSelector((state) => state.isCopied);
 
-  const { pickId, loading, error } = usePickId();
+  // const { pickId, loading, error } = usePickId();
+  const pickId = JSON.parse(localStorage.getItem("pick")) || [];
   const isPicked = pickId.includes(id);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
@@ -28,13 +29,14 @@ const AppBar = ({ title, mark, type, id }) => {
   };
 
   const handlerPick = (id) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   console.error("No token found");
+    //   return;
+    // }
 
-    togglePick(id, token)
+    // togglePick(id, token)
+    togglePick(id)
       .then((response) => {
         if (response.picked) {
           setToastPick(false);

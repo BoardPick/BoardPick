@@ -21,26 +21,13 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
     //   return;
     // }
     // togglePick(id, token)
-    // togglePick(id)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-
-    const picks = JSON.parse(localStorage.getItem("pick")) || [];
-
-    const isPicked = picks.includes(id);
-
-    let updatedPicks;
-    if (isPicked) {
-      updatedPicks = picks.filter((pickId) => pickId !== id);
-    } else {
-      updatedPicks = [id, ...picks];
-    }
-
-    localStorage.setItem("pick", JSON.stringify(updatedPicks));
+    togglePick(id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

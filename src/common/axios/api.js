@@ -92,17 +92,29 @@ export const getSuggestGame = () => {
 
 export const togglePick = async (id, token) => {
   try {
-    const { data } = await apiRoot.post(
-      `/api/pick/${id}`,
-      { id },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      }
-    );
-    return data;
+    // const { data } = await apiRoot.post(
+    //   `/api/pick/${id}`,
+    //   { id },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     withCredentials: true,
+    //   }
+    // );
+    const picks = JSON.parse(localStorage.getItem("pick")) || [];
+
+    const isPicked = picks.includes(id);
+
+    let updatedPicks;
+    if (isPicked) {
+      updatedPicks = picks.filter((pickId) => pickId !== id);
+    } else {
+      updatedPicks = [id, ...picks];
+    }
+
+    localStorage.setItem("pick", JSON.stringify(updatedPicks));
+    return updatedPicks;
   } catch (error) {
     throw error;
   }
