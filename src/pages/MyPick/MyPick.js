@@ -10,6 +10,7 @@ import {
 import { getRecommandData } from "../../common/axios/recommand";
 import GameSlide from "../../components/GameSlide/GameSlide";
 import PickBox from "../../layouts/PickBox/PickBox";
+import boardGameData from "../../assets/data/boardGameData.json";
 
 const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
@@ -34,7 +35,7 @@ const MyPick = ({ logData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const recsGameData = await getRecommandData();
+        const recsGameData = await getRecommandData(boardGameData, myPickData);
         setRecsGameData(recsGameData);
         setLoading(false);
       } catch (err) {

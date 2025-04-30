@@ -7,15 +7,16 @@ import CategoryBox from "../../components/CategoryBox/CategoryBox";
 import Rank from "../../components/ThumbNail/Rank/Rank";
 import Banner from "../../components/Banner/Banner";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
+import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { useSlidesPerView } from "../../common/util/useSliderPerView";
 import { getRankData } from "../../common/axios/rank.js";
 import {
-  getRecommandData,
   getDuoData,
   getPlayersData,
   getDifficultyData,
 } from "../../common/axios/recommand.js";
-import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
+import { getRecsGame } from "../../common/axios/api.js";
+import boardGameData from "../../assets/data/boardGameData.json";
 
 const Home = ({ logData }) => {
   const onSearch = useSelector((state) => state.onSearch);
@@ -47,11 +48,12 @@ const Home = ({ logData }) => {
 
   // 추천 api 호출
   const [recommandData, setRecommandData] = useState(null);
+  const myPickData = JSON.parse(localStorage.getItem("pick")) || [];
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const recommandData = await getRecommandData();
+        const recommandData = await getRecsGame(boardGameData, myPickData);
         setRecommandData(recommandData);
         setLoading(false);
       } catch (err) {

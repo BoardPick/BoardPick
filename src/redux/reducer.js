@@ -29,11 +29,11 @@ function reducer(state = initialState, action) {
         ...state,
         toast: {
           ...state.toast,
-          unpick: action.payload,
+          unPick: action.payload,
         },
       };
     case "SET_ISCOPY":
-      return { ...state, isCopied: !state.isCopied };
+      return { ...state, isCopied: state.isCopied };
     case "ON_ONSEARCH":
       return {
         ...state,
