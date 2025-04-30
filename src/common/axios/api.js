@@ -57,7 +57,9 @@ export const getMyPick = async (token) => {
     //   withCredentials: true,
     // });
     const data = JSON.parse(localStorage.getItem("pick")) || [];
-    const pickedData = boardGameData.filter((game) => data.includes(game.id));
+    const pickedData = data.map((id) =>
+      boardGameData.find((game) => game.id === id)
+    );
 
     return pickedData;
   } catch (error) {

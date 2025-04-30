@@ -114,6 +114,9 @@ const MyPick = ({ logData }) => {
     });
   }, [myPickData, selectedPick.id]);
 
+  console.log(selectedPick);
+
+  console.log(myPickData);
   if (loading) return <Loading />;
 
   //마이픽 선택
