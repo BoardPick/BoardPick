@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 import reducer from "./reducer";
-import { loadState, saveState } from "../common/util/localStorage";
+import { loadState, saveState } from "../common/hooks/localStorage";
 
 const persistedState = loadState();
 let store = createStore(reducer, persistedState);

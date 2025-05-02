@@ -9,7 +9,7 @@ import CategorySelectBtn from "../../components/CategorySelectBtn/CategorySelect
 import ThumbNail from "../../components/ThumbNail/ThumbNail.js";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
 import { getCategorySelect } from "../../common/axios/categoryselect.js";
-import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { useSlidesPerView } from "../../common/hooks/useSliderPerView";
 
 const CategorySelectArry = [
   { id: 0, genre: "전략게임", onSelect: false },

@@ -8,7 +8,7 @@ import Rank from "../../components/ThumbNail/Rank/Rank";
 import Banner from "../../components/Banner/Banner";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import Loading from "../../components/Search/SearchResult/Loading/Loading.js";
-import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { useSlidesPerView } from "../../common/hooks/useSliderPerView";
 import { getRankData } from "../../common/axios/rank.js";
 import {
   getDuoData,

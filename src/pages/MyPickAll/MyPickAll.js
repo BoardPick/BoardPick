@@ -5,7 +5,7 @@ import { getMyPick } from "../../common/axios/api";
 import AppBar from "../../components/AppBar/AppBar";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
-import { useMyPick } from "../../common/util/useAxios";
+import { useMyPick } from "../../common/hooks/useAxios";
 
 const MyPickAll = () => {
   const navigate = useNavigate();

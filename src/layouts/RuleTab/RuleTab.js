@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { useSlidesPerView } from "../../common/util/useSliderPerView";
+import { useSlidesPerView } from "../../common/hooks/useSliderPerView";
 import {
   getBoardGameDetail,
   getSimilarBoardGame,

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ChevronRight } from "../../assets/icon/icon";
-import { useSlidesPerViewPick } from "../../common/util/useSliderPerView";
+import { useSlidesPerViewPick } from "../../common/hooks/useSliderPerView";
 import CategoryBanner from "../../components/CategoryBadge/CategoryBadge";
 
 const PickBox = ({ gameTabRef, myPickData, selectedPick, handleClickPick }) => {

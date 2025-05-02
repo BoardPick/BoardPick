@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronLeft, Link, Bookmark } from "../../assets/icon/icon";
 import { togglePick, getPickId } from "../../common/axios/api";
-import { useBoardGameData, usePickId } from "../../common/util/useAxios";
+import { useBoardGameData, usePickId } from "../../common/hooks/useAxios";
+import { handlerPick } from "../../common/utils/handlerPick";
+import { getPickStatus } from "../../common/utils/getPickStatus";
 
 const AppBar = ({ title, mark, type, id }) => {
   const BarType = ["gradient"].includes(type) ? type : "";
@@ -12,12 +14,10 @@ const AppBar = ({ title, mark, type, id }) => {
   const isCopied = useSelector((state) => state.isCopied);
 
   // const { pickId, loading, error } = usePickId();
-  const pickId = JSON.parse(localStorage.getItem("pick")) || [];
-  const isPicked = pickId.includes(id);
+  const { isPicked } = getPickStatus(id);
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };
-  const toast = useSelector((state) => state.toast);
   const toastPick = useSelector((state) => state.toast?.pick);
   const toastUnPick = useSelector((state) => state.toast?.unpick);
   const setToastPick = (value) => {
@@ -28,30 +28,8 @@ const AppBar = ({ title, mark, type, id }) => {
     dispatch({ type: "SET_TOAST_UNPICK", payload: value });
   };
 
-  const handlerPick = (id) => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   console.error("No token found");
-    //   return;
-    // }
-
-    // togglePick(id, token)
-    togglePick(id)
-      .then((response) => {
-        if (response.picked) {
-          setToastPick(false);
-          setToastUnpick(true);
-        } else {
-          setToastPick(true);
-          setToastUnpick(false);
-        }
-        console.log(response.picked);
-        console.log(isPicked);
-        console.log(pickId);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handlerMyPick = (id) => {
+    handlerPick(id, setToastPick, setToastUnpick);
   };
 
   useEffect(() => {
@@ -81,7 +59,7 @@ const AppBar = ({ title, mark, type, id }) => {
             className={`barBtn bookmark ${isPicked ? "pickOn" : ""}`}
             onClick={(e) => {
               e.stopPropagation();
-              handlerPick(id);
+              handlerMyPick(id);
             }}
           >
             <Bookmark />

@@ -5,29 +5,27 @@ import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
 import { togglePick } from "../../common/axios/api";
-import { usePickId } from "../../common/util/useAxios";
+import { usePickId } from "../../common/hooks/useAxios";
+import { getPickStatus } from "../../common/utils/getPickStatus";
+import { handlerPick } from "../../common/utils/handlerPick";
 
 const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // const { pickId, loading, error } = usePickId();
-  const pickId = JSON.parse(localStorage.getItem("pick")) || [];
+  const { isPicked } = getPickStatus(id);
+  const toastPick = useSelector((state) => state.toast?.pick);
+  const toastUnPick = useSelector((state) => state.toast?.unpick);
+  const setToastPick = (value) => {
+    dispatch({ type: "SET_TOAST_PICK", payload: value });
+  };
+  const setToastUnpick = (value) => {
+    dispatch({ type: "SET_TOAST_UNPICK", payload: value });
+  };
 
-  const isPicked = pickId && pickId.includes(id);
-
-  const handlerPick = (id) => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   console.error("No token found");
-    //   return;
-    // }
-    // togglePick(id, token)
-    togglePick(id)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handlerMyPick = (id) => {
+    handlerPick(id, setToastPick, setToastUnpick);
+    window.location.reload();
   };
 
   return (
@@ -40,11 +38,10 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
       <article className="thumbImg">
         <img src={img} alt="썸네일이미지" />
         <button
-          className={`barBtn bookmark ${isPicked ? "pickOn" : ""}
-          `}
+          className={`barBtn bookmark ${isPicked ? "pickOn" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
-            handlerPick(id);
+            handlerMyPick(id);
           }}
         >
           <Bookmark />

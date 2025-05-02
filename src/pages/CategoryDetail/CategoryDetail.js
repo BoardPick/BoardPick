@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getBoardGameDetail } from "../../common/axios/api.js";
-import { usePickId } from "../../common/util/useAxios.js";
+import { usePickId } from "../../common/hooks/useAxios.js";
 
 import AppBar from "../../components/AppBar/AppBar.js";
 import CategoryBadge from "../../components/CategoryBadge/CategoryBadge.js";

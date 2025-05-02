@@ -1,5 +1,6 @@
 import axios from "axios";
 import boardGameData from "../../assets/data/boardGameData.json";
+import { getPickStatus } from "../utils/getPickStatus";
 
 export const apiRoot = axios.create({
   baseURL: "https://boardpick-server.store",
@@ -104,16 +105,14 @@ export const togglePick = async (id, token) => {
     //     withCredentials: true,
     //   }
     // );
-    const picks = JSON.parse(localStorage.getItem("pick")) || [];
+    // const picks = JSON.parse(localStorage.getItem("pick")) || [];
 
-    const isPicked = picks.includes(id);
+    // const isPicked = picks.includes(id);
+    const { isPicked, pickId } = getPickStatus(id);
 
-    let updatedPicks;
-    if (isPicked) {
-      updatedPicks = picks.filter((pickId) => pickId !== id);
-    } else {
-      updatedPicks = [id, ...picks];
-    }
+    const updatedPicks = isPicked
+      ? pickId.filter((pickId) => pickId !== id)
+      : [id, ...pickId];
 
     localStorage.setItem("pick", JSON.stringify(updatedPicks));
     return updatedPicks;
