@@ -53,7 +53,7 @@ const Home = ({ logData }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const recommandData = await getRecsGame(boardGameData, myPickData);
+        const recommandData = await getRecsGame(myPickData);
         setRecommandData(recommandData);
         setLoading(false);
       } catch (err) {

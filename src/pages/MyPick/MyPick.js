@@ -7,10 +7,9 @@ import {
   getSimilarBoardGame,
   getSuggestGame,
 } from "../../common/axios/api";
-import { getRecommandData } from "../../common/axios/recommand";
+import { getRecsGame } from "../../common/axios/api";
 import GameSlide from "../../components/GameSlide/GameSlide";
 import PickBox from "../../layouts/PickBox/PickBox";
-import boardGameData from "../../assets/data/boardGameData.json";
 
 const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
@@ -35,7 +34,7 @@ const MyPick = ({ logData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const recsGameData = await getRecommandData(boardGameData, myPickData);
+        const recsGameData = await getRecsGame(myPickData);
         setRecsGameData(recsGameData);
         setLoading(false);
       } catch (err) {
@@ -114,9 +113,6 @@ const MyPick = ({ logData }) => {
     });
   }, [myPickData, selectedPick.id]);
 
-  console.log(selectedPick);
-
-  console.log(myPickData);
   if (loading) return <Loading />;
 
   //마이픽 선택

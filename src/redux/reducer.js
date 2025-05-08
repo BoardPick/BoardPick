@@ -24,12 +24,20 @@ function reducer(state = initialState, action) {
           pick: action.payload,
         },
       };
+    case "SET_IS_PICKED":
+      return {
+        ...state,
+        pickedItems: {
+          ...state.pickedItems,
+          [action.payload.id]: action.payload.isPicked,
+        },
+      };
     case "SET_TOAST_UNPICK":
       return {
         ...state,
         toast: {
           ...state.toast,
-          unPick: action.payload,
+          unpick: action.payload,
         },
       };
     case "SET_ISCOPY":

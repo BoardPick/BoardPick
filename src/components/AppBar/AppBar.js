@@ -14,7 +14,7 @@ const AppBar = ({ title, mark, type, id }) => {
   const isCopied = useSelector((state) => state.isCopied);
 
   // const { pickId, loading, error } = usePickId();
-  const { isPicked } = getPickStatus(id);
+  const { isPicked } = getPickStatus(id) || false;
   const setIsCopied = () => {
     dispatch({ type: "SET_ISCOPY", payload: !isCopied });
   };

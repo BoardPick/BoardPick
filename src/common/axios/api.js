@@ -77,8 +77,44 @@ export const getMyPick = async (token) => {
 //     throw error;
 //   }
 // };
-export const getRecsGame = () => {
-  return [...boardGameData].sort(() => Math.random() - 0.5);
+export const getRecsGame = (pickedGameIds) => {
+  //pick한 게임이 없을 때 랜덤렌더링
+  if (!pickedGameIds || pickedGameIds.length === 0) {
+    return boardGameData.sort(() => Math.random() - 0.5).slice(0, 10);
+  }
+
+  // Pick한 게임의 id와 일치하는 게임데이터 불러오기
+  const pickedGames = boardGameData.filter((game) =>
+    pickedGameIds.includes(game.id)
+  );
+
+  //pick한 게임 카테고리별 점수 누적표
+  const categoryScores = {};
+  pickedGames.forEach((game) => {
+    game.boardGameCategories.forEach((category) => {
+      categoryScores[category] = (categoryScores[category] || 0) + 1;
+    });
+  });
+
+  // 점수표를 기준으로 나머지 보드게임들의 유사도 점수표
+  const scoredGames = boardGameData
+    .filter((game) => !pickedGameIds.includes(game.id))
+    .map((game) => {
+      const score = game.boardGameCategories.reduce(
+        (acc, category) => acc + (categoryScores[category] || 0),
+        0
+      );
+      return { ...game, score };
+    });
+  //계산된 게임 수가 10개 이상일 경우 / 10개 미만일 경우
+  const ScoreGameCount = scoredGames.filter((game) => game.score > 0);
+  if (ScoreGameCount.length >= 10) {
+    scoredGames.sort((a, b) => b.score - a.score);
+    let topGames = scoredGames.slice(0, 10);
+    return topGames;
+  } else {
+    return boardGameData.sort(() => Math.random() - 0.5).slice(0, 10);
+  }
 };
 
 // export const getSuggestGame = async () => {
@@ -105,9 +141,6 @@ export const togglePick = async (id, token) => {
     //     withCredentials: true,
     //   }
     // );
-    // const picks = JSON.parse(localStorage.getItem("pick")) || [];
-
-    // const isPicked = picks.includes(id);
     const { isPicked, pickId } = getPickStatus(id);
 
     const updatedPicks = isPicked
@@ -115,7 +148,7 @@ export const togglePick = async (id, token) => {
       : [id, ...pickId];
 
     localStorage.setItem("pick", JSON.stringify(updatedPicks));
-    return updatedPicks;
+    return { picked: !isPicked, updatedPicks };
   } catch (error) {
     throw error;
   }
