@@ -16,20 +16,13 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case "SET_ISLOGGEDIN":
       return { ...state, isLoggedIn: !state.isLoggedIn };
+
     case "SET_TOAST_PICK":
       return {
         ...state,
         toast: {
           ...state.toast,
           pick: action.payload,
-        },
-      };
-    case "SET_IS_PICKED":
-      return {
-        ...state,
-        pickedItems: {
-          ...state.pickedItems,
-          [action.payload.id]: action.payload.isPicked,
         },
       };
     case "SET_TOAST_UNPICK":

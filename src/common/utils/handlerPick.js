@@ -1,22 +1,17 @@
 import { togglePick } from "../axios/api";
-import { getPickStatus } from "./getPickStatus";
 
-export const handlerPick = async (id, setToastPick, setToastUnpick) => {
-  const { isPicked, pickId } = getPickStatus(id);
-
+export const handlerPick = async (id, dispatch, setIsPicked) => {
   try {
     const response = await togglePick(id);
-    if (response.picked) {
-      setToastPick(false);
-      setToastUnpick(true);
-    } else {
-      setToastPick(true);
-      setToastUnpick(false);
-    }
 
-    console.log(response.picked);
-    console.log(isPicked);
-    console.log(pickId);
+    if (response.picked) {
+      dispatch({ type: "SET_TOAST_PICK", payload: true });
+      dispatch({ type: "SET_TOAST_UNPICK", payload: false });
+    } else {
+      dispatch({ type: "SET_TOAST_PICK", payload: false });
+      dispatch({ type: "SET_TOAST_UNPICK", payload: true });
+    }
+    setIsPicked(response.picked);
   } catch (error) {
     console.error(error);
   }
