@@ -13,21 +13,10 @@ const ThumbNail = ({ img, name, info, type, id, tags }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { pickId, loading, error } = usePickId();
-  const { isPicked } = getPickStatus(id);
-  const toastPick = useSelector((state) => state.toast?.pick);
-  const toastUnPick = useSelector((state) => state.toast?.unpick);
-  const setToastPick = (value) => {
-    dispatch({ type: "SET_TOAST_PICK", payload: value });
-  };
-  const setToastUnpick = (value) => {
-    dispatch({ type: "SET_TOAST_UNPICK", payload: value });
-  };
-
+  const [isPicked, setIsPicked] = useState(getPickStatus(id).isPicked);
   const handlerMyPick = (id) => {
-    handlerPick(id, setToastPick, setToastUnpick);
-    window.location.reload();
+    handlerPick(id, dispatch, setIsPicked);
   };
-
   return (
     <div
       className={`ThumbNail ${type}`}

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Btn/Button/Button";
 import Loading from "../../components/Search/SearchResult/Loading/Loading";
@@ -13,9 +14,8 @@ import PickBox from "../../layouts/PickBox/PickBox";
 
 const MyPick = ({ logData }) => {
   const gameTabRef = useRef({});
-  const [myPickOn, setMyPickOn] = useState(false);
   const navigate = useNavigate();
-
+  const [myPickOn, setMyPickOn] = useState(false);
   const [myPickData, setMyPickData] = useState();
   const [recsGameData, setRecsGameData] = useState([]);
   const [similarData, setSimilarData] = useState([]);
@@ -26,6 +26,8 @@ const MyPick = ({ logData }) => {
     name: "",
     boardGameCategories: "",
   });
+  const toastPick = useSelector((state) => state.toast?.pick);
+  const toastUnPick = useSelector((state) => state.toast?.unpick);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -64,7 +66,7 @@ const MyPick = ({ logData }) => {
       }
     };
     fetchPickData();
-  }, []);
+  }, [toastPick, toastUnPick]);
 
   //비슷한 게임 api
   useEffect(() => {
@@ -111,7 +113,7 @@ const MyPick = ({ logData }) => {
       name: myPickData[0].name,
       boardGameCategories: myPickData[0].boardGameCategories,
     });
-  }, [myPickData, selectedPick.id]);
+  }, [toastPick, toastUnPick, myPickData, selectedPick.id]);
 
   if (loading) return <Loading />;
 
