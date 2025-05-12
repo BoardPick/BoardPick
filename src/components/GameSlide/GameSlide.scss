@@ -5,6 +5,10 @@
   background-color: $common_white;
   padding: 24px 0;
   .contentTit {
+    @each $font, $value in $title4 {
+      #{$font}: $value;
+    }
+    font-weight: 600;
     padding-left: 20px;
     padding-right: 20px;
   }

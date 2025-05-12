@@ -16,7 +16,6 @@ import {
   getDifficultyData,
 } from "../../common/axios/recommand.js";
 import { getRecsGame } from "../../common/axios/api.js";
-import boardGameData from "../../assets/data/boardGameData.json";
 
 const Home = ({ logData }) => {
   const onSearch = useSelector((state) => state.onSearch);

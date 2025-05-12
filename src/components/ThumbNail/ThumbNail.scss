@@ -81,9 +81,11 @@
     }
   }
   &.big {
+    aspect-ratio: 163.5 / 284;
     justify-content: space-between;
     .thumbImg {
-      aspect-ratio: 41 / 45;
+      width: 100%;
+      aspect-ratio: 164 / 180;
       flex: 2;
     }
     .hashTagBox {
@@ -96,8 +98,11 @@
     }
   }
   &.small {
+    width: 100%;
+    aspect-ratio: 140/272;
     .thumbImg {
-      aspect-ratio: 7 / 8;
+      width: 100%;
+      aspect-ratio: 140 / 160;
     }
     .hashTagBox {
       &.tagBig {

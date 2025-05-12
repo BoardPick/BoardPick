@@ -1,11 +1,10 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { usePickId } from "../../common/hooks/useAxios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Bookmark } from "../../assets/icon/icon";
 import Tag from "../Tag/Tag";
-import { useNavigate } from "react-router-dom";
-import { togglePick } from "../../common/axios/api";
-import { usePickId } from "../../common/hooks/useAxios";
 import { getPickStatus } from "../../common/utils/getPickStatus";
 import { handlerPick } from "../../common/utils/handlerPick";
 

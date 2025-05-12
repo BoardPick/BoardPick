@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSlidesPerView } from "../../common/hooks/useSliderPerView";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
 
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import "swiper/css";
