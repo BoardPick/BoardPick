@@ -14,12 +14,8 @@
     }
     font-family: $font-family700;
     font-weight: normal;
-    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
-
     .firstline {
       display: flex;
       justify-content: flex-start;
@@ -29,10 +25,9 @@
       }
     }
   }
-  .slide {
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+  .gameSlide {
+    padding: 0;
+    gap: 16px;
   }
 }
 
@@ -90,7 +85,11 @@
   padding-bottom: 80px;
 
   .curation {
-    padding-bottom: 30px;
+    padding-bottom: 32px;
+    .gameSlide {
+      padding: 0;
+      gap: 16px;
+    }
 
     .title {
       @each $font, $value in $title2 {
@@ -98,11 +97,8 @@
       }
       font-family: $font-family600;
       font-weight: 600;
-      padding-bottom: 20px;
       display: flex;
       gap: 5px;
-      padding-left: 20px;
-      padding-right: 20px;
     }
 
     h2 {

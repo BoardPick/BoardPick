@@ -7,17 +7,14 @@ import { FreeMode } from "swiper/modules";
 import ThumbNail from "../../components/ThumbNail/ThumbNail";
 import "swiper/css";
 
-const GameSlide = ({ boldTitle, title, games }) => {
+const GameSlide = ({ title, games }) => {
   const navigate = useNavigate();
   const gameTabRef = useRef({});
   const slidesPerView = useSlidesPerView(gameTabRef);
 
   return (
     <article className="gameSlide" ref={gameTabRef}>
-      <h1 className="contentTit">
-        <strong>{boldTitle}</strong>
-        <span>{title}</span>
-      </h1>
+      <h1 className="contentTit">{title}</h1>
       <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
         {games &&
           games?.map((game, i) => (

@@ -16,6 +16,7 @@ import {
   getDifficultyData,
 } from "../../common/axios/recommand.js";
 import { getRecsGame } from "../../common/axios/api.js";
+import GameSlide from "../../components/GameSlide/GameSlide.js";
 
 const Home = ({ logData }) => {
   const onSearch = useSelector((state) => state.onSearch);
@@ -139,32 +140,20 @@ const Home = ({ logData }) => {
           <div>
             {recommandData && (
               <article className="recommand">
-                <div className="title">
-                  <div className="firstline">
-                    <h1 className="name">
-                      {logData ? logData.nickname : "사용자"}
-                    </h1>
-                    <h1>회원님이</h1>
-                  </div>
-                  <h2>관심 있어 할만한 보드게임</h2>
-                </div>
-                <div className="slide" ref={gameTabRef}>
-                  <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                    {recommandData.map((r, i) => (
-                      <SwiperSlide key={i}>
-                        <ThumbNail
-                          id={r.id}
-                          img={r.imageUrl}
-                          name={r.name}
-                          info={r.description}
-                          tags={r.tags}
-                          picked={r.picked}
-                          type="small"
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                </div>
+                <GameSlide
+                  title={
+                    <div className="title">
+                      <div className="firstline">
+                        <h1 className="name">
+                          {logData ? logData.nickname : "사용자"}
+                        </h1>
+                        <h1>회원님이</h1>
+                      </div>
+                      <h2>관심 있어 할만한 보드게임</h2>
+                    </div>
+                  }
+                  games={recommandData}
+                />
               </article>
             )}
             {/* 오늘의 보드픽 랭킹 */}
@@ -194,75 +183,41 @@ const Home = ({ logData }) => {
             <div className="all-curation">
               {duoData && (
                 <article className="curation">
-                  <div className="title">
-                    <h1>#둘이서 하기 좋은</h1>
-                    <h2>보드게임</h2>
-                  </div>
-                  <div className="slide" ref={gameTabRef}>
-                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {duoData.map((d, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={d.id}
-                            img={d.imageUrl}
-                            name={d.name}
-                            info={d.description}
-                            tags={d.tags}
-                            picked={d.picked}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  </div>
+                  <GameSlide
+                    title={
+                      <div className="title">
+                        <h1>#둘이서 하기 좋은</h1>
+                        <h2>보드게임</h2>
+                      </div>
+                    }
+                    games={duoData}
+                  />
                 </article>
               )}
               {easyData && (
                 <article className="curation">
-                  <div className="title">
-                    <h1>#초보자도 쉽게 즐기는</h1>
-                    <h2>보드게임</h2>
-                  </div>
-                  <div className="slide" ref={gameTabRef}>
-                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {easyData.map((r, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={r.id}
-                            img={r.imageUrl}
-                            name={r.name}
-                            info={r.description}
-                            tags={r.tags}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  </div>
+                  <GameSlide
+                    title={
+                      <div className="title">
+                        <h1>#초보자도 쉽게 즐기는</h1>
+                        <h2>보드게임</h2>
+                      </div>
+                    }
+                    games={easyData}
+                  />
                 </article>
               )}
               {teamData && (
                 <article className="curation">
-                  <div className="title">
-                    <h1>#단체가 하기 좋은</h1>
-                    <h2>보드게임</h2>
-                  </div>
-                  <div className="slide" ref={gameTabRef}>
-                    <Swiper slidesPerView={slidesPerView} spaceBetween={8}>
-                      {teamData.map((r, i) => (
-                        <SwiperSlide key={i}>
-                          <ThumbNail
-                            id={r.id}
-                            img={r.imageUrl}
-                            name={r.name}
-                            info={r.description}
-                            tags={r.tags}
-                            type="small"
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  </div>
+                  <GameSlide
+                    title={
+                      <div className="title">
+                        <h1>#단체가 하기 좋은</h1>
+                        <h2>보드게임</h2>
+                      </div>
+                    }
+                    games={teamData}
+                  />
                 </article>
               )}
             </div>

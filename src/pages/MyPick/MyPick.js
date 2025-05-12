@@ -160,14 +160,21 @@ const MyPick = ({ logData }) => {
         {!myPickData || myPickData.length === 0 ? (
           <GameSlide
             classNameBox={"recsGame"}
-            boldTitle={logData ? logData.nickname : "사용자"}
-            title={"님을 위한 추천 보드게임"}
+            title={
+              <>
+                <strong>{logData ? logData.nickname : "'사용자'"}</strong>
+                님을 위한 추천 보드게임
+              </>
+            }
             games={recsGameData}
           />
         ) : (
           <GameSlide
-            boldTitle={`#${selectedPick.name}`}
-            title={"과 비슷한 보드게임"}
+            title={
+              <>
+                <strong>{`#${selectedPick.name}`}</strong>과 비슷한 보드게임
+              </>
+            }
             games={similarData}
           />
         )}
